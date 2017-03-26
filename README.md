@@ -5,7 +5,7 @@ $ git clone https://github.com/daniellizik/template-translator
 $ cd template-translator
 $ npm i
 $ npm run dev
-# will be running at localhost:8080
+# will be running at localhost:8080/dev
 ```
 
 ## production
