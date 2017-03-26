@@ -4,8 +4,8 @@ node_js:
   - "6.9.4"
 
 install:
-  - sudo pip install awscli
-  - sudo pip install --upgrade pip
+  - pip install awscli
+  - pip install --upgrade pip
 
 script:
   - npm run test
