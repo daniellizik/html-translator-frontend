@@ -1,10 +1,13 @@
 language: node_js
 
+sudo: required
+
 node_js:
   - "6.9.4"
 
 install:
-  - pip install awscli
+  - sudo pip install awscli
+  - sudo pip install --upgrade pip
 
 script:
   - npm run test
