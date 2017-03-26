@@ -6,7 +6,7 @@ node_js:
 install:
   - export PATH=$PATH:$HOME/.local/bin
   - sudo pip install awscli
-  
+  - npm install
 
 script:
   - npm run test
