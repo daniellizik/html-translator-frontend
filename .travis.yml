@@ -3,6 +3,9 @@ language: node_js
 node_js:
   - "6.9.4"
 
+install:
+  - pip install awscli
+
 script:
   - npm run test
 
@@ -16,6 +19,10 @@ deploy:
   bucket: $ARTIFACTS_BUCKET
   local_dir: "./www"
   skip_cleanup: true
+
+after_deploy:
+  - aws configure set preview.cloudfront true
+  - aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths "/*"
 
 # addons:
 #   s3_region: "us-east-1"
