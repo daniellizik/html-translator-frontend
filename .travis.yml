@@ -4,10 +4,10 @@ node_js:
   - "6.9.4"
 
 install:
-  - pip install awscli
-  # https://github.com/travis-ci/travis-ci/issues/3139#issuecomment-74105293
-  # no clue
+  - pip install --upgrade pip
   - export PATH=$PATH:$HOME/.local/bin
+  - pip install awscli
+  
 
 script:
   - npm run test
