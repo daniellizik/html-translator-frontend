@@ -9,9 +9,19 @@ script:
 after_success:
   - npm run build
 
-addons:
-  s3_region: "us-east-1"
-  debug: true
-  artifacts: 
-    paths:
-      - $ARTIFACTS_PATH
+deploy:
+  provider: s3
+  access_key_id: $ARTIFACTS_KEY
+  secret_access_key: $ARTIFACTS_SECRET
+  bucket: $ARTIFACTS_BUCKET
+  # root
+  upload-dir: "./"
+  local_dir: "./www"
+  skip_cleanup: true
+
+# addons:
+#   s3_region: "us-east-1"
+#   debug: true
+#   artifacts: 
+#     paths:
+#       - $ARTIFACTS_PATH
