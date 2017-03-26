@@ -1,0 +1,60 @@
+{
+  "name": "dom-explorer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "./node_modules/.bin/cross-env NODE_ENV=development ./node_modules/.bin/webpack-dev-server --hot  --content-base ./ --config ./webpack/development.js",
+    "build": "./node_modules/.bin/cross-env NODE_ENV=production ./node_modules/.bin/webpack --config webpack/production.js",
+    "test": "./node_modules/.bin/cross-env NODE_ENV=test ./node_modules/.bin/jest",
+    "test-unit:watch": "./node_modules/.bin/cross-env NODE_ENV=test ./node_modules/.bin/jest --watch"
+  },
+  "jest": {
+    "testRegex": "(/__tests__/.*|(\\.|/)(spec))\\.jsx?$"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://bitbucket.org/dlizik/dlizik.bitbucket.org.git"
+  },
+  "author": "daniel lizik",
+  "license": "MIT",
+  "homepage": "https://bitbucket.org/dlizik/dlizik.bitbucket.org#readme",
+  "devDependencies": {
+    "babel": "^6.5.2",
+    "babel-core": "^6.10.4",
+    "babel-jest": "^18.0.0",
+    "babel-loader": "^6.2.4",
+    "babel-plugin-react-html-attrs": "^2.0.0",
+    "babel-plugin-root-import": "^5.1.0",
+    "babel-plugin-syntax-object-rest-spread": "^6.8.0",
+    "babel-plugin-transform-es2015-destructuring": "^6.9.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.24.0",
+    "babel-plugin-transform-object-rest-spread": "^6.8.0",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.11.1",
+    "babel-preset-react-hmre": "^1.1.1",
+    "babel-preset-stage-0": "^6.22.0",
+    "cross-env": "^2.0.0",
+    "enzyme": "^2.5.1",
+    "jest": "^18.1.0",
+    "json-loader": "^0.5.4",
+    "raw-loader": "^0.5.1",
+    "regenerator-runtime": "^0.10.3",
+    "webpack": "^1.13.1",
+    "webpack-dev-server": "^1.14.1"
+  },
+  "dependencies": {
+    "file-saver": "^1.3.2",
+    "isomorphic-fetch": "^2.2.1",
+    "parse5": "^3.0.1",
+    "radium": "^0.18.1",
+    "react": "^15.3.0",
+    "react-dom": "^15.3.0",
+    "react-redux": "^4.4.6",
+    "react-router": "^3.0.0",
+    "react-router-redux": "^4.0.7",
+    "redux": "^3.5.2",
+    "redux-thunk": "^2.1.0",
+    "sanitizer": "^0.1.3"
+  }
+}

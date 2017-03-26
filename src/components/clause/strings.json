@@ -1,0 +1,167 @@
+{
+  "en-US": {
+    "targets": {
+      "nodeName": {
+        "title": "html element name",
+        "targetValueLabel": "html tag"
+      },
+      "text": {
+        "title": "text",
+        "label": "search for text"
+      },
+      "attrKey": {
+        "title": "attribute key",
+        "targetValueLabel": "select attribute key to edit"
+      },
+      "attrVal": {
+        "title": "attribute value",
+        "targetValueLabel": "set attribute value"
+      },
+      "attrPair": {
+        "title": "attribute key value pair",
+        "targetValueLabel": "html5 attribute pair"
+      }
+    },
+
+    "clauses": {
+      "removeClause": "remove this clause",
+      "switchToEdit": "edit these queried elements",
+      "addClause": "add a clause",
+      "selectTarget": "select search target",
+      "selectRule": "select search rule",
+      "addAttrKey": "add attribute key",
+      "addAttrVal": "set attribute value"
+    },
+
+    "querybuilder": {
+      "ruleValueLabel": "rule value",
+      "targetValueLabel": "set target",
+      "inputLabel": "modification to insert",
+      "rules": {
+        "equals": {
+          "title": "equals"
+        },
+        "notEquals": {
+          "title": "not equals"
+        },
+        "like": {
+          "title": "like"
+        },
+        "notLike": {
+          "title": "not like"
+        },
+        "regex": {
+          "title": "regular expression",
+          "changeRuleLabel": "regular expression body",
+          "changeFlagsLabel": "regular expression flags"
+        }
+      }
+    },
+
+    "mutator": {
+      "ruleValueLabel": "rule value",
+      "targetValueLabel": "set target",
+      "inputLabel": "modification to insert",
+      "rules": {
+        "add": {
+          "title": "add attribute"
+        },
+        "allReplace": {
+          "title": "replace all"
+        },
+        "regexReplace": {
+          "title": "replace via regular expression"
+        },
+        "startOf": {
+          "title": "start of"
+        },
+        "endOf": {
+          "title": "end of"
+        }
+      }
+    }
+  },
+  "ja-JP": {
+    "targets": {
+      "nodeName": {
+        "title": "html element name",
+        "targetValueLabel": "html tag"
+      },
+      "text": {
+        "title": "text",
+        "label": "search for text"
+      },
+      "attrKey": {
+        "title": "attribute key",
+        "targetValueLabel": "select attribute key to edit"
+      },
+      "attrVal": {
+        "title": "attribute value",
+        "targetValueLabel": "set attribute value"
+      },
+      "attrPair": {
+        "title": "attribute key value pair",
+        "targetValueLabel": "html5 attribute pair"
+      }
+    },
+
+    "clauses": {
+      "removeClause": "remove this clause",
+      "switchToEdit": "edit these queried elements",
+      "addClause": "add a clause",
+      "selectTarget": "select search target",
+      "selectRule": "select search rule",
+      "addAttrKey": "add attribute key",
+      "addAttrVal": "set attribute value"
+    },
+
+    "querybuilder": {
+      "ruleValueLabel": "rule value",
+      "targetValueLabel": "set target",
+      "inputLabel": "modification to insert",
+      "rules": {
+        "equals": {
+          "title": "equals"
+        },
+        "notEquals": {
+          "title": "not equals"
+        },
+        "like": {
+          "title": "like"
+        },
+        "notLike": {
+          "title": "not like"
+        },
+        "regex": {
+          "title": "regular expression",
+          "changeRuleLabel": "regular expression body",
+          "changeFlagsLabel": "regular expression flags"
+        }
+      }
+    },
+
+    "mutator": {
+      "ruleValueLabel": "rule value",
+      "targetValueLabel": "set target",
+      "inputLabel": "modification to insert",
+      "rules": {
+        "add": {
+          "title": "add attribute"
+        },
+        "allReplace": {
+          "title": "replace all"
+        },
+        "regexReplace": {
+          "title": "replace via regular expression"
+        },
+        "startOf": {
+          "title": "start of"
+        },
+        "endOf": {
+          "title": "end of"
+        }
+      }
+    }
+  }
+
+}

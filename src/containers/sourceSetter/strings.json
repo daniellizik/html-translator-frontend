@@ -1,0 +1,16 @@
+{
+  "en-US": {
+    "rawHtml": "set raw html",
+    "url": "fetch html from url",
+    "dragAndDrop": "drag and drop html file",
+    "upload": "select html file to upload",
+    "submit": "submit"
+  },
+  "ja-JP": {
+    "rawHtml": "生HTML",
+    "url": "URL",
+    "dragAndDrop": "ドラッグ＆ドロップ",
+    "upload": "アップロード",
+    "submit": "投稿する"
+  }
+}

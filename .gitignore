@@ -1,0 +1,7 @@
+node_modules/*
+project.cson
+npm-debug.log
+.vscode/*
+secrets.txt
+secrets.*
+secret.*

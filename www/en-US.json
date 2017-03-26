@@ -1,0 +1,14 @@
+{
+  "clause": {
+    "addClause": "add a clause",
+    "removeClause": "remove this clause",
+    "switchToEdit": "edit these queried elements",
+    "selectTarget": "set search target",
+    "selectRule": "set search rule",
+    "inputSetter": "search for {input}",
+    "regexBody": "set regular expression body",
+    "regexFlags": "set regular expression flags",
+    "addAttrKey": "add attribute key",
+    "addAttrVal": "set attribute value"
+  }
+}

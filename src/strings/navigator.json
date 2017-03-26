@@ -1,0 +1,14 @@
+{
+  "en-US": {
+    "buildQuery": "Build Query",
+    "massEdit": "Mass Edit",
+    "previewHtml": "Preview HTML",
+    "rawHtml": "Raw HTML"
+  },
+  "ja-JP": {
+    "buildQuery": "問いを作る",
+    "massEdit": "大量エディット",
+    "previewHtml": "HTMLの下見",
+    "rawHtml": "生HTML"
+  }
+}
