@@ -54,16 +54,19 @@ class SourceSetter extends Component {
   dropHandle(e) {
     const file = e.dataTransfer.files[0]
     this.props.fileSelect(file)
-    return this.preventer(e)
+    e.preventDefault()
+    return false
   }
 
   dragOverHandle(e) {
-    return this.preventer(e)
+    e.preventDefault()
+    return false
   }
 
   dragEnterHandle(e) {
     this.setState((state) => ({ dragging: true }))
-    return this.preventer(e)
+    e.preventDefault()
+    return false
   }
 
   guts() {
@@ -150,8 +153,6 @@ class SourceSetter extends Component {
         <Overlay />
         <div
           style={style.container(this.props.source)}
-          onDragExit={(e) => this.props.htmlFileDragExit(e.target.value)}
-          onDragEnter={(e) => this.props.htmlFileDragStart(e.target.value)}
           class="col-12 mt-5">
           {this.guts()}
         </div>
