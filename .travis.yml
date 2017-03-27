@@ -1,7 +1,14 @@
+# production build
+
 language: node_js
 
 node_js:
   - "6.9.4"
+
+install:
+  - export PATH=$PATH:$HOME/.local/bin
+  - sudo pip install awscli
+  - npm install
 
 script:
   - npm run test
@@ -9,9 +16,14 @@ script:
 after_success:
   - npm run build
 
-addons:
-  s3_region: "us-east-1"
-  debug: true
-  artifacts: 
-    paths:
-      - $ARTIFACTS_PATH
+deploy:
+  provider: s3
+  access_key_id: $AWS_KEY
+  secret_access_key: $AWS_SECRET
+  bucket: $PRODUCTION_BUCKET_NAME
+  local_dir: "./www"
+  skip_cleanup: true
+
+after_deploy:
+  - aws configure set preview.cloudfront true
+  - aws cloudfront create-invalidation --distribution-id $PRODUCTION_CLOUDFRONT_DISTRIBUTION_ID --paths "/*"
