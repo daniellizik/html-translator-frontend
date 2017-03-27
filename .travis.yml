@@ -2,7 +2,7 @@
 
 branch:
   only:
-    -staging
+    - staging
 
 language: node_js
 
