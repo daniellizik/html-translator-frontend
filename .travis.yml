@@ -1,5 +1,9 @@
 # staging build
 
+branch:
+  only:
+    -staging
+
 language: node_js
 
 node_js:
