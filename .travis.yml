@@ -1,4 +1,4 @@
-# production build
+# staging build
 
 language: node_js
 
@@ -20,10 +20,10 @@ deploy:
   provider: s3
   access_key_id: $AWS_KEY
   secret_access_key: $AWS_SECRET
-  bucket: $PRODUCTION_BUCKET_NAME
+  bucket: $STAGING_BUCKET_NAME
   local_dir: "./www"
   skip_cleanup: true
 
 after_deploy:
   - aws configure set preview.cloudfront true
-  - aws cloudfront create-invalidation --distribution-id $PRODUCTION_CLOUDFRONT_DISTRIBUTION_ID --paths "/*"
+  - aws cloudfront create-invalidation --distribution-id $STAGING_CLOUDFRONT_DISTRIBUTION_ID --paths "/*"
