@@ -7,8 +7,6 @@ export default {
   pastInit: false,
 
   components: {
-    querybuilder: true,
-    mutator: false,
     htmlmount: false,
     htmlpreview: false
   },
@@ -36,12 +34,6 @@ export default {
     mutated: []
   },
 
-  querybuilder: {
-    clauses: []
-  },
-
-  mutator: {
-    clauses: []
-  }
+  clauses: []
 
 }

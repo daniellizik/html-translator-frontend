@@ -1,3 +1,5 @@
+# production build
+
 language: node_js
 
 node_js:
@@ -25,10 +27,3 @@ deploy:
 after_deploy:
   - aws configure set preview.cloudfront true
   - aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths "/*"
-
-# addons:
-#   s3_region: "us-east-1"
-#   debug: true
-#   artifacts: 
-#     paths:
-#       - $ARTIFACTS_PATH

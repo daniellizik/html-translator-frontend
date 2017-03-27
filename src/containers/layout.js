@@ -27,15 +27,6 @@ export function reducer(state, action) {
 
 class Layout extends Component {
 
-  leftColumn() {
-    if (this.props.isQB === true)
-      return <Builder stateKey="querybuilder" />
-    else if (this.props.isME === true)
-      return <Builder stateKey="mutator" />
-    else
-      return null
-  }
-
   render() {
     const { deployer, sidebar } = styles.layout
     return (
@@ -44,7 +35,7 @@ class Layout extends Component {
         <Navigator />
         <div class="row px-4">
           <div class="col-6">
-            {this.leftColumn()}
+            <Builder />
           </div>
           <div class="col-6">
             <HtmlMount />
