@@ -1,5 +1,5 @@
 {
-  "querybuilder": {
+  "query": {
     "targets": {
       "nodeName": {
         "rules": [
@@ -37,7 +37,7 @@
         ]
       }
     },
-    "defaultClause": {
+    "defaultQuery": {
       "target": "text",
       "targetValue": "",
       "rule": "like",
@@ -80,7 +80,7 @@
         ]
       }
     },
-    "defaultClause": {
+    "defaultMutation": {
       "target": "text",
       "targetValue": "",
       "rule": "startOf",

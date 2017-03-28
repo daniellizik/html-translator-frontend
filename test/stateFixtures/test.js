@@ -18,10 +18,7 @@ const action = {
 
 export default reducer({
   ...state,
-  querybuilder: {
-    ...state.querybuilder,
-    clauses: queryclauses[0]
-  },
+  clauses: [],
   slave: {
     ...state.slave,
     ast,

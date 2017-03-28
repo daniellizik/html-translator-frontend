@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { startEditor, addClause } from './actions'
-import Clause from './clause'
+import { startEditor, addClause } from '~/src/components/clause/actions'
+import Clause from '~/src/components/clause/clause'
 import { colors } from '~/src/styles/constants'
 import { callMutator } from '~/src/components/navigator'
 

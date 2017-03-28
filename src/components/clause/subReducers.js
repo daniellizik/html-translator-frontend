@@ -37,7 +37,7 @@ export function reduceView(action, clauses, {view, list}) {
     return view
 }
 
-export function reduceClause(state, action, key) {
+export function reduceClauses(state, action, key) {
   let attempt
   const clauses = state[action.stateKey].clauses.map((c, i) => {
     if (i !== action.index)
