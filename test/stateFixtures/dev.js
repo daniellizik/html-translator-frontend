@@ -10,17 +10,13 @@ const ast = parseHtml(rawHtml)
 const list = treeToList()(ast)
 const action = {
   targetValue: 'cat-a',
-  type: constants.CHANGE_TARGET_VALUE,
-  stateKey: 'querybuilder',
+  type: constants.QUERY_CHANGE_TARGET_VALUE,
   index: 0
 }
 
 export default reducer({
   ...state,
-  querybuilder: {
-    ...state.querybuilder,
-    clauses: clauses[0]
-  },
+  clauses: [],
   slave: {
     ...state.slave,
     ast,

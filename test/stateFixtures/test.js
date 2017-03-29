@@ -9,14 +9,9 @@ import queryclauses from '~/test/stateFixtures/queryclauses'
 const rawHtml = loader(`${__dirname}/../htmlFixtures/cats.html`)
 const ast = parseHtml(rawHtml)
 const list = treeToList()(ast)
-const action = {
-  targetValue: 'cat-a',
-  type: constants.CHANGE_TARGET_VALUE,
-  stateKey: 'querybuilder',
-  index: 0
-}
 
-export default reducer({
+
+export default {
   ...state,
   clauses: [],
   slave: {
@@ -25,4 +20,4 @@ export default reducer({
     list,
     rawHtml
   }
-}, action)
+}

@@ -36,11 +36,7 @@ export default {
     // original normalized dom traversal
     // comes from slave bundle
     tree: [],
-    // "original" slice of tree
-    // start with null, we need to use full tree
-    // on first search, but after that
-    // the view is reduced several times by however
-    // many clauses are present
+    // view is nested array now, each result refers to each clause
     view: [],
     // mutation of view, lets us cache the view slice thing
     // when we "do work" on the view with editor
@@ -48,13 +44,7 @@ export default {
     mutated: []
   },
 
-  querybuilder: {
-    clauses: []
-  },
-
-  mutator: {
-    clauses: []
-  }
+  clauses: []
 
 };
 

@@ -3,30 +3,36 @@ import * as sourceSetterConstants from '~/src/containers/sourceSetter/constants'
 import { query, mutator } from './config'
 import queryReducer from './queryReducer'
 import mutationReducer from './mutationReducer'
+import { reduceView } from './subReducers'
 
 export default function(state, action) {
 
-  let result = state
+  let nextState = state
 
   // adding a clause by default
   // inserts one default query, no mutations
-  if (action.type === clauseConstants.CLAUSE_ADD)
-    result = {
-      ...state,
-      clauses: [
-        ...state.clauses,
-        [query.defaultQuery]
-      ]
-    }
-
-  else if (action.type === clauseConstants.CLAUSE_REMOVE) {
-    let clauses = state.clauses.filter((c, i) => i !== action.index)
-    result = {
+  if (action.type === clauseConstants.CLAUSE_ADD) {
+    const clauses = [...state.clauses, [query.defaultQuery]]
+    const view = reduceView(action, clauses, state.slave)
+    nextState = {
       ...state,
       slave: {
         ...state.slave,
-        view: reduceView(action, clauses, state.slave),
-        mutated: reduceMutated(action, clauses, state.slave)
+        view
+      },
+      clauses
+    }
+  }
+
+  else if (action.type === clauseConstants.CLAUSE_REMOVE) {
+    const clauses = state.clauses.filter((c, i) => i !== action.clauseIndex)
+    const view = reduceView(action, clauses, state.slave)
+    nextState = {
+      ...state,
+      slave: {
+        ...state.slave,
+        view
+        // mutated: reduceMutated(action, clauses, state.slave)
       },
       clauses
     }
@@ -34,7 +40,7 @@ export default function(state, action) {
 
   // remove all clauses, reset everything
   else if (action.type === sourceSetterConstants.HTML_FETCHED)
-    result = { 
+    nextState = { 
       ...state,
       slave: {
         ...state.slave,
@@ -45,11 +51,11 @@ export default function(state, action) {
     }
 
   else if (action.type.indexOf('QUERY_') > -1)
-    result = queryReducer(state, action)
+    nextState = queryReducer(state, action)
     
   else if (action.type.indexOf('MUTATION_') > -1)
-    result = mutationReducer(state, action)
+    nextState = mutationReducer(state, action)
 
-  return result
+  return nextState
 
 }

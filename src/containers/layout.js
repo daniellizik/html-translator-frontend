@@ -11,8 +11,8 @@ import HtmlMount from '~/src/containers/htmlMount'
 import * as sourceSetterConstants from '~/src/containers/sourceSetter/constants'
 import { constants as navigatorConstants } from '~/src/components/navigator'
 
-const setComponents = ({querybuilder, mutator, htmlmount, htmlpreview}) => {
-  const base = { querybuilder: true, mutator: false }
+const setComponents = ({query, mutator, htmlmount, htmlpreview}) => {
+  const base = { query: true, mutator: false }
   if (htmlmount === false && htmlpreview === false)
     return { ...base, htmlpreview, htmlmount: true }
   else
@@ -48,7 +48,7 @@ class Layout extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  isQB: !!state.components.querybuilder,
+  isQB: !!state.components.query,
   isME: !!state.components.mutator
 })
 

@@ -1,4 +1,4 @@
-export const querybuilder = {
+export const query = {
 
   nodeName: (node, {rule, targetValue}) => {
     const before =  node.nodeName === '#text' ? 'text' : node.nodeName

@@ -21,8 +21,7 @@ const Clause = (props) => (
 
 Clause.propTypes = {
   index: PropTypes.number.isRequired,
-  clause: PropTypes.object.isRequired,
-  stateKey: PropTypes.oneOf(['querybuilder', 'mutator'])
+  clause: PropTypes.object.isRequired
 }
 
 const mapDispatchToProps = (dispatch) => ({

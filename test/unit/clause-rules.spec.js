@@ -1,6 +1,6 @@
 import * as rules from '~/src/components/clause/rules'
 
-describe('querybuilder clause rules', () => {
+describe('query clause rules', () => {
 
   describe('equals', () => {
     it('should return equals test', () => {

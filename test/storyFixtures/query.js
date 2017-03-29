@@ -10,10 +10,18 @@ import config from '~/src/components/clause/config'
 import { chainActions } from '~/src/util'
 
 export default chainActions(
-  { ...state, querybuilder: {clauses: []} },
+  state,
   reducer,
   actions.addClause(),
   actions.addClause(),
-  actions.addClause()
-  
+  actions.addClause(),
+  actions.removeClause(2),
+  actions.addQuery(0),
+  actions.addQuery(0),
+  actions.addQuery(0),
+  actions.addQuery(0),
+  actions.removeQuery(0, 4),
+  actions.removeQuery(0, 3),
+  actions.removeQuery(0, 2),
+  actions.removeQuery(0, 1) // 12
 )

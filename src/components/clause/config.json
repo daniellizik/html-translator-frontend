@@ -38,6 +38,7 @@
       }
     },
     "defaultQuery": {
+      "type": "query",
       "target": "text",
       "targetValue": "",
       "rule": "like",
@@ -81,6 +82,7 @@
       }
     },
     "defaultMutation": {
+      "type": "mutation",
       "target": "text",
       "targetValue": "",
       "rule": "startOf",

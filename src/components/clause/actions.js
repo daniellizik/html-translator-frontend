@@ -18,64 +18,94 @@ export const addClause = () => ({
  * removeClause
  * @param {number} index
  */
-export const removeClause = (index) => ({
+export const removeClause = (clauseIndex) => ({
   type: constants.CLAUSE_REMOVE,
-  index
+  clauseIndex
+})
+
+/** 
+ * removeQuery
+ * @param {number} index
+ */
+export const removeQuery = (clauseIndex, queryIndex) => ({
+  type: constants.QUERY_REMOVE,
+  clauseIndex,
+  queryIndex
+})
+
+/** 
+ * addQuery
+ * @param {number} clauseIndex
+ * @param {number} queryIndex
+ */
+export const addQuery = (clauseIndex, queryIndex) => ({
+  type: constants.QUERY_ADD,
+  clauseIndex
 })
 
 /** 
  * changeTarget
  * @param {string} target
- * @param {number} index
+ * @param {number} clauseIndex
+ * @param {number} queryIndex
  */
-export const changeTarget = (target, index) => ({
+export const changeTarget = (target, clauseIndex, queryIndex) => ({
   type: constants.QUERY_CHANGE_TARGET,
   target,
-  index
+  clauseIndex,
+  queryIndex
 })
 
 /** 
  * changeTargetValue
  * @param {string} targetValue
- * @param {number} index
+ * @param {number} clauseIndex
+ * @param {number} queryIndex
  */
-export const changeTargetValue = (targetValue, index) => ({
+export const changeTargetValue = (targetValue, clauseIndex, queryIndex) => ({
   type: constants.QUERY_CHANGE_TARGET_VALUE,
   targetValue,
-  index
+  clauseIndex,
+  queryIndex
 })
 
 /** 
  * changeRule
  * @param {string} rule
- * @param {number} index
+ * @param {number} clauseIndex
+ * @param {number} queryIndex
  */
-export const changeRule = (rule, index) => ({
+export const changeRule = (rule, clauseIndex, queryIndex) => ({
   type: constants.QUERY_CHANGE_RULE,
   rule,
-  index
+  clauseIndex,
+  queryIndex
 })
 
 /** 
  * changeRuleValue
  * @param {string} ruleValue
- * @param {number} index
+ * @param {number} clauseIndex
+ * @param {number} queryIndex
  */
-export const changeRuleValue = (ruleValue, index) => ({
+export const changeRuleValue = (ruleValue, clauseIndex, queryIndex) => ({
   type: constants.QUERY_CHANGE_RULE_VALUE,
   ruleValue,
-  index
+  clauseIndex,
+  queryIndex
 })
 
 /** 
  * changeRuleValueFlags
  * @param {string} ruleValueFlags
- * @param {number} index
+ * @param {number} clauseIndex
+ * @param {number} queryIndex
  */
-export const changeRuleValueFlags = (ruleValueFlags, index) => ({
+export const changeRuleValueFlags = (ruleValueFlags, clauseIndex, queryIndex) => ({
   type: constants.QUERY_CHANGE_RULE_VALUE_FLAGS,
   ruleValueFlags,
-  index
+  clauseIndex,
+  queryIndex
 })
 
 /** 

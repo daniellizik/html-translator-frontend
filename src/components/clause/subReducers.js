@@ -23,30 +23,36 @@ export function reduceMutated(action, clauses, {view, tree, mutated}) {
     return mutated
 }
 
-export function reduceView(action, clauses, {view, list}) {
-  if (action.stateKey === 'querybuilder')
-    return list.filter(node => clauses.reduce((acc, clause, i) => {
-      const comparator = {...clause, rule: rules[clause.rule]}
-      const result = targets.querybuilder[clause.target](node, comparator)
+export function reduceView(action, clauses, {list}) {
+  return clauses.reduce((acc, clause, index) => {
+    const result = list.filter(node => clause.reduce((acc, obj, i) => {
+      if (obj.type !== 'query')
+        return acc
+      const comparator = { ...obj, rule: rules[obj.rule] }
+      const result = targets.query[obj.target](node, comparator)
       if (result === false || acc === false)
         return false
       else if (result === true)
         return true
     }, null))
-  else
-    return view
+    return [...acc, result]
+  }, [])
 }
 
 export function reduceClauses(state, action, key) {
-  let attempt
-  const clauses = state[action.stateKey].clauses.map((c, i) => {
-    if (i !== action.index)
-      return c
+  let nextState
+  const clauses = state.clauses.map((clause, clauseIndex) => {
+    if (clauseIndex !== action.index)
+      return clause
     else
-      return { ...c, [key]: action[key] }
+      return clause.map((query, queryIndex) => {
+        if (queryIndex !== action.queryIndex)
+          return query
+        return { ...query, [key]: action[key] }
+      })
   })
   try {
-    attempt = {
+    nextState = {
       ...state,
       slave: {
         ...state.slave,
@@ -62,7 +68,7 @@ export function reduceClauses(state, action, key) {
         // but then we're sacrificing space for time
 
         view: reduceView(action, clauses, state.slave),
-        mutated: reduceMutated(action, clauses, state.slave)
+        // mutated: reduceMutated(action, clauses, state.slave)
       },
       [action.stateKey]: {
         ...state[action.stateKey],
@@ -74,23 +80,20 @@ export function reduceClauses(state, action, key) {
     console.warn('error', e)
     return {
       ...state,
-      [action.stateKey]: {
-        ...state[action.stateKey],
-        clauses
-      },
+      clauses,
       // todo: this needs work, use declarative config
       // this should be result of validation error methods
       // validation reducers should dispatch actions
       // that form UI will react to
       error: (() => {
         if (e.message.includes('Invalid regular expression'))
-          return actions.INVALID_REGEXP
+          return actions.CLAUSE_INVALID_REGEXP
         else if (e.message.includes('Attribute key cannot contain spaces'))
-          return actions.INVALID_ATTRKEY
+          return actions.CLAUSE_INVALID_ATTRKEY
       })()
     }
   }
-  return attempt
+  return nextState
 }
 
 export function mapMutations(state, callback) {
