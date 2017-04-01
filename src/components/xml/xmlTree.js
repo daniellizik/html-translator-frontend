@@ -15,6 +15,9 @@ export default class XmlTree extends Component {
     callbacks: PropTypes.object,
     list: PropTypes.object
   }
+  // todo:
+  // get active clause, find if nodes are in view
+  // do this pre-render...otherwise you get stupid n* crap
   render() {
     if (this.props.list.open.length < 1)
       return null
@@ -28,6 +31,7 @@ export default class XmlTree extends Component {
               tags: [
                 ...acc.tags,
                 <XmlTag
+                  isInView={false}
                   key={id()}
                   node={node}
                   index={i}

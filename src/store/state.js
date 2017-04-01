@@ -31,6 +31,8 @@ export default {
     mutated: []
   },
 
+  activeClause: null,
+
   clauses: []
 
 }

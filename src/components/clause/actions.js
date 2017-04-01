@@ -7,6 +7,11 @@ import { push } from 'react-router-redux'
  */
 export const startEditor = (hash) => push(hash) 
 
+export const activateClause = (clauseIndex) => ({
+  type: constants.CLAUSE_ACTIVATE,
+  clauseIndex
+})
+
 /** 
  * addClause
  */

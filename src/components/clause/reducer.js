@@ -9,7 +9,15 @@ export default function(state, action) {
 
   let nextState = state
 
-  if (action.type === clauseConstants.CLAUSE_ADD) {
+  if (action.type === clauseConstants.CLAUSE_ACTIVATE) {
+    nextState = {
+      ...state,
+      activeClause: action.clauseIndex
+    }
+    console.log(nextState.clauses[nextState.activeClause].view)
+  }
+
+  else if (action.type === clauseConstants.CLAUSE_ADD) {
     const nextClauses = [ 
       ...state.clauses, 
       { active: false, minimized: false, name: '', rules: [defaultQuery] } 

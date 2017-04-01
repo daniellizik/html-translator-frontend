@@ -21,6 +21,7 @@ const action = {
 const previousState = {
   ...state,
   clauses: basic,
+  activeClause: 0,
   slave: {
     ...state.slave,
     ast,

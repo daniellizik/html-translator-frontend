@@ -18,7 +18,11 @@ const Builder = (props) => (
       </button>
     </div>
     {props.clauses.map((clauseGroup, clauseIndex) => (
-      <div key={clauseIndex} class="col-12 m-2 py-3" style={styles.box.clause}>
+      <div
+        onClick={() => props.activateClause(clauseIndex)}
+        key={clauseIndex} 
+        class="col-12 m-2 py-3" 
+        style={styles.box.clause}>
         <div class="row">
           <div class="col-8 mb-3">
             <input 
@@ -51,6 +55,7 @@ const Builder = (props) => (
 )
 
 const mapDispatchToProps = (dispatch) => ({
+  activateClause: (i) => dispatch(actions.activateClause(i)),
   addQuery: (...args) => dispatch(actions.addQuery(...args)),
   changeClauseName: (...args) => dispatch(actions.changeClauseName(...args)),
   removeClause: (...args) => dispatch(actions.removeClause(...args)),
