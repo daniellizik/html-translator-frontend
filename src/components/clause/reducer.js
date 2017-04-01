@@ -1,102 +1,68 @@
 import * as clauseConstants from './constants'
 import * as sourceSetterConstants from '~/src/containers/sourceSetter/constants'
-import { constants as navigatorConstants } from '~/src/components/navigator'
-import config from './config'
-import { reduceView, reduceMutated, reduceClause, mapMutations } from './subReducers'
+import { defaultQuery, mutator } from './config'
+import queryReducer from './queryReducer'
+import mutationReducer from './mutationReducer'
+import { reduceView, _reduceView } from './subReducers'
 
 export default function(state, action) {
 
-  let result
-  const { stateKey } = action
-  const domain = state[stateKey]
+  let nextState = state
 
-  // remove all clauses
-  if (action.type === sourceSetterConstants.HTML_FETCHED)
-    result = {
+  if (action.type === clauseConstants.CLAUSE_ACTIVATE) {
+    nextState = {
       ...state,
-      querybuilder: {
-        clauses: []
-      }
+      activeClause: action.clauseIndex
     }
+    console.log(nextState.clauses[nextState.activeClause].view)
+  }
 
-  else if (action.type === clauseConstants.ADD_CLAUSE)
-    result = {
+  else if (action.type === clauseConstants.CLAUSE_ADD) {
+    const nextClauses = [ 
+      ...state.clauses, 
+      { active: false, minimized: false, name: '', rules: [defaultQuery] } 
+    ]
+    const clauses = _reduceView({...action, clauseIndex: nextClauses.length - 1}, nextClauses, state.slave)
+    nextState = {
       ...state,
-      [stateKey]: {
-        ...domain,
-        clauses: [
-          ...domain.clauses,
-          config[stateKey].defaultClause
-        ]
-      }
-    }
-
-  else if (action.type === clauseConstants.REMOVE_CLAUSE) {
-    let clauses = domain.clauses.filter((c, i) => i !== action.index)
-    result = {
-      ...state,
-      slave: {
-        ...state.slave,
-        view: reduceView(action, clauses, state.slave),
-        mutated: reduceMutated(action, clauses, state.slave)
-      },
-      [stateKey]: {
-        ...domain,
-        clauses
-      }
+      clauses
     }
   }
 
-  else if (action.type === clauseConstants.REMOVE_ATTR_BY_KEY)
-    result = mapMutations(state, (model) => ({
-      ...model,
-      attrs: model.attrs.filter(attr => attr.name !== action.attrKey)
-    }))
+  else if (action.type === clauseConstants.CLAUSE_REMOVE) {
+    const nextClauses = state.clauses.filter((c, i) => i !== action.clauseIndex)
+    nextState = {
+      ...state,
+      clauses: nextClauses
+    }
+  }
 
-  else if (action.type === clauseConstants.REMOVE_ATTR_BY_VALUE)
-    result = mapMutations(state, (model) => ({
-      ...model,
-      attrs: model.attrs.filter(attr => attr.value !== action.attrVal)
-    }))
+  else if (action.type === clauseConstants.CLAUSE_CHANGE_NAME) 
+    nextState = {
+      ...state,
+      clauses: state.clauses.map((clause, clauseIndex) => {
+        return clauseIndex !== action.clauseIndex ? clause : { ...clause, name: action.name }
+      })
+    }
 
-  else if (action.type === clauseConstants.ADD_ATTR)
-    result = mapMutations(state, (model) => ({
-      ...model,
-      attrs: [
-        ...model.attrs,
-        { name: constants.attrKey, value: constants.attrVal }
-      ]
-    }))
+  // remove all clauses, reset everything
+  else if (action.type === sourceSetterConstants.HTML_FETCHED)
+    nextState = { 
+      ...state,
+      slave: {
+        ...state.slave,
+        view: [],
+        mutated: []
+      },
+      clauses: []
+    }
 
-  else if (action.type === clauseConstants.REMOVE_ALL_ATTRS)
-    result = mapMutations(state, (model) => ({ ...model, attrs: [] }))
+  else if (action.type.indexOf('QUERY_') > -1)
+    nextState = queryReducer(state, action)
+    
+  else if (action.type.indexOf('MUTATION_') > -1)
+    nextState = mutationReducer(state, action)
 
-  else if (action.type === clauseConstants.CHANGE_RULE)
-    result = reduceClause(state, action, 'rule')
-
-  else if (action.type === clauseConstants.CHANGE_RULE_VALUE)
-    result = reduceClause(state, action, 'ruleValue')
-
-  else if (action.type === clauseConstants.CHANGE_REGEX)
-    result = reduceClause(state, action, 'regex')
-
-  // when user switches target or rule
-  // need to clear the ruleValue, targetValue and input
-  else if (action.type === clauseConstants.CHANGE_TARGET)
-    result = reduceClause(state, action, 'target')
-
-  else if (action.type === clauseConstants.CHANGE_TARGET_VALUE)
-    result = reduceClause(state, action, 'targetValue')
-
-  else if (action.type === clauseConstants.CHANGE_FLAGS)
-    result = reduceClause(state, action, 'flags')
-
-  else if (action.type === clauseConstants.CHANGE_INPUT)
-    result = reduceClause(state, action, 'input')
-
-  else
-    result = state
-
-  return result
+  return nextState
 
 }

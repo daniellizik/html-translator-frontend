@@ -45,7 +45,7 @@ export function reducer(state, action) {
       ...state,
       components: {
         ...state.components,
-        querybuilder: false,
+        query: false,
         mutator: true
       }
     }
@@ -54,7 +54,7 @@ export function reducer(state, action) {
       ...state, 
       components: {
         ...state.components,
-        querybuilder: true
+        query: true
       }
     }
   if (action.type === constants.CALL_MODAL)

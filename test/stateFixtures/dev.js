@@ -4,27 +4,30 @@ import treeToList from '~/src/treeToList'
 import reducer from '~/src/store/rootReducer'
 import * as constants from '~/src/components/clause/constants'
 import state from '~/src/store/state'
-import clauses from '~/test/stateFixtures/queryclauses'
+import clauses, { basic } from '~/test/stateFixtures/clauses'
+import clauseReducer from '~/src/components/clause/reducer'
 
 const ast = parseHtml(rawHtml)
+
 const list = treeToList()(ast)
+
 const action = {
-  targetValue: 'cat-a',
-  type: constants.CHANGE_TARGET_VALUE,
-  stateKey: 'querybuilder',
-  index: 0
+  targetValue: 'cat',
+  type: constants.QUERY_CHANGE_TARGET_VALUE,
+  clauseIndex: 0,
+  queryIndex: 0
 }
 
-export default reducer({
+const previousState = {
   ...state,
-  querybuilder: {
-    ...state.querybuilder,
-    clauses: clauses[0]
-  },
+  clauses: basic,
+  activeClause: 0,
   slave: {
     ...state.slave,
     ast,
     list,
     rawHtml
   }
-}, action)
+}
+
+export default clauseReducer(previousState, action)

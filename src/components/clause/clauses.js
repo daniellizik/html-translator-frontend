@@ -1,10 +1,6 @@
-import React, { Component, PropTypes } from 'react'
-import { connect } from 'react-redux'
-import Radium from 'radium'
+import React, { Component } from 'react'
 import styles from '~/src/styles'
-import * as actions from './actions'
-import strings from './strings.json'
-import config from './config.json' 
+import * as config from './config' 
 
 // all of these stateless components
 // are needed by clausePolicy, which will
@@ -20,10 +16,13 @@ import config from './config.json'
 export const TargetSetter = (props) => (
   <label class="col-12 p-0 m-0">
     target setter
-    <select class="form-control custom-select" value={props.clause.target} onChange={(e) => props.changeTarget(props.stateKey, e.target.value, props.index)}>
-      {Object.keys(config[props.stateKey].targets).map((p, j) => (
+    <select 
+      class="form-control custom-select" 
+      value={props.clause.target} 
+      onChange={(e) => props.changeTarget(e.target.value, props.clauseIndex, props.queryIndex)}>
+      {Object.keys(config[props.clause.type].targets).map((p, j) => (
         <option value={p} key={j}>
-          {strings[props.locale].targets[p].title}
+          {p}
         </option>
       ))}
     </select>
@@ -33,16 +32,25 @@ export const TargetSetter = (props) => (
 export const TargetValueSetter = (props) => (
   <label class="col-12 p-0 m-0">
     target value setter
-    <input class="form-control" type="text" value={props.clause.targetValue} onChange={(e) => props.changeTargetValue(props.stateKey, e.target.value, props.index)} />
+    <input 
+      class="form-control" 
+      type="text" 
+      value={props.clause.targetValue} 
+      onChange={(e) => props.changeTargetValue(e.target.value, props.clauseIndex, props.queryIndex)} />
   </label>
 )
 
 export const RuleSetter = (props) => (
   <label class="col-12 p-0 m-0">
     select rule
-    <select class="form-control custom-select" value={props.clause.rule} onChange={(e) => props.changeRule(props.stateKey, e.target.value, props.index)}>
-      {config[props.stateKey].targets[props.clause.target].rules.map((r, i) => (
-        <option value={r} key={i}>{strings[props.locale][props.stateKey].rules[r].title}</option>
+    <select 
+      class="form-control custom-select" 
+      value={props.clause.rule} 
+      onChange={(e) => props.changeRule(e.target.value, props.clauseIndex, props.queryIndex)}>
+      {config[props.clause.type].targets[props.clause.target].rules.map((r, i) => (
+        <option value={r} key={i}>
+          {r}
+        </option>
       ))}
     </select>
   </label>
@@ -51,28 +59,42 @@ export const RuleSetter = (props) => (
 export const RegexBodySetter = (props) => (
   <label class="col-12 p-0 m-0">
     set regex body
-    <input class="form-control" type="text" onChange={(e) => props.changeRuleValue(props.stateKey, e.target.value, props.index)} />
+    <input 
+      class="form-control" 
+      type="text" 
+      onChange={(e) => props.changeRuleValue(e.target.value, props.clauseIndex, props.queryIndex)} />
   </label>
 )
 
 export const RegexFlagsSetter = (props) => (
   <label class="col-12 p-0 m-0">
     set regex flags
-    <input class="form-control" type="text" onChange={(e) => props.changeRuleValueFlags(props.stateKey, e.target.value, props.index)} />
+    <input 
+      class="form-control" 
+      type="text" 
+      onChange={(e) => props.changeRuleValueFlags(e.target.value, props.clauseIndex, props.queryIndex)} />
   </label>
 )
 
 export const AttrKeySetter = (props) => (
   <label class="col-12 p-0 m-0">
     set attr key
-    <input class="form-control" type="text" value={props.clause.targetValue} onChange={(e) => props.changeTargetValue(props.stateKey, e.target.value, props.index)} />
+    <input 
+      class="form-control" 
+      type="text" 
+      value={props.clause.targetValue} 
+      onChange={(e) => props.changeTargetValue(e.target.value, props.clauseIndex, props.queryIndex)} />
   </label>
 )
 
 export const AttrValSetter = (props) => (
   <label class="col-12 p-0 m-0">
     set attr val
-    <input class="form-control" type="text" value={props.clause.targetValue} onChange={(e) => props.changeTargetValue(props.stateKey, e.target.value, props.index)} />
+    <input 
+      class="form-control" 
+      type="text" 
+      value={props.clause.targetValue}
+      onChange={(e) => props.changeTargetValue(e.target.value, props.clauseIndex, props.queryIndex)} />
   </label>
 )
 

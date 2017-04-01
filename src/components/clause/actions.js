@@ -7,122 +7,143 @@ import { push } from 'react-router-redux'
  */
 export const startEditor = (hash) => push(hash) 
 
+export const activateClause = (clauseIndex) => ({
+  type: constants.CLAUSE_ACTIVATE,
+  clauseIndex
+})
+
 /** 
  * addClause
- * @param {string} stateKey
  */
-export const addClause = (stateKey) => ({
-  type: constants.ADD_CLAUSE,
-  stateKey
+export const addClause = () => ({
+  type: constants.CLAUSE_ADD
+})
+
+export const changeClauseName = (clauseIndex, name) => ({
+  type: constants.CLAUSE_CHANGE_NAME,
+  clauseIndex,
+  name
 })
 
 /** 
  * removeClause
- * @param {string} stateKey
  * @param {number} index
  */
-export const removeClause = (stateKey, index) => ({
-  type: constants.REMOVE_CLAUSE,
-  stateKey,
-  index
+export const removeClause = (clauseIndex) => ({
+  type: constants.CLAUSE_REMOVE,
+  clauseIndex
+})
+
+/** 
+ * removeQuery
+ * @param {number} index
+ */
+export const removeQuery = (clauseIndex, queryIndex) => ({
+  type: constants.QUERY_REMOVE,
+  clauseIndex,
+  queryIndex
+})
+
+/** 
+ * addQuery
+ * @param {number} clauseIndex
+ */
+export const addQuery = (clauseIndex) => ({
+  type: constants.QUERY_ADD,
+  clauseIndex
 })
 
 /** 
  * changeTarget
- * @param {string} stateKey
  * @param {string} target
- * @param {number} index
+ * @param {number} clauseIndex
+ * @param {number} queryIndex
  */
-export const changeTarget = (stateKey, target, index) => ({
-  type: constants.CHANGE_TARGET,
-  stateKey,
+export const changeTarget = (target, clauseIndex, queryIndex) => ({
+  type: constants.QUERY_CHANGE_TARGET,
   target,
-  index
+  clauseIndex,
+  queryIndex
 })
 
 /** 
  * changeTargetValue
- * @param {string} stateKey
  * @param {string} targetValue
- * @param {number} index
+ * @param {number} clauseIndex
+ * @param {number} queryIndex
  */
-export const changeTargetValue = (stateKey, targetValue, index) => ({
-  type: constants.CHANGE_TARGET_VALUE,
+export const changeTargetValue = (targetValue, clauseIndex, queryIndex) => ({
+  type: constants.QUERY_CHANGE_TARGET_VALUE,
   targetValue,
-  stateKey,
-  index
+  clauseIndex,
+  queryIndex
 })
 
 /** 
  * changeRule
- * @param {string} stateKey
  * @param {string} rule
- * @param {number} index
+ * @param {number} clauseIndex
+ * @param {number} queryIndex
  */
-export const changeRule = (stateKey, rule, index) => ({
-  type: constants.CHANGE_RULE,
-  stateKey,
+export const changeRule = (rule, clauseIndex, queryIndex) => ({
+  type: constants.QUERY_CHANGE_RULE,
   rule,
-  index
+  clauseIndex,
+  queryIndex
 })
 
 /** 
  * changeRuleValue
- * @param {string} stateKey
  * @param {string} ruleValue
- * @param {number} index
+ * @param {number} clauseIndex
+ * @param {number} queryIndex
  */
-export const changeRuleValue = (stateKey, ruleValue, index) => ({
-  type: constants.CHANGE_RULE_VALUE,
-  stateKey,
+export const changeRuleValue = (ruleValue, clauseIndex, queryIndex) => ({
+  type: constants.QUERY_CHANGE_RULE_VALUE,
   ruleValue,
-  index
+  clauseIndex,
+  queryIndex
 })
 
 /** 
  * changeRuleValueFlags
- * @param {string} stateKey
  * @param {string} ruleValueFlags
- * @param {number} index
+ * @param {number} clauseIndex
+ * @param {number} queryIndex
  */
-export const changeRuleValueFlags = (stateKey, ruleValueFlags, index) => ({
-  type: constants.CHANGE_FLAGS,
-  stateKey,
+export const changeRuleValueFlags = (ruleValueFlags, clauseIndex, queryIndex) => ({
+  type: constants.QUERY_CHANGE_RULE_VALUE_FLAGS,
   ruleValueFlags,
-  index
+  clauseIndex,
+  queryIndex
 })
 
 /** 
  * addAttr
- * @param {string} stateKey
  * @param {string} attrKey
  * @param {string} attrVal
  * @param {number} index
  */
-export const addAttr = (stateKey, attrKey, attrVal, index) => ({
+export const addAttr = (attrKey, attrVal, index) => ({
   type: constants.ADD_ATTR,
-  stateKey,
   attrKey,
   attrVal,
   index
 })
 
-export const removeAttrByKey = (stateKey, attrKey, index) => ({
+export const removeAttrByKey = (attrKey, index) => ({
   type: constants.REMOVE_ATTR_BY_KEY,
-  stateKey,
   attrKey,
   index
 })
 
-export const removeAttrByValue = (stateKey, attrVal, index) => ({
+export const removeAttrByValue = (attrVal, index) => ({
   type: constants.REMOVE_ATTR_BY_VALUE,
-  stateKey,
   attrVal,
   index
 })
 
-export const removeAllAttrs = (stateKey, index) => ({
+export const removeAllAttrs = (index) => ({
   type: constants.REMOVE_ALL_ATTRS,
-  stateKey,
   index
 })

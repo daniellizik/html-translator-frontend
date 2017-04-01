@@ -1,3 +1,7 @@
+## setup
+
+keep aws secrets in `secrets.txt` just for reference, you need to put them in travis web ui. and for the love of god don't expose the secrets on github
+
 ## how to build
 
 ```bash

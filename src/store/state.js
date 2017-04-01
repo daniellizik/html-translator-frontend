@@ -6,13 +6,6 @@ export default {
 
   pastInit: false,
 
-  components: {
-    querybuilder: true,
-    mutator: false,
-    htmlmount: false,
-    htmlpreview: false
-  },
-
   source: {
     visible: false,
     rawHtml: null,
@@ -28,20 +21,18 @@ export default {
   slave: {
     hasLoaded: false,
     status: null,
-    list: [],
+    list: {
+      open: [],
+      close: []
+    },
     ast: [],
     rawHtml: null,
     tree: [],
-    view: [],
     mutated: []
   },
 
-  querybuilder: {
-    clauses: []
-  },
+  activeClause: null,
 
-  mutator: {
-    clauses: []
-  }
+  clauses: []
 
 }

@@ -1,44 +1,49 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import Radium from 'radium'
+import { generate as id } from 'shortid'
 import styles from '~/src/styles'
-import XmlToken, { tokenize } from './xmlToken'
-import CodeView from '~/src/decorators/codeView'
+import XmlToken from './xmlToken'
+import tagTypes from './tagTypes'
 
-class XmlTag extends Component {
-  static propTypes = {
-    callbacks: PropTypes.object,
-    node: PropTypes.object,
-    index: PropTypes.number,
-    arr: PropTypes.array
-  }
-  static shouldIgnore(acc, node, index, arr) {
-    return tokenize(acc, node, index, arr)
-  }
-  render() {
-    const view = this.props.slave.view.map(v => v.id)
-    const { node, index, arr, tokens, row, depth } = this.props
-    return !tokens ? null : (
-      <tr
-        style={styles.code.row()}
-        onClick={() => this.props.callbacks.click(this.props)}
-        onMouseEnter={(e) => this.props.callbacks.highlight(this.props)}>
-        <td style={styles.code.lineNumber()}>
-          {row}
-        </td>
-        <td style={styles.code.lineText({...node, view, row })}>
-          {new Array(node.depth).fill('\u00a0\u00a0').join('')}
-          {tokens.map((token, i) => (
-            <XmlToken key={i} {...token} />
-          ))}
-        </td>
-      </tr>
-    )
-  }
+const styleRow = (props) => ({
+  border: 'none',
+  background: `transparent`,
+  fontSize: '12px',
+  margin: 0,
+  padding: '0px 15px 0px 0px',
+})
 
+export const findTagType = ({node, list}) => {
+  return Object
+    .keys(tagTypes)
+    .find(k => tagTypes[k].ignore({...node, list}))
 }
 
-const withRadium = Radium(XmlTag)
-const withConnect = connect(s => s)(withRadium)
+const XmlTag = (props) => (
+  <tr
+    style={styleRow(props)}
+    onClick={() => props.callbacks.click(props)}
+    onMouseEnter={(e) => props.callbacks.highlight(props)}>
+    <td style={styles.code.lineNumber()}>
+      {props.row}
+    </td>
+    <td style={styles.code.lineText(props)}>
+      {new Array(props.node.depth).fill('\u00a0\u00a0').join('')}
+      <XmlToken key={id()} type={props.tagType} list={props.list} node={props.node} />
+    </td>
+  </tr>
+)
+
+XmlTag.propTypes = {
+  node: PropTypes.object.isRequired,
+  index: PropTypes.number.isRequired,
+  row: PropTypes.number.isRequired,
+  openTags: PropTypes.array.isRequired,
+  list: PropTypes.array.isRequired,
+  callbacks: PropTypes.object.isRequired,
+  tagType: PropTypes.string.isRequired
+}
+
+const withConnect = connect(s => s)(XmlTag)
 
 export default withConnect

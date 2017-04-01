@@ -23,8 +23,8 @@ import {
 
 export default [
   {
-    target: ['text'], 
-    rules: ['equals', 'notEquals', 'like', 'notLike'],
+    target: ['TEXT'], 
+    rules: ['EQUALS', 'NOT_EQUALS', 'LIKE', 'NOT_LIKE'],
     structure: (props) => (
       <div class="row pt-2 m-0">
         <div class="col-6">
@@ -40,8 +40,8 @@ export default [
     )
   },
   {
-    target: ['text'],
-    rules: ['regex'],
+    target: ['TEXT'],
+    rules: ['REGEX'],
     structure: (props) => (
       <div class="row pt-2 m-0">
         <div class="col-6">
@@ -60,8 +60,8 @@ export default [
     )
   },
   {
-    target: ['text'],
-    rules: ['startOf', 'endOf', 'allReplace'],
+    target: ['TEXT'],
+    rules: ['START_OF', 'END_OF', 'ALL_REPLACE'],
     structure: (props) => (
       <div class="row pt-2 m-0">
         <div class="col-6">
@@ -77,8 +77,8 @@ export default [
     )
   },
   {
-    target: ['text'],
-    rules: ['regexReplace'],
+    target: ['TEXT'],
+    rules: ['REGEX_REPLACE'],
     structure: (props) => (
       <div class="row pt-2 m-0">
         <div class="col-6">
@@ -97,8 +97,8 @@ export default [
     )
   },
   {
-    target: ['nodeName'],
-    rules: ['equals', 'notEquals', 'like', 'notLike'],
+    target: ['NODE_NAME'],
+    rules: ['EQUALS', 'NOT_EQUALS', 'LIKE', 'NOT_LIKE'],
     structure: (props) => (
       <div class="row pt-2 m-0">
         <div class="col-6">
@@ -114,8 +114,8 @@ export default [
     )
   },
   {
-    target: ['nodeName'],
-    rules: ['regex'],
+    target: ['NODE_NAME'],
+    rules: ['REGEX'],
     structure: (props) => (
       <div class="row pt-2 m-0">
         <div class="col-6">
@@ -131,8 +131,8 @@ export default [
     )
   },
   {
-    target: ['attrKey'],
-    rules: ['equals', 'notEquals', 'like', 'notLike'],
+    target: ['ATTR_KEY'],
+    rules: ['EQUALS', 'NOT_EQUALS', 'LIKE', 'NOT_LIKE'],
     structure: (props) => (
       <div class="row pt-2 m-0">
         <div class="col-6">
@@ -148,8 +148,8 @@ export default [
     )
   },
   {
-    target: ['attrKey'],
-    rules: ['regex'],
+    target: ['ATTR_KEY'],
+    rules: ['REGEX'],
     structure: (props) => (
       <div class="row pt-2 m-0">
         <div class="col-6">
@@ -168,8 +168,8 @@ export default [
     )
   },
   {
-    target: ['attrVal'],
-    rules: ['equals', 'notEquals', 'like', 'notLike'],
+    target: ['ATTR_VAL'],
+    rules: ['EQUALS', 'NOT_EQUALS', 'LIKE', 'NOT_LIKE'],
     structure: (props) => (
       <div class="row pt-2 m-0">
         <div class="col-6">
@@ -185,8 +185,8 @@ export default [
     )
   },
   {
-    target: ['attrVal'],
-    rules: ['regex'],
+    target: ['ATTR_VAL'],
+    rules: ['REGEX'],
     structure: (props) => (
       <div class="row pt-2 m-0">
         <div class="col-6">
@@ -205,8 +205,8 @@ export default [
     )
   },
   {
-    target: ['nodeName'],
-    rules: ['startOf', 'endOf', 'allReplace'],
+    target: ['NODE_NAME'],
+    rules: ['START_OF', 'END_OF', 'ALL_REPLACE'],
     structure: (props) => (
     <div class="row pt-2 m-0">
       <div class="col-6">
@@ -225,8 +225,8 @@ export default [
     )
   },
   {
-    target: ['nodeName'],
-    rules: ['regexReplace'],
+    target: ['NODE_NAME'],
+    rules: ['REGEX_REPLACE'],
     structure: (props) => (
       <div class="row pt-2 m-0">
         <div class="col-6">
@@ -245,8 +245,8 @@ export default [
     )
   },
   {
-    target: ['attrKey'],
-    rules: ['startOf', 'endOf', 'allReplace'],
+    target: ['ATTR_KEY'],
+    rules: ['START_OF', 'END_OF', 'ALL_REPLACE'],
     structure: (props) => (
       <div class="row pt-2 m-0">
         <div class="col-6">
@@ -265,8 +265,8 @@ export default [
     )
   },
   {
-    target: ['attrKey'],
-    rules: ['regexReplace'],
+    target: ['ATTR_KEY'],
+    rules: ['REGEX_REPLACE'],
     structure: (props) => (
       <div class="row pt-2 m-0">
         <div class="col-6">
@@ -285,8 +285,8 @@ export default [
     )
   },
   {
-    target: ['attrVal'],
-    rules: ['startOf', 'endOf', 'allReplace'],
+    target: ['ATTR_VAL'],
+    rules: ['START_OF', 'END_OF', 'ALL_REPLACE'],
     structure: (props) => (
       <div class="row pt-2 m-0">
         <div class="col-6">
@@ -305,8 +305,8 @@ export default [
     )
   },
   {
-    target: ['attrVal'],
-    rules: ['regexReplace'],
+    target: ['ATTR_VAL'],
+    rules: ['REGEX_REPLACE'],
     structure: (props) => (
       <div class="row pt-2 m-0 form-group">
         <div class="col-6">
