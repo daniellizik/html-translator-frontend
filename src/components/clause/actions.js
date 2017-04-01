@@ -14,6 +14,12 @@ export const addClause = () => ({
   type: constants.CLAUSE_ADD
 })
 
+export const changeClauseName = (clauseIndex, name) => ({
+  type: constants.CLAUSE_CHANGE_NAME,
+  clauseIndex,
+  name
+})
+
 /** 
  * removeClause
  * @param {number} index
@@ -36,9 +42,8 @@ export const removeQuery = (clauseIndex, queryIndex) => ({
 /** 
  * addQuery
  * @param {number} clauseIndex
- * @param {number} queryIndex
  */
-export const addQuery = (clauseIndex, queryIndex) => ({
+export const addQuery = (clauseIndex) => ({
   type: constants.QUERY_ADD,
   clauseIndex
 })

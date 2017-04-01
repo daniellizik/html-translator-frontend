@@ -23,7 +23,7 @@ class Receiver extends Component {
   callbacks() {
     return {
       highlight: (node) => {
-        this.setState({ row: node.len, encapsulated: node.index || node.listIndex })
+        // this.setState({ row: node.len, encapsulated: node.id })
       },
       click: ({node}) => {
         //console.log(node)
@@ -45,6 +45,8 @@ class Receiver extends Component {
   }
 
 }
+
+
 
 const mapDispatchToProps = (dispatch) => ({
   

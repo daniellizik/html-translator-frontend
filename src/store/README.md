@@ -44,7 +44,23 @@ export default {
     mutated: []
   },
 
-  clauses: []
+  clauses: [
+    {
+      // name of the clause
+      name: 'clause #1',
+      // UI state
+      minimized: false,
+      // UI state, also shows corresponding view in html render
+      active: true,
+      // rules for the clause
+      rules: [
+        { type: 'query', targetValue: 'cat-a', target: 'TEXT', rule: 'LIKE', ruleValueFlags: '' },
+        { type: 'query', targetValue: 'div', target: 'NODE_NAME', rule: 'EQUALS', ruleValueFlags: '' },
+        { type: 'query', targetValue: 'div', target: 'NODE_NAME', rule: 'EQUALS', ruleValueFlags: '' },
+        { type: 'query', targetValue: 'div', target: 'NODE_NAME', rule: 'EQUALS', ruleValueFlags: '' },
+      ]
+    }
+  ]
 
 };
 

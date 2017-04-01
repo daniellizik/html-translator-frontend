@@ -28,3 +28,7 @@ export function chainActions(initialState, reducer, ...actions) {
     }
   }, {state: initialState, history: [initialState]}).history
 }
+
+export function filterText(node) {
+  return !/^[\s\r\n]+$/.test(node.value)
+}

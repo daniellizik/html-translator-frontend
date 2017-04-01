@@ -1,10 +1,8 @@
-
 export const mediaqueries = {
   phone: '@media (max-width: 650px)',
   tablet: '@media (max-width: 900px)',
   desktop: '@media (min-width: 901px)'
 }
-
 
 export const colors = {
   primary: '#5862EA',
@@ -12,6 +10,7 @@ export const colors = {
   contrast: '#97EBFF',
   error: '#FF3B7D',
   light: '#E5E1E8',
+  lessLight: '#BEBEBE',
   success: '#5cb85c',
   pastel: '#f5f2f0',
   highlight: `rgb(248, 238, 199)`,

@@ -6,46 +6,62 @@ import { reduceView, reduceMutated, reduceClauses, mapMutations } from './subRed
 export default function queryReducer(state, action) {
   let nextState = state
 
-  if (action.type === constants.QUERY_ADD)
+  if (action.type === constants.QUERY_ADD) {
+    const clauses = state.clauses.map((clause, i) => {
+      return i !== action.clauseIndex ? clause : {
+        ...clause,
+        rules: [
+          ...clause.rules,
+          query.defaultQuery
+        ]
+      }
+    })
     nextState = {
       ...state,
-      clauses: state.clauses.map((clause, i) => {
-        if (i !== action.clauseIndex)
-          return clause
-        return [...clause, query.defaultQuery]
-      })
+      clauses,
+      slave: {
+        ...state.slave,
+        view: reduceView(action, clauses, state.slave)
+      }
     }
+  }
 
-  else if (action.type === constants.QUERY_REMOVE)
+  else if (action.type === constants.QUERY_REMOVE) {
+    const clauses = state.clauses.reduce((acc, clause, clauseIndex) => {
+      if (clauseIndex !== action.clauseIndex)
+        return [...acc, clause]
+      else
+        return [
+          ...acc,
+          clause.rules.filter((query, queryIndex) => queryIndex !== action.queryIndex)
+        ]
+    }, [])
     nextState = {
       ...state,
-      clauses: state.clauses.reduce((acc, clause, clauseIndex) => {
-        if (clauseIndex !== action.clauseIndex)
-          return [...acc, clause]
-        else
-          return [
-            ...acc,
-            clause.filter((query, queryIndex) => queryIndex !== action.queryIndex)
-          ]
-      }, [])
+      clauses,
+      slave: {
+        ...state.slave,
+        view: reduceView(action, clauses, state.slave)
+      }
     }
+  }
 
   else if (action.type === constants.QUERY_CHANGE_RULE)
-    nextState = reduceClauses(state, action, 'rule')
+    nextState = reduceClauses(state, action, 'query', 'rule')
 
   else if (action.type === constants.QUERY_CHANGE_RULE_VALUE)
-    nextState = reduceClauses(state, action, 'ruleValue')
+    nextState = reduceClauses(state, action, 'query', 'ruleValue')
 
   // when user switches target or rule
   // need to clear the ruleValue, targetValue and input
   else if (action.type === constants.QUERY_CHANGE_TARGET)
-    nextState = reduceClauses(state, action, 'target')
+    nextState = reduceClauses(state, action, 'query', 'target')
 
   else if (action.type === constants.QUERY_CHANGE_TARGET_VALUE)
-    nextState = reduceClauses(state, action, 'targetValue')
+    nextState = reduceClauses(state, action, 'query', 'targetValue')
 
   else if (action.type === constants.QUERY_CHANGE_RULE_VALUE_FLAGS)
-    nextState = reduceClauses(state, action, 'flags')
+    nextState = reduceClauses(state, action, 'query', 'flags')
 
   return nextState
 

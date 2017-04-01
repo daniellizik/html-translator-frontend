@@ -26,7 +26,10 @@ export default {
   slave: {
     hasLoaded: false,
     status: null,
-    list: [],
+    list: {
+      open: [],
+      close: []
+    },
     ast: [],
     rawHtml: null,
     tree: [],

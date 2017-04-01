@@ -25,13 +25,13 @@ export default function treeToList(config = defaultConfig) {
    *
    * @param {object} node - current AST node in tree
    * @param {object} parent - parent node
-   * @param {array} list - recursive accumulation array
+   * @param {array} list - recursive accumulation of nodes
    * @param {number} depth - current node tree depth
    * @param {number} parentId - array index of parent node, -1 if root
    * @param {boolean} isLastSibling - is the current node the last in its childNodes array
    * @returns {array} flattened list of AST nodes
    */
-  return function walk(node, parent, list = [], depth = 0, parentId = -1, isLastSibling = true) {
+  return function walk(node, parent, accumulator = {open: [], list: []}, depth = 0, parentId = -1, isLastSibling = true) {
 
     const props = {
       depth,
@@ -39,28 +39,28 @@ export default function treeToList(config = defaultConfig) {
       nodeName: node[config.nodeNameProp].toLowerCase(),
       value: node[config.valueProp] || null,
       attrs: node[config.attributesProp] || [],
-      type: parent ? 'open' : 'root',
-      id: list.length
+      id: accumulator.open.length
     }
-    const length = list.push(props) - 1
+    const length = accumulator.open.push(props) - 1
     const children = node[config.childrenProp]
+    accumulator.list.push(props)
 
     // no children assumes self-closing tag, takes id of node
     if ((children || []).length < 1) {
-      return [...list, {...props, type: 'close', id: length}]
+      return { ...accumulator, list: [...accumulator.list, {...props, close: true, id: length}] }
     }
 
     // recurse on children
     if (children || (isLastSibling && parent)) {
       return children.reduce((acc, child, i, siblings) => {
         const lastSibling = i === siblings.length - 1
-        const branch = walk(child, {...node, ...props}, acc, depth + 1, list.length - 1, lastSibling)
+        const branch = walk(child, {...node, ...props}, acc, depth + 1, accumulator.open.length - 1, lastSibling)
         if (!lastSibling)
           return branch
         // last siblings (with or without children) take id of most recent parent
         else
-          return [...branch, {...props, type: 'close', id: length}]
-      }, list)
+          return { ...branch, list: [...branch.list, {...props, close: true, id: length}] }
+      }, accumulator)
     }
 
   }

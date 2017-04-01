@@ -12,7 +12,10 @@ export default function(state, action) {
   // adding a clause by default
   // inserts one default query, no mutations
   if (action.type === clauseConstants.CLAUSE_ADD) {
-    const clauses = [...state.clauses, [query.defaultQuery]]
+    const clauses = [
+      ...state.clauses, 
+      { name: '', rules: [query.defaultQuery] }
+    ]
     const view = reduceView(action, clauses, state.slave)
     nextState = {
       ...state,
@@ -37,6 +40,14 @@ export default function(state, action) {
       clauses
     }
   }
+
+  else if (action.type === clauseConstants.CLAUSE_CHANGE_NAME) 
+    nextState = {
+      ...state,
+      clauses: state.clauses.map((clause, clauseIndex) => {
+        return clauseIndex !== action.clauseIndex ? clause : { ...clause, name: action.name }
+      })
+    }
 
   // remove all clauses, reset everything
   else if (action.type === sourceSetterConstants.HTML_FETCHED)

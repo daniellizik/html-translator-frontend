@@ -1,47 +1,47 @@
 {
   "query": {
     "targets": {
-      "nodeName": {
+      "NODE_NAME": {
         "rules": [
-          "equals",
-          "notEquals",
-          "like",
-          "notLike"
+          "EQUALS",
+          "NOT_EQUALS",
+          "LIKE",
+          "NOT_LIKE"
         ]
       },
-      "text": {
+      "TEXT": {
         "rules": [
-          "equals",
-          "notEquals",
-          "like",
-          "notLike",
-          "regex"
+          "EQUALS",
+          "NOT_EQUALS",
+          "LIKE",
+          "NOT_LIKE",
+          "REGEX"
         ]
       },
-      "attrKey": {
+      "ATTR_KEY": {
         "rules": [
-          "equals",
-          "notEquals",
-          "like",
-          "notLike",
-          "regex"
+          "EQUALS",
+          "NOT_EQUALS",
+          "LIKE",
+          "NOT_LIKE",
+          "REGEX"
         ]
       },
-      "attrVal": {
+      "ATTR_VAL": {
         "rules": [
-          "equals",
-          "notEquals",
-          "like",
-          "notLike",
-          "regex"
+          "EQUALS",
+          "NOT_EQUALS",
+          "LIKE",
+          "NOT_LIKE",
+          "REGEX"
         ]
       }
     },
     "defaultQuery": {
       "type": "query",
-      "target": "text",
+      "target": "TEXT",
       "targetValue": "",
-      "rule": "like",
+      "rule": "EQUALS",
       "ruleValue": "",
       "ruleValueFlags": ""
     }
@@ -49,43 +49,43 @@
 
   "mutator": {
     "targets": {
-      "nodeName": {
+      "NODE_NAME": {
         "rules": [
-          "allReplace"
+          "ALL_REPLACE"
         ]
       },
-      "text": {
+      "TEXT": {
         "rules": [
-          "startOf",
-          "endOf",
-          "allReplace",
-          "regexReplace"
+          "START_OF",
+          "END_OF",
+          "ALL_REPLACE",
+          "REGEX_REPLACE"
         ]
       },
-      "attrKey": {
+      "ATTR_KEY": {
         "rules": [
-          "startOf",
-          "endOf",
-          "regexReplace",
-          "allReplace",
-          "add"
+          "START_OF",
+          "END_OF",
+          "REGEX_REPLACE",
+          "ALL_REPLACE",
+          "CONCAT"
         ]
       },
-      "attrVal": {
+      "ATTR_VAL": {
         "rules": [
-          "startOf",
-          "endOf",
-          "regexReplace",
-          "allReplace",
-          "add"
+          "START_OF",
+          "END_OF",
+          "REGEX_REPLACE",
+          "ALL_REPLACE",
+          "CONCAT"
         ]
       }
     },
     "defaultMutation": {
       "type": "mutation",
-      "target": "text",
+      "target": "TEXT",
       "targetValue": "",
-      "rule": "startOf",
+      "rule": "START_OF",
       "ruleValue": "",
       "ruleValueFlags": ""
     }

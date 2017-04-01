@@ -1,17 +1,17 @@
 export const query = {
 
-  nodeName: (node, {rule, targetValue}) => {
+  NODE_NAME: (node, {rule, targetValue}) => {
     const before =  node.nodeName === '#text' ? 'text' : node.nodeName
     return rule({ before, targetValue })
   },
 
-  text: ({nodeName, value}, comparator) => {
+  TEXT: ({nodeName, value}, comparator) => {
     return nodeName !== '#text'
       ? false
       : comparator.rule({ ...comparator, before: value })
   },
 
-  attrKey: ({attrs}, comparator) => {
+  ATTR_KEY: ({attrs}, comparator) => {
     return attrs.reduce((acc, attr) => {
       const result = comparator.rule({...comparator, before: attr.name})
       if (result === true)
@@ -21,7 +21,7 @@ export const query = {
     }, null)
   },
 
-  attrVal: ({attrs}, comparator) => {
+  ATTR_VAL: ({attrs}, comparator) => {
     return attrs.reduce((acc, attr) => {
       const result = comparator.rule({...comparator, before: attr.value})
       if (result === true || acc === true)
@@ -32,24 +32,24 @@ export const query = {
   },
 
   // this is going to be hell to setup
-  parent: (node, comparator) => {},
-  child: (node, comparator) => {}
+  PARENT: (node, comparator) => {},
+  CHILD: (node, comparator) => {}
 
 }
 
 export const mutator = {
 
-  nodeName: (model, tree, params) => {
+  NODE_NAME: (model, tree, params) => {
     const compare = { ...params, before: model.nodeName }
     return { ...model, nodeName: params.rule(compare) }
   },
 
-  text: (model, tree, params) => {
+  TEXT: (model, tree, params) => {
     const compare = { ...params, before: model.text }
     return { ...model, text: params.rule(compare) }
   },
 
-  attrKey: (model, tree, params) => {
+  ATTR_KEY: (model, tree, params) => {
     return {
       ...model,
       attrs: (model.attrs || []).map(a => {
@@ -60,7 +60,7 @@ export const mutator = {
     }
   },
 
-  attrVal: (model, tree, params) => {
+  ATTR_VAL: (model, tree, params) => {
     return {
       ...model,
       attrs: (model.attrs || []).map(a => {
@@ -71,7 +71,7 @@ export const mutator = {
     }
   },
 
-  addAttr: (model, tree, params) => {
+  ATTR_CONCAT: (model, tree, params) => {
     const compare = { ...params, before: 1 }
     return { ...model, a: params.rule(compare) }
   }

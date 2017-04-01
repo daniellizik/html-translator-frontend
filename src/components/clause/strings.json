@@ -1,23 +1,23 @@
 {
   "en-US": {
     "targets": {
-      "nodeName": {
+      "NODE_NAME": {
         "title": "html element name",
         "targetValueLabel": "html tag"
       },
-      "text": {
+      "TEXT": {
         "title": "text",
         "label": "search for text"
       },
-      "attrKey": {
+      "ATTR_KEY": {
         "title": "attribute key",
         "targetValueLabel": "select attribute key to edit"
       },
-      "attrVal": {
+      "ATTR_VAL": {
         "title": "attribute value",
         "targetValueLabel": "set attribute value"
       },
-      "attrPair": {
+      "ATTR_PAIR": {
         "title": "attribute key value pair",
         "targetValueLabel": "html5 attribute pair"
       }
@@ -33,24 +33,24 @@
       "addAttrVal": "set attribute value"
     },
 
-    "querybuilder": {
+    "query": {
       "ruleValueLabel": "rule value",
       "targetValueLabel": "set target",
       "inputLabel": "modification to insert",
       "rules": {
-        "equals": {
+        "EQUALS": {
           "title": "equals"
         },
-        "notEquals": {
+        "NOT_EQUALS": {
           "title": "not equals"
         },
-        "like": {
+        "LIKE": {
           "title": "like"
         },
-        "notLike": {
+        "NOT_LIKE": {
           "title": "not like"
         },
-        "regex": {
+        "REGEX": {
           "title": "regular expression",
           "changeRuleLabel": "regular expression body",
           "changeFlagsLabel": "regular expression flags"
@@ -83,23 +83,23 @@
   },
   "ja-JP": {
     "targets": {
-      "nodeName": {
+      "NODE_NAME": {
         "title": "html element name",
         "targetValueLabel": "html tag"
       },
-      "text": {
+      "TEXT": {
         "title": "text",
         "label": "search for text"
       },
-      "attrKey": {
+      "ATTR_KEY": {
         "title": "attribute key",
         "targetValueLabel": "select attribute key to edit"
       },
-      "attrVal": {
+      "ATTR_VAL": {
         "title": "attribute value",
         "targetValueLabel": "set attribute value"
       },
-      "attrPair": {
+      "ATTR_PAIR": {
         "title": "attribute key value pair",
         "targetValueLabel": "html5 attribute pair"
       }
@@ -120,19 +120,19 @@
       "targetValueLabel": "set target",
       "inputLabel": "modification to insert",
       "rules": {
-        "equals": {
+        "EQUALS": {
           "title": "equals"
         },
-        "notEquals": {
+        "NOT_EQUALS": {
           "title": "not equals"
         },
-        "like": {
+        "LIKE": {
           "title": "like"
         },
-        "notLike": {
+        "NOT_LIOKE": {
           "title": "not like"
         },
-        "regex": {
+        "REGEX": {
           "title": "regular expression",
           "changeRuleLabel": "regular expression body",
           "changeFlagsLabel": "regular expression flags"

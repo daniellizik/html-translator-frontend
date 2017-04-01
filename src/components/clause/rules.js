@@ -1,4 +1,4 @@
-export const equals = ({before, targetValue}) => {
+export const EQUALS = ({before, targetValue}) => {
   if (!before || !targetValue)
     return false
   if (before === targetValue)
@@ -7,7 +7,7 @@ export const equals = ({before, targetValue}) => {
     return false
 }
 
-export const notEquals = ({before, targetValue}) => {
+export const NOT_EQUALS = ({before, targetValue}) => {
   if (!before || !targetValue)
     return false
   if (typeof before !== 'string' || typeof targetValue !== 'string')
@@ -18,7 +18,7 @@ export const notEquals = ({before, targetValue}) => {
     return false
 }
 
-export const like = ({before, targetValue}) => {
+export const LIKE = ({before, targetValue}) => {
   if (!before || !targetValue)
     return false
   if (typeof before !== 'string' || typeof targetValue !== 'string')
@@ -29,7 +29,7 @@ export const like = ({before, targetValue}) => {
     return false
 }
 
-export const notLike = ({before, targetValue}) => {
+export const NOT_LIKE = ({before, targetValue}) => {
   if (!before || !targetValue)
     return false
   if (before.toLowerCase().indexOf(targetValue.toLowerCase()) > -1)
@@ -38,7 +38,7 @@ export const notLike = ({before, targetValue}) => {
     return true
 }
 
-export const regex = ({before, ruleValue, ruleValueFlags}) => {
+export const REGEX = ({before, ruleValue, ruleValueFlags}) => {
   if (!before || !ruleValue)
     return false
   if (typeof before !== 'string' || typeof ruleValue !== 'string')
@@ -56,7 +56,7 @@ export const allReplace = (obj) => {
 export const regexReplace = (obj) => {
   if (!obj || typeof obj !== 'object')
     return ''
-  const rx = new RegExp((obj.ruleValue || '').replace(/\//g, '\\\\'), obj.flags || '')
+  const rx = new RegExp((obj.ruleValue || '').replace(/\//g, '\\\\'), obj.ruleValueFlags || '')
   return (obj[obj.target] || '').replace(rx, obj.targetValue || '')
 }
 

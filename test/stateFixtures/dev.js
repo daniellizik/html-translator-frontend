@@ -4,7 +4,7 @@ import treeToList from '~/src/treeToList'
 import reducer from '~/src/store/rootReducer'
 import * as constants from '~/src/components/clause/constants'
 import state from '~/src/store/state'
-import clauses from '~/test/stateFixtures/queryclauses'
+import clauses from '~/test/stateFixtures/clauses'
 
 const ast = parseHtml(rawHtml)
 const list = treeToList()(ast)
@@ -16,7 +16,7 @@ const action = {
 
 export default reducer({
   ...state,
-  clauses: [],
+  clauses,
   slave: {
     ...state.slave,
     ast,
