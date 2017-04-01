@@ -6,7 +6,6 @@ import * as constants from '~/src/components/clause/constants'
 import state from '~/test/stateFixtures/test'
 import * as actions from '~/src/components/clause/actions'
 import reducer from '~/src/components/clause/reducer'
-import config from '~/src/components/clause/config'
 import { chainActions } from '~/src/util'
 
 export default chainActions(

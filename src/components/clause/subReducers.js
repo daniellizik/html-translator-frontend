@@ -36,9 +36,27 @@ export function reduceView(action, clauses, {list}) {
   }, [])
 }
 
+export function _reduceView({clauseIndex}, clauses, {list}) {
+  return clauses.reduce((acc, clause, index) => {
+    if (index !== clauseIndex)
+      return [...acc, clause]
+    const view = list.open.filter(node => clause.rules.reduce((acc, obj, i) => {
+      const result = targets.query[obj.target](node, { ...obj, rule: rules[obj.rule] })
+      if (result === false || acc === false)
+        return false
+      else if (result === true)
+        return true
+    }, null))
+    return [
+      ...acc,
+      { ...clause, view }
+    ]
+  }, [])
+}
+
 export function reduceClauses(state, action, type, key) {
   let nextState
-  const clauses = state.clauses.map((clause, clauseIndex) => {
+  const nextClauses = state.clauses.map((clause, clauseIndex) => {
     return clauseIndex !== action.clauseIndex ? clause : {
       ...clause,
       rules: clause.rules.map((query, queryIndex) => {
@@ -46,26 +64,11 @@ export function reduceClauses(state, action, type, key) {
       })
     }
   })
+  let clauses = nextClauses
   try {
     nextState = {
       ...state,
-      clauses,
-      slave: {
-        ...state.slave,
-
-        // this definitely isn't the best time complexity
-        // for every clause we add, we start with the original tree
-        // and reduce all clauses, all the time, even when
-        // we make a modification to one clause,
-        // the tree must be filtered several times
-
-        // it's possible to store the state of each tree
-        // as it passes through a clause
-        // but then we're sacrificing space for time
-
-        view: reduceView(action, clauses, state.slave),
-        // mutated: reduceMutated(action, clauses, state.slave)
-      }
+      clauses: _reduceView(action, nextClauses, state.slave)
     }
   }
   catch(e) {

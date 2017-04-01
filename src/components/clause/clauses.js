@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import styles from '~/src/styles'
-import config from './config.json' 
+import * as config from './config' 
 
 // all of these stateless components
 // are needed by clausePolicy, which will

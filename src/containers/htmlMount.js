@@ -22,10 +22,10 @@ class Receiver extends Component {
 
   callbacks() {
     return {
-      highlight: (node) => {
+      highlight: ({node, row}) => {
         // this.setState({ row: node.len, encapsulated: node.id })
       },
-      click: ({node}) => {
+      click: ({node, row}) => {
         //console.log(node)
       }
     }

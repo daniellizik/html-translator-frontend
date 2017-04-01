@@ -1,6 +1,6 @@
 import * as clauseConstants from './constants'
 import * as sourceSetterConstants from '~/src/containers/sourceSetter/constants'
-import { query, mutator } from './config'
+import { QUERY, MUTATION } from './config'
 import { mapMutations } from './subReducers'
 
 export default function mutationReducer(state, action) {

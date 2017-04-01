@@ -28,7 +28,7 @@ const Clause = (props) => (
     }, [])}
     <div class="row pt-3 m-0" style={closeStyle}>
       <div class="col-12">
-        <div>remove this query</div>
+        <div onClick={() => props.removeQuery(props.clauseIndex, props.queryIndex)}>remove this query</div>
       </div>
     </div>
   </div>
@@ -41,6 +41,7 @@ Clause.propTypes = {
 }
 
 const mapDispatchToProps = (dispatch) => ({
+  removeQuery: (...args) => dispatch(actions.removeQuery(...args)),
   removeClause: (clauseIndex) => dispatch(actions.removeClause(clauseIndex)),
   changeTarget: (target, clauseIndex, queryIndex) => dispatch(actions.changeTarget(target, clauseIndex, queryIndex)),
   changeTargetValue: (targetValue, clauseIndex, queryIndex) => dispatch(actions.changeTargetValue(targetValue, clauseIndex, queryIndex)),

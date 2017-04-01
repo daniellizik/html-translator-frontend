@@ -6,11 +6,6 @@ export default {
 
   pastInit: false,
 
-  components: {
-    htmlmount: false,
-    htmlpreview: false
-  },
-
   source: {
     visible: false,
     rawHtml: null,
@@ -33,7 +28,6 @@ export default {
     ast: [],
     rawHtml: null,
     tree: [],
-    view: [],
     mutated: []
   },
 

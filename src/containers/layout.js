@@ -11,17 +11,7 @@ import HtmlMount from '~/src/containers/htmlMount'
 import * as sourceSetterConstants from '~/src/containers/sourceSetter/constants'
 import { constants as navigatorConstants } from '~/src/components/navigator'
 
-const setComponents = ({query, mutator, htmlmount, htmlpreview}) => {
-  const base = { query: true, mutator: false }
-  if (htmlmount === false && htmlpreview === false)
-    return { ...base, htmlpreview, htmlmount: true }
-  else
-    return { ...base, htmlpreview, htmlmount }
-}
-
 export function reducer(state, action) {
-  if (action.type === sourceSetterConstants.HTML_FETCHED)
-    return { ...state, components: setComponents(state.components, action) }
   return state
 }
 
@@ -47,13 +37,8 @@ class Layout extends Component {
 
 }
 
-const mapStateToProps = (state) => ({
-  isQB: !!state.components.query,
-  isME: !!state.components.mutator
-})
-
 const mapDispatchToProps = (dispatch) => ({
   push: (route) => push(route)
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Layout)
+export default connect(s => s, mapDispatchToProps)(Layout)

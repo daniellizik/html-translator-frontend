@@ -1,33 +1,30 @@
 import * as constants from './constants'
 import * as sourceSetterConstants from '~/src/containers/sourceSetter/constants'
-import { query, mutator } from './config'
-import { reduceView, reduceMutated, reduceClauses, mapMutations } from './subReducers'
+import { defaultQuery, MUTATION } from './config'
+import { reduceView, _reduceView, reduceMutated, reduceClauses, mapMutations } from './subReducers'
 
 export default function queryReducer(state, action) {
   let nextState = state
 
   if (action.type === constants.QUERY_ADD) {
-    const clauses = state.clauses.map((clause, i) => {
+    const nextClauses = state.clauses.map((clause, i) => {
       return i !== action.clauseIndex ? clause : {
         ...clause,
         rules: [
           ...clause.rules,
-          query.defaultQuery
+          defaultQuery
         ]
       }
     })
+    const clauses = _reduceView(action, nextClauses, state.slave)
     nextState = {
       ...state,
       clauses,
-      slave: {
-        ...state.slave,
-        view: reduceView(action, clauses, state.slave)
-      }
     }
   }
 
   else if (action.type === constants.QUERY_REMOVE) {
-    const clauses = state.clauses.reduce((acc, clause, clauseIndex) => {
+    const nextClauses = state.clauses.reduce((acc, clause, clauseIndex) => {
       if (clauseIndex !== action.clauseIndex)
         return [...acc, clause]
       else
@@ -39,13 +36,10 @@ export default function queryReducer(state, action) {
           }
         ]
     }, [])
+    const clauses = _reduceView(action, nextClauses, state.slave)
     nextState = {
       ...state,
-      clauses,
-      slave: {
-        ...state.slave,
-        view: reduceView(action, clauses, state.slave)
-      }
+      clauses
     }
   }
 

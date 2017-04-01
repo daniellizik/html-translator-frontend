@@ -36,8 +36,6 @@ export default {
     // original normalized dom traversal
     // comes from slave bundle
     tree: [],
-    // view is nested array now, each result refers to each clause
-    view: [],
     // mutation of view, lets us cache the view slice thing
     // when we "do work" on the view with editor
     // put it here
