@@ -33,7 +33,10 @@ export default function queryReducer(state, action) {
       else
         return [
           ...acc,
-          clause.rules.filter((query, queryIndex) => queryIndex !== action.queryIndex)
+          {
+            ...clause,
+            rules: clause.rules.filter((query, queryIndex) => queryIndex !== action.queryIndex)
+          }
         ]
     }, [])
     nextState = {
