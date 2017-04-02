@@ -5,18 +5,12 @@ import reducer from '~/src/store/rootReducer'
 import * as constants from '~/src/components/clause/constants'
 import state from '~/src/store/state'
 import clauses, { basic, multi } from '~/test/stateFixtures/clauses'
+import { reduceView } from '~/src/components/clause/subReducers'
 import clauseReducer from '~/src/components/clause/reducer'
 
 const ast = parseHtml(rawHtml)
 
 const list = treeToList()(ast)
-
-const action = {
-  targetValue: 'cat',
-  type: constants.QUERY_CHANGE_TARGET_VALUE,
-  clauseIndex: 0,
-  queryIndex: 0
-}
 
 const previousState = {
   ...state,
@@ -30,4 +24,9 @@ const previousState = {
   }
 }
 
-export default clauseReducer(previousState, action)
+const nextState = {
+  ...previousState,
+  clauses: reduceView({clauseIndex: 0}, previousState.clauses, previousState.slave)
+}
+
+export default nextState

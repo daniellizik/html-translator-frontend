@@ -5,19 +5,26 @@ import queryReducer from './queryReducer'
 import mutationReducer from './mutationReducer'
 import { reduceView } from './subReducers'
 
-export default function(state, action) {
-
+// by default, adjusting a clause's inputs will set it to active
+// those are set implicitly by other actions besides CLAUSE_ACTIVATE
+// this root-level reducer is set before the default one for clause
+// in rootReducer, since everything clause reducer does depends on 
+// activeClause prop (basically)
+export function activeClause(state, action) {
   let nextState = state
-
-  if (action.type === clauseConstants.CLAUSE_ACTIVATE) {
+  if (action.clauseIndex || action.type === clauseConstants.CLAUSE_ACTIVATE)
     nextState = {
       ...state,
       activeClause: action.clauseIndex
     }
-    console.log(action)
-  }
+  return nextState
+}
 
-  else if (action.type === clauseConstants.CLAUSE_ADD) {
+export default function(state, action) {
+
+  let nextState = state
+
+  if (action.type === clauseConstants.CLAUSE_ADD) {
     const nextClauses = [ 
       ...state.clauses, 
       { active: false, minimized: false, name: '', rules: [defaultQuery] } 

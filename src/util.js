@@ -34,7 +34,6 @@ export const filterText = (node) => {
 }
 
 export const mutateList = (list, view) => {
-  console.log(view)
   return list.reduce((acc, node) => {
     const index = acc.view.indexOf(node.id)
     return index < 0 
@@ -46,5 +45,5 @@ export const mutateList = (list, view) => {
           list: [...acc.list, {...node, view: true}],
           view: acc.view.splice(index, 1) && acc.view
         } 
-  }, { list: [], view }).list
+  }, { list: [], view: view.slice() }).list
 }
