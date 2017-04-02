@@ -54,6 +54,10 @@ describe('modifying TEXT queries', () => {
     expect(story[23].clauses[1].view.length).toBe(1)
   })
   it('should work with NOT_EQUALS', () => {
+    console.log( 
+      story[27].clauses[0].view.length,
+      story[27].clauses[0]._view
+    )
     expect(story[27].clauses[0].view.filter(filterText).length).toBe(13)
   })
   it('should work with NOT_LIKE', () => {

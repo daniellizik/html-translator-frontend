@@ -37,7 +37,7 @@ export default chainActions(
   actions.changeRule('NOT_EQUALS', 0, 0),
   actions.changeTargetValue('cat-a', 0, 0),
   actions.changeRule('NOT_EQUALS', 0, 1),
-  actions.changeTargetValue('cat burrito cheese', 0, 1),
+  actions.changeTargetValue('cat burrito cheese', 0, 1), // 27
   actions.changeRule('NOT_LIKE', 0, 0),
   actions.changeTargetValue('cat', 0, 0),
   actions.changeRule('NOT_LIKE', 0, 1),

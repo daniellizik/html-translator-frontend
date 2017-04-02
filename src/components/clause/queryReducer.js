@@ -1,7 +1,7 @@
 import * as constants from './constants'
 import * as sourceSetterConstants from '~/src/containers/sourceSetter/constants'
 import { defaultQuery, MUTATION } from './config'
-import { reduceView, _reduceView, reduceMutated, reduceClauses, mapMutations } from './subReducers'
+import { reduceView, reduceMutated, reduceClauses, mapMutations } from './subReducers'
 
 export default function queryReducer(state, action) {
   let nextState = state
@@ -16,7 +16,7 @@ export default function queryReducer(state, action) {
         ]
       }
     })
-    const clauses = _reduceView(action, nextClauses, state.slave)
+    const clauses = reduceView(action, nextClauses, state.slave)
     nextState = {
       ...state,
       clauses,
@@ -36,7 +36,7 @@ export default function queryReducer(state, action) {
           }
         ]
     }, [])
-    const clauses = _reduceView(action, nextClauses, state.slave)
+    const clauses = reduceView(action, nextClauses, state.slave)
     nextState = {
       ...state,
       clauses

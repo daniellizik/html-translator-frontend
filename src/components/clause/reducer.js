@@ -3,7 +3,7 @@ import * as sourceSetterConstants from '~/src/containers/sourceSetter/constants'
 import { defaultQuery, mutator } from './config'
 import queryReducer from './queryReducer'
 import mutationReducer from './mutationReducer'
-import { reduceView, _reduceView } from './subReducers'
+import { reduceView } from './subReducers'
 
 export default function(state, action) {
 
@@ -14,7 +14,6 @@ export default function(state, action) {
       ...state,
       activeClause: action.clauseIndex
     }
-    console.log(nextState.clauses[nextState.activeClause].view)
   }
 
   else if (action.type === clauseConstants.CLAUSE_ADD) {
@@ -22,7 +21,7 @@ export default function(state, action) {
       ...state.clauses, 
       { active: false, minimized: false, name: '', rules: [defaultQuery] } 
     ]
-    const clauses = _reduceView({...action, clauseIndex: nextClauses.length - 1}, nextClauses, state.slave)
+    const clauses = reduceView({...action, clauseIndex: nextClauses.length - 1}, nextClauses, state.slave)
     nextState = {
       ...state,
       clauses

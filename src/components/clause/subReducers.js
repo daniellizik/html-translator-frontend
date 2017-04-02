@@ -23,20 +23,7 @@ export function reduceMutated(action, clauses, {view, tree, mutated}) {
     return mutated
 }
 
-export function reduceView(action, clauses, {list}) {
-  return clauses.reduce((acc, clause, index) => {
-    const result = list.open.filter(node => clause.rules.reduce((acc, obj, i) => {
-      const result = targets.query[obj.target](node, { ...obj, rule: rules[obj.rule] })
-      if (result === false || acc === false)
-        return false
-      else if (result === true)
-        return true
-    }, null))
-    return [...acc, result]
-  }, [])
-}
-
-export function _reduceView({clauseIndex}, clauses, {list}) {
+export function reduceView({clauseIndex}, clauses, {list}) {
   return clauses.reduce((acc, clause, index) => {
     if (index !== clauseIndex)
       return [...acc, clause]
@@ -47,9 +34,19 @@ export function _reduceView({clauseIndex}, clauses, {list}) {
       else if (result === true)
         return true
     }, null))
+    const _view = list.open.reduce((ids, node) => {
+      const res = clause.rules.reduce((bool, obj) => {
+        const result = targets.query[obj.target](node, { ...obj, rule: rules[obj.rule] })
+        if (result === false || bool === false)
+          return false
+        else if (result === true)
+          return true
+      }, null)
+      return !res ? ids : [...ids, node.id]
+    }, [])
     return [
       ...acc,
-      { ...clause, view }
+      { ...clause, view, _view }
     ]
   }, [])
 }
@@ -68,7 +65,7 @@ export function reduceClauses(state, action, type, key) {
   try {
     nextState = {
       ...state,
-      clauses: _reduceView(action, nextClauses, state.slave)
+      clauses: reduceView(action, nextClauses, state.slave)
     }
   }
   catch(e) {
