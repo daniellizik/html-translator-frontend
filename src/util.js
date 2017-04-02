@@ -5,7 +5,7 @@
  * @param {array} reducers
  * @return {object} state reduced after n reductions
  */
-export function chainReducers(state, action, ...reducers) {
+export const chainReducers = (state, action, ...reducers) => {
   return reducers.reduce((reducedState, reducer) => {
     const result = reducer(reducedState, action)
     return result
@@ -19,7 +19,7 @@ export function chainReducers(state, action, ...reducers) {
  * @param {array} actions
  * @return {array} array of reduced state per action passed
  */
-export function chainActions(initialState, reducer, ...actions) {
+export const chainActions = (initialState, reducer, ...actions) => {
   return actions.reduce((acc, action, i) => {
     const result = reducer(acc.state, action)
     return {
@@ -29,6 +29,22 @@ export function chainActions(initialState, reducer, ...actions) {
   }, {state: initialState, history: [initialState]}).history
 }
 
-export function filterText(node) {
+export const filterText = (node) => {
   return !/^[\s\r\n]+$/.test(node.value)
+}
+
+export const mutateList = (list, view) => {
+  console.log(view)
+  return list.reduce((acc, node) => {
+    const index = acc.view.indexOf(node.id)
+    return index < 0 
+      ? {
+          list: [...acc.list, node],
+          view: acc.view
+        } 
+      : {
+          list: [...acc.list, {...node, view: true}],
+          view: acc.view.splice(index, 1) && acc.view
+        } 
+  }, { list: [], view }).list
 }

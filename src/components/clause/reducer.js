@@ -14,6 +14,7 @@ export default function(state, action) {
       ...state,
       activeClause: action.clauseIndex
     }
+    console.log(action)
   }
 
   else if (action.type === clauseConstants.CLAUSE_ADD) {

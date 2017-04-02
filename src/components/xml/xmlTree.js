@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 import XmlTag, { findTagType } from './xmlTag'
+import { connect } from 'react-redux'
 import { generate as id } from 'shortid'
+import { mutateList } from '~/src/util'
 
 // the weird thing with this is that 
 // we dont want to render empty text nodes, even though
@@ -10,41 +12,34 @@ import { generate as id } from 'shortid'
 // the component renders...before it is rendered
 // feels weird.
 
-export default class XmlTree extends Component {
-  static propTypes = {
-    callbacks: PropTypes.object,
-    list: PropTypes.object
-  }
-  // todo:
-  // get active clause, find if nodes are in view
-  // do this pre-render...otherwise you get stupid n* crap
-  render() {
-    if (this.props.list.open.length < 1)
-      return null
-    return (
-      <table>
-        <tbody>
-          {this.props.list.list.reduce((acc, node, i, list) => {
-            const tagType = findTagType({node, list}) 
-            return !tagType ? acc : {
-              count: acc.count + 1,
-              tags: [
-                ...acc.tags,
-                <XmlTag
-                  isInView={false}
-                  key={id()}
-                  node={node}
-                  index={i}
-                  row={acc.count}
-                  openTags={this.props.list.open}
-                  list={list}
-                  tagType={tagType}
-                  callbacks={this.props.callbacks} />
-              ]
-            }
-          }, {tags: [], count: 0}).tags}
-        </tbody>
-      </table>
-    )
-  }
+const XmlTree = (props) => (
+  <table style={{width: '100%'}}>
+    <tbody>
+      {mutateList(props.list.list, props.clauses[props.activeClause].view).reduce((acc, node, i, list) => {
+        const tagType = findTagType({node, list}) 
+        return !tagType ? acc : {
+          count: acc.count + 1,
+          tags: [
+            ...acc.tags,
+            <XmlTag
+              key={id()}
+              node={node}
+              index={i}
+              row={acc.count}
+              openTags={props.list.open}
+              list={list}
+              tagType={tagType}
+              callbacks={props.callbacks} />
+          ]
+        }
+      }, {tags: [], count: 0}).tags}
+    </tbody>
+  </table>
+)
+
+XmlTree.propTypes = {
+  callbacks: PropTypes.object,
+  list: PropTypes.object
 }
+
+export default connect(s => s)(XmlTree)

@@ -27,8 +27,8 @@ const Clause = (props) => (
       return isValidPolicy ? [...acc, <Structure key={i} {...props} />] : acc
     }, [])}
     <div class="row pt-3 m-0" style={closeStyle}>
-      <div class="col-12">
-        <div onClick={() => props.removeQuery(props.clauseIndex, props.queryIndex)}>remove this query</div>
+      <div class="col-3">
+        <span onClick={() => props.removeQuery(props.clauseIndex, props.queryIndex)}>remove this query</span>
       </div>
     </div>
   </div>

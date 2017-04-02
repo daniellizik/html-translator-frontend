@@ -4,7 +4,7 @@ import treeToList from '~/src/treeToList'
 import reducer from '~/src/store/rootReducer'
 import * as constants from '~/src/components/clause/constants'
 import state from '~/src/store/state'
-import clauses, { basic } from '~/test/stateFixtures/clauses'
+import clauses, { basic, multi } from '~/test/stateFixtures/clauses'
 import clauseReducer from '~/src/components/clause/reducer'
 
 const ast = parseHtml(rawHtml)
@@ -20,7 +20,7 @@ const action = {
 
 const previousState = {
   ...state,
-  clauses: basic,
+  clauses: multi,
   activeClause: 0,
   slave: {
     ...state.slave,

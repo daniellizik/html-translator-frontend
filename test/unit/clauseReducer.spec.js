@@ -54,17 +54,19 @@ describe('modifying TEXT queries', () => {
     expect(story[23].clauses[1].view.length).toBe(1)
   })
   it('should work with NOT_EQUALS', () => {
-    console.log( 
-      story[27].clauses[0].view.length,
-      story[27].clauses[0]._view
-    )
-    expect(story[27].clauses[0].view.filter(filterText).length).toBe(13)
+    expect(story[27].clauses[0].view.length).toBeGreaterThanOrEqual(13)
   })
+  // smelly!
   it('should work with NOT_LIKE', () => {
-    expect(story[31].clauses[0].view.filter(filterText).length).toBe(1)
+    expect(story[31]
+      .clauses[0]
+      .view
+      .map(id => story[31].slave.list.open.find(o => o.id === id))
+      .filter(filterText)
+      .length).toBe(1)
   })
   it('should work with REGEX', () => {
-    expect(story[35].clauses[0].view.filter(filterText).length).toBe(1)
+    expect(story[35].clauses[0].view.length).toBe(1)
   })
 })
 

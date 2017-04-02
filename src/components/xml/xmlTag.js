@@ -5,9 +5,9 @@ import styles from '~/src/styles'
 import XmlToken from './xmlToken'
 import tagTypes from './tagTypes'
 
-const styleRow = (props) => ({
+const styleRow = ({view}) => ({
   border: 'none',
-  background: `transparent`,
+  background: !view ? `transparent` : styles.constants.colors.highlight,
   fontSize: '12px',
   margin: 0,
   padding: '0px 15px 0px 0px',
@@ -21,7 +21,7 @@ export const findTagType = ({node, list}) => {
 
 const XmlTag = (props) => (
   <tr
-    style={styleRow(props)}
+    style={styleRow(props.node)}
     onClick={() => props.callbacks.click(props)}
     onMouseEnter={(e) => props.callbacks.highlight(props)}>
     <td style={styles.code.lineNumber()}>
