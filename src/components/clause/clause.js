@@ -5,19 +5,15 @@ import iconStyle from '~/src/styles/icon'
 import policies from '~/src/components/clause/policies'
 import * as actions from './actions'
 
-const clauseStyle = {
-  backgroundColor: colors.light,
-  position: 'relative'
-}
 const hrStyle = {
-  borderBottom: `1px solid ${colors.lessLight}`
+  borderBottom: `1px solid black`
 }
 const closeStyle = {
   fontSize: '.8em'
 }
 
 const Clause = (props) => (
-  <div class="py-0" style={clauseStyle}>
+  <div class="py-0">
     <hr class="mt-1 py-0 mx-3" style={hrStyle} />
     {policies.reduce((acc, policy, i, {length}) => {
       const isValidTarget = policy.target.includes(props.clause.target)
@@ -26,7 +22,7 @@ const Clause = (props) => (
       const Structure = policy.structure
       return isValidPolicy ? [...acc, <Structure key={i} {...props} />] : acc
     }, [])}
-    <div class="row pt-3 m-0" style={closeStyle}>
+    <div class="row py-2 m-0" style={closeStyle}>
       <div class="col-3">
         <span onClick={() => props.removeQuery(props.clauseIndex, props.queryIndex)}>remove this query</span>
       </div>

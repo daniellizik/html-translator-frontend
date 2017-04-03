@@ -15,7 +15,7 @@ import { mutateList } from '~/src/util'
 const XmlTree = (props) => (
   <table style={{width: '100%'}}>
     <tbody>
-      {mutateList(props.list.list, props.clauses[props.activeClause].view).reduce((acc, node, i, list) => {
+      {props.clauses[props.activeClause] && mutateList(props.list.list, props.clauses[props.activeClause].view).reduce((acc, node, i, list) => {
         const tagType = findTagType({node, list}) 
         return !tagType ? acc : {
           count: acc.count + 1,

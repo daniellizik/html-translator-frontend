@@ -20,13 +20,14 @@ export const chainReducers = (state, action, ...reducers) => {
  * @return {array} array of reduced state per action passed
  */
 export const chainActions = (initialState, reducer, ...actions) => {
+  const state = Array.isArray(initialState) ? initialState.slice(-1).pop() : initialState
   return actions.reduce((acc, action, i) => {
     const result = reducer(acc.state, action)
     return {
       state: result,
       history: [...acc.history, result]
     }
-  }, {state: initialState, history: [initialState]}).history
+  }, {state, history: [state]}).history
 }
 
 export const filterText = (node) => {

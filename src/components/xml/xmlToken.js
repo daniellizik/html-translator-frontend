@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import syntax from '~/src/styles/syntaxHighlighting'
+import * as syntax from './syntaxHighlighting'
 import tagTypes from './tagTypes'
 
 const tokenizeAttrs = (attrs = []) => {
@@ -21,7 +21,7 @@ const XmlToken = ({node, list, type}) => {
   return (
     <span>
       {tagTypes[type].tokens({...node, attrs: tokenizeAttrs(node.attrs)}).map((token, i) => (
-        <span key={i} style={syntax[token.punctuation](node)}>
+        <span key={i} style={syntax[token.punctuation]}>
           {token.value}
         </span>
       ))}

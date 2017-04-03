@@ -7,6 +7,7 @@ import state from '~/src/store/state'
 import clauses, { basic, multi } from '~/test/stateFixtures/clauses'
 import { reduceView } from '~/src/components/clause/subReducers'
 import clauseReducer from '~/src/components/clause/reducer'
+import { chainActions } from '~/src/util'
 
 const ast = parseHtml(rawHtml)
 
@@ -24,9 +25,14 @@ const previousState = {
   }
 }
 
-const nextState = {
+let nextState = {
   ...previousState,
   clauses: reduceView({clauseIndex: 0}, previousState.clauses, previousState.slave)
+}
+
+nextState = {
+  ...nextState,
+  clauses: reduceView({clauseIndex: 1}, nextState.clauses, nextState.slave)
 }
 
 export default nextState

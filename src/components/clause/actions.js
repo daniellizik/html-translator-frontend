@@ -12,6 +12,10 @@ export const activateClause = (clauseIndex) => ({
   clauseIndex
 })
 
+export const removeAllClauses = () => ({
+  type: constants.CLAUSE_REMOVE_ALL
+})
+
 /** 
  * addClause
  */

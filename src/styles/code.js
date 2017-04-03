@@ -15,32 +15,6 @@ export default {
     padding: '0px 15px 0px 0px',
   }),
 
-  lineNumber: () => {
-    return {
-      fontFamily: '"Source Code Pro", monospace',
-      padding: '0px 10px 0px 25px',
-      color: constants.colors.inactive,
-      userSelect: 'none',
-      textAlign: 'right',
-      cursor: 'pointer',
-      ':hover': {
-        color: constants.colors.inactiveHover
-      }
-    }
-  },
-
-  lineText: ({depth, view, row, id}) => {
-    const isRow = id === row
-    const isInView = view && view.includes(id)
-    return {
-      fontSize: '12px',
-      fontFamily: `"Source Code Pro", "Space Mono", "Inconsolata", "Liberation Mono", Menlo, Courier, monospace`,
-      whiteSpace: 'nowrap',
-      background: !isInView ? 'transparent' : constants.colors.highlight,
-      cursor: 'text'
-    }
-  },
-
   htmlPreview: () => ({
     fontFamily: 'Inconsolata, monospace'
   }),

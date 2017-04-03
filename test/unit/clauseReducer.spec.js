@@ -96,7 +96,7 @@ describe('modifying ATTR_KEY queries', () => {
     expect(modifyingAttrKeyQueries[10].clauses[1].view.length).toBe(1)
   })
   it('should work with NOT_LIKE', () => {
-    expect(modifyingAttrKeyQueries[12].clauses[1].view.length).toBe(1)
+    expect(modifyingAttrKeyQueries[12].clauses[1].view.length).toBe(2)
   })
   it('should work with NOT_EQUALS', () => {
     expect(modifyingAttrKeyQueries[14].clauses[1].view.length).toBe(2)

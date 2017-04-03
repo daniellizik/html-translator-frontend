@@ -17,13 +17,13 @@ export const addingAClause = chainActions(
 )
 
 export const removingAClause = chainActions(
-  addingAClause.slice(-1).pop(),
+  addingAClause,
   reducer,
   actions.removeClause(2)
 )
 
 export const addingAQuery = chainActions(
-  removingAClause.slice(-1).pop(),
+  removingAClause,
   reducer,
   actions.addQuery(0),
   actions.addQuery(0),
@@ -32,7 +32,7 @@ export const addingAQuery = chainActions(
 )
 
 export const removingAQuery = chainActions(
-  addingAQuery.slice(-1).pop(),
+  addingAQuery,
   reducer,
   actions.removeQuery(0, 4),
   actions.removeQuery(0, 3),
@@ -41,7 +41,7 @@ export const removingAQuery = chainActions(
 )
 
 export const modifyingTextQueries = chainActions(
-  removingAQuery.slice(-1).pop(),
+  removingAQuery,
   reducer,
   actions.changeRule('LIKE', 0, 0),
   actions.changeTargetValue('cat-', 0, 0), 
@@ -69,14 +69,14 @@ export const modifyingTextQueries = chainActions(
 )
 
 export const modifyingNodeNameQueries = chainActions(
-  modifyingTextQueries.slice(-1).pop(),
+  modifyingTextQueries,
   reducer,
   actions.changeTarget('NODE_NAME', 1, 0),
   actions.changeTargetValue('span', 1, 0)
 )
 
 export const modifyingAttrKeyQueries = chainActions(
-  modifyingNodeNameQueries.slice(-1).pop(),
+  modifyingNodeNameQueries,
   reducer,
   actions.changeTarget('ATTR_KEY', 1, 0),
   actions.changeRule('EQUALS', 1, 0),
@@ -95,7 +95,7 @@ export const modifyingAttrKeyQueries = chainActions(
 )
 
 export const modifyingAttrValQueries = chainActions(
-  modifyingNodeNameQueries.slice(-1).pop(),
+  modifyingNodeNameQueries,
   reducer,
   actions.changeTarget('ATTR_VAL', 1, 0),
   actions.changeTargetValue('something', 1, 0),

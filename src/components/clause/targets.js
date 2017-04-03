@@ -14,7 +14,7 @@ export const query = {
   ATTR_KEY: ({attrs}, comparator) => {
     return attrs.reduce((acc, attr) => {
       const result = comparator.rule({...comparator, before: attr.name})
-      if (result === true)
+      if (acc === true || result === true)
         return true
       else if (result === false || acc === false)
         return false

@@ -36,10 +36,19 @@ export default function(state, action) {
     }
   }
 
+  else if (action.type === clauseConstants.CLAUSE_REMOVE_ALL) {
+    nextState = {
+      ...state,
+      activeClause: -1,
+      clauses: []
+    }
+  }
+
   else if (action.type === clauseConstants.CLAUSE_REMOVE) {
     const nextClauses = state.clauses.filter((c, i) => i !== action.clauseIndex)
     nextState = {
       ...state,
+      activeClause: action.clauseIndex < 1 ? null : action.clauseIndex - 1,
       clauses: nextClauses
     }
   }
