@@ -5,11 +5,13 @@ import { connect } from 'react-redux'
 import styles from '~/src/styles'
 import { callModal } from '~/src/containers/overlay'
 import deepInsert from '~/src/deepInsert'
+import { colors } from '~/src/styles/constants'
 
 const bgStyle = {
-  backgroundColor: '#5862EA',
-  lineHeight: '60px',
-  cursor: 'pointer'
+  backgroundColor: colors.lightBlack,
+  lineHeight: '47px',
+  cursor: 'pointer',
+  borderBottom: `1px solid ${colors.darkestBlack}`
 }
 
 const aStyle = {
@@ -87,33 +89,30 @@ export const resetHtml = () => ({ type: constants.RESET_HTML })
 
 const Navigator = ({mutated, dispatch}) => {
   return (
-    <div class="row pl-3 pt-0 px-4 mb-3" style={bgStyle}>
+    <div class="row pl-3 pt-0 px-4 mb-0" style={bgStyle}>
 
-      <div class="col-auto p-0 mr-5">
-        <span style={hStyle}>
-          Template Translator
+      <div class="col-auto p-0 m-0">
+        <span onClick={() => dispatch(callModal())} style={aStyle} class="mr-3">
+          Change Html
         </span>
       </div>  
 
       <div class="col-auto p-0 m-0">
-        <span onClick={() => dispatch(callModal())} style={aStyle} class="mr-3">Change Html</span>
+        <span onClick={() => dispatch(downloadHtml(mutated))} style={aStyle} class="mr-3">
+          Download
+        </span>
       </div>  
 
       <div class="col-auto p-0 m-0">
-        <span onClick={() => dispatch(callBuilder())} style={aStyle} class="mr-3">Build Query</span>
-        <span style={aStyle} class="mr-3">∣</span>
+        <span onClick={() => dispatch(callBuilder())} style={aStyle} class="mr-3">
+          Preview
+        </span>
       </div>  
 
       <div class="col-auto p-0 m-0">
-        <span onClick={() => dispatch(downloadHtml(mutated))} style={aStyle} class="mr-3">Download Html</span>
-      </div>  
-
-      <div class="col-auto p-0 m-0">
-        <span onClick={() => dispatch(callBuilder())} style={aStyle} class="mr-3">Preview Html</span>
-      </div>  
-
-      <div class="col-auto p-0 m-0">
-        <span onClick={() => dispatch(callBuilder())} style={aStyle} class="mr-3">Reset Html</span>
+        <span onClick={() => dispatch(callBuilder())} style={aStyle} class="mr-3">
+          Reset
+        </span>
       </div>  
 
     </div>

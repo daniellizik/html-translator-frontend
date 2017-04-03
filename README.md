@@ -20,6 +20,8 @@ http://staging.template-translator.co
 
 todo: typically you would use a vpn with staging...? vpc?
 
-## roadmap
+## stuff
 
 https://trello.com/b/rthWKxZk/template-translator
+
+https://travis-ci.org/daniellizik/template-translator

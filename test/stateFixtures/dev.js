@@ -4,23 +4,18 @@ import treeToList from '~/src/treeToList'
 import reducer from '~/src/store/rootReducer'
 import * as constants from '~/src/components/clause/constants'
 import state from '~/src/store/state'
-import clauses, { basic } from '~/test/stateFixtures/clauses'
+import clauses, { basic, multi } from '~/test/stateFixtures/clauses'
+import { reduceView } from '~/src/components/clause/subReducers'
 import clauseReducer from '~/src/components/clause/reducer'
+import { chainActions } from '~/src/util'
 
 const ast = parseHtml(rawHtml)
 
 const list = treeToList()(ast)
 
-const action = {
-  targetValue: 'cat',
-  type: constants.QUERY_CHANGE_TARGET_VALUE,
-  clauseIndex: 0,
-  queryIndex: 0
-}
-
 const previousState = {
   ...state,
-  clauses: basic,
+  clauses: multi,
   activeClause: 0,
   slave: {
     ...state.slave,
@@ -30,4 +25,14 @@ const previousState = {
   }
 }
 
-export default clauseReducer(previousState, action)
+let nextState = {
+  ...previousState,
+  clauses: reduceView({clauseIndex: 0}, previousState.clauses, previousState.slave)
+}
+
+nextState = {
+  ...nextState,
+  clauses: reduceView({clauseIndex: 1}, nextState.clauses, nextState.slave)
+}
+
+export default nextState

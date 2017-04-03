@@ -3,29 +3,44 @@ import * as sourceSetterConstants from '~/src/containers/sourceSetter/constants'
 import { defaultQuery, mutator } from './config'
 import queryReducer from './queryReducer'
 import mutationReducer from './mutationReducer'
-import { reduceView, _reduceView } from './subReducers'
+import { reduceView } from './subReducers'
+
+// by default, adjusting a clause's inputs will set it to active
+// those are set implicitly by other actions besides CLAUSE_ACTIVATE
+// this root-level reducer is set before the default one for clause
+// in rootReducer, since everything clause reducer does depends on 
+// activeClause prop (basically)
+export function activeClause(state, action) {
+  let nextState = state
+  if (action.clauseIndex || action.type === clauseConstants.CLAUSE_ACTIVATE)
+    nextState = {
+      ...state,
+      activeClause: action.clauseIndex
+    }
+  return nextState
+}
 
 export default function(state, action) {
 
   let nextState = state
 
-  if (action.type === clauseConstants.CLAUSE_ACTIVATE) {
-    nextState = {
-      ...state,
-      activeClause: action.clauseIndex
-    }
-    console.log(nextState.clauses[nextState.activeClause].view)
-  }
-
-  else if (action.type === clauseConstants.CLAUSE_ADD) {
+  if (action.type === clauseConstants.CLAUSE_ADD) {
     const nextClauses = [ 
       ...state.clauses, 
       { active: false, minimized: false, name: '', rules: [defaultQuery] } 
     ]
-    const clauses = _reduceView({...action, clauseIndex: nextClauses.length - 1}, nextClauses, state.slave)
+    const clauses = reduceView({...action, clauseIndex: nextClauses.length - 1}, nextClauses, state.slave)
     nextState = {
       ...state,
       clauses
+    }
+  }
+
+  else if (action.type === clauseConstants.CLAUSE_REMOVE_ALL) {
+    nextState = {
+      ...state,
+      activeClause: -1,
+      clauses: []
     }
   }
 
@@ -33,6 +48,7 @@ export default function(state, action) {
     const nextClauses = state.clauses.filter((c, i) => i !== action.clauseIndex)
     nextState = {
       ...state,
+      activeClause: action.clauseIndex < 1 ? null : action.clauseIndex - 1,
       clauses: nextClauses
     }
   }

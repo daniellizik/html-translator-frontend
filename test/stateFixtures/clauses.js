@@ -34,3 +34,24 @@ export const basic = [
     view: []
   }
 ]
+
+export const multi = [
+  {
+    name: 'clause #1',
+    minimized: false,
+    active: true,
+    rules: [
+      { type: 'QUERY', targetValue: 'cat', target: 'TEXT', rule: 'LIKE', ruleValueFlags: '' },
+    ],
+    view: []
+  },
+  {
+    name: 'clause #2',
+    minimized: true,
+    active: false,
+    rules: [
+      { type: 'QUERY', targetValue: 'burrito', target: 'TEXT', rule: 'LIKE', ruleValueFlags: '' },
+    ],
+    view: []
+  }
+]

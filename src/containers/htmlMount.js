@@ -37,9 +37,7 @@ class Receiver extends Component {
       return (<div></div>)
     else {
       return (
-        <div style={style} class="rounded pl-1 m-0">
-          <XmlTree callbacks={this.callbacks()} list={list}/>
-        </div>
+        <XmlTree callbacks={this.callbacks()} list={list}/>
       )
     }
   }

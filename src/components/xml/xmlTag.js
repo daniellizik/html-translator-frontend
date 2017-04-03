@@ -1,16 +1,36 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { generate as id } from 'shortid'
-import styles from '~/src/styles'
 import XmlToken from './xmlToken'
 import tagTypes from './tagTypes'
+import { colors } from '~/src/styles/constants'
 
-const styleRow = (props) => ({
+const styleRow = ({view}) => ({
   border: 'none',
-  background: `transparent`,
-  fontSize: '12px',
   margin: 0,
-  padding: '0px 15px 0px 0px',
+  padding: '0px 15px 0px 0px'
+})
+
+const lineNumber = () => ({
+  fontFamily: '"Source Code Pro", monospace',
+  padding: '0px 10px 0px 25px',
+  color: colors.inactive,
+  userSelect: 'none',
+  textAlign: 'right',
+  cursor: 'pointer',
+  width: '1em',
+  ':hover': {
+    color: colors.inactiveHover
+  }
+})
+
+const lineText = ({depth, view, row, id}) => ({
+  fontSize: '14px',
+  fontWeight: 500,
+  fontFamily: `"Source Code Pro", monospace`,
+  whiteSpace: 'nowrap',
+  background: !view ? 'transparent' : colors.dbg,
+  cursor: 'text'
 })
 
 export const findTagType = ({node, list}) => {
@@ -21,13 +41,13 @@ export const findTagType = ({node, list}) => {
 
 const XmlTag = (props) => (
   <tr
-    style={styleRow(props)}
+    style={styleRow(props.node)}
     onClick={() => props.callbacks.click(props)}
     onMouseEnter={(e) => props.callbacks.highlight(props)}>
-    <td style={styles.code.lineNumber()}>
+    <td style={lineNumber()}>
       {props.row}
     </td>
-    <td style={styles.code.lineText(props)}>
+    <td style={lineText(props.node)}>
       {new Array(props.node.depth).fill('\u00a0\u00a0').join('')}
       <XmlToken key={id()} type={props.tagType} list={props.list} node={props.node} />
     </td>

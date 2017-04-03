@@ -11,15 +11,20 @@ export const colors = {
   error: '#FF3B7D',
   light: '#E5E1E8',
   lessLight: '#BEBEBE',
+  bg: '#F2F2F2',
+  dbg: '#272C2E',
   success: '#5cb85c',
   pastel: '#f5f2f0',
   highlight: `rgb(248, 238, 199)`,
   inactive: `#DDDDDD`,
-  inactiveHover: `rgba(27,31,35,0.6)`
-}
+  inactiveHover: `rgba(27,31,35,0.6)`,
 
-export const syntaxHighlighting = {
-  node_name: '#B19BF1',
-  punctuation: '#7f8c8d',
-  attr: '#4349BC'
+  grey: '#BDBDBD',
+  darkGrey: '#bdc3c7',
+  red: '#c0392b',
+  white: '#ecf0f1',
+  lightBlack: '#272C2E',
+  darkBlack: '#1C1C1C',
+  darkestBlack: 'black',
+  lightYellow: '#F5F6CE'
 }

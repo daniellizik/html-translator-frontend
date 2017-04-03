@@ -8,36 +8,56 @@ import * as actions from '~/src/components/clause/actions'
 import reducer from '~/src/components/clause/reducer'
 import { chainActions } from '~/src/util'
 
-export default chainActions(
+export const addingAClause = chainActions(
   state,
   reducer,
   actions.addClause(),
   actions.addClause(),
-  actions.addClause(),
-  actions.removeClause(2),
+  actions.addClause()
+)
+
+export const removingAClause = chainActions(
+  addingAClause,
+  reducer,
+  actions.removeClause(2)
+)
+
+export const addingAQuery = chainActions(
+  removingAClause,
+  reducer,
   actions.addQuery(0),
   actions.addQuery(0),
   actions.addQuery(0),
-  actions.addQuery(0),
+  actions.addQuery(0)
+)
+
+export const removingAQuery = chainActions(
+  addingAQuery,
+  reducer,
   actions.removeQuery(0, 4),
   actions.removeQuery(0, 3),
   actions.removeQuery(0, 2),
-  actions.removeQuery(0, 1),
+  actions.removeQuery(0, 1)
+)
+
+export const modifyingTextQueries = chainActions(
+  removingAQuery,
+  reducer,
   actions.changeRule('LIKE', 0, 0),
-  actions.changeTargetValue('cat-', 0, 0), // 14
+  actions.changeTargetValue('cat-', 0, 0), 
   actions.addQuery(0),
   actions.changeRule('LIKE', 0, 1),
   actions.changeTargetValue('-a', 0, 1),
   actions.changeRule('LIKE', 1, 0),
   actions.changeTargetValue('burrito', 1, 0),
   actions.changeRule('EQUALS', 0, 1),
-  actions.changeTargetValue('cat-a', 0, 1), // 21
+  actions.changeTargetValue('cat-a', 0, 1), 
   actions.changeRule('EQUALS', 1, 0),
   actions.changeTargetValue('cat burrito cheese', 1, 0),
   actions.changeRule('NOT_EQUALS', 0, 0),
   actions.changeTargetValue('cat-a', 0, 0),
   actions.changeRule('NOT_EQUALS', 0, 1),
-  actions.changeTargetValue('cat burrito cheese', 0, 1),
+  actions.changeTargetValue('cat burrito cheese', 0, 1), 
   actions.changeRule('NOT_LIKE', 0, 0),
   actions.changeTargetValue('cat', 0, 0),
   actions.changeRule('NOT_LIKE', 0, 1),
@@ -45,9 +65,19 @@ export default chainActions(
   actions.changeRule('REGEX', 0, 0),
   actions.changeRuleValue('cat', 0, 0),
   actions.changeRule('REGEX', 0, 1),
-  actions.changeRuleValue('fajita', 0, 1),
+  actions.changeRuleValue('fajita', 0, 1) 
+)
+
+export const modifyingNodeNameQueries = chainActions(
+  modifyingTextQueries,
+  reducer,
   actions.changeTarget('NODE_NAME', 1, 0),
-  actions.changeTargetValue('span', 1, 0),
+  actions.changeTargetValue('span', 1, 0)
+)
+
+export const modifyingAttrKeyQueries = chainActions(
+  modifyingNodeNameQueries,
+  reducer,
   actions.changeTarget('ATTR_KEY', 1, 0),
   actions.changeRule('EQUALS', 1, 0),
   actions.changeTargetValue('data-cat', 1, 0),
@@ -61,7 +91,12 @@ export default chainActions(
   actions.changeRule('NOT_LIKE', 1, 0),
   actions.removeQuery(1, 1),
   actions.changeRule('NOT_EQUALS', 1, 0),
-  actions.changeTargetValue('data-cat', 1, 0),
+  actions.changeTargetValue('data-cat', 1, 0)
+)
+
+export const modifyingAttrValQueries = chainActions(
+  modifyingNodeNameQueries,
+  reducer,
   actions.changeTarget('ATTR_VAL', 1, 0),
   actions.changeTargetValue('something', 1, 0),
   actions.changeRule('EQUALS', 1, 0),
