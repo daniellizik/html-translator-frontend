@@ -17,23 +17,13 @@ export const QUERY = {
 
 export const MUTATION = {
   targets: {
-    NODE_NAME: {
-      rules: ['ALL_REPLACE']
-    },
-    TEXT: {
-      rules: ['START_OF','END_OF','ALL_REPLACE','REGEX_REPLACE']
-    },
-    ATTR_KEY: {
-      rules: ['START_OF','END_OF','REGEX_REPLACE','ALL_REPLACE','CONCAT']
-    },
-    ATTR_VAL: {
-      rules: ['START_OF','END_OF','REGEX_REPLACE','ALL_REPLACE','CONCAT']
+    '*': {
+      rules: ['ALL_REPLACE', 'START_OF','END_OF','REGEX_REPLACE','ALL_REPLACE','CONCAT']
     }
   }
 }
 
 export const defaultQuery = {
-  type: 'QUERY',
   target: 'TEXT',
   targetValue: '',
   rule: 'EQUALS',
@@ -42,7 +32,6 @@ export const defaultQuery = {
 }
 
 export const defaultMutation = {
-  type: 'MUTATION',
   target: 'TEXT',
   targetValue: '',
   rule: 'START_OF',

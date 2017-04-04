@@ -75,6 +75,12 @@ export const changeRuleValueFlags = (ruleValueFlags, clauseIndex, queryIndex) =>
 
 // mutate
 
+export const removeMutation = (clauseIndex, ruleIndex) => ({
+  type: constants.MUTATION_REMOVE,
+  clauseIndex,
+  ruleIndex
+})
+
 export const addMutation = (clauseIndex) => ({
   type: constants.MUTATION_ADD,
   clauseIndex

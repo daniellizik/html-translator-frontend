@@ -17,6 +17,17 @@ export default function mutationReducer(state, action) {
     }
   }
 
+  else if (action.type === clauseConstants.MUTATION_REMOVE)
+    nextState = {
+      ...state,
+      clauses: state.clauses.map((c, i) => (
+        i !== action.clauseIndex ? c : {
+          ...c,
+          mutations: c.mutations.filter((r, j) => j !== action.ruleIndex)
+        }
+      ))
+    }
+
   else if (action.type === clauseConstants.MUTATION_ACTIVATE)
     nextState = {
       ...state,

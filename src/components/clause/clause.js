@@ -1,8 +1,9 @@
 import React, { Component, PropTypes } from 'react'
+import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { colors } from '~/src/styles/constants'
 import iconStyle from '~/src/styles/icon'
-import policies from '~/src/components/clause/policies'
+import policyValidator from '~/src/components/policies/validator'
 import * as actions from './actions'
 
 const hrStyle = {
@@ -12,43 +13,34 @@ const closeStyle = {
   fontSize: '.8em'
 }
 
+const RemoveButton = (props) => {
+  if (props.type === 'QUERY')
+    return <span onClick={() => props.removeQuery(props.clauseIndex, props.queryIndex)}>remove this query</span>
+  if (props.type === 'MUTATION')
+    return <span onClick={() => props.removeMutation(props.clauseIndex, props.mutationIndex)}>remove this mutation</span>
+}
+
 const Clause = (props) => (
   <div class="py-0">
     <hr class="mt-1 py-0 mx-3" style={hrStyle} />
-    {policies.reduce((acc, policy, i, {length}) => {
-      const isValidTarget = policy.target.includes(props.clause.target)
-      const isValidRule = policy.rules.includes(props.clause.rule)
-      const isValidPolicy = isValidTarget && isValidRule
-      const Structure = policy.structure
-      return isValidPolicy ? [...acc, <Structure key={i} {...props} />] : acc
-    }, [])}
+    {policyValidator(props)}
     <div class="row py-2 m-0" style={closeStyle}>
       <div class="col-3">
-        <span onClick={() => props.removeQuery(props.clauseIndex, props.queryIndex)}>remove this query</span>
+        <RemoveButton {...props} />
       </div>
     </div>
   </div>
 )
 
 Clause.propTypes = {
-  queryIndex: PropTypes.number.isRequired,
-  clauseIndex: PropTypes.number.isRequired,
+  type: PropTypes.oneOf(['QUERY', 'MUTATION']),
+  isLast: PropTypes.bool.isRequired,
+  queryIndex: PropTypes.number,
+  clauseIndex: PropTypes.number,
   clause: PropTypes.object.isRequired
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  removeQuery: (...args) => dispatch(actions.removeQuery(...args)),
-  removeClause: (clauseIndex) => dispatch(actions.removeClause(clauseIndex)),
-  changeTarget: (target, clauseIndex, queryIndex) => dispatch(actions.changeTarget(target, clauseIndex, queryIndex)),
-  changeTargetValue: (targetValue, clauseIndex, queryIndex) => dispatch(actions.changeTargetValue(targetValue, clauseIndex, queryIndex)),
-  changeRule: (rule, clauseIndex, queryIndex) => dispatch(actions.changeRule(rule, clauseIndex, queryIndex)),
-  changeRuleValue: (ruleValue, clauseIndex, queryIndex) => dispatch(actions.changeRuleValue(ruleValue, clauseIndex, queryIndex)),
-  changeRuleValueFlags: (flags, clauseIndex, queryIndex) => dispatch(actions.changeRuleValueFlags(flags, clauseIndex, queryIndex)),
-  // addAttr: (attrKey, attrVal, clauseIndex) => dispatch(actions.addAttr(attrKey, attrVal, clauseIndex)),
-  // removeAttrByKey: (attrKey, clauseIndex) => dispatch(actions.removeAttrByKey(attrKey, clauseIndex)),
-  // removeAttrByValue: (attrVal, clauseIndex) => dispatch(actions.removeAttrByValue(attrVal, clauseIndex)),
-  // removeAllAttrs: (clauseIndex) => dispatch(actions.removeAllAttrs(clauseIndex))
-})
+const mapDispatchToProps = (dispatch) => bindActionCreators(actions, dispatch)
 
 const withConnect = connect(s => s, mapDispatchToProps)(Clause)
 export default withConnect
