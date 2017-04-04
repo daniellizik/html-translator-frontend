@@ -1,6 +1,6 @@
 import * as clauseConstants from './constants'
 import * as sourceSetterConstants from '~/src/containers/sourceSetter/constants'
-import { defaultQuery, mutator } from './config'
+import { defaultQuery, defaultClause, mutator } from './config'
 import queryReducer from './queryReducer'
 import mutationReducer from './mutationReducer'
 import { reduceView } from './subReducers'
@@ -27,7 +27,7 @@ export default function(state, action) {
   if (action.type === clauseConstants.CLAUSE_ADD) {
     const nextClauses = [ 
       ...state.clauses, 
-      { active: false, minimized: false, name: '', rules: [defaultQuery] } 
+      defaultClause
     ]
     const clauses = reduceView({...action, clauseIndex: nextClauses.length - 1}, nextClauses, state.slave)
     nextState = {

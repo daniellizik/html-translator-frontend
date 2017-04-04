@@ -50,12 +50,13 @@ export default {
       minimized: false,
       // UI state, also shows corresponding view in html render
       active: true,
-      // rules for the clause
-      rules: [
-        { type: 'query', targetValue: 'cat-a', target: 'TEXT', rule: 'LIKE', ruleValueFlags: '' },
-        { type: 'query', targetValue: 'div', target: 'NODE_NAME', rule: 'EQUALS', ruleValueFlags: '' },
-        { type: 'query', targetValue: 'div', target: 'NODE_NAME', rule: 'EQUALS', ruleValueFlags: '' },
-        { type: 'query', targetValue: 'div', target: 'NODE_NAME', rule: 'EQUALS', ruleValueFlags: '' },
+      // queries
+      queries: [
+        { type: 'QUERY', targetValue: 'cat-a', target: 'TEXT', rule: 'LIKE', ruleValueFlags: '' },
+      ],
+      // mutations
+      mutations: [
+        { type: 'MUTATION', rule: 'END_OF', ruleValue: 'blah', active: true }
       ]
     }
   ]

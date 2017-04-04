@@ -49,33 +49,35 @@ export const REGEX = ({before, ruleValue, ruleValueFlags}) => {
   return rx.test(before)
 }
 
-export const allReplace = (obj) => {
-  return obj.targetValue
+// mutator  
+
+export const ALL_REPLACE = ({ruleValue}) => {
+  return ruleValue
 }
 
-export const regexReplace = (obj) => {
+export const START_OF = ({ ruleValue = '', before = '' }) => {
+  return ruleValue + before
+}
+
+export const END_OF = ({ ruleValue = '', before = '' }) => {
+  return before + ruleValue
+}
+
+export const REGEX_REPLACE = (obj) => {
   if (!obj || typeof obj !== 'object')
     return ''
   const rx = new RegExp((obj.ruleValue || '').replace(/\//g, '\\\\'), obj.ruleValueFlags || '')
   return (obj[obj.target] || '').replace(rx, obj.targetValue || '')
 }
 
-export const startOf = ({ targetValue = '', before = '' }) => {
-  return targetValue + before
-}
-
-export const endOf = ({ targetValue = '', before = '' }) => {
-  return before + targetValue
-}
-
-export const addAttr = (base, ...attrs) => {
+export const ADD_ATTR = (base, ...attrs) => {
   return obj
 }
 
-export const removeAttr = (obj) => {
+export const REMOVE_ATTR = (obj) => {
 
 }
 
-export const removeAllAttrs = (obj) => {
+export const REMOVE_ALL_ATTRS = (obj) => {
 
 }

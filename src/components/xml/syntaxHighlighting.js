@@ -1,19 +1,19 @@
 import { colors } from '~/src/styles/constants'
 
 export const OPEN_TAG = {
-  color: colors.grey
+  color: colors.yellow
 }
 
 export const NODENAME = {
-  color: colors.red
+  color: colors.yellow
 }
 
 export const SLASH = {
-  color: colors.grey
+  color: colors.yellow
 }
 
 export const CLOSE_TAG = {
-  color: colors.grey
+  color: colors.yellow
 }
 
 export const TEXT_NODE = {

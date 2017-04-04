@@ -20,7 +20,7 @@ export const TargetSetter = (props) => (
       class="form-control custom-select" 
       value={props.clause.target} 
       onChange={(e) => props.changeTarget(e.target.value, props.clauseIndex, props.queryIndex)}>
-      {Object.keys(config[props.clause.type].targets).map((p, j) => (
+      {Object.keys(config[props.type].targets).map((p, j) => (
         <option value={p} key={j}>
           {p}
         </option>
@@ -47,7 +47,7 @@ export const RuleSetter = (props) => (
       class="form-control custom-select" 
       value={props.clause.rule} 
       onChange={(e) => props.changeRule(e.target.value, props.clauseIndex, props.queryIndex)}>
-      {config[props.clause.type].targets[props.clause.target].rules.map((r, i) => (
+      {config[props.type].targets[props.clause.target || '*'].rules.map((r, i) => (
         <option value={r} key={i}>
           {r}
         </option>

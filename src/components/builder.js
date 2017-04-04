@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react'
+import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { startEditor, addClause } from '~/src/components/clause/actions'
 import { colors } from '~/src/styles/constants'
@@ -11,14 +12,15 @@ const style = (hasView) => ({
 })
 
 const clauseStyle = {
-  background: colors.grey
+  background: colors.middleGrey,
+  color: colors.white
 }
 
 const btnStyle = {
   backgroundColor: colors.lightYellow
 }
 
-const MaximizedClause = ({removeClause, addQuery, activateClause, changeClauseName, clauseIndex, clauseGroup}) => (
+const MaximizedClause = ({removeClause, addQuery, addMutation, activateClause, changeClauseName, clauseIndex, clauseGroup}) => (
   <div
     onClick={() => activateClause(clauseIndex)}
     key={clauseIndex} 
@@ -37,21 +39,34 @@ const MaximizedClause = ({removeClause, addQuery, activateClause, changeClauseNa
         <button class="btn mr-2" onClick={() => removeClause(clauseIndex)}>
           remove this clause
         </button>
+        <button class="btn mr-2">
+          view mutations
+        </button>
         <button class="btn mr-2" onClick={() => addQuery(clauseIndex)}>
           add a query
         </button>
-        <button class="btn"> 
-          minimize
+        <button class="btn mr-2" onClick={() => addMutation(clauseIndex)}>
+          add a mutation
         </button>
       </div>
       <div class="col-12 m-0 p-0">
-        {clauseGroup.rules.map((clause, queryIndex, {length}) => (
+        {clauseGroup.queries && clauseGroup.queries.map((clause, queryIndex, {length}) => (
           <Clause 
+            type="QUERY"
             clause={clause} 
-            isLastQuery={queryIndex === length - 1} 
+            isLast={queryIndex === length - 1} 
             clauseIndex={clauseIndex} 
             queryIndex={queryIndex} 
-            key={`${clauseIndex}-${queryIndex}`} />
+            key={`q-${clauseIndex}-${queryIndex}`} />
+        ))}
+        {clauseGroup.mutations && clauseGroup.mutations.map((clause, mutationIndex, {length}) => (
+          <Clause 
+            type="MUTATION"
+            clause={clause} 
+            isLast={mutationIndex === length - 1} 
+            clauseIndex={clauseIndex} 
+            mutationIndex={mutationIndex} 
+            key={`m-${clauseIndex}-${mutationIndex}`} />
         ))}
       </div>
     </div>
@@ -69,6 +84,9 @@ const Builder = (props) => (
       <button style={btnStyle} class="btn p-2 mr-2" onClick={props.removeAllClauses}>
         remove all clauses
       </button>
+      <button style={btnStyle} class="btn p-2 mr-2">
+        view all mutations
+      </button>
     </div>
     {props.clauses.map((clauseGroup, clauseIndex) => (
       clauseGroup.minimized === false 
@@ -78,14 +96,6 @@ const Builder = (props) => (
   </div>
 )
 
-const mapDispatchToProps = (dispatch) => ({
-  removeAllClauses: () => dispatch(actions.removeAllClauses()),
-  activateClause: (i) => dispatch(actions.activateClause(i)),
-  addQuery: (...args) => dispatch(actions.addQuery(...args)),
-  changeClauseName: (...args) => dispatch(actions.changeClauseName(...args)),
-  removeClause: (...args) => dispatch(actions.removeClause(...args)),
-  pushRoute: (...args) => dispatch(startEditor(...args)),
-  addClause: () => dispatch(addClause()),
-})
+const mapDispatchToProps = (dispatch) => bindActionCreators(actions, dispatch)
 
 export default connect(s => s, mapDispatchToProps)(Builder)

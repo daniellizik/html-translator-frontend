@@ -21,7 +21,7 @@ describe('adding a clause', () => {
   })
   it('should add default query object when addClause is called', () => {
     expect(addingAClause[1].clauses.length).toBe(1)
-    expect(addingAClause[1].clauses[0].rules[0]).toMatchObject(defaultQuery)
+    expect(addingAClause[1].clauses[0].queries[0]).toMatchObject(defaultQuery)
   })
   it('should reduce view with default query', () => {
     expect(addingAClause[1].clauses[0].view.length).toBe(0)
@@ -38,17 +38,17 @@ describe('removing a clause', () => {
 
 describe('adding a query', () => {
   it('should add to the correct clause', () => {
-    expect(addingAQuery[4].clauses[0].rules.length).toBe(5)
+    expect(addingAQuery[4].clauses[0].queries.length).toBe(5)
   })
   it('should add default query', () => {
-    expect(addingAQuery[4].clauses[0].rules.slice(-1).pop()).toMatchObject(defaultQuery)
+    expect(addingAQuery[4].clauses[0].queries.slice(-1).pop()).toMatchObject(defaultQuery)
   })
 })
 
 describe('removing a query', () => {
   it('should remove correct query in correct clause', () => {
-    expect(removingAQuery[1].clauses[0].rules.length).toBe(4)
-    expect(removingAQuery[2].clauses[0].rules.length).toBe(3)
+    expect(removingAQuery[1].clauses[0].queries.length).toBe(4)
+    expect(removingAQuery[2].clauses[0].queries.length).toBe(3)
   })
 })
 

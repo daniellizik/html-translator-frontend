@@ -10,8 +10,8 @@ export default function queryReducer(state, action) {
     const nextClauses = state.clauses.map((clause, i) => {
       return i !== action.clauseIndex ? clause : {
         ...clause,
-        rules: [
-          ...clause.rules,
+        queries: [
+          ...clause.queries,
           defaultQuery
         ]
       }
@@ -32,7 +32,7 @@ export default function queryReducer(state, action) {
           ...acc,
           {
             ...clause,
-            rules: clause.rules.filter((query, queryIndex) => queryIndex !== action.queryIndex)
+            queries: clause.queries.filter((query, queryIndex) => queryIndex !== action.queryIndex)
           }
         ]
     }, [])

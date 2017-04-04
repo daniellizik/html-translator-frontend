@@ -12,7 +12,8 @@ import {
   RemoveAttrByKeyMutator,
   RemoveAttrByValueMutator,
   RemoveAllAttrsMutator
-} from './clauses'
+} from '~/src/components/clause/clauses'
+
 
 /**
  * policy
@@ -60,43 +61,6 @@ export default [
     )
   },
   {
-    target: ['TEXT'],
-    rules: ['START_OF', 'END_OF', 'ALL_REPLACE'],
-    structure: (props) => (
-      <div class="row pt-2 m-0">
-        <div class="col-6">
-          <TargetSetter {...props} />
-        </div>
-        <div class="col-6">
-          <RuleSetter {...props} />
-        </div>
-        <div class="col-12">
-          <TargetValueSetter {...props} />
-        </div>
-      </div>
-    )
-  },
-  {
-    target: ['TEXT'],
-    rules: ['REGEX_REPLACE'],
-    structure: (props) => (
-      <div class="row pt-2 m-0">
-        <div class="col-6">
-          <TargetSetter {...props} />
-        </div>
-        <div class="col-6">
-          <RuleSetter {...props} />
-        </div>
-        <div class="col-6 mt-2">
-          <RegexBodySetter {...props} />
-        </div>
-        <div class="col-6 mt-2">
-          <RegexFlagsSetter {...props} />
-        </div>
-      </div>
-    )
-  },
-  {
     target: ['NODE_NAME'],
     rules: ['EQUALS', 'NOT_EQUALS', 'LIKE', 'NOT_LIKE'],
     structure: (props) => (
@@ -194,126 +158,6 @@ export default [
         </div>
         <div class="col-6">
           <RuleSetter {...props} />
-        </div>
-        <div class="col-6 mt-2">
-          <RegexBodySetter {...props} />
-        </div>
-        <div class="col-6 mt-2">
-          <RegexFlagsSetter {...props} />
-        </div>
-      </div>
-    )
-  },
-  {
-    target: ['NODE_NAME'],
-    rules: ['START_OF', 'END_OF', 'ALL_REPLACE'],
-    structure: (props) => (
-    <div class="row pt-2 m-0">
-      <div class="col-6">
-        <TargetSetter {...props} />
-      </div>
-      <div class="col-6">
-        <RuleSetter {...props} />
-      </div>
-        <div class="col-6 mt-2">
-          <RegexBodySetter {...props} />
-        </div>
-        <div class="col-6 mt-2">
-          <RegexFlagsSetter {...props} />
-        </div>
-    </div>
-    )
-  },
-  {
-    target: ['NODE_NAME'],
-    rules: ['REGEX_REPLACE'],
-    structure: (props) => (
-      <div class="row pt-2 m-0">
-        <div class="col-6">
-          <TargetSetter {...props} />
-        </div>
-        <div class="col-6">
-          <RuleSetter {...props} />
-        </div>
-        <div class="col-6 mt-2">
-          <RegexBodySetter {...props} />
-        </div>
-        <div class="col-6 mt-2">
-          <RegexFlagsSetter {...props} />
-        </div>
-      </div>
-    )
-  },
-  {
-    target: ['ATTR_KEY'],
-    rules: ['START_OF', 'END_OF', 'ALL_REPLACE'],
-    structure: (props) => (
-      <div class="row pt-2 m-0">
-        <div class="col-6">
-          <TargetSetter {...props} />
-        </div>
-        <div class="col-6">
-          <RuleSetter {...props} />
-        </div>
-        <div class="col-6 mt-2">
-          <RegexBodySetter {...props} />
-        </div>
-        <div class="col-6 mt-2">
-          <RegexFlagsSetter {...props} />
-        </div>
-      </div>
-    )
-  },
-  {
-    target: ['ATTR_KEY'],
-    rules: ['REGEX_REPLACE'],
-    structure: (props) => (
-      <div class="row pt-2 m-0">
-        <div class="col-6">
-          <TargetSetter {...props} />
-        </div>
-        <div class="col-6">
-          <AttrKeySetter {...props} />
-        </div>
-        <div class="col-6 mt-2">
-          <RegexBodySetter {...props} />
-        </div>
-        <div class="col-6 mt-2">
-          <RegexFlagsSetter {...props} />
-        </div>
-      </div>
-    )
-  },
-  {
-    target: ['ATTR_VAL'],
-    rules: ['START_OF', 'END_OF', 'ALL_REPLACE'],
-    structure: (props) => (
-      <div class="row pt-2 m-0">
-        <div class="col-6">
-          <TargetSetter {...props} />
-        </div>
-        <div class="col-6">
-          <AttrValSetter {...props} />
-        </div>
-        <div class="col-6 mt-2">
-          <TargetValueSetter {...props} />
-        </div>
-        <div class="col-6 mt-2">
-          <RuleSetter {...props} />
-        </div>
-      </div>
-    )
-  },
-  {
-    target: ['ATTR_VAL'],
-    rules: ['REGEX_REPLACE'],
-    structure: (props) => (
-      <div class="row pt-2 m-0 form-group">
-        <div class="col-6">
-          <TargetSetter {...props} />
-        </div>
-        <div class="col-6">
-          <AttrValSetter {...props} />
         </div>
         <div class="col-6 mt-2">
           <RegexBodySetter {...props} />
