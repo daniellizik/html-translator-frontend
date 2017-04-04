@@ -13,16 +13,16 @@ export const allReplaceText = chainActions(
   reducer,
   actions.activateClause(0),
   actions.addMutation(0),
-  actions.mutationChangeRule('ALL_REPLACE', 0, 1),
-  actions.mutationChangeRuleValue('blah', 0, 1),
-  actions.activateMutation(true, 0, 1)
+  actions.mutationChangeRule('ALL_REPLACE', 0, 0),
+  actions.mutationChangeRuleValue('blah', 0, 0),
+  actions.activateMutation(true, 0, 0)
 ) 
 
 export const reducedMutations = chainActions(
   allReplaceText,
   reducer,
   actions.addMutation(0),
-  actions.mutationChangeRule('START_OF', 0, 2),
-  actions.mutationChangeRuleValue('cat ', 0, 2),
-  actions.activateMutation(true, 0, 2)
+  actions.mutationChangeRule('START_OF', 0, 1),
+  actions.mutationChangeRuleValue('cat ', 0, 1),
+  actions.activateMutation(true, 0, 1)
 )

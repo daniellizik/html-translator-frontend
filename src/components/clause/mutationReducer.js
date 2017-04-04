@@ -7,16 +7,15 @@ export default function mutationReducer(state, action) {
 
   let nextState = state
 
-  if (action.type === clauseConstants.MUTATION_ADD)
+  if (action.type === clauseConstants.MUTATION_ADD) {
     nextState = {
       ...state,
-      clauses: state.clauses.map((c, i) => {
-        return i !== action.clauseIndex ? c : {
-          ...c,
-          rules: [...c.rules, defaultMutation]
-        }
+      clauses: state.clauses.map((c, i) => i !== action.clauseIndex ? i : {
+        ...c,
+        mutations: [...c.mutations, defaultMutation]
       })
     }
+  }
 
   else if (action.type === clauseConstants.MUTATION_ACTIVATE)
     nextState = {
@@ -24,7 +23,7 @@ export default function mutationReducer(state, action) {
       clauses: state.clauses.map((c, i) => (
         i !== action.clauseIndex ? c : {
           ...c,
-          rules: c.rules.map((r, j) => (
+          mutations: c.mutations.map((r, j) => (
             j !== action.ruleIndex ? r : {
               ...r,
               active: action.active
@@ -42,7 +41,7 @@ export default function mutationReducer(state, action) {
       ...state,
       clauses: state.clauses.map((c, i) => i !== action.clauseIndex ? c : {
         ...c,
-        rules: c.rules.map((r, j) => j !== action.ruleIndex ? r : {
+        mutations: c.mutations.map((r, j) => j !== action.ruleIndex ? r : {
           ...r,
           rule: action.rule
         })
@@ -54,7 +53,7 @@ export default function mutationReducer(state, action) {
       ...state,
       clauses: state.clauses.map((c, i) => i !== action.clauseIndex ? c : {
         ...c,
-        rules: c.rules.map((r, j) => j !== action.ruleIndex ? r : {
+        mutations: c.mutations.map((r, j) => j !== action.ruleIndex ? r : {
           ...r,
           ruleValue: action.ruleValue
         })
@@ -62,28 +61,16 @@ export default function mutationReducer(state, action) {
     }
 
   else if (action.type === clauseConstants.REMOVE_ATTR_BY_KEY)
-    nextState = mapMutations(state, (model) => ({
-      ...model,
-      attrs: model.attrs.filter(attr => attr.name !== action.attrKey)
-    }))
+    nextState = state
 
   else if (action.type === clauseConstants.REMOVE_ATTR_BY_VALUE)
-    nextState = mapMutations(state, (model) => ({
-      ...model,
-      attrs: model.attrs.filter(attr => attr.value !== action.attrVal)
-    }))
+    nextState = state
 
   else if (action.type === clauseConstants.ADD_ATTR)
-    nextState = mapMutations(state, (model) => ({
-      ...model,
-      attrs: [
-        ...model.attrs,
-        { name: constants.attrKey, value: constants.attrVal }
-      ]
-    }))
+    nextState = state
 
   else if (action.type === clauseConstants.REMOVE_ALL_ATTRS)
-    nextState = mapMutations(state, (model) => ({ ...model, attrs: [] }))
+    nextState = state
 
   return nextState
 

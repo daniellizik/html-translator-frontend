@@ -3,8 +3,7 @@ import * as targets from './targets'
 import * as rules from './rules'
 
 // take view, mutations and apply them to list 
-export const mutationDenormalizer = (view = [], open = [], mutationRules = []) => {
-  const mutations = mutationRules.filter(r => r.type === 'MUTATION')
+export const mutationDenormalizer = (view = [], open = [], mutations = []) => {
   return open.reduce((acc, node) => {
     // only mutate items in view
     return view.indexOf(node.id) < 0 ? [...acc, node] : [
@@ -26,7 +25,7 @@ export const reduceView = ({clauseIndex}, clauses, {list}) => {
     if (index !== clauseIndex)
       return [...acc, clause]
     const view = list.open.reduce((ids, node) => {
-      const clauseResult = clause.rules.reduce((bool, obj) => {
+      const clauseResult = clause.queries.reduce((bool, obj) => {
         const targetResult = targets.query[obj.target](node, {...obj, rule: rules[obj.rule]})
         if (targetResult === false || bool === false)
           return false
@@ -47,7 +46,7 @@ export const reduceClauses = (state, action, type, key) => {
   const nextClauses = state.clauses.map((clause, clauseIndex) => {
     return clauseIndex !== action.clauseIndex ? clause : {
       ...clause,
-      rules: clause.rules.map((query, queryIndex) => {
+      queries: clause.queries.map((query, queryIndex) => {
         return queryIndex !== action.queryIndex ? query : { ...query, [key]: action[key] }
       })
     }

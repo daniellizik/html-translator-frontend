@@ -54,6 +54,7 @@ export const defaultClause = {
   name: '',
   minimized: false,
   active: false,
-  rules: [defaultQuery],
+  queries: [defaultQuery],
+  mutations: [],
   view: []
 }
