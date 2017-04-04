@@ -1,10 +1,6 @@
 import * as constants from './constants'
 import { push } from 'react-router-redux'
 
-/** 
- * startEditor
- * @param {string} hash
- */
 export const startEditor = (hash) => push(hash) 
 
 export const activateClause = (clauseIndex) => ({
@@ -16,9 +12,6 @@ export const removeAllClauses = () => ({
   type: constants.CLAUSE_REMOVE_ALL
 })
 
-/** 
- * addClause
- */
 export const addClause = () => ({
   type: constants.CLAUSE_ADD
 })
@@ -29,40 +22,22 @@ export const changeClauseName = (clauseIndex, name) => ({
   name
 })
 
-/** 
- * removeClause
- * @param {number} index
- */
 export const removeClause = (clauseIndex) => ({
   type: constants.CLAUSE_REMOVE,
   clauseIndex
 })
 
-/** 
- * removeQuery
- * @param {number} index
- */
 export const removeQuery = (clauseIndex, queryIndex) => ({
   type: constants.QUERY_REMOVE,
   clauseIndex,
   queryIndex
 })
 
-/** 
- * addQuery
- * @param {number} clauseIndex
- */
 export const addQuery = (clauseIndex) => ({
   type: constants.QUERY_ADD,
   clauseIndex
 })
 
-/** 
- * changeTarget
- * @param {string} target
- * @param {number} clauseIndex
- * @param {number} queryIndex
- */
 export const changeTarget = (target, clauseIndex, queryIndex) => ({
   type: constants.QUERY_CHANGE_TARGET,
   target,
@@ -70,12 +45,6 @@ export const changeTarget = (target, clauseIndex, queryIndex) => ({
   queryIndex
 })
 
-/** 
- * changeTargetValue
- * @param {string} targetValue
- * @param {number} clauseIndex
- * @param {number} queryIndex
- */
 export const changeTargetValue = (targetValue, clauseIndex, queryIndex) => ({
   type: constants.QUERY_CHANGE_TARGET_VALUE,
   targetValue,
@@ -83,12 +52,6 @@ export const changeTargetValue = (targetValue, clauseIndex, queryIndex) => ({
   queryIndex
 })
 
-/** 
- * changeRule
- * @param {string} rule
- * @param {number} clauseIndex
- * @param {number} queryIndex
- */
 export const changeRule = (rule, clauseIndex, queryIndex) => ({
   type: constants.QUERY_CHANGE_RULE,
   rule,
@@ -96,12 +59,6 @@ export const changeRule = (rule, clauseIndex, queryIndex) => ({
   queryIndex
 })
 
-/** 
- * changeRuleValue
- * @param {string} ruleValue
- * @param {number} clauseIndex
- * @param {number} queryIndex
- */
 export const changeRuleValue = (ruleValue, clauseIndex, queryIndex) => ({
   type: constants.QUERY_CHANGE_RULE_VALUE,
   ruleValue,
@@ -109,12 +66,6 @@ export const changeRuleValue = (ruleValue, clauseIndex, queryIndex) => ({
   queryIndex
 })
 
-/** 
- * changeRuleValueFlags
- * @param {string} ruleValueFlags
- * @param {number} clauseIndex
- * @param {number} queryIndex
- */
 export const changeRuleValueFlags = (ruleValueFlags, clauseIndex, queryIndex) => ({
   type: constants.QUERY_CHANGE_RULE_VALUE_FLAGS,
   ruleValueFlags,
@@ -122,32 +73,54 @@ export const changeRuleValueFlags = (ruleValueFlags, clauseIndex, queryIndex) =>
   queryIndex
 })
 
-/** 
- * addAttr
- * @param {string} attrKey
- * @param {string} attrVal
- * @param {number} index
- */
+// mutate
+
+export const addMutation = (clauseIndex) => ({
+  type: constants.MUTATION_ADD,
+  clauseIndex
+})
+
+export const activateMutation = (active, clauseIndex, ruleIndex) => ({
+  type: constants.MUTATION_ACTIVATE,
+  active,
+  clauseIndex,
+  ruleIndex
+})
+
+export const mutationChangeRule = (rule, clauseIndex, ruleIndex) => ({
+  type: constants.MUTATION_CHANGE_RULE,
+  rule,
+  clauseIndex,
+  ruleIndex
+})
+
+export const mutationChangeRuleValue = (ruleValue, clauseIndex, ruleIndex) => ({
+  type: constants.MUTATION_CHANGE_RULE_VALUE,
+  ruleValue,
+  clauseIndex,
+  ruleIndex
+})
+
 export const addAttr = (attrKey, attrVal, index) => ({
-  type: constants.ADD_ATTR,
+  type: constants.MUTATION_ADD_ATTR,
   attrKey,
   attrVal,
   index
 })
 
 export const removeAttrByKey = (attrKey, index) => ({
-  type: constants.REMOVE_ATTR_BY_KEY,
+  type: constants.MUTATION_REMOVE_ATTR_BY_KEY,
   attrKey,
   index
 })
 
 export const removeAttrByValue = (attrVal, index) => ({
-  type: constants.REMOVE_ATTR_BY_VALUE,
+  type: constants.MUTATION_REMOVE_ATTR_BY_VALUE,
   attrVal,
   index
 })
 
 export const removeAllAttrs = (index) => ({
-  type: constants.REMOVE_ALL_ATTRS,
+  type: constants.MUTATION_REMOVE_ALL_ATTRS,
   index
 })

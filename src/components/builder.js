@@ -11,7 +11,8 @@ const style = (hasView) => ({
 })
 
 const clauseStyle = {
-  background: colors.grey
+  background: colors.middleGrey,
+  color: colors.white
 }
 
 const btnStyle = {
@@ -36,6 +37,9 @@ const MaximizedClause = ({removeClause, addQuery, activateClause, changeClauseNa
       <div class="col-12 mb-2">
         <button class="btn mr-2" onClick={() => removeClause(clauseIndex)}>
           remove this clause
+        </button>
+        <button class="btn mr-2">
+          view mutations
         </button>
         <button class="btn mr-2" onClick={() => addQuery(clauseIndex)}>
           add a query
@@ -68,6 +72,9 @@ const Builder = (props) => (
       </button>
       <button style={btnStyle} class="btn p-2 mr-2" onClick={props.removeAllClauses}>
         remove all clauses
+      </button>
+      <button style={btnStyle} class="btn p-2 mr-2">
+        view all mutations
       </button>
     </div>
     {props.clauses.map((clauseGroup, clauseIndex) => (

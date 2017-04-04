@@ -52,10 +52,8 @@ export default {
       active: true,
       // rules for the clause
       rules: [
-        { type: 'query', targetValue: 'cat-a', target: 'TEXT', rule: 'LIKE', ruleValueFlags: '' },
-        { type: 'query', targetValue: 'div', target: 'NODE_NAME', rule: 'EQUALS', ruleValueFlags: '' },
-        { type: 'query', targetValue: 'div', target: 'NODE_NAME', rule: 'EQUALS', ruleValueFlags: '' },
-        { type: 'query', targetValue: 'div', target: 'NODE_NAME', rule: 'EQUALS', ruleValueFlags: '' },
+        { type: 'QUERY', targetValue: 'cat-a', target: 'TEXT', rule: 'LIKE', ruleValueFlags: '' },
+        { type: 'MUTATION', rule: 'END_OF', ruleValue: 'blah', active: true }
       ]
     }
   ]

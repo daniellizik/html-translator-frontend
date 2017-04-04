@@ -2,40 +2,38 @@ import * as actions from './actions'
 import * as targets from './targets'
 import * as rules from './rules'
 
-export function reduceMutated(action, clauses, {view, tree, mutated}) {
-  if (action.stateKey === 'mutator')
-    return view.map(updatedView => {
-      return clauses.reduce((model, clause) => {
-        const params = { ...clause, ...action, rule: rules[clause.rule] }
-        // merged child/parent object in case of text node
-        // text node is basically the parent, but with a text property
-        // but we dont need this if model user is searching for
-        // is not a text node
-        const family = model.nodeName === '#text' ? {
-          ...tree[model.parent],
-          text: model.text,
-          child: updatedView.id
-        } : model
-        return targets.mutator[clause.target](family, tree, params)
-      }, updatedView)
-    })
-  else
-    return mutated
+// take view, mutations and apply them to list 
+export const mutationDenormalizer = (view = [], open = [], mutationRules = []) => {
+  const mutations = mutationRules.filter(r => r.type === 'MUTATION')
+  return open.reduce((acc, node) => {
+    // only mutate items in view
+    return view.indexOf(node.id) < 0 ? [...acc, node] : [
+      ...acc,
+      {
+        ...node,
+        value: mutations.reduce((mutated, m) => {
+          // this is where the before api stuff gets set
+          const params = {...m, before: mutated}
+          return rules[m.rule](params)
+        }, node.value)
+      }
+    ] 
+  }, [])
 }
 
-export function reduceView({clauseIndex}, clauses, {list}) {
+export const reduceView = ({clauseIndex}, clauses, {list}) => {
   return clauses.reduce((acc, clause, index) => {
     if (index !== clauseIndex)
       return [...acc, clause]
     const view = list.open.reduce((ids, node) => {
-      const res = clause.rules.reduce((bool, obj) => {
-        const result = targets.query[obj.target](node, {...obj, rule: rules[obj.rule]})
-        if (result === false || bool === false)
+      const clauseResult = clause.rules.reduce((bool, obj) => {
+        const targetResult = targets.query[obj.target](node, {...obj, rule: rules[obj.rule]})
+        if (targetResult === false || bool === false)
           return false
-        else if (result === true)
+        else if (targetResult === true)
           return true
       }, null)
-      return !res ? ids : [...ids, node.id]
+      return !clauseResult ? ids : [...ids, node.id]
     }, [])
     return [
       ...acc,
@@ -44,7 +42,7 @@ export function reduceView({clauseIndex}, clauses, {list}) {
   }, [])
 }
 
-export function reduceClauses(state, action, type, key) {
+export const reduceClauses = (state, action, type, key) => {
   let nextState
   const nextClauses = state.clauses.map((clause, clauseIndex) => {
     return clauseIndex !== action.clauseIndex ? clause : {
@@ -79,14 +77,4 @@ export function reduceClauses(state, action, type, key) {
     }
   }
   return nextState
-}
-
-export function mapMutations(state, callback) {
-  return {
-    ...state,
-    slave: {
-      ...state.slave,
-      mutated: state.slave.mutated.map(callback)
-    }
-  }
 }
