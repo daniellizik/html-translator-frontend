@@ -1,6 +1,6 @@
-import * as actions from './actions'
 import * as targets from './targets'
 import * as rules from './rules'
+import * as constants from './constants'
 
 // take view, mutations and apply them to list 
 export const mutationDenormalizer = (view = [], open = [], mutations = []) => {
@@ -18,6 +18,23 @@ export const mutationDenormalizer = (view = [], open = [], mutations = []) => {
       }
     ] 
   }, [])
+}
+
+export const reduceRuleProp = (ruleType, state, action, prop) => {
+  return {
+    ...state,
+    clauses: state.clauses.map((c, i) => (
+      i !== action.clauseIndex ? c : {
+        ...c,
+        [ruleType]: c[ruleType].map((r, j) => (
+          j !== action.ruleIndex ? r : {
+            ...r,
+            [prop]: action[prop]
+          }
+        ))
+      }
+    ))
+  }
 }
 
 export const reduceView = ({clauseIndex}, clauses, {list}) => {
@@ -41,13 +58,13 @@ export const reduceView = ({clauseIndex}, clauses, {list}) => {
   }, [])
 }
 
-export const reduceClauses = (state, action, type, key) => {
+export const reduceClauses = (state, action, key) => {
   let nextState
   const nextClauses = state.clauses.map((clause, clauseIndex) => {
     return clauseIndex !== action.clauseIndex ? clause : {
       ...clause,
-      queries: clause.queries.map((query, queryIndex) => {
-        return queryIndex !== action.queryIndex ? query : { ...query, [key]: action[key] }
+      queries: clause.queries.map((query, ruleIndex) => {
+        return ruleIndex !== action.ruleIndex ? query : { ...query, [key]: action[key] }
       })
     }
   })
@@ -69,9 +86,9 @@ export const reduceClauses = (state, action, type, key) => {
       // that form UI will react to
       error: (() => {
         if (e.message.includes('Invalid regular expression'))
-          return actions.CLAUSE_INVALID_REGEXP
+          return constants.CLAUSE_INVALID_REGEXP
         else if (e.message.includes('Attribute key cannot contain spaces'))
-          return actions.CLAUSE_INVALID_ATTRKEY
+          return constants.CLAUSE_INVALID_ATTRKEY
       })()
     }
   }

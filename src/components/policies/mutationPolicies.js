@@ -2,7 +2,7 @@ import React from 'react'
 import {
   TargetSetter,
   TargetValueSetter,
-  RuleSetter,
+  ChangeRule,
   RegexBodySetter,
   RegexFlagsSetter,
   AttrKeySetter,
@@ -26,10 +26,10 @@ export default [
     rules: ['START_OF', 'END_OF', 'ALL_REPLACE'],
     structure: (props) => (
       <div class="row pt-2 m-0">
-        <div class="col-12">
-          <RuleSetter {...props} />
+        <div class="col-12"> 
+          <ChangeRule {...props} />
         </div>
-        <div class="col-12">
+        <div class="col-12 mt-2">
           <TargetValueSetter {...props} />
         </div>
       </div>
@@ -39,8 +39,8 @@ export default [
     rules: ['REGEX_REPLACE'],
     structure: (props) => (
       <div class="row pt-2 m-0">
-        <div class="col-6">
-          <RuleSetter {...props} />
+        <div class="col-12">
+          <ChangeRule {...props} />
         </div>
         <div class="col-6 mt-2">
           <RegexBodySetter {...props} />
@@ -51,12 +51,12 @@ export default [
       </div>
     )
   },
-  {
+  /*{
     rules: ['START_OF', 'END_OF', 'ALL_REPLACE'],
     structure: (props) => (
     <div class="row pt-2 m-0">
       <div class="col-6">
-        <RuleSetter {...props} />
+        <ChangeRule {...props} />
       </div>
         <div class="col-6 mt-2">
           <RegexBodySetter {...props} />
@@ -72,7 +72,7 @@ export default [
     structure: (props) => (
       <div class="row pt-2 m-0">
         <div class="col-6">
-          <RuleSetter {...props} />
+          <ChangeRule {...props} />
         </div>
         <div class="col-6 mt-2">
           <RegexBodySetter {...props} />
@@ -110,7 +110,7 @@ export default [
           <TargetValueSetter {...props} />
         </div>
         <div class="col-6 mt-2">
-          <RuleSetter {...props} />
+          <ChangeRule {...props} />
         </div>
       </div>
     )
@@ -130,5 +130,5 @@ export default [
         </div>
       </div>
     )
-  }
+  }*/
 ]

@@ -47,33 +47,28 @@ describe('query clause rules', () => {
 
 })
 
-// describe('mass editor clause rules', () => {
+describe('mutation rules', () => {
 
-//   it('should return all replace', () => {
-//     expect(rules.allReplace({ targetValue: 111 })).toEqual(111)
-//   })
+  it('should return ALL_REPLACE', () => {
+    expect(rules.ALL_REPLACE({ targetValue: 'abc', ruleValue: 'bob' })).toEqual('bob')
+  })
 
-//   it('should return regex replace', () => {
-//     expect(rules.regexReplace({
-//       ruleValue: 'a',
-//       flags: 'g',
-//       target: 'text',
-//       text: 'abcd',
-//       targetValue: '!!!'
-//     })).toEqual('!!!bcd')
-//     expect(rules.regexReplace()).toEqual('')
-//   })
+  it('should return REGEX_REPLACE', () => {
+    expect(rules.REGEX_REPLACE({
+      ruleValue: 'a',
+      targetValue: 'that',
+      before: 'a cat'
+    })).toEqual('that cat')
+  })
 
-//   it('should return startOf', () => {
-//     expect(rules.startOf({ before: ' b', targetValue: 'a' })).toEqual('a b')
-//     expect(rules.startOf({})).toEqual('')
-//     expect(rules.startOf({ before: 'a', targetValue: '' })).toEqual('a')
-//   })
+  it('should return START_OF', () => {
+    expect(rules.START_OF({ before: ' b', ruleValue: 'a' })).toEqual('a b')
+    expect(rules.START_OF({ before: 'a', ruleValue: '' })).toEqual('a')
+  })
 
-//   it('should return endOf', () => {
-//     expect(rules.endOf({ before: 'b', targetValue: ' a' })).toEqual('b a')
-//     expect(rules.endOf({})).toEqual('')
-//     expect(rules.endOf({ before: 'a', targetValue: '' })).toEqual('a')
-//   })
+  it('should return END_OF', () => {
+    expect(rules.END_OF({ before: 'b', ruleValue: ' a' })).toEqual('b a')
+    expect(rules.END_OF({ before: 'a', ruleValue: '' })).toEqual('a')
+  })
 
-// })
+})

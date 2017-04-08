@@ -1,7 +1,7 @@
 import * as clauseConstants from './constants'
 import * as sourceSetterConstants from '~/src/containers/sourceSetter/constants'
 import { QUERY, MUTATION, defaultMutation } from './config'
-import { mapMutations } from './subReducers'
+import { mapMutations, reduceRuleProp, mutationDenormalizer } from './subReducers'
 
 export default function mutationReducer(state, action) {
 
@@ -28,48 +28,33 @@ export default function mutationReducer(state, action) {
       ))
     }
 
-  else if (action.type === clauseConstants.MUTATION_ACTIVATE)
+  else if (action.type === clauseConstants.MUTATION_DENORMALIZE)
     nextState = {
       ...state,
-      clauses: state.clauses.map((c, i) => (
-        i !== action.clauseIndex ? c : {
-          ...c,
-          mutations: c.mutations.map((r, j) => (
-            j !== action.ruleIndex ? r : {
-              ...r,
-              active: action.active
-            }
-          ))
-        }
-      ))
+      slave: {
+        ...state.slave,
+        mutated: mutationDenormalizer(
+          state.clauses[action.clauseIndex].view, 
+          state.slave.list.open,
+          state.clauses[action.clauseIndex].mutations.filter(o => o.active) 
+        )
+      }
     }
 
-  else if (action.type === clauseConstants.REMOVE)
-    nextState = state
+  else if (action.type === clauseConstants.MUTATION_TOGGLE)
+    nextState = reduceRuleProp('mutations', state, action, 'active')
 
   else if (action.type === clauseConstants.MUTATION_CHANGE_RULE)
-    nextState = {
-      ...state,
-      clauses: state.clauses.map((c, i) => i !== action.clauseIndex ? c : {
-        ...c,
-        mutations: c.mutations.map((r, j) => j !== action.ruleIndex ? r : {
-          ...r,
-          rule: action.rule
-        })
-      })
-    }  
+    nextState = reduceRuleProp('mutations', state, action, 'rule') 
 
   else if (action.type === clauseConstants.MUTATION_CHANGE_RULE_VALUE)
-    nextState = {
-      ...state,
-      clauses: state.clauses.map((c, i) => i !== action.clauseIndex ? c : {
-        ...c,
-        mutations: c.mutations.map((r, j) => j !== action.ruleIndex ? r : {
-          ...r,
-          ruleValue: action.ruleValue
-        })
-      })
-    }
+    nextState = reduceRuleProp('mutations', state, action, 'ruleValue') 
+
+  else if (action.type === clauseConstants.MUTATION_CHANGE_RULE_VALUE_FLAGS)
+    nextState = reduceRuleProp('mutations', state, action, 'ruleValueFlags')
+     
+  else if (action.type === clauseConstants.MUTATION_CHANGE_TARGET_VALUE)
+    nextState = reduceRuleProp('mutations', state, action, 'targetValue') 
 
   else if (action.type === clauseConstants.REMOVE_ATTR_BY_KEY)
     nextState = state
