@@ -2,7 +2,7 @@ import React from 'react'
 import {
   TargetSetter,
   TargetValueSetter,
-  RuleSetter,
+  ChangeRule,
   RegexBodySetter,
   RegexFlagsSetter,
   AttrKeySetter,
@@ -32,7 +32,7 @@ export default [
           <TargetSetter {...props} />
         </div>
         <div class="col-6">
-          <RuleSetter {...props} />
+          <ChangeRule {...props} />
         </div>
         <div class="col-12 mt-2">
           <TargetValueSetter {...props} />
@@ -49,7 +49,7 @@ export default [
           <TargetSetter {...props} />
         </div>
         <div class="col-6">
-          <RuleSetter {...props} />
+          <ChangeRule {...props} />
         </div>
         <div class="col-6 mt-2">
           <RegexBodySetter {...props} />
@@ -69,7 +69,7 @@ export default [
           <TargetSetter {...props} />
         </div>
         <div class="col-6">
-          <RuleSetter {...props} />
+          <ChangeRule {...props} />
         </div>
         <div class="col-12 mt-2">
           <TargetValueSetter {...props} />
@@ -86,7 +86,7 @@ export default [
           <TargetSetter {...props} />
         </div>
         <div class="col-6">
-          <RuleSetter {...props} />
+          <ChangeRule {...props} />
         </div>
         <div class="col-12 mt-2">
           <TargetValueSetter {...props} />
@@ -103,7 +103,7 @@ export default [
           <TargetSetter {...props} />
         </div>
         <div class="col-6">
-          <RuleSetter {...props} />
+          <ChangeRule {...props} />
         </div>
         <div class="col-12 mt-2">
           <TargetValueSetter {...props} />
@@ -120,7 +120,7 @@ export default [
           <TargetSetter {...props} />
         </div>
         <div class="col-6">
-          <RuleSetter {...props} />
+          <ChangeRule {...props} />
         </div>
         <div class="col-6 mt-2">
           <RegexBodySetter {...props} />
@@ -140,7 +140,7 @@ export default [
           <TargetSetter {...props} />
         </div>
         <div class="col-6">
-          <RuleSetter {...props} />
+          <ChangeRule {...props} />
         </div>
         <div class="col-12 mt-2">
           <TargetValueSetter {...props} />
@@ -157,7 +157,7 @@ export default [
           <TargetSetter {...props} />
         </div>
         <div class="col-6">
-          <RuleSetter {...props} />
+          <ChangeRule {...props} />
         </div>
         <div class="col-6 mt-2">
           <RegexBodySetter {...props} />

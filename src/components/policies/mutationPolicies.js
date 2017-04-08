@@ -2,7 +2,7 @@ import React from 'react'
 import {
   TargetSetter,
   TargetValueSetter,
-  RuleSetter,
+  ChangeRule,
   RegexBodySetter,
   RegexFlagsSetter,
   AttrKeySetter,
@@ -27,7 +27,7 @@ export default [
     structure: (props) => (
       <div class="row pt-2 m-0">
         <div class="col-12">
-          <RuleSetter {...props} />
+          <ChangeRule {...props} />
         </div>
         <div class="col-12">
           <TargetValueSetter {...props} />
@@ -40,7 +40,7 @@ export default [
     structure: (props) => (
       <div class="row pt-2 m-0">
         <div class="col-6">
-          <RuleSetter {...props} />
+          <ChangeRule {...props} />
         </div>
         <div class="col-6 mt-2">
           <RegexBodySetter {...props} />
@@ -56,7 +56,7 @@ export default [
     structure: (props) => (
     <div class="row pt-2 m-0">
       <div class="col-6">
-        <RuleSetter {...props} />
+        <ChangeRule {...props} />
       </div>
         <div class="col-6 mt-2">
           <RegexBodySetter {...props} />
@@ -72,7 +72,7 @@ export default [
     structure: (props) => (
       <div class="row pt-2 m-0">
         <div class="col-6">
-          <RuleSetter {...props} />
+          <ChangeRule {...props} />
         </div>
         <div class="col-6 mt-2">
           <RegexBodySetter {...props} />
@@ -110,7 +110,7 @@ export default [
           <TargetValueSetter {...props} />
         </div>
         <div class="col-6 mt-2">
-          <RuleSetter {...props} />
+          <ChangeRule {...props} />
         </div>
       </div>
     )
