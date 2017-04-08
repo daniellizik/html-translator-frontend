@@ -20,6 +20,23 @@ export const mutationDenormalizer = (view = [], open = [], mutations = []) => {
   }, [])
 }
 
+export const reduceRuleProp = (ruleType, state, action, prop) => {
+  return {
+    ...state,
+    clauses: state.clauses.map((c, i) => (
+      i !== action.clauseIndex ? c : {
+        ...c,
+        [ruleType]: c[ruleType].map((r, j) => (
+          j !== action.ruleIndex ? r : {
+            ...r,
+            [prop]: action[prop]
+          }
+        ))
+      }
+    ))
+  }
+}
+
 export const reduceView = ({clauseIndex}, clauses, {list}) => {
   return clauses.reduce((acc, clause, index) => {
     if (index !== clauseIndex)

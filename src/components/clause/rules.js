@@ -63,11 +63,9 @@ export const END_OF = ({ ruleValue = '', before = '' }) => {
   return before + ruleValue
 }
 
-export const REGEX_REPLACE = (obj) => {
-  if (!obj || typeof obj !== 'object')
-    return ''
-  const rx = new RegExp((obj.ruleValue || '').replace(/\//g, '\\\\'), obj.ruleValueFlags || '')
-  return (obj[obj.target] || '').replace(rx, obj.targetValue || '')
+export const REGEX_REPLACE = ({ruleValue = '', ruleValueFlags = '', targetValue = '', before = ''}) => {
+  const rx = new RegExp((ruleValue).replace(/\//g, '\\\\'), ruleValueFlags)
+  return before.replace(rx, targetValue)
 }
 
 export const ADD_ATTR = (base, ...attrs) => {

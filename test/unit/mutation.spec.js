@@ -2,7 +2,8 @@ import { defaultMutation } from '~/src/components/clause/config'
 import { mutationDenormalizer } from '~/src/components/clause/subReducers'
 import {
   allReplaceText,
-  reducedMutations
+  reducedMutations,
+  regexMutation
 } from '~/test/storyFixtures/mutation'
 
 describe('mutations', () => {
@@ -24,13 +25,21 @@ describe('mutations', () => {
 describe('mutation denormalizer', () => {
   it('should mutate value as a result of mutation reduction', () => {
     let story = reducedMutations[0]
-    let result = mutationDenormalizer(story.clauses[0].view, story.slave.list.open, story.clauses[0].mutations)
+    let result = mutationDenormalizer(
+      story.clauses[0].view, 
+      story.slave.list.open, 
+      story.clauses[0].mutations
+    )
     result.forEach(({id, value}) => {
       story.clauses[0].view.indexOf(id) > -1 && expect(value).toBe('blah')
       story.clauses[0].view.indexOf(id) < 0 && expect(value).not.toBe('blah')
     })
     story = reducedMutations[4]
-    result = mutationDenormalizer(story.clauses[0].view, story.slave.list.open, story.clauses[0].mutations)
+    result = mutationDenormalizer(
+      story.clauses[0].view, 
+      story.slave.list.open, 
+      story.clauses[0].mutations
+    )
     result.forEach(({id, value}) => {
       story.clauses[0].view.indexOf(id) > -1 && expect(value).toBe('cat blah')
       story.clauses[0].view.indexOf(id) < 0 && expect(value).not.toBe('cat blah')
@@ -39,7 +48,12 @@ describe('mutation denormalizer', () => {
 })
 
 describe('regex mutation', () => {
-  it('should mutate with regex replace', () => {
-    
+  it('should denormalize mutate with regex replace', () => {
+    regexMutation[7].slave.mutated.filter(o => o.value).forEach(obj => {
+      expect(obj.value.indexOf('cat')).toBe(-1)
+    })
+    regexMutation[13].slave.mutated.filter(o => o.value).forEach(obj => {
+      obj.value.indexOf('foobar') > -1 && expect(obj.value.indexOf('eanu')).toBe(-1)
+    })
   })
 })

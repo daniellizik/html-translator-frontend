@@ -10,11 +10,15 @@ export default {
     type: constants.MUTATION_ADD,
     clauseIndex
   }),
-  activate: (active, clauseIndex, ruleIndex) => ({
-    type: constants.MUTATION_ACTIVATE,
+  toggle: (active, clauseIndex, ruleIndex) => ({
+    type: constants.MUTATION_TOGGLE,
     active,
     clauseIndex,
     ruleIndex
+  }),
+  denormalize: (clauseIndex) => ({
+    type: constants.MUTATION_DENORMALIZE,
+    clauseIndex
   }),
   changeTargetValue: (targetValue, clauseIndex, ruleIndex) => ({
     type: constants.MUTATION_CHANGE_TARGET_VALUE,
@@ -34,9 +38,9 @@ export default {
     clauseIndex,
     ruleIndex
   }),
-  changeRuleValueFlags: (ruleValue, clauseIndex, ruleIndex) => ({
+  changeRuleValueFlags: (ruleValueFlags, clauseIndex, ruleIndex) => ({
     type: constants.MUTATION_CHANGE_RULE_VALUE_FLAGS,
-    ruleValue,
+    ruleValueFlags,
     clauseIndex,
     ruleIndex
   }),
