@@ -46,8 +46,8 @@ export const reduceClauses = (state, action, type, key) => {
   const nextClauses = state.clauses.map((clause, clauseIndex) => {
     return clauseIndex !== action.clauseIndex ? clause : {
       ...clause,
-      queries: clause.queries.map((query, queryIndex) => {
-        return queryIndex !== action.queryIndex ? query : { ...query, [key]: action[key] }
+      queries: clause.queries.map((query, ruleIndex) => {
+        return ruleIndex !== action.ruleIndex ? query : { ...query, [key]: action[key] }
       })
     }
   })

@@ -19,7 +19,7 @@ export const TargetSetter = (props) => (
     <select 
       class="form-control custom-select" 
       value={props.clause.target} 
-      onChange={(e) => props.changeTarget(e.target.value, props.clauseIndex, props.queryIndex)}>
+      onChange={(e) => props.changeTarget(e.target.value, props.clauseIndex, props.ruleIndex)}>
       {Object.keys(config[props.type].targets).map((p, j) => (
         <option value={p} key={j}>
           {p}
@@ -36,7 +36,7 @@ export const TargetValueSetter = (props) => (
       class="form-control" 
       type="text" 
       value={props.clause.targetValue} 
-      onChange={(e) => props.changeTargetValue(e.target.value, props.clauseIndex, props.queryIndex)} />
+      onChange={(e) => props.changeTargetValue(e.target.value, props.clauseIndex, props.ruleIndex)} />
   </label>
 )
 
@@ -46,7 +46,7 @@ export const RuleSetter = (props) => (
     <select 
       class="form-control custom-select" 
       value={props.clause.rule} 
-      onChange={(e) => props.changeRule(e.target.value, props.clauseIndex, props.queryIndex)}>
+      onChange={(e) => props.changeRule(e.target.value, props.clauseIndex, props.ruleIndex)}>
       {config[props.type].targets[props.clause.target || '*'].rules.map((r, i) => (
         <option value={r} key={i}>
           {r}
@@ -62,7 +62,7 @@ export const RegexBodySetter = (props) => (
     <input 
       class="form-control" 
       type="text" 
-      onChange={(e) => props.changeRuleValue(e.target.value, props.clauseIndex, props.queryIndex)} />
+      onChange={(e) => props.changeRuleValue(e.target.value, props.clauseIndex, props.ruleIndex)} />
   </label>
 )
 
@@ -72,7 +72,7 @@ export const RegexFlagsSetter = (props) => (
     <input 
       class="form-control" 
       type="text" 
-      onChange={(e) => props.changeRuleValueFlags(e.target.value, props.clauseIndex, props.queryIndex)} />
+      onChange={(e) => props.changeRuleValueFlags(e.target.value, props.clauseIndex, props.ruleIndex)} />
   </label>
 )
 
@@ -83,7 +83,7 @@ export const AttrKeySetter = (props) => (
       class="form-control" 
       type="text" 
       value={props.clause.targetValue} 
-      onChange={(e) => props.changeTargetValue(e.target.value, props.clauseIndex, props.queryIndex)} />
+      onChange={(e) => props.changeTargetValue(e.target.value, props.clauseIndex, props.ruleIndex)} />
   </label>
 )
 
@@ -94,7 +94,7 @@ export const AttrValSetter = (props) => (
       class="form-control" 
       type="text" 
       value={props.clause.targetValue}
-      onChange={(e) => props.changeTargetValue(e.target.value, props.clauseIndex, props.queryIndex)} />
+      onChange={(e) => props.changeTargetValue(e.target.value, props.clauseIndex, props.ruleIndex)} />
   </label>
 )
 

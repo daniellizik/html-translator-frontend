@@ -3,6 +3,8 @@ import { push } from 'react-router-redux'
 
 export const startEditor = (hash) => push(hash) 
 
+// clause
+
 export const activateClause = (clauseIndex) => ({
   type: constants.CLAUSE_ACTIVATE,
   clauseIndex
@@ -27,10 +29,13 @@ export const removeClause = (clauseIndex) => ({
   clauseIndex
 })
 
-export const removeQuery = (clauseIndex, queryIndex) => ({
+// query
+
+export const removeQuery = (clauseIndex, ruleIndex) => ({
   type: constants.QUERY_REMOVE,
   clauseIndex,
-  queryIndex
+  ruleIndex,
+  ruleType: 'QUERY'
 })
 
 export const addQuery = (clauseIndex) => ({
@@ -38,39 +43,43 @@ export const addQuery = (clauseIndex) => ({
   clauseIndex
 })
 
-export const changeTarget = (target, clauseIndex, queryIndex) => ({
+export const changeTarget = (target, clauseIndex, ruleIndex) => ({
   type: constants.QUERY_CHANGE_TARGET,
   target,
   clauseIndex,
-  queryIndex
+  ruleIndex,
+  ruleType: 'QUERY'
 })
 
-export const changeTargetValue = (targetValue, clauseIndex, queryIndex) => ({
+export const changeTargetValue = (targetValue, clauseIndex, ruleIndex) => ({
   type: constants.QUERY_CHANGE_TARGET_VALUE,
   targetValue,
   clauseIndex,
-  queryIndex
+  ruleIndex
 })
 
-export const changeRule = (rule, clauseIndex, queryIndex) => ({
+export const changeRule = (rule, clauseIndex, ruleIndex) => ({
   type: constants.QUERY_CHANGE_RULE,
   rule,
   clauseIndex,
-  queryIndex
+  ruleIndex,
+  ruleType: 'QUERY'
 })
 
-export const changeRuleValue = (ruleValue, clauseIndex, queryIndex) => ({
+export const changeRuleValue = (ruleValue, clauseIndex, ruleIndex) => ({
   type: constants.QUERY_CHANGE_RULE_VALUE,
   ruleValue,
   clauseIndex,
-  queryIndex
+  ruleIndex,
+  ruleType: 'QUERY'
 })
 
-export const changeRuleValueFlags = (ruleValueFlags, clauseIndex, queryIndex) => ({
+export const changeRuleValueFlags = (ruleValueFlags, clauseIndex, ruleIndex) => ({
   type: constants.QUERY_CHANGE_RULE_VALUE_FLAGS,
   ruleValueFlags,
   clauseIndex,
-  queryIndex
+  ruleIndex,
+  ruleType: 'QUERY'
 })
 
 // mutate
@@ -78,7 +87,8 @@ export const changeRuleValueFlags = (ruleValueFlags, clauseIndex, queryIndex) =>
 export const removeMutation = (clauseIndex, ruleIndex) => ({
   type: constants.MUTATION_REMOVE,
   clauseIndex,
-  ruleIndex
+  ruleIndex,
+  ruleType: 'MUTATION'
 })
 
 export const addMutation = (clauseIndex) => ({
@@ -90,43 +100,50 @@ export const activateMutation = (active, clauseIndex, ruleIndex) => ({
   type: constants.MUTATION_ACTIVATE,
   active,
   clauseIndex,
-  ruleIndex
+  ruleIndex,
+  ruleType: 'MUTATION'
 })
 
 export const mutationChangeRule = (rule, clauseIndex, ruleIndex) => ({
   type: constants.MUTATION_CHANGE_RULE,
   rule,
   clauseIndex,
-  ruleIndex
+  ruleIndex,
+  ruleType: 'MUTATION'
 })
 
 export const mutationChangeRuleValue = (ruleValue, clauseIndex, ruleIndex) => ({
   type: constants.MUTATION_CHANGE_RULE_VALUE,
   ruleValue,
   clauseIndex,
-  ruleIndex
+  ruleIndex,
+  ruleType: 'MUTATION'
 })
 
 export const addAttr = (attrKey, attrVal, index) => ({
   type: constants.MUTATION_ADD_ATTR,
   attrKey,
   attrVal,
-  index
+  index,
+  ruleType: 'MUTATION'
 })
 
 export const removeAttrByKey = (attrKey, index) => ({
   type: constants.MUTATION_REMOVE_ATTR_BY_KEY,
   attrKey,
-  index
+  index,
+  ruleType: 'MUTATION'
 })
 
 export const removeAttrByValue = (attrVal, index) => ({
   type: constants.MUTATION_REMOVE_ATTR_BY_VALUE,
   attrVal,
-  index
+  index,
+  ruleType: 'MUTATION'
 })
 
 export const removeAllAttrs = (index) => ({
   type: constants.MUTATION_REMOVE_ALL_ATTRS,
-  index
+  index,
+  ruleType: 'MUTATION'
 })

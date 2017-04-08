@@ -50,23 +50,23 @@ const MaximizedClause = ({removeClause, addQuery, addMutation, activateClause, c
         </button>
       </div>
       <div class="col-12 m-0 p-0">
-        {clauseGroup.queries && clauseGroup.queries.map((clause, queryIndex, {length}) => (
+        {clauseGroup.queries && clauseGroup.queries.map((clause, ruleIndex, {length}) => (
           <Clause 
             type="QUERY"
             clause={clause} 
-            isLast={queryIndex === length - 1} 
+            isLast={ruleIndex === length - 1} 
             clauseIndex={clauseIndex} 
-            queryIndex={queryIndex} 
-            key={`q-${clauseIndex}-${queryIndex}`} />
+            ruleIndex={ruleIndex} 
+            key={`q-${clauseIndex}-${ruleIndex}`} />
         ))}
-        {clauseGroup.mutations && clauseGroup.mutations.map((clause, mutationIndex, {length}) => (
+        {clauseGroup.mutations && clauseGroup.mutations.map((clause, ruleIndex, {length}) => (
           <Clause 
             type="MUTATION"
             clause={clause} 
-            isLast={mutationIndex === length - 1} 
+            isLast={ruleIndex === length - 1} 
             clauseIndex={clauseIndex} 
-            mutationIndex={mutationIndex} 
-            key={`m-${clauseIndex}-${mutationIndex}`} />
+            ruleIndex={ruleIndex} 
+            key={`m-${clauseIndex}-${ruleIndex}`} />
         ))}
       </div>
     </div>

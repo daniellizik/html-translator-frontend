@@ -15,7 +15,7 @@ const closeStyle = {
 
 const RemoveButton = (props) => {
   if (props.type === 'QUERY')
-    return <span onClick={() => props.removeQuery(props.clauseIndex, props.queryIndex)}>remove this query</span>
+    return <span onClick={() => props.removeQuery(props.clauseIndex, props.ruleIndex)}>remove this query</span>
   if (props.type === 'MUTATION')
     return <span onClick={() => props.removeMutation(props.clauseIndex, props.mutationIndex)}>remove this mutation</span>
 }
@@ -35,7 +35,7 @@ const Clause = (props) => (
 Clause.propTypes = {
   type: PropTypes.oneOf(['QUERY', 'MUTATION']),
   isLast: PropTypes.bool.isRequired,
-  queryIndex: PropTypes.number,
+  ruleIndex: PropTypes.number,
   clauseIndex: PropTypes.number,
   clause: PropTypes.object.isRequired
 }

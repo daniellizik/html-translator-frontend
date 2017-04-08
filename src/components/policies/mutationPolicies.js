@@ -35,7 +35,7 @@ export default [
       </div>
     )
   },
-  {
+  /*{
     rules: ['REGEX_REPLACE'],
     structure: (props) => (
       <div class="row pt-2 m-0">
@@ -130,5 +130,5 @@ export default [
         </div>
       </div>
     )
-  }
+  }*/
 ]
