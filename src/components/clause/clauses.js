@@ -8,7 +8,7 @@ export const TargetSetter = (props) => (
     <select 
       class="form-control custom-select" 
       value={props.clause.target} 
-      onChange={(e) => props.queryActions_changeTarget(e.target.value, props.clauseIndex, props.ruleIndex)}>
+      onChange={(e) => props.queryActions.changeTarget(e.target.value, props.clauseIndex, props.ruleIndex)}>
       {Object.keys(config[props.type].targets).map((p, j) => (
         <option value={p} key={j}>
           {p}
@@ -25,7 +25,7 @@ export const TargetValueSetter = (props) => (
       class="form-control" 
       type="text" 
       value={props.clause.targetValue} 
-      onChange={(e) => props.queryActions_changeTargetValue(e.target.value, props.clauseIndex, props.ruleIndex)} />
+      onChange={(e) => props.queryActions.changeTargetValue(e.target.value, props.clauseIndex, props.ruleIndex)} />
   </label>
 )
 
@@ -35,7 +35,7 @@ export const ChangeRule = (props) => (
     <select 
       class="form-control custom-select"
       value={props.clause.rule} 
-      onChange={(e) => props.queryActions_changeRule(e.target.value, props.clauseIndex, props.type, props.ruleIndex)}>
+      onChange={(e) => ({QUERY: props.queryActions, MUTATION: props.mutateActions})[props.type].changeRule(e.target.value, props.clauseIndex, props.ruleIndex)}>
       {config[props.type].targets[props.clause.target || '*'].rules.map((r, i) => (
         <option value={r} key={i}>
           {r}
@@ -51,7 +51,7 @@ export const RegexBodySetter = (props) => (
     <input 
       class="form-control" 
       type="text" 
-      onChange={(e) => props.queryActions_changeRuleValue(e.target.value, props.clauseIndex, props.ruleIndex)} />
+      onChange={(e) => props.queryActions.changeRuleValue(e.target.value, props.clauseIndex, props.ruleIndex)} />
   </label>
 )
 
@@ -61,7 +61,7 @@ export const RegexFlagsSetter = (props) => (
     <input 
       class="form-control" 
       type="text" 
-      onChange={(e) => props.queryActions_changeRuleValueFlags(e.target.value, props.clauseIndex, props.ruleIndex)} />
+      onChange={(e) => props.queryActions.changeRuleValueFlags(e.target.value, props.clauseIndex, props.ruleIndex)} />
   </label>
 )
 
@@ -72,7 +72,7 @@ export const AttrKeySetter = (props) => (
       class="form-control" 
       type="text" 
       value={props.clause.targetValue} 
-      onChange={(e) => props.queryActions_changeTargetValue(e.target.value, props.clauseIndex, props.ruleIndex)} />
+      onChange={(e) => props.queryActions.changeTargetValue(e.target.value, props.clauseIndex, props.ruleIndex)} />
   </label>
 )
 
@@ -83,7 +83,7 @@ export const AttrValSetter = (props) => (
       class="form-control" 
       type="text" 
       value={props.clause.targetValue}
-      onChange={(e) => props.queryActions_changeTargetValue(e.target.value, props.clauseIndex, props.ruleIndex)} />
+      onChange={(e) => props.queryActions.changeTargetValue(e.target.value, props.clauseIndex, props.ruleIndex)} />
   </label>
 )
 

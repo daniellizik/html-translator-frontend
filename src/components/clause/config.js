@@ -18,7 +18,7 @@ export const QUERY = {
 export const MUTATION = {
   targets: {
     '*': {
-      rules: ['ALL_REPLACE', 'START_OF','END_OF','REGEX_REPLACE','ALL_REPLACE','CONCAT']
+      rules: ['ALL_REPLACE', 'START_OF','END_OF','REGEX_REPLACE']
     }
   }
 }

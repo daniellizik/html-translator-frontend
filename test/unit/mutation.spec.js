@@ -37,3 +37,9 @@ describe('mutation denormalizer', () => {
     })
   })
 })
+
+describe('regex mutation', () => {
+  it('should mutate with regex replace', () => {
+    
+  })
+})

@@ -16,6 +16,12 @@ export default {
     clauseIndex,
     ruleIndex
   }),
+  changeTargetValue: (targetValue, clauseIndex, ruleIndex) => ({
+    type: constants.MUTATION_CHANGE_TARGET_VALUE,
+    targetValue,
+    clauseIndex,
+    ruleIndex
+  }),
   changeRule: (rule, clauseIndex, ruleIndex) => ({
     type: constants.MUTATION_CHANGE_RULE,
     rule,
@@ -24,6 +30,12 @@ export default {
   }),
   changeRuleValue: (ruleValue, clauseIndex, ruleIndex) => ({
     type: constants.MUTATION_CHANGE_RULE_VALUE,
+    ruleValue,
+    clauseIndex,
+    ruleIndex
+  }),
+  changeRuleValueFlags: (ruleValue, clauseIndex, ruleIndex) => ({
+    type: constants.MUTATION_CHANGE_RULE_VALUE_FLAGS,
     ruleValue,
     clauseIndex,
     ruleIndex

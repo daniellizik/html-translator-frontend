@@ -4,25 +4,36 @@
 
 import * as constants from '~/src/components/clause/constants'
 import state from '~/test/stateFixtures/mutate'
-import * as actions from '~/src/components/clause/actions'
+import { queryActions, mutateActions, clauseActions } from '~/src/components/clause/actions/index'
 import reducer from '~/src/components/clause/reducer'
 import { chainActions } from '~/src/util'
 
 export const allReplaceText = chainActions(
   state,
   reducer,
-  actions.activateClause(0),
-  actions.addMutation(0),
-  actions.mutationChangeRule('ALL_REPLACE', 0, 0),
-  actions.mutationChangeRuleValue('blah', 0, 0),
-  actions.activateMutation(true, 0, 0)
+  clauseActions.activate(0),
+  mutateActions.add(0),
+  mutateActions.changeRule('ALL_REPLACE', 0, 0),
+  mutateActions.changeRuleValue('blah', 0, 0),
+  mutateActions.activate(true, 0, 0)
 ) 
 
 export const reducedMutations = chainActions(
   allReplaceText,
   reducer,
-  actions.addMutation(0),
-  actions.mutationChangeRule('START_OF', 0, 1),
-  actions.mutationChangeRuleValue('cat ', 0, 1),
-  actions.activateMutation(true, 0, 1)
+  mutateActions.add(0),
+  mutateActions.changeRule('START_OF', 0, 1),
+  mutateActions.changeRuleValue('cat ', 0, 1),
+  mutateActions.activate(true, 0, 1)
+)
+
+export const regexMutation = chainActions(
+  reducedMutations,
+  reducer,
+  mutateActions.remove(0, 1),
+  mutateActions.changeRule('REPLACE_REGEX', 0, 0),
+  mutateActions.changeRuleValue('cat', 0, 0),
+  mutateActions.changeRuleValueFlags('i', 0, 0),
+  mutateActions.changeTargetValue('peanuts', 0, 0),
+  mutateActions.activate(true, 0, 0)
 )
