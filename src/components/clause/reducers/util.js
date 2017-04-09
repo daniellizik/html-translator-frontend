@@ -3,6 +3,7 @@ import * as rules from '../rules'
 import * as constants from '../constants'
 
 // take view, mutations and apply them to FULL LIST, not open
+// this makes it easier for xml tree to consume (it just spits out entire list)
 export const mutationDenormalizer = (view = [], list = [], mutations = []) => {
   const result = list.reduce((acc, node) => {
     // only mutate items in view
@@ -10,6 +11,9 @@ export const mutationDenormalizer = (view = [], list = [], mutations = []) => {
       ...acc,
       {
         ...node,
+        // need to dynamically set key, could be nodeName or value
+        // or an attr prop
+        // need query target for this
         value: mutations.reduce((mutated, m) => {
           // this is where the before api stuff gets set
           const params = {...m, before: mutated}

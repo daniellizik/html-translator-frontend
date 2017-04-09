@@ -34,12 +34,12 @@ const MaximizedClause = ({ currentMutation, clauseActions, queryActions, mutateA
           onChange={(e) => clauseActions.changeName(clauseIndex, e.target.value)} 
           value={clauseGroup.name} 
           placeholder="clause title" />
-      </div> {console.log(11, currentMutation)}
+      </div>
       <div class="col-12 mb-2">
         <button class="btn mr-2" onClick={() => clauseActions.remove(clauseIndex)}>
           remove this clause
         </button>
-        <button class="btn mr-2" onClick={() => mutateActions.denormalize(clauseIndex)}>
+        <button class="btn mr-2" onClick={() => mutateActions.denormalize(currentMutation === clauseIndex ? -1 : clauseIndex)}>
           {currentMutation === clauseIndex ? 'hide mutations' : 'view mutations'}
         </button>
         <button class="btn mr-2" onClick={() => queryActions.add(clauseIndex)}>

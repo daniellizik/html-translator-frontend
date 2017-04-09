@@ -52,3 +52,19 @@ export const toggling = chainActions(
   clauseActions.setCurrentMutation(-1),
   clauseActions.setCurrentMutation(1)
 )
+
+export const nodename = chainActions(
+  toggling,
+  reducer,
+  mutateActions.remove(0, 1),
+  mutateActions.remove(0, 0),
+  mutateActions.add(0),
+  queryActions.changeRule('LIKE', 0, 0),
+  queryActions.changeTargetValue('span', 0, 0),
+  queryActions.changeTarget('NODE_NAME', 0, 0),
+  clauseActions.setCurrentMutation(0),
+  mutateActions.changeRule('ALL_REPLACE', 0, 0),
+  mutateActions.changeRuleValue('h13', 0, 0),
+  mutateActions.toggle(true, 0, 0),
+  mutateActions.denormalize(0)
+)

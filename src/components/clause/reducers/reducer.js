@@ -22,18 +22,12 @@ export function activeClause(state, action) {
 }
 
 export default function(state, action) {
-
   let nextState = state
-
   if (action.type.indexOf('CLAUSE_') > -1)
     nextState = clauseReducer(state, action)
-
   else if (action.type.indexOf('QUERY_') > -1)
     nextState = queryReducer(state, action)
-    
   else if (action.type.indexOf('MUTATION_') > -1)
     nextState = mutationReducer(state, action)
-
   return nextState
-
 }

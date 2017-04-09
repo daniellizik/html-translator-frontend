@@ -17,11 +17,10 @@ export function reducer(state, action) {
 }
 
 const builderStyle = {
-  backgroundColor: colors.lightBlack
+  backgroundColor: colors.lightBlack,
 }
 
 const htmlMountStyle = {
-  overflowX: 'scroll',
   backgroundColor: colors.darkBlack
 }
 

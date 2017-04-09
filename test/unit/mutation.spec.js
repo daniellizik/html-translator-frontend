@@ -4,7 +4,8 @@ import {
   allReplaceText,
   reducedMutations,
   regexMutation,
-  toggling
+  toggling,
+  nodename
 } from '~/test/storyFixtures/mutation'
 
 describe('mutations', () => {
@@ -64,5 +65,14 @@ describe('toggling a mutation', () => {
     expect(toggling[1].slave.currentMutation).toBe(0)
     expect(toggling[2].slave.currentMutation).toBe(-1)
     expect(toggling[3].slave.currentMutation).toBe(1)
+  })
+})
+
+describe('mutating nodename', () => {
+  it('should mutate nodename', () => {
+    console.log(nodename[11].clauses[0])
+    nodename[11].slave.mutated.forEach(n => {
+      expect(n.nodeName).not.toBe('span')
+    })
   })
 })
