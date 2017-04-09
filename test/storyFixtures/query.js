@@ -5,7 +5,7 @@
 import * as constants from '~/src/components/clause/constants'
 import state from '~/test/stateFixtures/test'
 import { queryActions, mutateActions, clauseActions } from '~/src/components/clause/actions/index'
-import reducer from '~/src/components/clause/reducer'
+import reducer from '~/src/components/clause/reducers/reducer'
 import { chainActions } from '~/src/util'
 
 export const addingAClause = chainActions(

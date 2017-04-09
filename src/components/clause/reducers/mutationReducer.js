@@ -1,7 +1,7 @@
-import * as clauseConstants from './constants'
+import * as clauseConstants from '../constants'
 import * as sourceSetterConstants from '~/src/containers/sourceSetter/constants'
-import { QUERY, MUTATION, defaultMutation } from './config'
-import { mapMutations, reduceRuleProp, mutationDenormalizer } from './subReducers'
+import { QUERY, MUTATION, defaultMutation } from '../config'
+import { mapMutations, reduceRuleProp, mutationDenormalizer } from './util'
 
 export default function mutationReducer(state, action) {
 
@@ -33,9 +33,10 @@ export default function mutationReducer(state, action) {
       ...state,
       slave: {
         ...state.slave,
+        currentMutation: action.clauseIndex,
         mutated: mutationDenormalizer(
           state.clauses[action.clauseIndex].view, 
-          state.slave.list.open,
+          state.slave.list.list,
           state.clauses[action.clauseIndex].mutations
         )
       }

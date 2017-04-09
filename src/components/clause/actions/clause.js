@@ -19,5 +19,9 @@ export default {
     type: constants.CLAUSE_CHANGE_NAME,
     clauseIndex,
     name
+  }),
+  setCurrentMutation: (currentMutation) => ({
+    type: constants.CLAUSE_VIEW_MUTATIONS,
+    currentMutation
   })
 }

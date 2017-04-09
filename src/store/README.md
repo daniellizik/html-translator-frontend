@@ -50,6 +50,12 @@ export default {
       minimized: false,
       // UI state, also shows corresponding view in html render
       active: true,
+      // which mutation is active, can store multiple mutations
+      currentMutation: 0,
+      // stores results of mutation denormalization
+      mutated: [
+        [...]
+      ],
       // queries
       queries: [
         { type: 'QUERY', targetValue: 'cat-a', target: 'TEXT', rule: 'LIKE', ruleValueFlags: '' },

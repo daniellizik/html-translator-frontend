@@ -1,9 +1,10 @@
 import { defaultMutation } from '~/src/components/clause/config'
-import { mutationDenormalizer } from '~/src/components/clause/subReducers'
+import { mutationDenormalizer } from '~/src/components/clause/reducers/util'
 import {
   allReplaceText,
   reducedMutations,
-  regexMutation
+  regexMutation,
+  toggling
 } from '~/test/storyFixtures/mutation'
 
 describe('mutations', () => {
@@ -27,7 +28,7 @@ describe('mutation denormalizer', () => {
     let story = reducedMutations[0]
     let result = mutationDenormalizer(
       story.clauses[0].view, 
-      story.slave.list.open, 
+      story.slave.list.list, 
       story.clauses[0].mutations
     )
     result.forEach(({id, value}) => {
@@ -37,7 +38,7 @@ describe('mutation denormalizer', () => {
     story = reducedMutations[4]
     result = mutationDenormalizer(
       story.clauses[0].view, 
-      story.slave.list.open, 
+      story.slave.list.list, 
       story.clauses[0].mutations
     )
     result.forEach(({id, value}) => {
@@ -55,5 +56,13 @@ describe('regex mutation', () => {
     regexMutation[13].slave.mutated.filter(o => o.value).forEach(obj => {
       obj.value.indexOf('foobar') > -1 && expect(obj.value.indexOf('eanu')).toBe(-1)
     })
+  })
+})
+
+describe('toggling a mutation', () => {
+  it('should set slave.currentMutation to number passed to action', () => {
+    expect(toggling[1].slave.currentMutation).toBe(0)
+    expect(toggling[2].slave.currentMutation).toBe(-1)
+    expect(toggling[3].slave.currentMutation).toBe(1)
   })
 })

@@ -28,6 +28,7 @@ export default {
     ast: [],
     rawHtml: null,
     tree: [],
+    currentMutation: -1,
     mutated: []
   },
 

@@ -5,7 +5,7 @@
 import * as constants from '~/src/components/clause/constants'
 import baseState from '~/test/stateFixtures/mutate'
 import { queryActions, mutateActions, clauseActions } from '~/src/components/clause/actions/index'
-import reducer from '~/src/components/clause/reducer'
+import reducer from '~/src/components/clause/reducers/reducer'
 import { chainActions } from '~/src/util'
 
 export const allReplaceText = chainActions(
@@ -43,4 +43,12 @@ export const regexMutation = chainActions(
   mutateActions.changeTargetValue(' foobar ', 0, 1),
   mutateActions.toggle(true, 0, 1),
   mutateActions.denormalize(0),
+)
+
+export const toggling = chainActions(
+  regexMutation,
+  reducer,
+  clauseActions.setCurrentMutation(0),
+  clauseActions.setCurrentMutation(-1),
+  clauseActions.setCurrentMutation(1)
 )

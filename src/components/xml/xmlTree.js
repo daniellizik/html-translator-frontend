@@ -11,10 +11,18 @@ import { mutateList } from '~/src/util'
 // the component renders...before it is rendered
 // feels weird.
 
+const setView = (props) => {
+  if (props.clauses[props.activeClause] && props.slave.currentMutation < 0)
+    return mutateList(props.list.list, props.clauses[props.activeClause].view)
+  else {
+    return mutateList(props.slave.mutated, props.clauses[props.activeClause].view)
+  }
+}
+
 const XmlTree = (props) => (
   <table style={{width: '100%'}}>
     <tbody>
-      {props.clauses[props.activeClause] && mutateList(props.list.list, props.clauses[props.activeClause].view).reduce((acc, node, i, list) => {
+      {setView(props).reduce((acc, node, i, list) => {
         const tagType = findTagType({node, list}) 
         return !tagType ? acc : {
           count: acc.count + 1,
