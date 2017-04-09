@@ -2,13 +2,20 @@ import React, { Component } from 'react'
 import styles from '~/src/styles'
 import * as config from './config' 
 
+// what is with the unsightly
+// ({QUERY: props.queryActions, MUTATION: props.mutateActions})[props.type]
+// all these clauses can either be a query or mutation,
+// they must trigger different actions based on the type
+// passed via props
+// this should be refactored send a .ruleType prop in the action, probably
+
 export const TargetSetter = (props) => (
   <label class="col-12 p-0 m-0">
     change target
     <select 
       class="form-control custom-select" 
       value={props.clause.target} 
-      onChange={(e) => props.queryActions.changeTarget(e.target.value, props.clauseIndex, props.ruleIndex)}>
+      onChange={(e) => ({QUERY: props.queryActions, MUTATION: props.mutateActions})[props.type].changeTarget(e.target.value, props.clauseIndex, props.ruleIndex)}>
       {Object.keys(config[props.type].targets).map((p, j) => (
         <option value={p} key={j}>
           {p}
@@ -62,17 +69,17 @@ export const RegexBodySetter = (props) => (
     <input 
       class="form-control" 
       type="text" 
-      onChange={(e) => props.queryActions.changeRuleValue(e.target.value, props.clauseIndex, props.ruleIndex)} />
+      onChange={(e) => ({QUERY: props.queryActions, MUTATION: props.mutateActions})[props.type].changeRuleValue(e.target.value, props.clauseIndex, props.ruleIndex)} />
   </label>
 )
 
-export const RegexFlagsSetter = (props) => (
+export const ChangeRuleValueFlags = (props) => (
   <label class="col-12 p-0 m-0">
     change regex flags
     <input 
       class="form-control" 
       type="text" 
-      onChange={(e) => props.queryActions.changeRuleValueFlags(e.target.value, props.clauseIndex, props.ruleIndex)} />
+      onChange={(e) => ({QUERY: props.queryActions, MUTATION: props.mutateActions})[props.type].changeRuleValueFlags(e.target.value, props.clauseIndex, props.ruleIndex)} />
   </label>
 )
 
@@ -83,7 +90,7 @@ export const AttrKeySetter = (props) => (
       class="form-control" 
       type="text" 
       value={props.clause.targetValue} 
-      onChange={(e) => props.queryActions.changeTargetValue(e.target.value, props.clauseIndex, props.ruleIndex)} />
+      onChange={(e) => ({QUERY: props.queryActions, MUTATION: props.mutateActions})[props.type].changeTargetValue(e.target.value, props.clauseIndex, props.ruleIndex)} />
   </label>
 )
 
@@ -94,7 +101,7 @@ export const AttrValSetter = (props) => (
       class="form-control" 
       type="text" 
       value={props.clause.targetValue}
-      onChange={(e) => props.queryActions.changeTargetValue(e.target.value, props.clauseIndex, props.ruleIndex)} />
+      onChange={(e) => ({QUERY: props.queryActions, MUTATION: props.mutateActions})[props.type].changeTargetValue(e.target.value, props.clauseIndex, props.ruleIndex)} />
   </label>
 )
 

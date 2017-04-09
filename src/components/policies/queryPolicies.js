@@ -4,7 +4,7 @@ import {
   ChangeTargetValue,
   ChangeRule,
   RegexBodySetter,
-  RegexFlagsSetter,
+  ChangeRuleValueFlags,
   AttrKeySetter,
   AttrValSetter,
   AddAttrSetter,
@@ -55,7 +55,7 @@ export default [
           <RegexBodySetter {...props} />
         </div>
         <div class="col-6 mt-2">
-          <RegexFlagsSetter {...props} />
+          <ChangeRuleValueFlags {...props} />
         </div>
       </div>
     )
@@ -126,7 +126,7 @@ export default [
           <RegexBodySetter {...props} />
         </div>
         <div class="col-6 mt-2">
-          <RegexFlagsSetter {...props} />
+          <ChangeRuleValueFlags {...props} />
         </div>
       </div>
     )
@@ -163,7 +163,7 @@ export default [
           <RegexBodySetter {...props} />
         </div>
         <div class="col-6 mt-2">
-          <RegexFlagsSetter {...props} />
+          <ChangeRuleValueFlags {...props} />
         </div>
       </div>
     )
