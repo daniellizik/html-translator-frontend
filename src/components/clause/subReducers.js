@@ -4,7 +4,7 @@ import * as constants from './constants'
 
 // take view, mutations and apply them to list 
 export const mutationDenormalizer = (view = [], open = [], mutations = []) => {
-  return open.reduce((acc, node) => {
+  const result = open.reduce((acc, node) => {
     // only mutate items in view
     return view.indexOf(node.id) < 0 ? [...acc, node] : [
       ...acc,
@@ -18,6 +18,7 @@ export const mutationDenormalizer = (view = [], open = [], mutations = []) => {
       }
     ] 
   }, [])
+  return result
 }
 
 export const reduceRuleProp = (ruleType, state, action, prop) => {

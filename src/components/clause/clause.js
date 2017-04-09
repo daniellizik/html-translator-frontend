@@ -19,7 +19,7 @@ const Clause = (props) => (
     {policyValidator(props)}
     <div class="row py-2 m-0" style={closeStyle}>
       <div class="col-3">
-        <span onClick={() => props.queryActions.remove(props.clauseIndex, props.ruleIndex)}>
+        <span onClick={() => ({QUERY: props.queryActions, MUTATION: props.mutateActions})[props.type].remove(props.clauseIndex, props.ruleIndex)}>
           {({QUERY: 'remove this query', MUTATION: 'remove this mutation'})[props.type]}
         </span>
       </div>

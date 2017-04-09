@@ -32,7 +32,7 @@ export const defaultQuery = {
 }
 
 export const defaultMutation = {
-  target: 'TEXT',
+  target: '',
   targetValue: '',
   rule: 'START_OF',
   ruleValue: '',

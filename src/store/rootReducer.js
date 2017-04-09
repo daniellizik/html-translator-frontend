@@ -19,6 +19,8 @@ export default function rootReducer(state, action) {
     navigation
   )
 
+  // console.log(result.slave.mutated.map(o => o.value))
+
   return result
 
 }

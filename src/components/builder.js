@@ -39,7 +39,7 @@ const MaximizedClause = ({clauseActions, queryActions, mutateActions, clauseInde
         <button class="btn mr-2" onClick={() => clauseActions.remove(clauseIndex)}>
           remove this clause
         </button>
-        <button class="btn mr-2">
+        <button class="btn mr-2" onClick={() => mutateActions.denormalize(clauseIndex)}>
           view mutations
         </button>
         <button class="btn mr-2" onClick={() => queryActions.add(clauseIndex)}>

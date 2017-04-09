@@ -10,7 +10,7 @@ export default function mutationReducer(state, action) {
   if (action.type === clauseConstants.MUTATION_ADD) {
     nextState = {
       ...state,
-      clauses: state.clauses.map((c, i) => i !== action.clauseIndex ? i : {
+      clauses: state.clauses.map((c, i) => i !== action.clauseIndex ? c : {
         ...c,
         mutations: [...c.mutations, defaultMutation]
       })
@@ -36,7 +36,7 @@ export default function mutationReducer(state, action) {
         mutated: mutationDenormalizer(
           state.clauses[action.clauseIndex].view, 
           state.slave.list.open,
-          state.clauses[action.clauseIndex].mutations.filter(o => o.active) 
+          state.clauses[action.clauseIndex].mutations
         )
       }
     }

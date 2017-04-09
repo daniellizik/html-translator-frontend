@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import XmlTag, { findTagType } from './xmlTag'
 import { connect } from 'react-redux'
-import { generate as id } from 'shortid'
 import { mutateList } from '~/src/util'
 
 // the weird thing with this is that 
@@ -22,7 +21,7 @@ const XmlTree = (props) => (
           tags: [
             ...acc.tags,
             <XmlTag
-              key={id()}
+              key={i}
               node={node}
               index={i}
               row={acc.count}
