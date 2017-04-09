@@ -14,6 +14,7 @@ export const allReplaceText = chainActions(
   clauseActions.activate(0),
   mutateActions.add(0),
   mutateActions.changeRule('ALL_REPLACE', 0, 0),
+  mutateActions.changeTarget('TEXT', 0, 0),
   mutateActions.changeRuleValue('blah', 0, 0),
   mutateActions.toggle(true, 0, 0)
 ) 
@@ -22,9 +23,10 @@ export const reducedMutations = chainActions(
   allReplaceText,
   reducer,
   mutateActions.add(0),
-  mutateActions.changeRule('START_OF', 0, 1),
+  mutateActions.changeTarget('TEXT', 0, 1),
+  mutateActions.changeRule('ALL_REPLACE', 0, 1),
   mutateActions.changeRuleValue('cat ', 0, 1),
-  mutateActions.toggle(true, 0, 1)
+  mutateActions.denormalize(0)
 )
 
 export const regexMutation = chainActions(

@@ -43,7 +43,7 @@ export const ChangeRule = (props) => (
       class="form-control custom-select"
       value={props.clause.rule} 
       onChange={(e) => ({QUERY: props.queryActions, MUTATION: props.mutateActions})[props.type].changeRule(e.target.value, props.clauseIndex, props.ruleIndex)}>
-      {config[props.type].targets[props.clause.target || '*'].rules.map((r, i) => (
+      {config[props.type].targets[props.clause.target || 'TEXT'].rules.map((r, i) => (
         <option value={r} key={i}>
           {r}
         </option>

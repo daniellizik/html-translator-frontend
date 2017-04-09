@@ -27,7 +27,10 @@ export default [
     rules: ['START_OF', 'END_OF', 'ALL_REPLACE'],
     structure: (props) => (
       <div class="row pt-2 m-0">
-        <div class="col-12"> 
+        <div class="col-6">
+          <TargetSetter {...props} />
+        </div>
+        <div class="col-6"> 
           <ChangeRule {...props} />
         </div>
         <div class="col-12 mt-2">
@@ -40,7 +43,10 @@ export default [
     rules: ['REGEX_REPLACE'],
     structure: (props) => (
       <div class="row pt-2 m-0">
-        <div class="col-12">
+        <div class="col-6">
+          <TargetSetter {...props} />
+        </div>
+        <div class="col-6">
           <ChangeRule {...props} />
         </div>
         <div class="col-12 mt-2">

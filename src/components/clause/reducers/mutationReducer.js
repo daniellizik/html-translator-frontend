@@ -53,7 +53,10 @@ export default function mutationReducer(state, action) {
 
   else if (action.type === clauseConstants.MUTATION_CHANGE_RULE_VALUE_FLAGS)
     nextState = reduceRuleProp('mutations', state, action, 'ruleValueFlags')
-     
+
+  else if (action.type === clauseConstants.MUTATION_CHANGE_TARGET)
+    nextState = reduceRuleProp('mutations', state, action, 'target')
+
   else if (action.type === clauseConstants.MUTATION_CHANGE_TARGET_VALUE)
     nextState = reduceRuleProp('mutations', state, action, 'targetValue') 
 

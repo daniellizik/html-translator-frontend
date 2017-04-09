@@ -17,10 +17,25 @@ export const QUERY = {
 
 export const MUTATION = {
   targets: {
-    '*': {
-      rules: ['ALL_REPLACE', 'START_OF','END_OF','REGEX_REPLACE']
+    NODE_NAME: {
+      rules: ['ALL_REPLACE', 'START_OF','END_OF']
+    },
+    TEXT: {
+      rules: ['ALL_REPLACE', 'START_OF', 'END_OF', 'REGEX_REPLACE']
+    },
+    ATTR_KEY: {
+      rules: ['ALL_REPLACE', 'START_OF', 'END_OF', 'REGEX_REPLACE']
+    },
+    ATTR_VAL: {
+      rules: ['ALL_REPLACE', 'START_OF', 'END_OF', 'REGEX_REPLACE']
     }
   }
+}
+
+// hardcoded for parse5 ast spec
+export const targetMap = {
+  TEXT: 'value',
+  NODE_NAME: 'nodeName'
 }
 
 export const defaultQuery = {
@@ -32,6 +47,7 @@ export const defaultQuery = {
 }
 
 export const defaultMutation = {
+  target: 'TEXT',
   targetValue: '',
   rule: 'START_OF',
   ruleValue: '',
