@@ -18,14 +18,14 @@ export const TargetSetter = (props) => (
   </label>
 )
 
-export const TargetValueSetter = (props) => (
+export const ChangeTargetValue = (props) => (
   <label class="col-12 p-0 m-0">
     change target value
     <input 
       class="form-control" 
       type="text" 
       value={props.clause.targetValue} 
-      onChange={(e) => props.queryActions.changeTargetValue(e.target.value, props.clauseIndex, props.ruleIndex)} />
+      onChange={(e) => ({QUERY: props.queryActions, MUTATION: props.mutateActions})[props.type].changeTargetValue(e.target.value, props.clauseIndex, props.ruleIndex)} />
   </label>
 )
 
@@ -42,6 +42,17 @@ export const ChangeRule = (props) => (
         </option>
       ))}
     </select>
+  </label>
+)
+
+export const ChangeRuleValue = (props) => (
+  <label class="col-12 p-0 m-0">
+    change rule value
+    <input 
+      type="text"
+      class="form-control"
+      value={props.clause.ruleValue} 
+      onChange={(e) => ({QUERY: props.queryActions, MUTATION: props.mutateActions})[props.type].changeRuleValue(e.target.value, props.clauseIndex, props.ruleIndex)} />
   </label>
 )
 

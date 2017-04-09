@@ -1,10 +1,10 @@
-import * as targets from './targets'
-import * as rules from './rules'
-import * as constants from './constants'
+import * as targets from '../targets'
+import * as rules from '../rules'
+import * as constants from '../constants'
 
-// take view, mutations and apply them to list 
-export const mutationDenormalizer = (view = [], open = [], mutations = []) => {
-  return open.reduce((acc, node) => {
+// take view, mutations and apply them to FULL LIST, not open
+export const mutationDenormalizer = (view = [], list = [], mutations = []) => {
+  const result = list.reduce((acc, node) => {
     // only mutate items in view
     return view.indexOf(node.id) < 0 ? [...acc, node] : [
       ...acc,
@@ -18,6 +18,7 @@ export const mutationDenormalizer = (view = [], open = [], mutations = []) => {
       }
     ] 
   }, [])
+  return result
 }
 
 export const reduceRuleProp = (ruleType, state, action, prop) => {

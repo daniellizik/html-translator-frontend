@@ -47,7 +47,7 @@ export const multi = [
       { type: 'QUERY', targetValue: 'cat', target: 'TEXT', rule: 'LIKE' },
     ],
     mutations: [
-      { type: 'MUTATION', rule: 'ALL_REPLACE', ruleValue: 'blah' }
+      { type: 'MUTATION', rule: 'ALL_REPLACE', ruleValue: 'blah', targetValue: '' }
     ],
     view: []
   },

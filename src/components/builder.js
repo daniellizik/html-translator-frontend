@@ -20,7 +20,7 @@ const btnStyle = {
   backgroundColor: colors.lightYellow
 }
 
-const MaximizedClause = ({clauseActions, queryActions, mutateActions, clauseIndex, clauseGroup }) => (
+const MaximizedClause = ({ currentMutation, clauseActions, queryActions, mutateActions, clauseIndex, clauseGroup }) => (
   <div
     onClick={() => clauseActions.activate(clauseIndex)}
     key={clauseIndex} 
@@ -34,13 +34,13 @@ const MaximizedClause = ({clauseActions, queryActions, mutateActions, clauseInde
           onChange={(e) => clauseActions.changeName(clauseIndex, e.target.value)} 
           value={clauseGroup.name} 
           placeholder="clause title" />
-      </div>
+      </div> {console.log(11, currentMutation)}
       <div class="col-12 mb-2">
         <button class="btn mr-2" onClick={() => clauseActions.remove(clauseIndex)}>
           remove this clause
         </button>
-        <button class="btn mr-2">
-          view mutations
+        <button class="btn mr-2" onClick={() => mutateActions.denormalize(clauseIndex)}>
+          {currentMutation === clauseIndex ? 'hide mutations' : 'view mutations'}
         </button>
         <button class="btn mr-2" onClick={() => queryActions.add(clauseIndex)}>
           add a query
@@ -96,10 +96,15 @@ const Builder = (props) => (
   </div>
 )
 
+const mapStateToProps = (state) => ({
+  ...state,
+  currentMutation: state.slave.currentMutation
+})
+
 const mapDispatchToProps = (dispatch) => ({
   queryActions: bindActionCreators(queryActions, dispatch),
   mutateActions: bindActionCreators(mutateActions, dispatch),
   clauseActions: bindActionCreators(clauseActions, dispatch)
 })
 
-export default connect(s => s, mapDispatchToProps)(Builder)
+export default connect(mapStateToProps, mapDispatchToProps)(Builder)

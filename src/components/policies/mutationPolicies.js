@@ -1,8 +1,9 @@
 import React from 'react'
 import {
   TargetSetter,
-  TargetValueSetter,
+  ChangeTargetValue,
   ChangeRule,
+  ChangeRuleValue,
   RegexBodySetter,
   RegexFlagsSetter,
   AttrKeySetter,
@@ -30,7 +31,7 @@ export default [
           <ChangeRule {...props} />
         </div>
         <div class="col-12 mt-2">
-          <TargetValueSetter {...props} />
+          <ChangeRuleValue {...props} />
         </div>
       </div>
     )
@@ -107,7 +108,7 @@ export default [
           <AttrValSetter {...props} />
         </div>
         <div class="col-6 mt-2">
-          <TargetValueSetter {...props} />
+          <ChangeTargetValue {...props} />
         </div>
         <div class="col-6 mt-2">
           <ChangeRule {...props} />
