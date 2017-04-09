@@ -20,6 +20,12 @@ export default {
     type: constants.MUTATION_DENORMALIZE,
     clauseIndex
   }),
+  changeTarget: (target, clauseIndex, ruleIndex) => ({
+    type: constants.MUTATION_CHANGE_TARGET,
+    target,
+    clauseIndex,
+    ruleIndex
+  }),
   changeTargetValue: (targetValue, clauseIndex, ruleIndex) => ({
     type: constants.MUTATION_CHANGE_TARGET_VALUE,
     targetValue,

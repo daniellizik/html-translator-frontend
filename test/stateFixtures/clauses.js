@@ -44,10 +44,10 @@ export const multi = [
     minimized: false,
     active: true,
     queries: [
-      { type: 'QUERY', targetValue: 'cat', target: 'TEXT', rule: 'LIKE' },
+      { type: 'QUERY', targetValue: 'div', target: 'NODE_NAME', rule: 'LIKE' },
     ],
     mutations: [
-      { type: 'MUTATION', rule: 'ALL_REPLACE', ruleValue: 'blah', targetValue: '' }
+      { type: 'MUTATION', target: 'NODE_NAME', rule: 'ALL_REPLACE', ruleValue: 'blah', targetValue: '' }
     ],
     view: []
   },

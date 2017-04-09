@@ -1,6 +1,7 @@
 import * as targets from '../targets'
 import * as rules from '../rules'
 import * as constants from '../constants'
+import { targetMap } from '../config'
 
 // take view, mutations and apply them to FULL LIST, not open
 // this makes it easier for xml tree to consume (it just spits out entire list)
@@ -9,17 +10,33 @@ export const mutationDenormalizer = (view = [], list = [], mutations = []) => {
     // only mutate items in view
     return view.indexOf(node.id) < 0 ? [...acc, node] : [
       ...acc,
-      {
-        ...node,
-        // need to dynamically set key, could be nodeName or value
-        // or an attr prop
-        // need query target for this
-        value: mutations.reduce((mutated, m) => {
-          // this is where the before api stuff gets set
-          const params = {...m, before: mutated}
-          return rules[m.rule](params)
-        }, node.value)
-      }
+      mutations.reduce((mutatedNode, mutation) => {
+        const target = targetMap[mutation.target]
+        const params = {...mutation, before: mutatedNode[target]}
+        mutatedNode[target] = rules[mutation.rule](params)
+        return mutatedNode
+      }, {...node})
+      // {
+      //   ...node,
+      //   ((node) => {
+
+      //   })(node)
+      //   // need to dynamically set key, could be nodeName or value
+      //   // or an attr prop
+      //   // need query target for this
+      //   // value: mutations.reduce((mutated, mutation) => {
+      //   //   console.log(mutation)
+      //   //   // this is where the before api stuff gets set
+      //   //   const params = {...mutation, before: mutated}
+      //   //   return rules[mutation.rule](params)
+      //   // }, node.value)
+      //   [config.targetMap[]]: mutations.reduce((mutated, mutation) => {
+      //     console.log(mutation)
+      //     // this is where the before api stuff gets set
+      //     const params = {...mutation, before: mutated}
+      //     return rules[mutation.rule](params)
+      //   }, node.value)
+      // }
     ] 
   }, [])
   return result
