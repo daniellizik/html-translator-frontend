@@ -1,6 +1,6 @@
 import * as constants from '../constants'
 import * as sourceSetterConstants from '~/src/containers/sourceSetter/constants'
-import { defaultQuery, MUTATION } from '../config'
+import { defaultQuery, MUTATION } from '../settings/config'
 import { reduceView, reduceMutated, reduceClauses, mapMutations } from './util'
 
 export default function queryReducer(state, action) {

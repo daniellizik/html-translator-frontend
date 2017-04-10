@@ -3,14 +3,9 @@ import XmlTag, { findTagType } from './xmlTag'
 import { connect } from 'react-redux'
 import { mutateList } from '~/src/util'
 
-// the weird thing with this is that 
-// we dont want to render empty text nodes, even though
-// they are part of the list. doing so would cause the code line numbers
-// to be all messed up, like they skip lines
-// so to only render what we want we need to look at the data
-// the component renders...before it is rendered
-// feels weird.
 
+// similar to denormalize mutations, it needs to denormalize the whole list
+// not just open tags
 const setView = (props) => {
   if (props.clauses[props.activeClause] && props.slave.currentMutation < 0)
     return mutateList(props.list.list, props.clauses[props.activeClause].view)
@@ -18,6 +13,14 @@ const setView = (props) => {
     return mutateList(props.slave.mutated, props.clauses[props.activeClause].view)
   }
 }
+
+// the weird thing with this is that 
+// we dont want to render empty text nodes, even though
+// they are part of the list. doing so would cause the code line numbers
+// to be all messed up, like they skip lines
+// so to only render what we want we need to look at the data
+// the component renders...before it is rendered
+// feels weird.
 
 const XmlTree = (props) => (
   <table style={{width: '100%'}}>

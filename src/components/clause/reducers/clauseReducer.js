@@ -1,5 +1,5 @@
 import * as constants from '../constants'
-import { defaultClause } from '../config'
+import { defaultClause } from '../settings/config'
 import { reduceView } from './util'
 
 export default function(state, action) {

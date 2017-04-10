@@ -1,9 +1,11 @@
 import React from 'react'
+import { targets } from '~/src/components/clause/settings/config'
 import {
   TargetSetter,
   ChangeTargetValue,
   ChangeRule,
   ChangeRuleValue,
+  ChangeBehavior,
   RegexBodySetter,
   ChangeRuleValueFlags,
   AttrKeySetter,
@@ -24,6 +26,7 @@ import {
 
 export default [
   {
+    targets,
     rules: ['START_OF', 'END_OF', 'ALL_REPLACE'],
     structure: (props) => (
       <div class="row pt-2 m-0">
@@ -40,6 +43,7 @@ export default [
     )
   },
   {
+    targets,
     rules: ['REGEX_REPLACE'],
     structure: (props) => (
       <div class="row pt-2 m-0">

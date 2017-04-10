@@ -1,42 +1,29 @@
-import * as targets from '../targets'
-import * as rules from '../rules'
+import * as targets from '../settings/targets'
+import * as rules from '../settings/rules'
 import * as constants from '../constants'
-import { targetMap } from '../config'
+import * as behaviors from '../settings/behaviors'
+import { targetMap } from '../settings/config'
 
 // take view, mutations and apply them to FULL LIST, not open
 // this makes it easier for xml tree to consume (it just spits out entire list)
 export const mutationDenormalizer = (view = [], list = [], mutations = []) => {
-  const result = list.reduce((acc, node) => {
+  // mutations might have to mutate entire list, so give a copy to keep it immutable
+  const result = list.slice().reduce((acc, node, i, arr) => {
     // only mutate items in view
     return view.indexOf(node.id) < 0 ? [...acc, node] : [
       ...acc,
+      // this needs to account for mutation behavior
       mutations.reduce((mutatedNode, mutation) => {
         const target = targetMap[mutation.target]
         const params = {...mutation, before: mutatedNode[target]}
-        mutatedNode[target] = rules[mutation.rule](params)
-        return mutatedNode
+        const ruleResult = rules[mutation.rule](params)
+        // todo: implement this
+        // const behaviorResult = behaviors[mutation.behavior](mutatedNode, mutation, arr, ruleResult)
+        return {
+          ...mutatedNode,
+          [target]: ruleResult
+        }
       }, {...node})
-      // {
-      //   ...node,
-      //   ((node) => {
-
-      //   })(node)
-      //   // need to dynamically set key, could be nodeName or value
-      //   // or an attr prop
-      //   // need query target for this
-      //   // value: mutations.reduce((mutated, mutation) => {
-      //   //   console.log(mutation)
-      //   //   // this is where the before api stuff gets set
-      //   //   const params = {...mutation, before: mutated}
-      //   //   return rules[mutation.rule](params)
-      //   // }, node.value)
-      //   [config.targetMap[]]: mutations.reduce((mutated, mutation) => {
-      //     console.log(mutation)
-      //     // this is where the before api stuff gets set
-      //     const params = {...mutation, before: mutated}
-      //     return rules[mutation.rule](params)
-      //   }, node.value)
-      // }
     ] 
   }, [])
   return result

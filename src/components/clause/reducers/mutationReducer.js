@@ -1,6 +1,6 @@
 import * as clauseConstants from '../constants'
 import * as sourceSetterConstants from '~/src/containers/sourceSetter/constants'
-import { QUERY, MUTATION, defaultMutation } from '../config'
+import { QUERY, MUTATION, defaultMutation } from '../settings/config'
 import { mapMutations, reduceRuleProp, mutationDenormalizer } from './util'
 
 export default function mutationReducer(state, action) {
@@ -44,6 +44,9 @@ export default function mutationReducer(state, action) {
 
   else if (action.type === clauseConstants.MUTATION_TOGGLE)
     nextState = reduceRuleProp('mutations', state, action, 'active')
+
+  else if (action.type === clauseConstants.MUTATION_CHANGE_BEHAVIOR)
+    nextState = reduceRuleProp('mutations', state, action, 'behavior') 
 
   else if (action.type === clauseConstants.MUTATION_CHANGE_RULE)
     nextState = reduceRuleProp('mutations', state, action, 'rule') 

@@ -24,7 +24,7 @@ const MaximizedClause = ({ currentMutation, clauseActions, queryActions, mutateA
   <div
     onClick={() => clauseActions.activate(clauseIndex)}
     key={clauseIndex} 
-    class="col-12 mx-0 my-2 py-3" 
+    class="col-12 mx-0 mb-3 py-3" 
     style={clauseStyle}>
     <div class="row">
       <div class="col-12 mb-2">
@@ -76,7 +76,7 @@ const MaximizedClause = ({ currentMutation, clauseActions, queryActions, mutateA
 const MinifiedClause = () => ({})
 
 const Builder = (props) => (
-  <div class="row px-4 py-3">
+  <div class="row pl-4 px-3 py-3">
     <div class="col-12 p-0 mb-3">
       <button style={btnStyle} class="btn p-2 mr-2" onClick={props.clauseActions.add}>
         add clause <i class="fa fa-plus"></i>

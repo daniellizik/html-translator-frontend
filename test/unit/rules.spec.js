@@ -1,4 +1,4 @@
-import * as rules from '~/src/components/clause/rules'
+import * as rules from '~/src/components/clause/settings/rules'
 
 describe('query clause rules', () => {
 
@@ -42,6 +42,28 @@ describe('query clause rules', () => {
       expect(rules.REGEX({ before: 'cat burrito' })).toBeFalsy()
       expect(rules.REGEX({ before: 'cat', targetValue: 1 })).toBeFalsy()
       expect(rules.REGEX({ targetValue: 'a' })).toBeFalsy()
+    })
+  })
+
+  describe('HAS_NONE', () => {
+    it('should return true for array with 0 length', () => {
+      expect(rules.HAS_NONE({before: []})).toBeTruthy()
+    })
+    it('should return false for array that does not have 0 length', () => {
+      expect(rules.HAS_NONE({before: [{}]})).toBeFalsy()
+    })
+  })
+
+  describe('HAS_AT_LEAST', () => {
+    it('should return true for greater than or equal to', () => {
+      expect(rules.HAS_AT_LEAST({
+        before: [{}], 
+        ruleValue: 1
+      })).toBeTruthy()
+      expect(rules.HAS_AT_LEAST({
+        before: [1, 2, 3], 
+        ruleValue: 4
+      })).toBeFalsy()
     })
   })
 

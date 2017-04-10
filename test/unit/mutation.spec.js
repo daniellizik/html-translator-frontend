@@ -1,4 +1,4 @@
-import { defaultMutation } from '~/src/components/clause/config'
+import { defaultMutation } from '~/src/components/clause/settings/config'
 import { mutationDenormalizer } from '~/src/components/clause/reducers/util'
 import {
   allReplaceText,
@@ -9,7 +9,7 @@ import {
 } from '~/test/storyFixtures/mutation'
 
 describe('mutations', () => {
-  
+
   describe('adding a mutation', () => {
     it('should add mutation type rule to end of rules array', () => {
       expect(allReplaceText[5].clauses[0].mutations.length).toBe(1)

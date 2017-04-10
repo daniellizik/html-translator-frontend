@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { colors } from '~/src/styles/constants'
 import iconStyle from '~/src/styles/icon'
-import policyValidator from '~/src/components/policies/validator'
+import policyValidator from '~/src/components/clause/policies/validator'
 import { queryActions, mutateActions, clauseActions } from '~/src/components/clause/actions/index'
 
 const hrStyle = {

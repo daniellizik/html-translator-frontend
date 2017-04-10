@@ -24,7 +24,7 @@ import {
 
 export default [
   {
-    target: ['TEXT'], 
+    targets: ['TEXT'], 
     rules: ['EQUALS', 'NOT_EQUALS', 'LIKE', 'NOT_LIKE'],
     structure: (props) => (
       <div class="row pt-2 m-0">
@@ -41,7 +41,7 @@ export default [
     )
   },
   {
-    target: ['TEXT'],
+    targets: ['TEXT'],
     rules: ['REGEX'],
     structure: (props) => (
       <div class="row pt-2 m-0">
@@ -61,7 +61,7 @@ export default [
     )
   },
   {
-    target: ['NODE_NAME'],
+    targets: ['NODE_NAME'],
     rules: ['EQUALS', 'NOT_EQUALS', 'LIKE', 'NOT_LIKE'],
     structure: (props) => (
       <div class="row pt-2 m-0">
@@ -78,7 +78,7 @@ export default [
     )
   },
   {
-    target: ['NODE_NAME'],
+    targets: ['NODE_NAME'],
     rules: ['REGEX'],
     structure: (props) => (
       <div class="row pt-2 m-0">
@@ -95,7 +95,7 @@ export default [
     )
   },
   {
-    target: ['ATTR_KEY'],
+    targets: ['ATTR_KEY'],
     rules: ['EQUALS', 'NOT_EQUALS', 'LIKE', 'NOT_LIKE'],
     structure: (props) => (
       <div class="row pt-2 m-0">
@@ -112,7 +112,7 @@ export default [
     )
   },
   {
-    target: ['ATTR_KEY'],
+    targets: ['ATTR_KEY'],
     rules: ['REGEX'],
     structure: (props) => (
       <div class="row pt-2 m-0">
@@ -132,7 +132,7 @@ export default [
     )
   },
   {
-    target: ['ATTR_VAL'],
+    targets: ['ATTR_VAL'],
     rules: ['EQUALS', 'NOT_EQUALS', 'LIKE', 'NOT_LIKE'],
     structure: (props) => (
       <div class="row pt-2 m-0">
@@ -149,7 +149,7 @@ export default [
     )
   },
   {
-    target: ['ATTR_VAL'],
+    targets: ['ATTR_VAL'],
     rules: ['REGEX'],
     structure: (props) => (
       <div class="row pt-2 m-0">

@@ -49,6 +49,15 @@ export const REGEX = ({before, ruleValue, ruleValueFlags}) => {
   return rx.test(before)
 }
 
+export const HAS_NONE = ({before}) => {
+  return before.length === 0
+}
+
+export const HAS_AT_LEAST = ({before, ruleValue}) => {
+  return before.length >= ruleValue
+}
+
+
 // mutator  
 
 export const ALL_REPLACE = ({ruleValue}) => {

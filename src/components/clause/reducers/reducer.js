@@ -1,6 +1,6 @@
 import * as clauseConstants from '../constants'
 import * as sourceSetterConstants from '~/src/containers/sourceSetter/constants'
-import { defaultQuery, defaultClause, mutator } from '../config'
+import { defaultQuery, defaultClause, mutator } from '../settings/config'
 import queryReducer from './queryReducer'
 import mutationReducer from './mutationReducer'
 import clauseReducer from './clauseReducer'

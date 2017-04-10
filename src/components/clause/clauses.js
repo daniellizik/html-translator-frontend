@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
+import React from 'react'
 import styles from '~/src/styles'
-import * as config from './config' 
+import * as config from './settings/config' 
 
 // what is with the unsightly
 // ({QUERY: props.queryActions, MUTATION: props.mutateActions})[props.type]
@@ -80,6 +80,22 @@ export const ChangeRuleValueFlags = (props) => (
       class="form-control" 
       type="text" 
       onChange={(e) => ({QUERY: props.queryActions, MUTATION: props.mutateActions})[props.type].changeRuleValueFlags(e.target.value, props.clauseIndex, props.ruleIndex)} />
+  </label>
+)
+
+export const ChangeBehavior = (props) => (
+  <label class="col-12 p-0 m-0">
+    change behavior
+    <select 
+      class="form-control custom-select"
+      value={props.clause.behavior} 
+      onChange={(e) => ({QUERY: props.queryActions, MUTATION: props.mutateActions})[props.type].changeBehavior(e.target.value, props.clauseIndex, props.ruleIndex)}>
+      {config[props.type].targets[props.clause.target].behaviors.map((r, i) => (
+        <option value={r} key={i}>
+          {r}
+        </option>
+      ))}
+    </select>
   </label>
 )
 

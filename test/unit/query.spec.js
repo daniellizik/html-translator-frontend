@@ -8,7 +8,7 @@ import {
   modifyingAttrKeyQueries,
   modifyingAttrValQueries
 } from '~/test/storyFixtures/query'
-import { defaultQuery } from '~/src/components/clause/config'
+import { defaultQuery } from '~/src/components/clause/settings/config'
 import { filterText } from '~/src/util'
 
 describe('adding a clause', () => {
