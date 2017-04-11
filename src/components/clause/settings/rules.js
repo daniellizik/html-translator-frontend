@@ -1,3 +1,5 @@
+import * as constants from '../constants'
+
 export const EQUALS = ({before, targetValue}) => {
   if (!before || !targetValue)
     return false
@@ -38,14 +40,20 @@ export const NOT_LIKE = ({before, targetValue}) => {
     return true
 }
 
-export const REGEX = ({before, ruleValue, ruleValueFlags}) => {
+export const REGEX = ({before = '', ruleValue = '', ruleValueFlags = ''}) => {
   if (!before || !ruleValue)
     return false
   if (typeof before !== 'string' || typeof ruleValue !== 'string')
     return false
   if (ruleValueFlags && typeof ruleValueFlags !== 'string')
     return false
-  const rx = new RegExp(ruleValue.replace(/\//g, '\\\\'), ruleValueFlags || '')
+  let rx
+  try {
+    rx = new RegExp(ruleValue.replace(/\//g, '\\\\'), ruleValueFlags)
+  }
+  catch(e) {
+    throw new Error(constants.CLAUSE_ERROR_INVALID_REGEX)
+  }
   return rx.test(before)
 }
 
@@ -73,9 +81,17 @@ export const END_OF = ({ ruleValue = '', before = '' }) => {
 }
 
 export const REGEX_REPLACE = ({ruleValue = '', ruleValueFlags = '', targetValue = '', before = ''}) => {
-  const rx = new RegExp((ruleValue).replace(/\//g, '\\\\'), ruleValueFlags)
+  let rx
+  try {
+    rx = new RegExp((ruleValue).replace(/\//g, '\\\\'), ruleValueFlags)
+  }
+  catch(e) {
+    throw new Error(constants.CLAUSE_ERROR_INVALID_REGEX)
+  }
   return before.replace(rx, targetValue)
 }
+
+// implement these later...
 
 export const ADD_ATTR = (base, ...attrs) => {
   return obj

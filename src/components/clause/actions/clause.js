@@ -20,6 +20,11 @@ export default {
     clauseIndex,
     name
   }),
+  changeTarget: (target, clauseIndex) => ({
+    type: constants.CLAUSE_CHANGE_TARGET,
+    target,
+    clauseIndex
+  }),
   setCurrentMutation: (currentMutation) => ({
     type: constants.CLAUSE_VIEW_MUTATIONS,
     currentMutation

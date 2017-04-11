@@ -8,7 +8,8 @@ export const QUERY = {
         'EQUALS', 
         'NOT_EQUALS', 
         'LIKE', 
-        'NOT_LIKE'
+        'NOT_LIKE',
+        'REGEX'
       ],
       behaviors: []
     },
@@ -75,7 +76,6 @@ export const targetMap = {
 }
 
 export const defaultQuery = {
-  target: 'TEXT',
   targetValue: '',
   rule: 'EQUALS',
   ruleValue: '',
@@ -83,7 +83,6 @@ export const defaultQuery = {
 }
 
 export const defaultMutation = {
-  target: 'TEXT',
   targetValue: '',
   rule: 'START_OF',
   ruleValue: '',
@@ -95,6 +94,8 @@ export const defaultClause = {
   name: '',
   minimized: false,
   active: false,
+  target: 'TEXT',
+  type: 'CLAUSE',
   queries: [defaultQuery],
   mutations: [],
   view: []

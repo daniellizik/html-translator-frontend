@@ -9,9 +9,10 @@ import { mutateList } from '~/src/util'
 const setView = (props) => {
   if (props.clauses[props.activeClause] && props.slave.currentMutation < 0)
     return mutateList(props.list.list, props.clauses[props.activeClause].view)
-  else {
+  else if (props.clauses.length > 0)
     return mutateList(props.slave.mutated, props.clauses[props.activeClause].view)
-  }
+  else
+    return mutateList(props.list.list, [])
 }
 
 // the weird thing with this is that 

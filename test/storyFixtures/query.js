@@ -71,14 +71,14 @@ export const modifyingTextQueries = chainActions(
 export const modifyingNodeNameQueries = chainActions(
   modifyingTextQueries,
   reducer,
-  queryActions.changeTarget('NODE_NAME', 1, 0),
+  clauseActions.changeTarget('NODE_NAME', 1, 0),
   queryActions.changeTargetValue('span', 1, 0)
 )
 
 export const modifyingAttrKeyQueries = chainActions(
   modifyingNodeNameQueries,
   reducer,
-  queryActions.changeTarget('ATTR_KEY', 1, 0),
+  clauseActions.changeTarget('ATTR_KEY', 1),
   queryActions.changeRule('EQUALS', 1, 0),
   queryActions.changeTargetValue('data-cat', 1, 0),
   queryActions.changeTargetValue('q', 1, 0),
@@ -86,7 +86,7 @@ export const modifyingAttrKeyQueries = chainActions(
   queryActions.changeTargetValue('cat', 1, 0),
   queryActions.add(1),
   queryActions.changeRule('LIKE', 1, 1),
-  queryActions.changeTarget('ATTR_KEY', 1, 1),
+  clauseActions.changeTarget('ATTR_KEY', 1),
   queryActions.changeTargetValue('data', 1, 1),
   queryActions.changeRule('NOT_LIKE', 1, 0),
   queryActions.remove(1, 1),
@@ -97,7 +97,7 @@ export const modifyingAttrKeyQueries = chainActions(
 export const modifyingAttrValQueries = chainActions(
   modifyingNodeNameQueries,
   reducer,
-  queryActions.changeTarget('ATTR_VAL', 1, 0),
+  clauseActions.changeTarget('ATTR_VAL', 1),
   queryActions.changeTargetValue('something', 1, 0),
   queryActions.changeRule('EQUALS', 1, 0),
   queryActions.changeTargetValue('some', 1, 0),
@@ -106,4 +106,17 @@ export const modifyingAttrValQueries = chainActions(
   queryActions.changeRule('NOT_EQUALS', 1, 0),
   queryActions.changeRule('REGEX', 1, 0),
   queryActions.changeRuleValue('some', 1, 0)
+)
+
+export const searchNodeNameViaRx = chainActions(
+  state,
+  reducer,
+  clauseActions.add(),
+  clauseActions.changeTarget('NODE_NAME', 0),
+  queryActions.remove(0, 0),
+  queryActions.add(0),
+  queryActions.changeRule('REGEX', 0, 0),
+  queryActions.changeRuleValue('spa', 0, 0),
+  queryActions.changeRuleValueFlags('i', 0, 0),
+  queryActions.changeRuleValueFlags('!#$#%%%#', 0, 0)
 )

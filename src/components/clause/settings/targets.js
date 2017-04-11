@@ -1,8 +1,13 @@
 export const query = {
 
-  NODE_NAME: (node, {rule, targetValue}) => {
-    const before =  node.nodeName === '#text' ? 'text' : node.nodeName
-    return rule({ before, targetValue })
+  // NODE_NAME: (node, {rule, targetValue}) => {
+  //   const before =  node.nodeName === '#text' ? 'text' : node.nodeName
+  //   return rule({ before, targetValue })
+  // },
+
+  NODE_NAME: ({nodeName}, comparator) => {
+    const before = nodeName === '#text' ? 'text' : nodeName
+    return comparator.rule({ before, ...comparator })
   },
 
   TEXT: ({nodeName, value}, comparator) => {
