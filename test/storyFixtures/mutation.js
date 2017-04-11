@@ -1,5 +1,6 @@
 import * as constants from '~/src/components/clause/constants'
 import baseState from '~/test/stateFixtures/mutate'
+import cleanState from '~/src/store/state'
 import { queryActions, mutateActions, clauseActions, builderActions } from '~/src/components/clause/actions/index'
 import reducer from '~/src/store/rootReducer'
 import { chainActions } from '~/src/util'
@@ -67,3 +68,21 @@ export const nodename = chainActions(
   mutateActions.toggle(true, 0, 0),
   mutateActions.denormalize(0)
 )
+
+export const chainedDenormalizations = chainActions(
+  nodename,
+  reducer,
+  clauseActions.changeTarget('TEXT', 0),
+  queryActions.changeTargetValue('cat-', 0, 0),
+  mutateActions.add(0),
+  mutateActions.changeRuleValue('blah', 0, 0),
+  mutateActions.changeRuleValue('-foo', 0, 1),
+  mutateActions.changeRule('END_OF', 0, 1),
+  clauseActions.add(),
+  clauseActions.changeTarget('NODE_NAME', 1),
+  queryActions.changeTargetValue('span', 1, 0),
+  mutateActions.add(1),
+  mutateActions.changeRuleValue('span-good', 1, 0),
+  mutateActions.changeRule('ALL_REPLACE', 1, 0),
+  builderActions.viewAllMutations()
+) 

@@ -8,11 +8,29 @@ import { mutateList } from '~/src/util'
 // not just open tags
 const setView = (props) => {
   if (props.clauses[props.activeClause] && props.slave.currentMutation < 0)
-    return mutateList(props.list.list, props.clauses[props.activeClause].view)
-  else if (props.clauses.length > 0)
-    return mutateList(props.slave.mutated, props.clauses[props.activeClause].view)
+    return mutateList(
+      props.list.list, 
+      props.clauses[props.activeClause].view
+    )
+  else if (props.clauses.length > 0 && props.activeClause > -1)
+    return mutateList(
+      props.slave.mutated, 
+      props.clauses[props.activeClause].view
+    )
+  else if (props.activeClause === -1)
+    return mutateList(
+      props.slave.mutated,
+      props.clauses.reduce((a, c) => {
+        return [...a, ...c.view.reduce((b, n) => {
+          return a.includes(n) ? b : [...b, n]
+        }, [])]
+      }, [])
+    )
   else
-    return mutateList(props.list.list, [])
+    return mutateList(
+      props.list.list, 
+      []
+    )
 }
 
 // the weird thing with this is that 

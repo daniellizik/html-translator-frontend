@@ -10,27 +10,27 @@ export const errorHandler = (action, {message}) => {
 
 // take view, mutations and apply them to FULL LIST, not open
 // this makes it easier for xml tree to consume (it just spits out entire list)
-export const mutationDenormalizer = (clauseTarget, view = [], list = [], mutations = []) => {
+export const mutationDenormalizer = (clause, list = []) => {
+  const { target, view, mutations } = clause
   // mutations might have to mutate entire list, so give a copy to keep it immutable
-  const result = list.slice().reduce((acc, node, i, arr) => {
+  return list.slice().reduce((acc, node, i, arr) => {
     // only mutate items in view
     return view.indexOf(node.id) < 0 ? [...acc, node] : [
       ...acc,
       // this needs to account for mutation behavior
       mutations.reduce((mutatedNode, mutation) => {
-        const target = targetMap[clauseTarget]
-        const params = {...mutation, before: mutatedNode[target]}
+        const targetProp = targetMap[target]
+        const params = {...mutation, before: mutatedNode[targetProp]}
         const ruleResult = rules[mutation.rule](params)
         // todo: implement this
         // const behaviorResult = behaviors[mutation.behavior](mutatedNode, mutation, arr, ruleResult)
         return {
           ...mutatedNode,
-          [target]: ruleResult
+          [targetProp]: ruleResult
         }
       }, {...node})
     ] 
   }, [])
-  return result
 }
 
 export const reduceRuleProp = (ruleType, state, action, prop) => {

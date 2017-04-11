@@ -100,7 +100,7 @@ const Builder = (props) => (
       <button style={btnStyle} class="btn p-2 mr-2" onClick={props.builderActions.removeAll}>
         remove all clauses
       </button>
-      <button style={btnStyle} class="btn p-2 mr-2">
+      <button style={btnStyle} class="btn p-2 mr-2" onClick={props.builderActions.viewAllMutations}>
         view all mutations
       </button>
     </div>

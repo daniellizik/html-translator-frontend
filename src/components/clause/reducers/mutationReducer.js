@@ -36,10 +36,8 @@ export default function mutationReducer(state, action) {
           ...state.slave,
           currentMutation: action.clauseIndex,
           mutated: action.clauseIndex < 0 ? [] : mutationDenormalizer(
-            state.clauses[action.clauseIndex].target,
-            state.clauses[action.clauseIndex].view, 
+            state.clauses[action.clauseIndex],
             state.slave.list.list,
-            state.clauses[action.clauseIndex].mutations
           )
         }
       }

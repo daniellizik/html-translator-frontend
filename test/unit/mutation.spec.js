@@ -5,7 +5,8 @@ import {
   reducedMutations,
   regexMutation,
   toggling,
-  nodename
+  nodename,
+  chainedDenormalizations
 } from '~/test/storyFixtures/mutation'
 
 
@@ -62,4 +63,10 @@ describe('mutating nodename', () => {
   })
 })
 
-
+describe('viewing all mutations for several clauses', () => {
+  it('should chain denormalizations', () => {
+    const result = chainedDenormalizations[13].slave.mutated
+    expect(result.filter(n => !n.close && n.nodeName === 'span-good').length).toBe(5)
+    expect(result.filter(n => !n.close && n.value === 'blah-foo').length).toBe(3)
+  })
+})

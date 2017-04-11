@@ -53,7 +53,8 @@ export const multi = [
       { ...defaultQuery, type: 'QUERY', targetValue: 'cat', rule: 'LIKE' },
     ],
     mutations: [
-      { ...defaultMutation, type: 'MUTATION', rule: 'ALL_REPLACE', ruleValue: 'blah', targetValue: '' }
+      { ...defaultMutation, type: 'MUTATION', rule: 'ALL_REPLACE', ruleValue: 'blah', targetValue: '' },
+      { ...defaultMutation, type: 'MUTATION', rule: 'END_OF', ruleValue: ' jesuf', targetValue: '' },
     ],
     view: []
   },
@@ -61,11 +62,13 @@ export const multi = [
     name: 'clause #2',
     minimized: true,
     active: false,
-    target: 'TEXT',
+    target: 'NODE_NAME',
     queries: [
-      { ...defaultQuery, type: 'QUERY', targetValue: 'burrito', rule: 'LIKE' },
+      { ...defaultQuery, type: 'QUERY', targetValue: 'span', rule: 'EQUALS' },
     ],
-    mutations: [],
+    mutations: [
+      { ...defaultMutation, type: 'MUTATION', rule: 'ALL_REPLACE', ruleValue: 'span-blah' }
+    ],
     view: []
   }
 ]
