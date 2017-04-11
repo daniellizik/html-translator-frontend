@@ -11,16 +11,16 @@ import {
 
 describe('adding a mutation', () => {
   it('should add mutation type rule to end of rules array', () => {
-    expect(allReplaceText[5].clauses[0].mutations.length).toBe(1)
+    expect(allReplaceText[4].clauses[0].mutations.length).toBe(1)
   })
   it('should add default mutation to end of rules array', () => {
-    expect(allReplaceText[2].clauses[0].mutations.slice(-1).pop()).toMatchObject(defaultMutation)
+    expect(allReplaceText[1].clauses[0].mutations.slice(-1).pop()).toMatchObject(defaultMutation)
   })
 })
 
 describe('activating a mutation', () => {
   it('should set as active', () => {
-    expect(allReplaceText[6].clauses[0].mutations.slice(-1).pop().active).toBeTruthy()
+    expect(allReplaceText[5].clauses[0].mutations.slice(-1).pop().active).toBeTruthy()
   })
 })
 

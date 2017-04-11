@@ -1,6 +1,6 @@
 import * as constants from '~/src/containers/sourceSetter/constants'
 import state from '~/test/stateFixtures/test'
-import reducer from '~/src/containers/sourceSetter/reducer'
+import reducer from '~/src/store/rootReducer'
 import { chainActions } from '~/src/util'
 
 export default chainActions(

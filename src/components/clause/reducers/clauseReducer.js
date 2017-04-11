@@ -18,6 +18,12 @@ export default function(state, action) {
     }
   }
 
+  else if (action.type === constants.CLAUSE_ACTIVATE)
+    nextState = {
+      ...state,
+      activeClause: action.clauseIndex
+    }
+
   else if (action.type === constants.CLAUSE_VIEW_MUTATIONS)
     nextState = {
       ...state,

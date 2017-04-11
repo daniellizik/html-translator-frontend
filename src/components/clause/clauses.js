@@ -14,7 +14,8 @@ export const TargetSetter = (props) => (
     <p>change target</p>
     <select 
       class="form-control custom-select" 
-      value={props.clause.target} 
+      value={props.clause.target}
+      onClick={() => props.clauseActions.activate(props.clauseIndex)}
       onChange={(e) => ({QUERY: props.queryActions, MUTATION: props.mutateActions})[props.type].changeTarget(e.target.value, props.clauseIndex, props.ruleIndex)}>
       {Object.keys(config[props.type].targets).map((p, j) => (
         <option value={p} key={j}>
@@ -31,6 +32,7 @@ export const ChangeTargetValue = (props) => (
     <input 
       class="form-control" 
       type="text" 
+      onClick={() => props.clauseActions.activate(props.clauseIndex)}
       value={props.clause.targetValue} 
       onChange={(e) => ({QUERY: props.queryActions, MUTATION: props.mutateActions})[props.type].changeTargetValue(e.target.value, props.clauseIndex, props.ruleIndex)} />
   </label>
@@ -42,6 +44,7 @@ export const ChangeRule = (props) => (
     <select 
       class="form-control custom-select"
       value={props.clause.rule} 
+      onClick={() => props.clauseActions.activate(props.clauseIndex)}
       onChange={(e) => ({QUERY: props.queryActions, MUTATION: props.mutateActions})[props.type].changeRule(e.target.value, props.clauseIndex, props.ruleIndex)}>
       {config[props.type].targets[props.clause.target || 'TEXT'].rules.map((r, i) => (
         <option value={r} key={i}>
@@ -59,6 +62,7 @@ export const ChangeRuleValue = (props) => (
       type="text"
       class="form-control"
       value={props.clause.ruleValue} 
+      onClick={() => props.clauseActions.activate(props.clauseIndex)}
       onChange={(e) => ({QUERY: props.queryActions, MUTATION: props.mutateActions})[props.type].changeRuleValue(e.target.value, props.clauseIndex, props.ruleIndex)} />
   </label>
 )
@@ -69,6 +73,7 @@ export const RegexBodySetter = (props) => (
     <input 
       class="form-control" 
       type="text"
+      onClick={() => props.clauseActions.activate(props.clauseIndex)}
       onChange={(e) => ({QUERY: props.queryActions, MUTATION: props.mutateActions})[props.type].changeRuleValue(e.target.value, props.clauseIndex, props.ruleIndex)} />
   </label>
 )
@@ -79,6 +84,7 @@ export const ChangeRuleValueFlags = (props) => (
     <input 
       class="form-control" 
       type="text" 
+      onClick={() => props.clauseActions.activate(props.clauseIndex)}
       onChange={(e) => ({QUERY: props.queryActions, MUTATION: props.mutateActions})[props.type].changeRuleValueFlags(e.target.value, props.clauseIndex, props.ruleIndex)} />
   </label>
 )
@@ -89,6 +95,7 @@ export const ChangeBehavior = (props) => (
     <select 
       class="form-control custom-select"
       value={props.clause.behavior} 
+      onClick={() => props.clauseActions.activate(props.clauseIndex)}
       onChange={(e) => ({QUERY: props.queryActions, MUTATION: props.mutateActions})[props.type].changeBehavior(e.target.value, props.clauseIndex, props.ruleIndex)}>
       {config[props.type].targets[props.clause.target].behaviors.map((r, i) => (
         <option value={r} key={i}>
@@ -106,6 +113,7 @@ export const AttrKeySetter = (props) => (
       class="form-control" 
       type="text" 
       value={props.clause.targetValue} 
+      onClick={() => props.clauseActions.activate(props.clauseIndex)}
       onChange={(e) => ({QUERY: props.queryActions, MUTATION: props.mutateActions})[props.type].changeTargetValue(e.target.value, props.clauseIndex, props.ruleIndex)} />
   </label>
 )
@@ -117,6 +125,7 @@ export const AttrValSetter = (props) => (
       class="form-control" 
       type="text" 
       value={props.clause.targetValue}
+      onClick={() => props.clauseActions.activate(props.clauseIndex)}
       onChange={(e) => ({QUERY: props.queryActions, MUTATION: props.mutateActions})[props.type].changeTargetValue(e.target.value, props.clauseIndex, props.ruleIndex)} />
   </label>
 )

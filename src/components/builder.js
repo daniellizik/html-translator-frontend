@@ -23,7 +23,6 @@ const btnStyle = {
 
 const MaximizedClause = ({ target, currentMutation, clauseActions, queryActions, mutateActions, clauseIndex, clauseGroup }) => (
   <div
-    onClick={() => clauseActions.activate(clauseIndex)}
     key={clauseIndex} 
     class="col-12 mx-0 mb-3 py-3" 
     style={clauseStyle}>
@@ -32,7 +31,8 @@ const MaximizedClause = ({ target, currentMutation, clauseActions, queryActions,
         <p>change target</p>
         <select 
           class="form-control custom-select" 
-          value={target} 
+          value={target}
+          onClick={() => clauseActions.activate(clauseIndex)}
           onChange={(e) => clauseActions.changeTarget(e.target.value, clauseIndex)}>
           {config.targets.map((p, j) => (
             <option value={p} key={j}>
@@ -46,6 +46,7 @@ const MaximizedClause = ({ target, currentMutation, clauseActions, queryActions,
         <input 
           type="text"
           class="form-control"
+          onClick={() => clauseActions.activate(clauseIndex)}
           onChange={(e) => clauseActions.changeName(clauseIndex, e.target.value)} 
           value={clauseGroup.name} 
           placeholder="clause title" />

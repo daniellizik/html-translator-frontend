@@ -48,9 +48,9 @@ export const multi = [
     name: 'clause #1',
     minimized: false,
     active: true,
-    target: 'NODE_NAME',
+    target: 'TEXT',
     queries: [
-      { ...defaultQuery, type: 'QUERY', targetValue: 'div', rule: 'REGEX' },
+      { ...defaultQuery, type: 'QUERY', targetValue: 'cat', rule: 'LIKE' },
     ],
     mutations: [
       { ...defaultMutation, type: 'MUTATION', rule: 'ALL_REPLACE', ruleValue: 'blah', targetValue: '' }

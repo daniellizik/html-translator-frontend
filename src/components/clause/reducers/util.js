@@ -1,6 +1,6 @@
+import * as constants from '../constants'
 import * as targets from '../settings/targets'
 import * as rules from '../settings/rules'
-import * as constants from '../constants'
 import * as behaviors from '../settings/behaviors'
 import { targetMap } from '../settings/config'
 

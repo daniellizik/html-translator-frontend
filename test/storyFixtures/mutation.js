@@ -1,13 +1,12 @@
 import * as constants from '~/src/components/clause/constants'
 import baseState from '~/test/stateFixtures/mutate'
 import { queryActions, mutateActions, clauseActions, builderActions } from '~/src/components/clause/actions/index'
-import reducer from '~/src/components/clause/reducers/reducer'
+import reducer from '~/src/store/rootReducer'
 import { chainActions } from '~/src/util'
 
 export const allReplaceText = chainActions(
   baseState,
   reducer,
-  clauseActions.activate(0),
   mutateActions.add(0),
   mutateActions.changeRule('ALL_REPLACE', 0, 0),
   clauseActions.changeTarget('TEXT', 0),
