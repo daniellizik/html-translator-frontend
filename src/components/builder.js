@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { colors } from '~/src/styles/constants'
 import styles from '~/src/styles'
 import Clause from '~/src/components/clause/clause'
-import { queryActions, mutateActions, clauseActions } from '~/src/components/clause/actions/index'
+import { queryActions, mutateActions, clauseActions, builderActions } from '~/src/components/clause/actions/index'
 import * as config from '~/src/components/clause/settings/config'
 
 
@@ -96,7 +96,7 @@ const Builder = (props) => (
       <button style={btnStyle} class="btn p-2 mr-2" onClick={props.clauseActions.add}>
         add clause <i class="fa fa-plus"></i>
       </button>
-      <button style={btnStyle} class="btn p-2 mr-2" onClick={props.clauseActions.removeAll}>
+      <button style={btnStyle} class="btn p-2 mr-2" onClick={props.builderActions.removeAll}>
         remove all clauses
       </button>
       <button style={btnStyle} class="btn p-2 mr-2">
@@ -119,7 +119,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   queryActions: bindActionCreators(queryActions, dispatch),
   mutateActions: bindActionCreators(mutateActions, dispatch),
-  clauseActions: bindActionCreators(clauseActions, dispatch)
+  clauseActions: bindActionCreators(clauseActions, dispatch),
+  builderActions: bindActionCreators(builderActions, dispatch),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Builder)

@@ -12,9 +12,6 @@ export default {
     type: constants.CLAUSE_REMOVE,
     clauseIndex
   }),
-  removeAll: () => ({
-    type: constants.CLAUSE_REMOVE_ALL
-  }),
   changeName: (clauseIndex, name) => ({
     type: constants.CLAUSE_CHANGE_NAME,
     clauseIndex,
