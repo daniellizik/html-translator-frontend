@@ -4,6 +4,7 @@ import { defaultQuery, defaultClause, mutator } from '../settings/config'
 import queryReducer from './queryReducer'
 import mutationReducer from './mutationReducer'
 import clauseReducer from './clauseReducer'
+import builderReducer from './builderReducer'
 import { reduceView } from './util'
 
 // by default, adjusting a clause's inputs will set it to active
@@ -23,7 +24,10 @@ export function activeClause(state, action) {
 
 export default function(state, action) {
   let nextState = state
-  if (action.type.indexOf('CLAUSE_') > -1)
+  console.log(action.type)
+  if (action.type.indexOf('BUILDER_') > -1)
+    nextState = builderReducer(state, action)
+  else if (action.type.indexOf('CLAUSE_') > -1)
     nextState = clauseReducer(state, action)
   else if (action.type.indexOf('QUERY_') > -1)
     nextState = queryReducer(state, action)

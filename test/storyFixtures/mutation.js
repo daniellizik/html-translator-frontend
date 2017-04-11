@@ -1,10 +1,6 @@
-// use this to chain a crap load of stories
-// mimicks what a user might do
-// keep a history of state changes and run assertions on those
-
 import * as constants from '~/src/components/clause/constants'
 import baseState from '~/test/stateFixtures/mutate'
-import { queryActions, mutateActions, clauseActions } from '~/src/components/clause/actions/index'
+import { queryActions, mutateActions, clauseActions, builderActions } from '~/src/components/clause/actions/index'
 import reducer from '~/src/components/clause/reducers/reducer'
 import { chainActions } from '~/src/util'
 

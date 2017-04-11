@@ -7,6 +7,7 @@ import { mutateList } from '~/src/util'
 // similar to denormalize mutations, it needs to denormalize the whole list
 // not just open tags
 const setView = (props) => {
+  console.log('wtf', props.activeClause)
   if (props.clauses[props.activeClause] && props.slave.currentMutation < 0)
     return mutateList(props.list.list, props.clauses[props.activeClause].view)
   else if (props.clauses.length > 0)

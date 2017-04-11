@@ -27,19 +27,21 @@ export default function(state, action) {
       }
     }
 
-  else if (action.type === constants.CLAUSE_REMOVE_ALL) {
-    nextState = {
-      ...state,
-      activeClause: -1,
-      clauses: []
-    }
-  }
-
   else if (action.type === constants.CLAUSE_REMOVE) {
     const nextClauses = state.clauses.filter((c, i) => i !== action.clauseIndex)
+    const { length } = state.clauses
     nextState = {
       ...state,
-      activeClause: action.clauseIndex < 1 ? null : action.clauseIndex - 1,
+      activeClause: (() => {
+        if (nextClauses.length === 0)
+          return -1
+        else if (action.clauseIndex === 0)
+          return 0
+        else if (action.clauseIndex === length)
+          return nextClauses.length - 1
+        else
+          return action.clauseIndex - 1
+      })(),
       clauses: nextClauses
     }
   }
