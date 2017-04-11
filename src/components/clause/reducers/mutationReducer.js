@@ -1,7 +1,7 @@
 import * as clauseConstants from '../constants'
 import * as sourceSetterConstants from '~/src/containers/sourceSetter/constants'
-import { QUERY, MUTATION, defaultMutation } from '../config'
-import { mapMutations, reduceRuleProp, mutationDenormalizer } from './util'
+import { QUERY, MUTATION, defaultMutation } from '../settings/config'
+import { errorHandler, mapMutations, reduceRuleProp, mutationDenormalizer } from './util'
 
 export default function mutationReducer(state, action) {
 
@@ -28,22 +28,36 @@ export default function mutationReducer(state, action) {
       ))
     }
 
-  else if (action.type === clauseConstants.MUTATION_DENORMALIZE)
-    nextState = {
-      ...state,
-      slave: {
-        ...state.slave,
-        currentMutation: action.clauseIndex,
-        mutated: action.clauseIndex < 0 ? [] : mutationDenormalizer(
-          state.clauses[action.clauseIndex].view, 
-          state.slave.list.list,
-          state.clauses[action.clauseIndex].mutations
-        )
+  else if (action.type === clauseConstants.MUTATION_DENORMALIZE) {
+    try {
+      nextState = {
+        ...state,
+        slave: {
+          ...state.slave,
+          currentMutation: action.clauseIndex,
+          mutated: action.clauseIndex < 0 ? [] : mutationDenormalizer(
+            state.clauses[action.clauseIndex].target,
+            state.clauses[action.clauseIndex].view, 
+            state.slave.list.list,
+            state.clauses[action.clauseIndex].mutations
+          )
+        }
       }
     }
+    catch(e) {
+      process.env.NODE_ENV === 'development' && console.warn('error', e)
+      nextState = {
+        ...state,
+        error: errorHandler(action, e)
+      }
+    }
+  }
 
   else if (action.type === clauseConstants.MUTATION_TOGGLE)
     nextState = reduceRuleProp('mutations', state, action, 'active')
+
+  else if (action.type === clauseConstants.MUTATION_CHANGE_BEHAVIOR)
+    nextState = reduceRuleProp('mutations', state, action, 'behavior') 
 
   else if (action.type === clauseConstants.MUTATION_CHANGE_RULE)
     nextState = reduceRuleProp('mutations', state, action, 'rule') 
@@ -53,9 +67,6 @@ export default function mutationReducer(state, action) {
 
   else if (action.type === clauseConstants.MUTATION_CHANGE_RULE_VALUE_FLAGS)
     nextState = reduceRuleProp('mutations', state, action, 'ruleValueFlags')
-
-  else if (action.type === clauseConstants.MUTATION_CHANGE_TARGET)
-    nextState = reduceRuleProp('mutations', state, action, 'target')
 
   else if (action.type === clauseConstants.MUTATION_CHANGE_TARGET_VALUE)
     nextState = reduceRuleProp('mutations', state, action, 'targetValue') 

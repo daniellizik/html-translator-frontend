@@ -3,7 +3,7 @@ import {
   TargetSetter,
   ChangeTargetValue,
   ChangeRule,
-  RegexBodySetter,
+  ChangeRuleValue,
   ChangeRuleValueFlags,
   AttrKeySetter,
   AttrValSetter,
@@ -24,35 +24,29 @@ import {
 
 export default [
   {
-    target: ['TEXT'], 
+    targets: ['TEXT', 'NODE_NAME'], 
     rules: ['EQUALS', 'NOT_EQUALS', 'LIKE', 'NOT_LIKE'],
     structure: (props) => (
       <div class="row pt-2 m-0">
         <div class="col-6">
-          <TargetSetter {...props} />
-        </div>
-        <div class="col-6">
           <ChangeRule {...props} />
         </div>
-        <div class="col-12 mt-2">
+        <div class="col-6 mt-2">
           <ChangeTargetValue {...props} />
         </div>
       </div>
     )
   },
   {
-    target: ['TEXT'],
+    targets: ['TEXT'],
     rules: ['REGEX'],
     structure: (props) => (
       <div class="row pt-2 m-0">
-        <div class="col-6">
-          <TargetSetter {...props} />
-        </div>
-        <div class="col-6">
+        <div class="col-12">
           <ChangeRule {...props} />
         </div>
         <div class="col-6 mt-2">
-          <RegexBodySetter {...props} />
+          <ChangeRuleValue {...props} />
         </div>
         <div class="col-6 mt-2">
           <ChangeRuleValueFlags {...props} />
@@ -61,69 +55,15 @@ export default [
     )
   },
   {
-    target: ['NODE_NAME'],
-    rules: ['EQUALS', 'NOT_EQUALS', 'LIKE', 'NOT_LIKE'],
-    structure: (props) => (
-      <div class="row pt-2 m-0">
-        <div class="col-6">
-          <TargetSetter {...props} />
-        </div>
-        <div class="col-6">
-          <ChangeRule {...props} />
-        </div>
-        <div class="col-12 mt-2">
-          <ChangeTargetValue {...props} />
-        </div>
-      </div>
-    )
-  },
-  {
-    target: ['NODE_NAME'],
+    targets: ['NODE_NAME'],
     rules: ['REGEX'],
     structure: (props) => (
       <div class="row pt-2 m-0">
-        <div class="col-6">
-          <TargetSetter {...props} />
-        </div>
-        <div class="col-6">
-          <ChangeRule {...props} />
-        </div>
-        <div class="col-12 mt-2">
-          <ChangeTargetValue {...props} />
-        </div>
-      </div>
-    )
-  },
-  {
-    target: ['ATTR_KEY'],
-    rules: ['EQUALS', 'NOT_EQUALS', 'LIKE', 'NOT_LIKE'],
-    structure: (props) => (
-      <div class="row pt-2 m-0">
-        <div class="col-6">
-          <TargetSetter {...props} />
-        </div>
-        <div class="col-6">
-          <ChangeRule {...props} />
-        </div>
-        <div class="col-12 mt-2">
-          <ChangeTargetValue {...props} />
-        </div>
-      </div>
-    )
-  },
-  {
-    target: ['ATTR_KEY'],
-    rules: ['REGEX'],
-    structure: (props) => (
-      <div class="row pt-2 m-0">
-        <div class="col-6">
-          <TargetSetter {...props} />
-        </div>
-        <div class="col-6">
+        <div class="col-12">
           <ChangeRule {...props} />
         </div>
         <div class="col-6 mt-2">
-          <RegexBodySetter {...props} />
+          <ChangeRuleValue {...props} />
         </div>
         <div class="col-6 mt-2">
           <ChangeRuleValueFlags {...props} />
@@ -132,35 +72,60 @@ export default [
     )
   },
   {
-    target: ['ATTR_VAL'],
+    targets: ['ATTR_KEY'],
     rules: ['EQUALS', 'NOT_EQUALS', 'LIKE', 'NOT_LIKE'],
     structure: (props) => (
       <div class="row pt-2 m-0">
         <div class="col-6">
-          <TargetSetter {...props} />
-        </div>
-        <div class="col-6">
           <ChangeRule {...props} />
         </div>
-        <div class="col-12 mt-2">
+        <div class="col-6 mt-2">
           <ChangeTargetValue {...props} />
         </div>
       </div>
     )
   },
   {
-    target: ['ATTR_VAL'],
+    targets: ['ATTR_KEY'],
     rules: ['REGEX'],
     structure: (props) => (
       <div class="row pt-2 m-0">
-        <div class="col-6">
-          <TargetSetter {...props} />
+        <div class="col-12">
+          <ChangeRule {...props} />
         </div>
+        <div class="col-6 mt-2">
+          <ChangeRuleValue {...props} />
+        </div>
+        <div class="col-6 mt-2">
+          <ChangeRuleValueFlags {...props} />
+        </div>
+      </div>
+    )
+  },
+  {
+    targets: ['ATTR_VAL'],
+    rules: ['EQUALS', 'NOT_EQUALS', 'LIKE', 'NOT_LIKE'],
+    structure: (props) => (
+      <div class="row pt-2 m-0">
         <div class="col-6">
           <ChangeRule {...props} />
         </div>
         <div class="col-6 mt-2">
-          <RegexBodySetter {...props} />
+          <ChangeTargetValue {...props} />
+        </div>
+      </div>
+    )
+  },
+  {
+    targets: ['ATTR_VAL'],
+    rules: ['REGEX'],
+    structure: (props) => (
+      <div class="row pt-2 m-0">
+        <div class="col-12">
+          <ChangeRule {...props} />
+        </div>
+        <div class="col-6 mt-2">
+          <ChangeRuleValue {...props} />
         </div>
         <div class="col-6 mt-2">
           <ChangeRuleValueFlags {...props} />

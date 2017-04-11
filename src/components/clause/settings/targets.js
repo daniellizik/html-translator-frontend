@@ -1,8 +1,13 @@
 export const query = {
 
-  NODE_NAME: (node, {rule, targetValue}) => {
-    const before =  node.nodeName === '#text' ? 'text' : node.nodeName
-    return rule({ before, targetValue })
+  // NODE_NAME: (node, {rule, targetValue}) => {
+  //   const before =  node.nodeName === '#text' ? 'text' : node.nodeName
+  //   return rule({ before, targetValue })
+  // },
+
+  NODE_NAME: ({nodeName}, comparator) => {
+    const before = nodeName === '#text' ? 'text' : nodeName
+    return comparator.rule({ before, ...comparator })
   },
 
   TEXT: ({nodeName, value}, comparator) => {
@@ -33,6 +38,7 @@ export const query = {
 
   // this is going to be hell to setup
   PARENT: (node, comparator) => {},
+  
   CHILD: (node, comparator) => {}
 
 }
@@ -69,11 +75,6 @@ export const mutator = {
         return { ...a, value: params.rule({ ...params, before: a.value }) }
       })
     }
-  },
-
-  ATTR_CONCAT: (model, tree, params) => {
-    const compare = { ...params, before: 1 }
-    return { ...model, a: params.rule(compare) }
   }
 
 }

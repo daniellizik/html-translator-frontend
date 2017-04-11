@@ -1,24 +1,28 @@
+import { defaultQuery, defaultMutation } from '~/src/components/clause/settings/config'
+
 export default [
   {
     name: 'clause #1',
     minimized: false,
     active: true,
+    target: 'TEXT',
     queries: [
-      { type: 'QUERY', targetValue: 'cat-a', target: 'TEXT', rule: 'LIKE' },
-      { type: 'QUERY', targetValue: 'div', target: 'NODE_NAME', rule: 'EQUALS' },
-      { type: 'QUERY', targetValue: 'div', target: 'NODE_NAME', rule: 'EQUALS' },
-      { type: 'QUERY', targetValue: 'div', target: 'NODE_NAME', rule: 'EQUALS' },
+      { ...defaultQuery, type: 'QUERY', targetValue: 'cat-a', rule: 'LIKE' },
+      { ...defaultQuery, type: 'QUERY', targetValue: 'div', rule: 'EQUALS' },
+      { ...defaultQuery, type: 'QUERY', targetValue: 'div', rule: 'EQUALS' },
+      { ...defaultQuery, type: 'QUERY', targetValue: 'div', rule: 'EQUALS' },
     ],
     mutations: [],
     view: []
   },
   {
     name: 'clause #2',
+    target: 'TEXT',
     minimized: true,
     active: false,
     queries: [
-      { type: 'QUERY', targetValue: 'cat-a', target: 'TEXT', rule: 'LIKE' },
-      { type: 'QUERY', targetValue: 'div', target: 'NODE_NAME', rule: 'EQUALS' }
+      { ...defaultQuery, type: 'QUERY', targetValue: 'cat-a', rule: 'LIKE' },
+      { ...defaultQuery, type: 'QUERY', targetValue: 'div', rule: 'EQUALS' }
     ],
     mutations: [],
     view: []
@@ -29,9 +33,10 @@ export const basic = [
   {
     name: 'blah',
     minimized: false,
+    target: 'TEXT',
     active: true,
     queries: [
-      { type: 'QUERY', targetValue: 'cat', target: 'TEXT', rule: 'LIKE' }
+      { ...defaultQuery, type: 'QUERY', targetValue: 'cat', rule: 'LIKE' }
     ],
     mutations: [],
     view: []
@@ -43,11 +48,12 @@ export const multi = [
     name: 'clause #1',
     minimized: false,
     active: true,
+    target: 'NODE_NAME',
     queries: [
-      { type: 'QUERY', targetValue: 'div', target: 'NODE_NAME', rule: 'LIKE' },
+      { ...defaultQuery, type: 'QUERY', targetValue: 'div', rule: 'REGEX' },
     ],
     mutations: [
-      { type: 'MUTATION', target: 'NODE_NAME', rule: 'ALL_REPLACE', ruleValue: 'blah', targetValue: '' }
+      { ...defaultMutation, type: 'MUTATION', rule: 'ALL_REPLACE', ruleValue: 'blah', targetValue: '' }
     ],
     view: []
   },
@@ -55,8 +61,9 @@ export const multi = [
     name: 'clause #2',
     minimized: true,
     active: false,
+    target: 'TEXT',
     queries: [
-      { type: 'QUERY', targetValue: 'burrito', target: 'TEXT', rule: 'LIKE' },
+      { ...defaultQuery, type: 'QUERY', targetValue: 'burrito', rule: 'LIKE' },
     ],
     mutations: [],
     view: []
@@ -68,8 +75,9 @@ export const mutation = [
     name: 'blah',
     minimized: false,
     active: true,
+    target: 'TEXT',
     queries: [
-      { type: 'QUERY', targetValue: 'cat', target: 'TEXT', rule: 'LIKE' }
+      { ...defaultQuery, type: 'QUERY', targetValue: 'cat', rule: 'LIKE' }
     ],
     mutations: [],
     view: []

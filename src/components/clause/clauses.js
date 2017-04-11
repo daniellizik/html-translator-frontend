@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
+import React from 'react'
 import styles from '~/src/styles'
-import * as config from './config' 
+import * as config from './settings/config' 
 
 // what is with the unsightly
 // ({QUERY: props.queryActions, MUTATION: props.mutateActions})[props.type]
@@ -11,7 +11,7 @@ import * as config from './config'
 
 export const TargetSetter = (props) => (
   <label class="col-12 p-0 m-0">
-    change target
+    <p>change target</p>
     <select 
       class="form-control custom-select" 
       value={props.clause.target} 
@@ -27,7 +27,7 @@ export const TargetSetter = (props) => (
 
 export const ChangeTargetValue = (props) => (
   <label class="col-12 p-0 m-0">
-    change target value
+    <p>change target value</p>
     <input 
       class="form-control" 
       type="text" 
@@ -38,7 +38,7 @@ export const ChangeTargetValue = (props) => (
 
 export const ChangeRule = (props) => (
   <label class="col-12 p-0 m-0">
-    change rule
+    <p>change rule</p>
     <select 
       class="form-control custom-select"
       value={props.clause.rule} 
@@ -54,7 +54,7 @@ export const ChangeRule = (props) => (
 
 export const ChangeRuleValue = (props) => (
   <label class="col-12 p-0 m-0">
-    change rule value
+    <p>change rule value</p>
     <input 
       type="text"
       class="form-control"
@@ -65,17 +65,17 @@ export const ChangeRuleValue = (props) => (
 
 export const RegexBodySetter = (props) => (
   <label class="col-12 p-0 m-0">
-    change regex body
+    <p>change regex body</p>
     <input 
       class="form-control" 
-      type="text" 
+      type="text"
       onChange={(e) => ({QUERY: props.queryActions, MUTATION: props.mutateActions})[props.type].changeRuleValue(e.target.value, props.clauseIndex, props.ruleIndex)} />
   </label>
 )
 
 export const ChangeRuleValueFlags = (props) => (
   <label class="col-12 p-0 m-0">
-    change regex flags
+    <p>change regex flags</p>
     <input 
       class="form-control" 
       type="text" 
@@ -83,9 +83,25 @@ export const ChangeRuleValueFlags = (props) => (
   </label>
 )
 
+export const ChangeBehavior = (props) => (
+  <label class="col-12 p-0 m-0">
+    <p>change behavior</p>
+    <select 
+      class="form-control custom-select"
+      value={props.clause.behavior} 
+      onChange={(e) => ({QUERY: props.queryActions, MUTATION: props.mutateActions})[props.type].changeBehavior(e.target.value, props.clauseIndex, props.ruleIndex)}>
+      {config[props.type].targets[props.clause.target].behaviors.map((r, i) => (
+        <option value={r} key={i}>
+          {r}
+        </option>
+      ))}
+    </select>
+  </label>
+)
+
 export const AttrKeySetter = (props) => (
   <label class="col-12 p-0 m-0">
-    set attr key
+    <p>set attr key</p>
     <input 
       class="form-control" 
       type="text" 
@@ -96,7 +112,7 @@ export const AttrKeySetter = (props) => (
 
 export const AttrValSetter = (props) => (
   <label class="col-12 p-0 m-0">
-    set attr val
+    <p>set attr val</p>
     <input 
       class="form-control" 
       type="text" 
@@ -109,11 +125,11 @@ export const AttrValSetter = (props) => (
 export const AddAttrSetter = (props) => (
   <div>
     <label class="col-12 p-0 m-0">
-      add attr val
+      <p>add attr val</p>
       <input class="form-control" type="text"  />
     </label>
     <label class="col-12 p-0 m-0">
-      add attr key
+      <p>add attr key</p>
       <input class="form-control" type="text"  />
     </label>
   </div>
@@ -123,11 +139,11 @@ export const AddAttrSetter = (props) => (
 export const AddAttrMutator = (props) => (
   <div>
     <label class="col-12 p-0 m-0">
-      attr name
+      <p>attr name</p>
       <input class="form-control" type="text" />
     </label>
     <label class="col-12 p-0 m-0">
-      attr value
+      <p>attr value</p>
       <input class="form-control" type="text" />
     </label>
   </div>

@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
+import Radium from 'radium'
 import { generate as id } from 'shortid'
 import XmlToken from './xmlToken'
 import tagTypes from './tagTypes'
@@ -7,13 +8,12 @@ import { colors } from '~/src/styles/constants'
 
 const styleRow = ({view}) => ({
   border: 'none',
-  margin: 0,
   padding: '0px 15px 0px 0px'
 })
 
 const lineNumber = () => ({
   fontFamily: '"Source Code Pro", monospace',
-  padding: '0px 10px 0px 25px',
+  padding: '0px 10px 0px 15px',
   color: colors.inactive,
   userSelect: 'none',
   textAlign: 'right',
@@ -24,7 +24,8 @@ const lineNumber = () => ({
   }
 })
 
-const lineText = ({depth, view, row, id}) => ({
+// this view prop comes from #util@mutateList
+const lineText = ({view}) => ({
   fontSize: '14px',
   fontWeight: 500,
   fontFamily: `"Source Code Pro", monospace`,
@@ -41,6 +42,8 @@ export const findTagType = ({node, list}) => {
 
 const XmlTag = (props) => (
   <tr
+    data-row={props.row}
+    data-index={props.index}
     style={styleRow(props.node)}
     onClick={() => props.callbacks.click(props)}
     onMouseEnter={(e) => props.callbacks.highlight(props)}>
@@ -65,5 +68,6 @@ XmlTag.propTypes = {
 }
 
 const withConnect = connect(s => s)(XmlTag)
+const withRadium = Radium(withConnect)
 
-export default withConnect
+export default withRadium

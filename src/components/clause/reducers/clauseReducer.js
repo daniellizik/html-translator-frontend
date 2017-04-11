@@ -1,6 +1,6 @@
 import * as constants from '../constants'
-import { defaultClause } from '../config'
-import { reduceView } from './util'
+import { defaultClause } from '../settings/config'
+import { reduceView, reduceClauses } from './util'
 
 export default function(state, action) {
 
@@ -47,10 +47,22 @@ export default function(state, action) {
   else if (action.type === constants.CLAUSE_CHANGE_NAME) 
     nextState = {
       ...state,
-      clauses: state.clauses.map((clause, clauseIndex) => {
-        return clauseIndex !== action.clauseIndex ? clause : { ...clause, name: action.name }
+      clauses: state.clauses.map((c, i) => i !== action.clauseIndex ? c : {
+        ...c,
+        target: action.name
       })
     }
+
+  else if (action.type === constants.CLAUSE_CHANGE_TARGET) {
+    const clauses = state.clauses.map((c, i) => i !== action.clauseIndex ? c : {
+      ...c,
+      target: action.target
+    })
+    nextState = {
+      ...state,
+      clauses: reduceView(action, clauses, state.slave)
+    }
+}
 
   // remove all clauses, reset everything
   else if (action.type === constants.HTML_FETCHED)

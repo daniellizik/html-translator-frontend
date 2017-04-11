@@ -5,6 +5,7 @@ import { colors } from '~/src/styles/constants'
 import styles from '~/src/styles'
 import Clause from '~/src/components/clause/clause'
 import { queryActions, mutateActions, clauseActions } from '~/src/components/clause/actions/index'
+import * as config from '~/src/components/clause/settings/config'
 
 
 const style = (hasView) => ({
@@ -20,21 +21,35 @@ const btnStyle = {
   backgroundColor: colors.lightYellow
 }
 
-const MaximizedClause = ({ currentMutation, clauseActions, queryActions, mutateActions, clauseIndex, clauseGroup }) => (
+const MaximizedClause = ({ target, currentMutation, clauseActions, queryActions, mutateActions, clauseIndex, clauseGroup }) => (
   <div
     onClick={() => clauseActions.activate(clauseIndex)}
     key={clauseIndex} 
-    class="col-12 mx-0 my-2 py-3" 
+    class="col-12 mx-0 mb-3 py-3" 
     style={clauseStyle}>
     <div class="row">
-      <div class="col-12 mb-2">
+      <label class="col-6 mb-2">
+        <p>change target</p>
+        <select 
+          class="form-control custom-select" 
+          value={target} 
+          onChange={(e) => clauseActions.changeTarget(e.target.value, clauseIndex)}>
+          {config.targets.map((p, j) => (
+            <option value={p} key={j}>
+              {p}
+            </option>
+          ))}
+        </select>
+      </label>
+      <label class="col-6 mb-2">
+        <p>clause title</p>
         <input 
           type="text"
           class="form-control"
           onChange={(e) => clauseActions.changeName(clauseIndex, e.target.value)} 
           value={clauseGroup.name} 
           placeholder="clause title" />
-      </div>
+      </label>
       <div class="col-12 mb-2">
         <button class="btn mr-2" onClick={() => clauseActions.remove(clauseIndex)}>
           remove this clause
@@ -76,7 +91,7 @@ const MaximizedClause = ({ currentMutation, clauseActions, queryActions, mutateA
 const MinifiedClause = () => ({})
 
 const Builder = (props) => (
-  <div class="row px-4 py-3">
+  <div class="row pl-4 px-3 py-3">
     <div class="col-12 p-0 mb-3">
       <button style={btnStyle} class="btn p-2 mr-2" onClick={props.clauseActions.add}>
         add clause <i class="fa fa-plus"></i>

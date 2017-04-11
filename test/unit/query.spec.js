@@ -6,9 +6,11 @@ import {
   modifyingTextQueries,
   modifyingNodeNameQueries,
   modifyingAttrKeyQueries,
-  modifyingAttrValQueries
+  modifyingAttrValQueries,
+  searchNodeNameViaRx
 } from '~/test/storyFixtures/query'
-import { defaultQuery } from '~/src/components/clause/config'
+import * as constants from '~/src/components/clause/constants'
+import { defaultQuery } from '~/src/components/clause/settings/config'
 import { filterText } from '~/src/util'
 
 describe('adding a clause', () => {
@@ -52,7 +54,7 @@ describe('removing a query', () => {
   })
 })
 
-describe('modifying TEXT queries', () => {
+describe('target: TEXT', () => {
   it('should work with LIKE', () => {
     expect(modifyingTextQueries[2].clauses[0].view.length).toBe(3)
     expect(modifyingTextQueries[5].clauses[0].view.length).toBe(1)
@@ -79,14 +81,20 @@ describe('modifying TEXT queries', () => {
   })
 })
 
-describe('modifying NODE_NAME queries', () => {
+describe('target: NODE_NAME', () => {
   it('should work with EQUALS', () => {
     expect(modifyingNodeNameQueries[1].clauses[1].view.length).toBe(0)
     expect(modifyingNodeNameQueries[2].clauses[1].view.length).toBe(5)
   })
+  it('should work with REGEX', () => {
+    expect(searchNodeNameViaRx[7].clauses[0].view.length).toBe(5)
+  })
+  it('should throw with invalid REGEX', () => {
+    expect(searchNodeNameViaRx[8].error).toBe(constants.CLAUSE_ERROR_INVALID_REGEX)
+  })
 })
 
-describe('modifying ATTR_KEY queries', () => {
+describe('target: ATTR_KEY', () => {
   it('should work with EQUALS', () => {
     expect(modifyingAttrKeyQueries[3].clauses[1].view.length).toBe(1)
     expect(modifyingAttrKeyQueries[4].clauses[1].view.length).toBe(1)
@@ -103,7 +111,7 @@ describe('modifying ATTR_KEY queries', () => {
   })
 })
 
-describe('modifying ATTR_VAL queries', () => {
+describe('target: ATTR_VAL', () => {
   it('should work with EQUALS', () => {
     expect(modifyingAttrValQueries[3].clauses[1].view.length).toBe(1)
   })

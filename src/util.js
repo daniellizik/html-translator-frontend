@@ -35,16 +35,10 @@ export const filterText = (node) => {
 }
 
 export const mutateList = (list, view) => {
-  return list.reduce((acc, node) => {
-    const index = acc.view.indexOf(node.id)
+  return list.reduce((acc, node) => { 
+    const index = view.indexOf(node.id)
     return index < 0 
-      ? {
-          list: [...acc.list, node],
-          view: acc.view
-        } 
-      : {
-          list: [...acc.list, {...node, view: true}],
-          view: acc.view.splice(index, 1) && acc.view
-        } 
-  }, { list: [], view: view.slice() }).list
+      ? [...acc, node]
+      : [...acc, {...node, view: true}]
+  },[])
 }

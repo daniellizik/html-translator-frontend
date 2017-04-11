@@ -14,7 +14,7 @@ export const allReplaceText = chainActions(
   clauseActions.activate(0),
   mutateActions.add(0),
   mutateActions.changeRule('ALL_REPLACE', 0, 0),
-  mutateActions.changeTarget('TEXT', 0, 0),
+  clauseActions.changeTarget('TEXT', 0),
   mutateActions.changeRuleValue('blah', 0, 0),
   mutateActions.toggle(true, 0, 0)
 ) 
@@ -23,8 +23,8 @@ export const reducedMutations = chainActions(
   allReplaceText,
   reducer,
   mutateActions.add(0),
-  mutateActions.changeTarget('TEXT', 0, 1),
-  mutateActions.changeRule('ALL_REPLACE', 0, 1),
+  clauseActions.changeTarget('TEXT', 0, 1),
+  mutateActions.changeRule('ALL_REPLACE', 0),
   mutateActions.changeRuleValue('cat ', 0, 1),
   mutateActions.denormalize(0)
 )
@@ -45,6 +45,8 @@ export const regexMutation = chainActions(
   mutateActions.changeTargetValue(' foobar ', 0, 1),
   mutateActions.toggle(true, 0, 1),
   mutateActions.denormalize(0),
+  mutateActions.changeRuleValueFlags('[mutate!!]', 0, 0),
+  mutateActions.denormalize(0)
 )
 
 export const toggling = chainActions(
@@ -63,7 +65,7 @@ export const nodename = chainActions(
   mutateActions.add(0),
   queryActions.changeRule('LIKE', 0, 0),
   queryActions.changeTargetValue('span', 0, 0),
-  queryActions.changeTarget('NODE_NAME', 0, 0),
+  clauseActions.changeTarget('NODE_NAME', 0),
   clauseActions.setCurrentMutation(0),
   mutateActions.changeRule('ALL_REPLACE', 0, 0),
   mutateActions.changeRuleValue('h13', 0, 0),
