@@ -9,7 +9,6 @@ import {
   chainedDenormalizations
 } from '~/test/storyFixtures/mutation'
 
-
 describe('adding a mutation', () => {
   it('should add mutation type rule to end of rules array', () => {
     expect(allReplaceText[4].clauses[0].mutations.length).toBe(1)
