@@ -2,8 +2,9 @@ import React, { Component, PropTypes } from 'react'
 import XmlTag, { findTagType } from './xmlTag'
 import { connect } from 'react-redux'
 import { mutateList } from '~/src/util'
+import { queryActions, mutateActions, clauseActions } from '~/src/components/clause/actions/index'
 
-
+// todo: move this to reducer using slave.view
 // similar to denormalize mutations, it needs to denormalize the whole list
 // not just open tags
 const setView = (props) => {
@@ -41,10 +42,22 @@ const setView = (props) => {
 // the component renders...before it is rendered
 // feels weird.
 
-const XmlTree = (props) => (
+const mapDispatchToProps = (dispatch) => ({
+  queryActions: bindActionCreators(queryActions, dispatch),
+  mutateActions: bindActionCreators(mutateActions, dispatch),
+  clauseActions: bindActionCreators(clauseActions, dispatch)
+})
+
+const mapStateToProps = (state) => ({
+  ...state,
+  list: state.slave.list,
+  view: state.slave.view
+})
+
+const XmlTree = ({list, view, callbacks}) => (
   <table style={{width: '100%'}}>
     <tbody>
-      {setView(props).reduce((acc, node, i, list) => {
+      {view.reduce((acc, node, i, list) => {
         const tagType = findTagType({node, list}) 
         return !tagType ? acc : {
           count: acc.count + 1,
@@ -55,10 +68,10 @@ const XmlTree = (props) => (
               node={node}
               index={i}
               row={acc.count}
-              openTags={props.list.open}
+              openTags={list.open}
               list={list}
               tagType={tagType}
-              callbacks={props.callbacks} />
+              callbacks={callbacks} />
           ]
         }
       }, {tags: [], count: 0}).tags}
@@ -66,9 +79,4 @@ const XmlTree = (props) => (
   </table>
 )
 
-XmlTree.propTypes = {
-  callbacks: PropTypes.object,
-  list: PropTypes.object
-}
-
-export default connect(s => s)(XmlTree)
+export default connect(mapStateToProps, mapDispatchToProps)(XmlTree)

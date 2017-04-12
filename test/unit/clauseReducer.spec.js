@@ -1,9 +1,6 @@
 import { defaultMutation } from '~/src/components/clause/settings/config'
 import * as constants from '~/src/components/clause/constants'
-import {
-  removingAClause,
-  renamingAClause
-} from '~/test/storyFixtures/clause'
+import { removingAClause, renamingAClause, viewSingleMutation } from '~/test/storyFixtures/clause'
 
 describe('removing a clause', () => {
   it('should set active clause to 0 if first clause is removed', () => {
@@ -24,5 +21,11 @@ describe('removing a clause', () => {
 describe('renaming a clause', () => {
   it('should rename a clause when the action is called', () => {
     expect(renamingAClause[2].clauses[0].name).toBe('foobar')
+  })
+})
+
+describe('reducing slave.view', () => {
+  it('should generate slave.view for a single clause', () => {
+    
   })
 })

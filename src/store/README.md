@@ -39,7 +39,9 @@ export default {
     // mutation of view, lets us cache the view slice thing
     // when we "do work" on the view with editor
     // put it here
-    mutated: []
+    mutated: [],
+    // this is the actual thing that xmltree renders
+    view: []
   },
 
   clauses: [

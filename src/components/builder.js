@@ -15,20 +15,27 @@ const btnStyle = {
   backgroundColor: colors.lightYellow
 }
 
-const Builder = (props) => (
+const Builder = ({activeClause, clauses, clauseActions, builderActions}) => (
   <div class="row pl-4 px-3 py-3">
     <div class="col-12 p-0 mb-3">
-      <button style={btnStyle} class="btn p-2 mr-2" onClick={props.clauseActions.add}>
+      <button style={btnStyle} class="btn p-2 mr-2" onClick={clauseActions.add}>
         add clause <i class="fa fa-plus"></i>
       </button>
-      <button style={btnStyle} class="btn p-2 mr-2" onClick={props.builderActions.removeAll}>
+      <button style={btnStyle} class="btn p-2 mr-2" onClick={builderActions.removeAll}>
         remove all clauses
       </button>
-      <button style={btnStyle} class="btn p-2 mr-2" onClick={props.builderActions.viewAllMutations}>
-        view all mutations
+      <button style={btnStyle} class="btn p-2 mr-2" onClick={builderActions.viewAllMutations}>
+        {
+          (() => {
+            if (activeClause < 0)
+              return 'hide all mutations'
+            else
+              return 'view all mutations'
+          })()
+        }
       </button>
     </div>
-    {props.clauses.map((clauseGroup, clauseIndex) => (
+    {clauses.map((clauseGroup, clauseIndex) => (
       clauseGroup.minimized === false 
         ? <MaximizedClause key={clauseIndex} clauseIndex={clauseIndex} clauseGroup={clauseGroup} />
         : <MaximizedClause key={clauseIndex} clauseIndex={clauseIndex} clauseGroup={clauseGroup} />
@@ -38,7 +45,6 @@ const Builder = (props) => (
 
 const mapStateToProps = (state) => ({
   ...state,
-  currentMutation: state.slave.currentMutation
 })
 
 const mapDispatchToProps = (dispatch) => ({

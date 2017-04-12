@@ -13,17 +13,20 @@ export default function(state, action) {
       clauses: []
     }
 
-  else if (action.type === constants.BUILDER_VIEW_ALL_MUTATIONS)
+  else if (action.type === constants.BUILDER_VIEW_ALL_MUTATIONS) {
+    const mutated = state
+      .clauses
+      .reduce((list, clause) => mutationDenormalizer(clause, list), state.slave.list.list)
     nextState = {
       ...state,
       activeClause: -1,
       slave: {
         ...state.slave,
-        mutated: state
-          .clauses
-          .reduce((list, clause) => mutationDenormalizer(clause, list), state.slave.list.list)
+        mutated,
+        view: mutated
       }
     }
+  }
 
   return nextState
 

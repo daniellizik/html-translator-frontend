@@ -29,7 +29,8 @@ export default {
     rawHtml: null,
     tree: [],
     currentMutation: -1,
-    mutated: []
+    mutated: [],
+    view: []
   },
 
   activeClause: null,

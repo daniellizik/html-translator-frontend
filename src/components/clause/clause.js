@@ -24,14 +24,17 @@ const mapDispatchToProps = (dispatch) => ({
   clauseActions: bindActionCreators(clauseActions, dispatch)
 })
 
-const mapStateToProps = (state) => state
+const mapStateToProps = (state) => ({
+  ...state,
+  currentMutation: state.slave.currentMutation
+})
 
 export const Clause = connect(mapStateToProps, mapDispatchToProps)((props) => (
   <div class="py-0">
     <hr class="mt-1 py-0 mx-3" style={hrStyle} />
     {policyValidator(props)}
     <div class="row py-2 m-0" style={closeStyle}>
-      <div class="col-3">
+      <div class="col-4">
         <span onClick={() => ({QUERY: props.queryActions, MUTATION: props.mutateActions})[props.type].remove(props.clauseIndex, props.ruleIndex)}>
           {({QUERY: 'remove this query', MUTATION: 'remove this mutation'})[props.type]}
         </span>
@@ -40,7 +43,14 @@ export const Clause = connect(mapStateToProps, mapDispatchToProps)((props) => (
   </div>
 ))
 
-export const MaximizedClause = connect(mapStateToProps, mapDispatchToProps)(({ target, currentMutation, clauseActions, queryActions, mutateActions, clauseIndex, clauseGroup }) => (
+export const MaximizedClause = connect(mapStateToProps, mapDispatchToProps)(({ 
+  currentMutation, 
+  clauseActions, 
+  queryActions, 
+  mutateActions, 
+  clauseIndex, 
+  clauseGroup 
+}) => (
   <div
     key={clauseIndex} 
     class="col-12 mx-0 mb-3 py-3" 
@@ -50,7 +60,7 @@ export const MaximizedClause = connect(mapStateToProps, mapDispatchToProps)(({ t
         <p>change target</p>
         <select 
           class="form-control custom-select" 
-          value={target}
+          value={clauseGroup.target}
           onClick={() => clauseActions.activate(clauseIndex)}
           onChange={(e) => clauseActions.changeTarget(e.target.value, clauseIndex)}>
           {config.targets.map((p, j) => (
@@ -71,16 +81,16 @@ export const MaximizedClause = connect(mapStateToProps, mapDispatchToProps)(({ t
           placeholder="clause title" />
       </label>
       <div class="col-12 mb-2">
-        <button class="btn mr-2" onClick={() => clauseActions.remove(clauseIndex)}>
+        <button class="btn mr-2 my-1" onClick={() => clauseActions.remove(clauseIndex)}>
           remove this clause
         </button>
-        <button class="btn mr-2" onClick={() => mutateActions.denormalize(currentMutation === clauseIndex ? -1 : clauseIndex)}>
+        <button class="btn mr-2 my-1" onClick={() => mutateActions.denormalize(currentMutation === clauseIndex ? -1 : clauseIndex)}>
           {currentMutation === clauseIndex ? 'hide mutations' : 'view mutations'}
         </button>
-        <button class="btn mr-2" onClick={() => queryActions.add(clauseIndex)}>
+        <button class="btn mr-2 my-1" onClick={() => queryActions.add(clauseIndex)}>
           add a query
         </button>
-        <button class="btn mr-2" onClick={() => mutateActions.add(clauseIndex)}>
+        <button class="btn mr-2 my-1" onClick={() => mutateActions.add(clauseIndex)}>
           add a mutation
         </button>
       </div>
