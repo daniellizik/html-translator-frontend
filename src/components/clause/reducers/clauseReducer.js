@@ -57,7 +57,7 @@ export default function(state, action) {
       ...state,
       clauses: state.clauses.map((c, i) => i !== action.clauseIndex ? c : {
         ...c,
-        target: action.name
+        name: action.name
       })
     }
 

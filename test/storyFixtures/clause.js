@@ -20,3 +20,10 @@ export const removingAClause = chainActions(
   clauseActions.remove(0),
   clauseActions.remove(0)
 ) 
+
+export const renamingAClause = chainActions(
+  baseState,
+  reducer,
+  clauseActions.add(),
+  clauseActions.changeName(0, 'foobar')
+)

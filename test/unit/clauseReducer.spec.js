@@ -1,7 +1,8 @@
 import { defaultMutation } from '~/src/components/clause/settings/config'
 import * as constants from '~/src/components/clause/constants'
 import {
-  removingAClause
+  removingAClause,
+  renamingAClause
 } from '~/test/storyFixtures/clause'
 
 describe('removing a clause', () => {
@@ -17,5 +18,11 @@ describe('removing a clause', () => {
   })
   it('should set active clause to -1 if no more clauses left', () => {
     expect(removingAClause[12].activeClause).toBe(-1)
+  })
+})
+
+describe('renaming a clause', () => {
+  it('should rename a clause when the action is called', () => {
+    expect(renamingAClause[2].clauses[0].name).toBe('foobar')
   })
 })
