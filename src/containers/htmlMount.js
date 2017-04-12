@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
-import Radium from 'radium'
 import { colors } from '~/src/styles/constants'
 import XmlTree from '~/src/components/xml/xmlTree'
 
@@ -50,6 +49,5 @@ const mapDispatchToProps = (dispatch) => ({
   
 })
 
-const withRadium = Radium(Receiver)
-const withConnect = connect(s => s, mapDispatchToProps)(withRadium)
+const withConnect = connect(s => s, mapDispatchToProps)(Receiver)
 export default withConnect

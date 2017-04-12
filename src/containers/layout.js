@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react'
 import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
-import Radium, { StyleRoot } from 'radium'
 import styles from '~/src/styles/'
 import Navigator from '~/src/components/navigator'
 import Builder from '~/src/components/builder'
@@ -18,10 +17,12 @@ export function reducer(state, action) {
 
 const builderStyle = {
   backgroundColor: colors.lightBlack,
+  overflowY: 'scroll'
 }
 
 const htmlMountStyle = {
-  backgroundColor: colors.darkBlack
+  backgroundColor: colors.darkBlack,
+  overflowY: 'scroll'
 }
 
 class Layout extends Component {
@@ -29,14 +30,14 @@ class Layout extends Component {
   render() {
     const { deployer, sidebar } = styles.layout
     return (
-      <div class="container-fluid p-0 m-0">
+      <div class="container-fluid tall p-0 m-0">
         <SourceSetter />
         <Navigator />
-        <div class="row">
-          <div class="col-6 m-0 pr-2" style={builderStyle}>
+        <div class="row tall">
+          <div class="col-6 tall m-0 pr-2" style={builderStyle}>
             <Builder />
           </div>
-          <div class="col-6 m-0 pl-2" style={htmlMountStyle}>
+          <div class="col-6 tall m-0 pl-2" style={htmlMountStyle}>
             <HtmlMount />
           </div>
         </div>

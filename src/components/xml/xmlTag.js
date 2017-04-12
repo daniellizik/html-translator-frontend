@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import Radium from 'radium'
 import { generate as id } from 'shortid'
 import XmlToken from './xmlToken'
 import tagTypes from './tagTypes'
@@ -68,6 +67,5 @@ XmlTag.propTypes = {
 }
 
 const withConnect = connect(s => s)(XmlTag)
-const withRadium = Radium(withConnect)
 
-export default withRadium
+export default withConnect
