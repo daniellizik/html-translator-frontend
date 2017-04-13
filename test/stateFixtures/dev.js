@@ -6,6 +6,8 @@ import * as constants from '~/src/components/clause/constants'
 import state from '~/src/store/state'
 import { multi } from '~/test/stateFixtures/clauses'
 import { reduceView } from '~/src/components/clause/reducers/util'
+import clauseActions from '~/src/components/clause/actions/clause'
+import viewReducer from '~/src/components/clause/reducers/viewReducer'
 
 const ast = parseHtml(rawHtml)
 
@@ -33,4 +35,6 @@ nextState = {
   clauses: reduceView(1, nextState.slave, nextState.clauses)
 }
 
-export default nextState
+const t = viewReducer(nextState, clauseActions.activate(0))
+
+export default t

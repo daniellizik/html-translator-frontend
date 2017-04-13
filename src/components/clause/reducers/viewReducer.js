@@ -9,7 +9,10 @@ export default function viewReducer(state, action) {
 
   let nextState = state
 
-  if (state.clauses[state.activeClause] && state.slave.currentMutation < 0)
+  if (action.type.indexOf('@CLAUSE') < 0)
+    return nextState
+
+  else if (state.clauses[state.activeClause] && state.slave.currentMutation < 0)
     return {
       ...state,
       slave: {
