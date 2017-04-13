@@ -84,7 +84,7 @@ export const MaximizedClause = connect(mapStateToProps, mapDispatchToProps)(({
         <button class="btn mr-2 my-1" onClick={() => clauseActions.remove(clauseIndex)}>
           remove this clause
         </button>
-        <button class="btn mr-2 my-1" onClick={() => mutateActions.denormalize(currentMutation === clauseIndex ? -1 : clauseIndex)}>
+        <button class="btn mr-2 my-1" onClick={() => clauseActions.denormalize(currentMutation === clauseIndex ? -1 : clauseIndex)}>
           {currentMutation === clauseIndex ? 'hide mutations' : 'view mutations'}
         </button>
         <button class="btn mr-2 my-1" onClick={() => queryActions.add(clauseIndex)}>

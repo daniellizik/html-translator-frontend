@@ -1,89 +1,80 @@
 import * as constants from '../constants'
 import { defaultClause } from '../settings/config'
-import { reduceView, reduceClauses } from './util'
+import { bindConstantsToReducers } from '~/src/util'
+import { errorHandler, reduceView, mapMutations, reduceClauses, reduceRuleProp, mutationDenormalizer } from './util'
 
-export default function(state, action) {
-
-  let nextState = state
-
-  if (action.type === constants.CLAUSE_ADD) {
+export default bindConstantsToReducers({
+  [constants.CLAUSE_ADD]: (state, action) => {
     const nextClauses = [ 
       ...state.clauses, 
       defaultClause
     ]
-    const clauses = reduceView({...action, clauseIndex: nextClauses.length - 1}, nextClauses, state.slave)
-    nextState = {
-      ...state,
-      clauses
-    }
-  }
-
-  else if (action.type === constants.CLAUSE_ACTIVATE)
-    nextState = {
-      ...state,
-      activeClause: action.clauseIndex
-    }
-
-  else if (action.type === constants.CLAUSE_VIEW_MUTATIONS)
-    nextState = {
-      ...state,
-      slave: {
-        ...state.slave,
-        currentMutation: action.currentMutation
+    const clauses = reduceView(nextClauses.length - 1, state.slave, nextClauses)
+    return { ...state, clauses }
+  },
+  [constants.CLAUSE_DENORMALIZE_MUTATIONS]: (state, {clauseIndex}) => {
+    let nextState
+    try {
+      nextState = {
+        ...state,
+        slave: {
+          ...state.slave,
+          currentMutation: clauseIndex,
+          mutated: clauseIndex < 0 ? [] : mutationDenormalizer(
+            state.clauses[clauseIndex],
+            state.slave.list.list,
+          )
+        }
       }
     }
-
-  else if (action.type === constants.CLAUSE_REMOVE) {
-    const nextClauses = state.clauses.filter((c, i) => i !== action.clauseIndex)
+    catch(e) {
+      process.env.NODE_ENV === 'development' && console.warn('error', e)
+      return {
+        ...state,
+        error: errorHandler(e)
+      }
+    }
+    return nextState
+  },
+  [constants.CLAUSE_ACTIVATE]: (state, {clauseIndex}) => ({ 
+    ...state, activeClause: clauseIndex 
+  }),
+  [constants.CLAUSE_VIEW_MUTATIONS]: (state, {currentMutation}) => ({
+    ...state,
+    slave: { ...state.slave, currentMutation }
+  }),
+  [constants.CLAUSE_REMOVE]: (state, {clauseIndex}) => {
+    const nextClauses = state.clauses.filter((c, i) => i !== clauseIndex)
     const { length } = state.clauses
-    nextState = {
+    return {
       ...state,
       activeClause: (() => {
         if (nextClauses.length === 0)
           return -1
-        else if (action.clauseIndex === 0)
+        else if (clauseIndex === 0)
           return 0
-        else if (action.clauseIndex === length)
+        else if (clauseIndex === length)
           return nextClauses.length - 1
         else
-          return action.clauseIndex - 1
+          return clauseIndex - 1
       })(),
       clauses: nextClauses
     }
-  }
-
-  else if (action.type === constants.CLAUSE_CHANGE_NAME) 
-    nextState = {
-      ...state,
-      clauses: state.clauses.map((c, i) => i !== action.clauseIndex ? c : {
-        ...c,
-        name: action.name
-      })
-    }
-
-  else if (action.type === constants.CLAUSE_CHANGE_TARGET) {
-    const clauses = state.clauses.map((c, i) => i !== action.clauseIndex ? c : {
+  },
+  [constants.CLAUSE_CHANGE_NAME]: (state, {clauseIndex, name}) => ({
+    ...state,
+    clauses: state.clauses.map((c, i) => i !== clauseIndex ? c : {
       ...c,
-      target: action.target
+      name: name
     })
-    nextState = {
+  }),
+  [constants.CLAUSE_CHANGE_TARGET]: (state, {clauseIndex, target}) => {
+    const clauses = state.clauses.map((c, i) => i !== clauseIndex ? c : {
+      ...c, target
+    })
+    return {
       ...state,
-      clauses: reduceView(action, clauses, state.slave)
+      clauses: reduceView(clauseIndex, state.slave, clauses)
     }
-}
-
-  // remove all clauses, reset everything
-  else if (action.type === constants.HTML_FETCHED)
-    nextState = { 
-      ...state,
-      slave: {
-        ...state.slave,
-        view: [],
-        mutated: []
-      },
-      clauses: []
-    }
-
-  return nextState
-
-}
+  }
+})

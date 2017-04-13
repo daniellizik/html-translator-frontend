@@ -6,5 +6,5 @@ import { reduceView } from '~/src/components/clause/reducers/util'
 export default {
   ...baseState,
   activeClause: 0,
-  clauses: reduceView({clauseIndex: 0}, basic, baseState.slave)
+  clauses: reduceView(0, baseState.slave, basic)
 }

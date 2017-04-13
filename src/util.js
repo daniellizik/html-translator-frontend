@@ -34,3 +34,9 @@ export const mutateList = (list, view) => {
       : [...acc, {...node, view: true}]
   },[])
 }
+
+export const bindConstantsToReducers = (reducers, initialState) => (state, action) => {
+  return reducers[action.type] 
+    ? reducers[action.type](state, action) 
+    : (state || initialState)
+}

@@ -4,7 +4,7 @@ import * as rules from '../settings/rules'
 import * as behaviors from '../settings/behaviors'
 import { targetMap } from '../settings/config'
 
-export const errorHandler = (action, {message}) => {
+export const errorHandler = ({message}) => {
   return message
 }
 
@@ -50,9 +50,9 @@ export const reduceRuleProp = (ruleType, state, action, prop) => {
   }
 }
 
-export const reduceView = (action, clauses, {list}) => {
+export const reduceView = (clauseIndex, {list}, clauses) => {
   return clauses.reduce((acc, clause, index) => {
-    if (index !== action.clauseIndex)
+    if (index !== clauseIndex)
       return [...acc, clause]
     const view = list.open.reduce((ids, node) => {
       const clauseResult = clause.queries.reduce((bool, obj) => {
@@ -84,7 +84,7 @@ export const reduceClauses = (state, action, key) => {
   try {
     nextState = {
       ...state,
-      clauses: reduceView(action, clauses, state.slave)
+      clauses: reduceView(action.clauseIndex, state.slave, clauses)
     }
   }
   catch(e) {
@@ -92,7 +92,7 @@ export const reduceClauses = (state, action, key) => {
     return {
       ...state,
       clauses,
-      error: errorHandler(action, e)
+      error: errorHandler(e)
     }
   }
   return nextState

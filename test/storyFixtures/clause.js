@@ -3,7 +3,7 @@ import baseState from '~/test/stateFixtures/test'
 import { queryActions, mutateActions, clauseActions, builderActions } from '~/src/components/clause/actions/index'
 import reducer from '~/src/store/rootReducer'
 import { chainActions } from '~/src/util'
-import { chainedDenormalizations } from '~/src/test/storyFixtures/mutation'
+import { chainedDenormalizations } from './mutation'
 
 export const removingAClause = chainActions(
   baseState,
@@ -31,5 +31,7 @@ export const renamingAClause = chainActions(
 
 export const viewSingleMutation = chainActions(
   chainedDenormalizations,
-  reducer
+  reducer,
+  clauseActions.denormalize(0),
+  builderActions.viewAllMutations()
 )

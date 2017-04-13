@@ -25,12 +25,12 @@ const previousState = {
 
 let nextState = {
   ...previousState,
-  clauses: reduceView({clauseIndex: 0}, previousState.clauses, previousState.slave)
+  clauses: reduceView(0, previousState.slave, previousState.clauses)
 }
 
 nextState = {
   ...nextState,
-  clauses: reduceView({clauseIndex: 1}, nextState.clauses, nextState.slave)
+  clauses: reduceView(1, nextState.slave, nextState.clauses)
 }
 
 export default nextState

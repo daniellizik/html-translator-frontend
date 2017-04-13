@@ -22,7 +22,7 @@ export const reducedMutations = chainActions(
   clauseActions.changeTarget('TEXT', 0, 1),
   mutateActions.changeRule('ALL_REPLACE', 0),
   mutateActions.changeRuleValue('cat ', 0, 1),
-  mutateActions.denormalize(0)
+  clauseActions.denormalize(0)
 )
 
 export const regexMutation = chainActions(
@@ -34,23 +34,23 @@ export const regexMutation = chainActions(
   mutateActions.changeRuleValueFlags('i', 0, 0),
   mutateActions.changeTargetValue('peanuts', 0, 0),
   mutateActions.toggle(true, 0, 0),
-  mutateActions.denormalize(0),
+  clauseActions.denormalize(0),
   mutateActions.add(0),
   mutateActions.changeRule('REGEX_REPLACE', 0, 1),
   mutateActions.changeRuleValue('eanu', 0, 1),
   mutateActions.changeTargetValue(' foobar ', 0, 1),
   mutateActions.toggle(true, 0, 1),
-  mutateActions.denormalize(0),
+  clauseActions.denormalize(0),
   mutateActions.changeRuleValueFlags('[mutate!!]', 0, 0),
-  mutateActions.denormalize(0)
+  clauseActions.denormalize(0)
 )
 
 export const toggling = chainActions(
   regexMutation,
   reducer,
-  clauseActions.setCurrentMutation(0),
-  clauseActions.setCurrentMutation(-1),
-  clauseActions.setCurrentMutation(1)
+  clauseActions.viewMutations(0),
+  clauseActions.viewMutations(-1),
+  clauseActions.viewMutations(1)
 )
 
 export const nodename = chainActions(
@@ -62,11 +62,11 @@ export const nodename = chainActions(
   queryActions.changeRule('LIKE', 0, 0),
   queryActions.changeTargetValue('span', 0, 0),
   clauseActions.changeTarget('NODE_NAME', 0),
-  clauseActions.setCurrentMutation(0),
+  clauseActions.viewMutations(0),
   mutateActions.changeRule('ALL_REPLACE', 0, 0),
   mutateActions.changeRuleValue('h13', 0, 0),
   mutateActions.toggle(true, 0, 0),
-  mutateActions.denormalize(0)
+  clauseActions.denormalize(0)
 )
 
 export const chainedDenormalizations = chainActions(

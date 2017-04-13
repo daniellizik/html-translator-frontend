@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import XmlTag, { findTagType } from './xmlTag'
 import { connect } from 'react-redux'
 import { mutateList } from '~/src/util'
+import { bindActionCreators } from 'redux'
 import { queryActions, mutateActions, clauseActions } from '~/src/components/clause/actions/index'
 
 // todo: move this to reducer using slave.view

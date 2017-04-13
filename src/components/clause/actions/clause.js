@@ -22,7 +22,11 @@ export default {
     target,
     clauseIndex
   }),
-  setCurrentMutation: (currentMutation) => ({
+  denormalize: (clauseIndex) => ({
+    type: constants.CLAUSE_DENORMALIZE_MUTATIONS,
+    clauseIndex
+  }),
+  viewMutations: (currentMutation) => ({
     type: constants.CLAUSE_VIEW_MUTATIONS,
     currentMutation
   })

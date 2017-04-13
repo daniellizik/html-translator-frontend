@@ -16,10 +16,6 @@ export default {
     clauseIndex,
     ruleIndex
   }),
-  denormalize: (clauseIndex) => ({
-    type: constants.MUTATION_DENORMALIZE,
-    clauseIndex
-  }),
   changeBehavior: (behavior, clauseIndex, ruleIndex) => ({
     type: constants.MUTATION_CHANGE_BEHAVIOR, behavior, clauseIndex, ruleIndex
   }),
