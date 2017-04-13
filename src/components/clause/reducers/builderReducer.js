@@ -9,6 +9,15 @@ export default bindConstantsToReducers({
     activeClause: -1,
     clauses: []
   }),
+  [constants.BUILDER_HIDE_ALL_MUTATIONS]: (state, action) => ({
+    ...state,
+    activeClause: 0,
+    slave: {
+      ...state.slave,
+      mutated: state.slave.list.list,
+      view: []
+    }
+  }),
   [constants.BUILDER_VIEW_ALL_MUTATIONS]: (state, action) => {
     const mutated = state
       .clauses

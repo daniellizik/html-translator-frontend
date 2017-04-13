@@ -15,6 +15,10 @@ export function reducer(state, action) {
   return state
 }
 
+const rowStyle = {
+  width: '100%'
+}
+
 const builderStyle = {
   backgroundColor: colors.lightBlack,
   overflowY: 'scroll'
@@ -33,7 +37,7 @@ class Layout extends Component {
       <div class="container-fluid tall p-0 m-0">
         <SourceSetter />
         <Navigator />
-        <div class="row tall">
+        <div style={rowStyle} class="row tall p-0 m-0">
           <div class="col-6 tall m-0 pr-2" style={builderStyle}>
             <Builder />
           </div>

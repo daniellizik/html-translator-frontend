@@ -6,5 +6,8 @@ export default {
   }),
   denormalizeAll: () => ({
     type: constants.BUILDER_VIEW_ALL_MUTATIONS
+  }),
+  hideAllMutations: () => ({
+    type: constants.BUILDER_HIDE_ALL_MUTATIONS
   })
 }

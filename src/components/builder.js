@@ -16,7 +16,7 @@ const btnStyle = {
 }
 
 const Builder = ({activeClause, clauses, clauseActions, builderActions}) => (
-  <div class="row pl-4 px-3 py-3">
+  <div class="row pl-4 px-3 py-3 mb-3">
     <div class="col-12 p-0 mb-3">
       <button style={btnStyle} class="btn p-2 mr-2" onClick={clauseActions.add}>
         add clause <i class="fa fa-plus"></i>
@@ -24,7 +24,10 @@ const Builder = ({activeClause, clauses, clauseActions, builderActions}) => (
       <button style={btnStyle} class="btn p-2 mr-2" onClick={builderActions.removeAll}>
         remove all clauses
       </button>
-      <button style={btnStyle} class="btn p-2 mr-2" onClick={builderActions.denormalizeAll}>
+      <button style={btnStyle} class="btn p-2 mr-2" onClick={() => {
+        activeClause > -1 && builderActions.denormalizeAll()
+        activeClause < 0 && builderActions.hideAllMutations()
+      }}>
         {
           (() => {
             if (activeClause < 0)

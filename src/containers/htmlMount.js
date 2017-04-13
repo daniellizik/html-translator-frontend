@@ -36,7 +36,9 @@ class Receiver extends Component {
       return (<div></div>)
     else {
       return (
-        <XmlTree callbacks={this.callbacks()} />
+        <div class="row">
+          <XmlTree callbacks={this.callbacks()} />
+        </div>
       )
     }
   }

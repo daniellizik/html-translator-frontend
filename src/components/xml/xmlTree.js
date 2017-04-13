@@ -26,28 +26,30 @@ const mapStateToProps = (state) => ({
 })
 
 const XmlTree = ({list, view, callbacks}) => (
-  <table style={{width: '100%'}}>
-    <tbody>
-      {view.reduce((acc, node, i, list) => {
-        const tagType = findTagType({node, list}) 
-        return !tagType ? acc : {
-          count: acc.count + 1,
-          tags: [
-            ...acc.tags,
-            <XmlTag
-              key={i}
-              node={node}
-              index={i}
-              row={acc.count}
-              openTags={list.open}
-              list={list}
-              tagType={tagType}
-              callbacks={callbacks} />
-          ]
-        }
-      }, {tags: [], count: 0}).tags}
-    </tbody>
-  </table>
+  <div class="col-12 m-0 p-0">
+    <table style={{width: '100%'}}>
+      <tbody>
+        {view.reduce((acc, node, i, list) => {
+          const tagType = findTagType({node, list}) 
+          return !tagType ? acc : {
+            count: acc.count + 1,
+            tags: [
+              ...acc.tags,
+              <XmlTag
+                key={i}
+                node={node}
+                index={i}
+                row={acc.count}
+                openTags={list.open}
+                list={list}
+                tagType={tagType}
+                callbacks={callbacks} />
+            ]
+          }
+        }, {tags: [], count: 0}).tags}
+      </tbody>
+    </table>
+  </div>
 )
 
 export default connect(mapStateToProps, mapDispatchToProps)(XmlTree)
