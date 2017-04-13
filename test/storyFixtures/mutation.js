@@ -84,5 +84,5 @@ export const chainedDenormalizations = chainActions(
   mutateActions.add(1),
   mutateActions.changeRuleValue('span-good', 1, 0),
   mutateActions.changeRule('ALL_REPLACE', 1, 0),
-  builderActions.viewAllMutations()
+  builderActions.denormalizeAll()
 ) 

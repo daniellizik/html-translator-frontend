@@ -8,6 +8,15 @@ export const errorHandler = ({message}) => {
   return message
 }
 
+export const mutateList = (list = [], view = []) => {
+  return list.reduce((acc, node) => { 
+    const index = view.indexOf(node.id)
+    return index < 0 
+      ? [...acc, node]
+      : [...acc, {...node, view: true}]
+  },[])
+}
+
 // take view, mutations and apply them to FULL LIST, not open
 // this makes it easier for xml tree to consume (it just spits out entire list)
 export const mutationDenormalizer = (clause, list = []) => {

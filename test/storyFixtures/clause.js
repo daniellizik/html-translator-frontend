@@ -33,5 +33,5 @@ export const viewSingleMutation = chainActions(
   chainedDenormalizations,
   reducer,
   clauseActions.denormalize(0),
-  builderActions.viewAllMutations()
+  builderActions.denormalizeAll()
 )

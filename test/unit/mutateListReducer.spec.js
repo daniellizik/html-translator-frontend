@@ -1,4 +1,4 @@
-import { mutateList } from '~/src/util'
+import { mutateList } from '~/src/components/clause/reducers/util'
 import { modifyingTextQueries as story } from '~/test/storyFixtures/query'
 
 describe('mutate list', () => {

@@ -60,7 +60,6 @@ XmlTag.propTypes = {
   node: PropTypes.object.isRequired,
   index: PropTypes.number.isRequired,
   row: PropTypes.number.isRequired,
-  openTags: PropTypes.array.isRequired,
   list: PropTypes.array.isRequired,
   callbacks: PropTypes.object.isRequired,
   tagType: PropTypes.string.isRequired

@@ -4,7 +4,7 @@ export default {
   removeAll: () => ({
     type: constants.BUILDER_REMOVE_ALL_CLAUSES
   }),
-  viewAllMutations: () => ({
+  denormalizeAll: () => ({
     type: constants.BUILDER_VIEW_ALL_MUTATIONS
   })
 }

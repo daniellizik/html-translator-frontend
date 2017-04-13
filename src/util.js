@@ -26,15 +26,6 @@ export const filterText = (node) => {
   return !/^[\s\r\n]+$/.test(node.value)
 }
 
-export const mutateList = (list, view) => {
-  return list.reduce((acc, node) => { 
-    const index = view.indexOf(node.id)
-    return index < 0 
-      ? [...acc, node]
-      : [...acc, {...node, view: true}]
-  },[])
-}
-
 export const bindConstantsToReducers = (reducers, initialState) => (state, action) => {
   return reducers[action.type] 
     ? reducers[action.type](state, action) 

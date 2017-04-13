@@ -1,21 +1,18 @@
 import * as constants from '../constants'
 import { defaultClause } from '../settings/config'
 import { bindConstantsToReducers } from '~/src/util'
-import { errorHandler, reduceView, mapMutations, reduceClauses, reduceRuleProp, mutationDenormalizer } from './util'
+import { errorHandler, reduceView, mutationDenormalizer } from './util'
 
 export default bindConstantsToReducers({
-  [constants.CLAUSE_ADD]: (state, action) => {
-    const nextClauses = [ 
-      ...state.clauses, 
-      defaultClause
-    ]
-    const clauses = reduceView(nextClauses.length - 1, state.slave, nextClauses)
-    return { ...state, clauses }
-  },
+  [constants.CLAUSE_ADD]: (state, action) => ({
+    ...state,
+    clauses: reduceView(state.clauses.length, state.slave, [
+      ...state.clauses, defaultClause
+    ])
+  }),
   [constants.CLAUSE_DENORMALIZE_MUTATIONS]: (state, {clauseIndex}) => {
-    let nextState
     try {
-      nextState = {
+      return {
         ...state,
         slave: {
           ...state.slave,
@@ -28,13 +25,12 @@ export default bindConstantsToReducers({
       }
     }
     catch(e) {
-      process.env.NODE_ENV === 'development' && console.warn('error', e)
+      process.env.NODE_ENV === 'development' && console.warn(e)
       return {
         ...state,
         error: errorHandler(e)
       }
     }
-    return nextState
   },
   [constants.CLAUSE_ACTIVATE]: (state, {clauseIndex}) => ({ 
     ...state, activeClause: clauseIndex 
@@ -68,13 +64,10 @@ export default bindConstantsToReducers({
       name: name
     })
   }),
-  [constants.CLAUSE_CHANGE_TARGET]: (state, {clauseIndex, target}) => {
-    const clauses = state.clauses.map((c, i) => i !== clauseIndex ? c : {
+  [constants.CLAUSE_CHANGE_TARGET]: (state, {clauseIndex, target}) => ({
+    ...state,
+    clauses: reduceView(clauseIndex, state.slave, state.clauses.map((c, i) => i !== clauseIndex ? c : {
       ...c, target
-    })
-    return {
-      ...state,
-      clauses: reduceView(clauseIndex, state.slave, clauses)
-    }
-  }
+    }))
+  })
 })

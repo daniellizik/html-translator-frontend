@@ -28,6 +28,6 @@ describe('reducing slave.view', () => {
   it('should generate slave.view for a single clause', () => {
     expect(viewSingleMutation[1].slave.view.filter(n => !n.close && n.value === 'blah-foo').length).toBe(3)
     // expect(viewSingleMutation[1].slave.view.filter(n => !n.close && n.nodeName === 'span-good').length).toBe(0)
-    // expect(viewSingleMutation[2].slave.view.filter(n => !n.close && n.value === 'blah-foo').length).toBe(3)
+    expect(viewSingleMutation[2].slave.view.filter(n => !n.close && n.value === 'blah-foo').length).toBe(3)
   })
 })

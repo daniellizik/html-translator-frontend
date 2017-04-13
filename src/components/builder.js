@@ -24,7 +24,7 @@ const Builder = ({activeClause, clauses, clauseActions, builderActions}) => (
       <button style={btnStyle} class="btn p-2 mr-2" onClick={builderActions.removeAll}>
         remove all clauses
       </button>
-      <button style={btnStyle} class="btn p-2 mr-2" onClick={builderActions.viewAllMutations}>
+      <button style={btnStyle} class="btn p-2 mr-2" onClick={builderActions.denormalizeAll}>
         {
           (() => {
             if (activeClause < 0)
