@@ -30,7 +30,8 @@ export default {
     tree: [],
     currentMutation: -1,
     mutated: [],
-    view: []
+    view: [],
+    xml: []
   },
 
   activeClause: null,

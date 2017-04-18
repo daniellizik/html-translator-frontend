@@ -20,6 +20,7 @@ export const colors = {
   inactiveHover: `rgba(27,31,35,0.6)`,
 
   grey: '#BDBDBD',
+  lightGrey: '#A4A4A4',
   middleGrey: '#585858',
   darkGrey: '#bdc3c7',
   red: '#c0392b',

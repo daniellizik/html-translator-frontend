@@ -10,8 +10,8 @@ import * as config from '~/src/components/clause/settings/config'
 const hrStyle = {
   borderBottom: `1px solid black`
 }
-const closeStyle = {
-  fontSize: '.8em'
+const ruleStyle = {
+  background: colors.lightGrey
 }
 const clauseStyle = {
   background: colors.middleGrey,
@@ -30,12 +30,11 @@ const mapStateToProps = (state) => ({
 })
 
 export const Clause = connect(mapStateToProps, mapDispatchToProps)((props) => (
-  <div class="py-0">
-    <hr class="mt-1 py-0 mx-3" style={hrStyle} />
+  <div class="py-0" style={ruleStyle}>
     {policyValidator(props)}
-    <div class="row py-2 m-0" style={closeStyle}>
+    <div class="row py-2 m-0">
       <div class="col-4">
-        <span onClick={() => ({QUERY: props.queryActions, MUTATION: props.mutateActions})[props.type].remove(props.clauseIndex, props.ruleIndex)}>
+        <span onClick={() => ({QUERY: props.queryActions, MUTATION: props.mutateActions})[props.type].remove(clauseIndex, props.ruleIndex)}>
           {({QUERY: 'remove this query', MUTATION: 'remove this mutation'})[props.type]}
         </span>
       </div>
@@ -55,12 +54,13 @@ export const MaximizedClause = connect(mapStateToProps, mapDispatchToProps)(({
     key={clauseIndex} 
     class="col-12 mx-0 mb-3 py-3" 
     style={clauseStyle}>
-    <div class="row">
-      <label class="col-6 mb-2">
+    <div class="row px-3">
+      <label class="col-5 mb-2 mx-0 pl-0 pr-2">
         <p>change target</p>
         <select 
           class="form-control custom-select" 
           value={clauseGroup.target}
+          onFocus={() => clauseActions.activate(clauseIndex)}
           onClick={() => clauseActions.activate(clauseIndex)}
           onChange={(e) => clauseActions.changeTarget(e.target.value, clauseIndex)}>
           {config.targets.map((p, j) => (
@@ -70,17 +70,18 @@ export const MaximizedClause = connect(mapStateToProps, mapDispatchToProps)(({
           ))}
         </select>
       </label>
-      <label class="col-6 mb-2">
+      <label class="col-5 mb-2 mx-0 pl-0 pr-2">
         <p>clause title</p>
         <input 
           type="text"
           class="form-control"
+          onFocus={() => clauseActions.activate(clauseIndex)}
           onClick={() => clauseActions.activate(clauseIndex)}
           onChange={(e) => clauseActions.changeName(clauseIndex, e.target.value)} 
           value={clauseGroup.name} 
           placeholder="clause title" />
       </label>
-      <div class="col-12 mb-2">
+      <div class="col-12 mb-2 mx-0 px-0">
         <button class="btn mr-2 my-1" onClick={() => clauseActions.remove(clauseIndex)}>
           remove this clause
         </button>
@@ -95,7 +96,10 @@ export const MaximizedClause = connect(mapStateToProps, mapDispatchToProps)(({
         </button>
       </div>
       <div class="col-12 m-0 p-0">
-        {clauseGroup.queries && clauseGroup.queries.map((clause, ruleIndex, {length}) => (
+        <div class="row m-0 p-0">
+          <div class="col m-0 p-0">queries</div>
+        </div>
+        {clauseGroup.queries.map((clause, ruleIndex, {length}) => (
           <Clause 
             type="QUERY"
             clause={clause} 
@@ -104,7 +108,10 @@ export const MaximizedClause = connect(mapStateToProps, mapDispatchToProps)(({
             ruleIndex={ruleIndex} 
             key={`q-${clauseIndex}-${ruleIndex}`} />
         ))}
-        {clauseGroup.mutations && clauseGroup.mutations.map((clause, ruleIndex, {length}) => (
+        <div class="row m-0 p-0">
+          <div class="col m-0 p-0">mutations</div>
+        </div>
+        {clauseGroup.mutations.map((clause, ruleIndex, {length}) => (
           <Clause 
             type="MUTATION"
             clause={clause} 

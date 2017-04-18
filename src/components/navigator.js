@@ -10,6 +10,7 @@ import { colors } from '~/src/styles/constants'
 const bgStyle = {
   backgroundColor: colors.lightBlack,
   lineHeight: '47px',
+  height: '5%',
   cursor: 'pointer',
   borderBottom: `1px solid ${colors.darkestBlack}`
 }

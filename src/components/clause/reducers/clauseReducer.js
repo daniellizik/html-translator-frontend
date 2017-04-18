@@ -14,6 +14,7 @@ export default bindConstantsToReducers({
     try {
       return {
         ...state,
+        activeClause: clauseIndex,
         slave: {
           ...state.slave,
           currentMutation: clauseIndex,

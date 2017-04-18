@@ -2,10 +2,10 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { generate as id } from 'shortid'
 import XmlToken from './xmlToken'
-import tagTypes from './tagTypes'
+import XmlSpacer from './xmlSpacer'
 import { colors } from '~/src/styles/constants'
 
-const styleRow = ({view}) => ({
+const styleRow = ({viewed}) => ({
   border: 'none',
   padding: '0px 15px 0px 0px'
 })
@@ -17,41 +17,36 @@ const lineNumber = () => ({
   userSelect: 'none',
   textAlign: 'right',
   cursor: 'pointer',
-  width: '1em',
-  ':hover': {
-    color: colors.inactiveHover
-  }
+  width: '1em'
 })
 
-// this view prop comes from #util@mutateList
-const lineText = ({view}) => ({
+// this viewed prop comes from #util@mutateList
+const lineText = ({viewed}) => ({
   fontSize: '14px',
   fontWeight: 500,
   fontFamily: `"Source Code Pro", monospace`,
   whiteSpace: 'nowrap',
-  background: !view ? 'transparent' : colors.dbg,
+  background: !viewed ? 'transparent' : colors.dbg,
   cursor: 'text'
 })
-
-export const findTagType = ({node, list}) => {
-  return Object
-    .keys(tagTypes)
-    .find(k => tagTypes[k].ignore({...node, list}))
-}
 
 const XmlTag = (props) => (
   <tr
     data-row={props.row}
-    data-index={props.index}
     style={styleRow(props.node)}
     onClick={() => props.callbacks.click(props)}
     onMouseEnter={(e) => props.callbacks.highlight(props)}>
-    <td style={lineNumber()}>
-      {props.row}
+    <td 
+      class="code-line" 
+      data-line-number={props.row} 
+      style={lineNumber()}>
     </td>
     <td style={lineText(props.node)}>
-      {new Array(props.node.depth).fill('\u00a0\u00a0').join('')}
-      <XmlToken key={id()} type={props.tagType} list={props.list} node={props.node} />
+      <XmlSpacer depth={props.node.depth} />
+      <XmlToken 
+        tokens={props.tokens}
+        key={id()} 
+        node={props.node} />
     </td>
   </tr>
 )
@@ -60,9 +55,8 @@ XmlTag.propTypes = {
   node: PropTypes.object.isRequired,
   index: PropTypes.number.isRequired,
   row: PropTypes.number.isRequired,
-  list: PropTypes.array.isRequired,
+  tokens: PropTypes.array.isRequired,
   callbacks: PropTypes.object.isRequired,
-  tagType: PropTypes.string.isRequired
 }
 
 const withConnect = connect(s => s)(XmlTag)

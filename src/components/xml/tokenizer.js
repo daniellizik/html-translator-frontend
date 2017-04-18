@@ -64,6 +64,20 @@ const close = {
   ]
 }
 
+export const tokenizeAttrs = (attrs = []) => {
+  return attrs.length < 1 ? [] : attrs.reduce((acc, attr) => {
+    return [
+      ...acc,
+      { punctuation: 'SPACER', value: ' ' },
+      { punctuation: 'ATTR_NAME', value: attr.name },
+      { punctuation: 'ATTR_SETTER', value: '=' },
+      { punctuation: 'ATTR_QUOTE_OPEN', value: '"' },
+      { punctuation: 'ATTR_VALUE', value: attr.value },
+      { punctuation: 'ATTR_QUOTE_CLOSE', value: '"' }
+    ]
+  }, [])
+}
+
 export default {
   ignorable,
   text,

@@ -6,7 +6,7 @@ describe('mutate list', () => {
   it('should mutate a list', () => {
     expect(mutated.length).toBe(story[2].slave.list.list.length)
   })
-  it('should give node in view view: true prop', () => {
-    expect(mutated.filter(m => m.view === true).length).toBe(6)
+  it('should give node in viewed viewed: true prop', () => {
+    expect(mutated.filter(m => m.viewed === true).length).toBe(6)
   })
 })

@@ -12,8 +12,8 @@ export const mutateList = (list = [], view = []) => {
   return list.reduce((acc, node) => { 
     const index = view.indexOf(node.id)
     return index < 0 
-      ? [...acc, node]
-      : [...acc, {...node, view: true}]
+      ? [...acc, {...node, viewed: false}]
+      : [...acc, {...node, viewed: true}]
   },[])
 }
 

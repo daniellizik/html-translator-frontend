@@ -16,7 +16,7 @@ export function reducer(state, action) {
 }
 
 const rowStyle = {
-  width: '100%'
+  height: '95%'
 }
 
 const builderStyle = {
@@ -34,14 +34,14 @@ class Layout extends Component {
   render() {
     const { deployer, sidebar } = styles.layout
     return (
-      <div class="container-fluid tall p-0 m-0">
+      <div class="container-fluid max p-0 m-0">
         <SourceSetter />
         <Navigator />
-        <div style={rowStyle} class="row tall p-0 m-0">
-          <div class="col-6 tall m-0 pr-2" style={builderStyle}>
+        <div style={rowStyle} class="row p-0 m-0">
+          <div class="col-6 m-0 pr-2" style={builderStyle}>
             <Builder />
           </div>
-          <div class="col-6 tall m-0 pl-2" style={htmlMountStyle}>
+          <div class="col-6 m-0 pl-2" style={htmlMountStyle}>
             <HtmlMount />
           </div>
         </div>

@@ -6,7 +6,7 @@ import { configureStore } from './store/configureStore'
 const { store } = configureStore()
 
 render(
-  <div class="tall">
+  <div class="max">
     <Provider store={store}>
       <Layout />
     </Provider>
