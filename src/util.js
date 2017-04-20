@@ -23,7 +23,7 @@ export const asyncChainActions = (store, ...actions) => {
 }
 
 export const filterText = (node) => {
-  return !/^[\s\r\n]+$/.test(node.value)
+  return !/^[\s\r\n]{0,}$/.test(node.value)
 }
 
 export const bindConstantsToReducers = (reducers, initialState) => (state, action) => {

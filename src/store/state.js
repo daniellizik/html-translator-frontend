@@ -31,7 +31,8 @@ export default {
     currentMutation: -1,
     mutated: [],
     view: [],
-    xml: []
+    xml: [],
+    stringified: null
   },
 
   activeClause: null,

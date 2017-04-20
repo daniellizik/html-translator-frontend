@@ -12,26 +12,30 @@ const crx = () => {
     : (next) => next
 }
 
+const logger = ({getState}) => (next) => (action) => {
+  console.log(action, getState())
+  return next(action)
+}
+
 export const configureStore = (initialState = prodState) => {
   let store
-  const middleware = applyMiddleware(thunk)
   if (env === 'development')
     store = createStore(
       rootReducer, 
       devState, 
-      middleware
+      applyMiddleware(thunk, logger)
     )
   else if (env === 'test')
     store = createStore(
       rootReducer, 
       Array.isArray(initialState) ? initialState.slice(-1).pop() : initialState, 
-      middleware
+      applyMiddleware(thunk)
     )
   else if (env === 'production')
     store = createStore(
       rootReducer, 
       prodState, 
-      middleware
+      applyMiddleware(thunk)
     )
   
   return { store }

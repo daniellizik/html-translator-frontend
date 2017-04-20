@@ -34,7 +34,7 @@ export const sourceSubmit = ({rawHtml, url, name, lastModified}) => (dispatch) =
   if (lastModified === 'html' || lastModified === 'file') {
     const ast = parseHtml(rawHtml)
     const list = treeToList()(ast)
-    dispatch({ 
+    return dispatch({ 
       type: constants.HTML_FETCHED,
       tree: list,
       rawHtml,
@@ -49,7 +49,7 @@ export const sourceSubmit = ({rawHtml, url, name, lastModified}) => (dispatch) =
       .then(rawHtml => {
         const ast = parseHtml(rawHtml)
         const list = treeToList()(ast)
-        dispatch({
+        return dispatch({
           type: constants.HTML_FETCHED,
           tree: list,
           rawHtml,

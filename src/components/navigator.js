@@ -2,6 +2,7 @@ import { saveAs as filesaver } from 'file-saver'
 import React, { Component, PropTypes } from 'react'
 import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import styles from '~/src/styles'
 import { callModal } from '~/src/containers/overlay'
 import deepInsert from '~/src/deepInsert'
@@ -30,7 +31,7 @@ const hStyle = {
   fontSize: '1.5em'
 }
 
-export const constants = {
+export const CONSTANTS = {
   CALL_MODAL: '@NAVIGATOR/CALL_MODAL',
   CALL_BUILDER: '@NAVIGATOR/CALL_BUILDER',
   CALL_MUTATOR: '@NAVIGATOR/CALL_MUTATOR',
@@ -43,7 +44,7 @@ export const constants = {
 }
 
 export function reducer(state, action) {
-  if (action.type === constants.CALL_MUTATOR)
+  if (action.type === CONSTANTS.CALL_MUTATOR)
     return {
       ...state,
       components: {
@@ -52,7 +53,7 @@ export function reducer(state, action) {
         mutator: true
       }
     }
-  if (action.type === constants.CALL_BUILDER)
+  if (action.type === CONSTANTS.CALL_BUILDER)
     return { 
       ...state, 
       components: {
@@ -60,7 +61,7 @@ export function reducer(state, action) {
         query: true
       }
     }
-  if (action.type === constants.CALL_MODAL)
+  if (action.type === CONSTANTS.CALL_MODAL)
     return {
       ...state,
       source: {
@@ -71,57 +72,51 @@ export function reducer(state, action) {
   return state
 }
 
-export const callBuilder = () => ({ type: constants.CALL_BUILDER })
-
-export const callMutator = () => ({ type: constants.CALL_MUTATOR })
-
-// apply mutations to view
-// then apply view to ast
-// then serialize ast to html string
-export const downloadHtml = ({view, mutated, ast}) => (dispatch) => {
-  dispatch({ type: constants.DOWNLOAD_HTML_DONE })
-  // const blob = new Blob([html], {type: 'text/html;charset=utf-8'})
-  // filesaver(blob)
-}
-
-export const previewHtml = () => ({ type: constants.CALL_IFRAME })
-
-export const resetHtml = () => ({ type: constants.RESET_HTML })
-
-const Navigator = ({mutated, dispatch}) => {
-  return (
-    <div class="row pl-3 pt-0 px-4 mb-0" style={bgStyle}>
-
-      <div class="col-auto p-0 m-0">
-        <span onClick={() => dispatch(callModal())} style={aStyle} class="mr-3">
-          Change Html
-        </span>
-      </div>  
-
-      <div class="col-auto p-0 m-0">
-        <span onClick={() => dispatch(downloadHtml(mutated))} style={aStyle} class="mr-3">
-          Download
-        </span>
-      </div>  
-
-      <div class="col-auto p-0 m-0">
-        <span onClick={() => dispatch(callBuilder())} style={aStyle} class="mr-3">
-          Preview
-        </span>
-      </div>  
-
-      <div class="col-auto p-0 m-0">
-        <span onClick={() => dispatch(callBuilder())} style={aStyle} class="mr-3">
-          Reset
-        </span>
-      </div>  
-
-    </div>
-  )
+const actions = {
+  callBuilder: () => ({ type: CONSTANTS.CALL_BUILDER }),
+  callMutator: () => ({ type: CONSTANTS.CALL_MUTATOR }),
+  downloadHtml: ({xml, mutated}) => (dispatch) => {
+    dispatch({ type: CONSTANTS.DOWNLOAD_HTML_DONE })
+    // const blob = new Blob([html], {type: 'text/html;charset=utf-8'})
+    // filesaver(blob)
+  },
+  previewHtml: () => ({ type: CONSTANTS.CALL_IFRAME }),
+  resetHtml: () => ({ type: CONSTANTS.RESET_HTML })
 }
 
 const mapStateToProps = (state) => ({
-  mutated: state.slave.mutated
+  mutated: state.slave.mutated,
+  xml: state.slave.xml
 })
 
-export default connect(mapStateToProps)(Navigator)
+const mapDispatchToProps = (dispatch) => bindActionCreators(actions, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(({mutated, xml, callModal, downloadHtml, callBuilder}) => (
+  <div class="row pl-3 pt-0 px-4 mb-0" style={bgStyle}>
+
+    <div class="col-auto p-0 m-0">
+      <span onClick={() => callModal()} style={aStyle} class="mr-3">
+        Change Html
+      </span>
+    </div>  
+
+    <div class="col-auto p-0 m-0">
+      <span onClick={() => downloadHtml({xml, mutated})} style={aStyle} class="mr-3">
+        Download
+      </span>
+    </div>  
+
+    <div class="col-auto p-0 m-0">
+      <span onClick={() => callBuilder()} style={aStyle} class="mr-3">
+        Preview
+      </span>
+    </div>  
+
+    <div class="col-auto p-0 m-0">
+      <span onClick={() => callBuilder()} style={aStyle} class="mr-3">
+        Reset
+      </span>
+    </div>  
+
+  </div>
+))

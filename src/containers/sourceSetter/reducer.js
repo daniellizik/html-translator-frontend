@@ -1,4 +1,5 @@
 import * as constants from './constants'
+import * as config from '~/src/components/clause/settings/config'
 
 export default function(state, action) {
 
@@ -33,7 +34,7 @@ export default function(state, action) {
         lastModified: 'url'
       }
     }
-
+  // this is the "done" thing
   if (action.type === constants.HTML_FETCHED)
     return {
       ...state,
@@ -42,14 +43,18 @@ export default function(state, action) {
         ...state.source,
         name: action.name
       },
-      // layout is responsible for state.components
+      activeClause: 0,
       slave: {
         ...state.slave,
         status: 'DONE',
         ast: action.ast,
         list: action.list,
-        rawHtml: action.rawHtml  
-      }
+        rawHtml: action.rawHtml,
+        view: [],
+        mutated: [],
+        xml: []
+      },
+      clauses: [config.defaultClause]
     } 
 
   if (action.type === constants.FETCH_URL_ERROR)

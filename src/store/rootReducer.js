@@ -13,20 +13,17 @@ import { reducer as overlay } from '~/src/containers/overlay'
 import { reducer as layout } from '~/src/containers/layout'
 import { reducer as navigation } from '~/src/components/navigator'
 
-export default (state = initialState, action) => {
-  const nextState = chainReducers(
-    state,
-    action,
-    sourceSetter,
-    builder,
-    clause,
-    mutation,
-    query,
-    view,
-    xml,
-    overlay,
-    layout,
-    navigation
-  )
-  return nextState
-}
+export default (state = initialState, action) => chainReducers(
+  state,
+  action,
+  sourceSetter,
+  builder,
+  clause,
+  mutation,
+  query,
+  view,
+  xml,
+  overlay,
+  layout,
+  navigation
+)

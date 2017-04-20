@@ -7,8 +7,8 @@ export default class PolicyDecorator extends Component {
   }
   render() {
     const { policy, clause } = this.props
-    const isValidTarget = [...policy.target].includes(clause.target)
-    const isValidRule = [...policy.rules].includes(clause.rule)
+    const isValidTarget = [...policy.target].indexOf(clause.target) > -1
+    const isValidRule = [...policy.rules].indexOf(clause.rule) > -1
     const isValidPolicy = isValidTarget && isValidRule
     return isValidPolicy ? this.props.children : null
   }

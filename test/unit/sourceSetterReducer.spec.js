@@ -1,5 +1,6 @@
 import story from '../storyFixtures/sourceSetter'
 import * as constants from '~/src/containers/sourceSetter/constants'
+import * as config from '~/src/components/clause/settings/config'
 
 describe('source setter', () => {
 
@@ -22,6 +23,16 @@ describe('source setter', () => {
     expect(story[9].slave.list).toMatchObject([1])
     expect(story[9].source.name).toBe('blah')
     expect(story[9].slave.rawHtml).toBe('<div>cat</div>')
+  })
+
+  it('should reset clauses on submit', () => {
+    expect(story[9].clauses).toMatchObject([config.defaultClause])
+  })
+
+  it('should reset view on submit', () => {
+    expect(story[9].slave.view).toMatchObject([])
+    expect(story[9].slave.mutated).toMatchObject([])
+    expect(story[9].slave.xml).toMatchObject([])
   })
 
 })

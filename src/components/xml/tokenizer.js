@@ -1,9 +1,10 @@
 import voidElements from './voidElements.json'
 
 const ignorable = {
-  ignore: ({nodeName, value, close, list}) => {
-    if (close === true && voidElements.includes(nodeName))
-      return false
+  ignore: ({nodeName, value, close}) => {
+    return (close === true && voidElements.indexOf(nodeName) > -1)
+     || (nodeName === '#text' && close === true)
+     || (nodeName === '#text' && /^[\s\r\n]{0,}$/.test(value || '') )
   },
   tokens: () => null
 }
@@ -11,7 +12,7 @@ const ignorable = {
 const text = {
   ignore: ({nodeName, value, close}) => {
     return nodeName === '#text' 
-      && !/^[\s\r\n]+$/.test(value || '') 
+      && !/^[\s\r\n]{0,}$/.test(value || '') 
       && !close
   },
   tokens: ({value}) => {
@@ -22,11 +23,8 @@ const text = {
 }
 
 const voided = {
-  ignore: ({nodeName, value, list, index, close}) => {
-    return voidElements.includes(nodeName)
-      && !close
-      && list[index + 1] 
-      && list[index + 1].id === index
+  ignore: ({nodeName, close}) => {
+    return voidElements.indexOf(nodeName) > -1 && !close
   },
   tokens: ({nodeName, attrs}) => [
     { punctuation: 'OPEN_TAG', value: '<' },
@@ -39,8 +37,10 @@ const voided = {
 }
 
 const open = {
-  ignore: ({nodeName, value, close}) => {
-    return !close && nodeName !== '#text'
+  ignore: ({nodeName, close}) => {
+    return !close 
+      && nodeName !== '#text'
+      && voidElements.indexOf(nodeName) < 0
   },    
   tokens: ({nodeName, attrs}) => [
     { punctuation: 'OPEN_TAG', value: '<' },
@@ -51,8 +51,8 @@ const open = {
 }
 
 const close = {
-  ignore: ({nodeName, value, close}) => {
-    return voidElements.includes(nodeName) === false
+  ignore: ({nodeName, close}) => {
+    return voidElements.indexOf(nodeName) < 0
       && close === true
       && nodeName !== '#text'
   },    

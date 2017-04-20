@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import * as actions from './actions'
 import strings from './strings.json'
 import { colors } from '~/src/styles/constants'
@@ -135,7 +136,7 @@ class SourceSetter extends Component {
           <div class="row p-2">
             <div class="col-12 p-0">
               <button class={style.submit(this.props.source)} onClick={() => this.props.sourceSubmit(this.props.source)}>submit</button>
-              <button class="btn" onClick={() => this.props.cancel()}>cancel</button>
+              <button class="btn" onClick={() => this.props.dismissModal()}>cancel</button>
             </div>
           </div>
 
@@ -162,15 +163,9 @@ class SourceSetter extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  cancel: () => dispatch(dismissModal()),
-  sourceSubmit: (source) => dispatch(actions.sourceSubmit(source)),
-  urlChange: (data) => dispatch(actions.urlChange(data)),
-  fileSelect: (file) => dispatch(actions.fileSelect(file)),
-  htmlRawChange: (rawHtml) => dispatch(actions.htmlRawChange(rawHtml)),
-  htmlFileDragStart: (data) => dispatch(actions.htmlFileDragStart(data)),
-  htmlFileDragExit: (data) => dispatch(actions.htmlFileDragExit(data)),
-  htmlFileSelected: (data) => dispatch(actions.htmlFileSelected(data))
-})
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+  ...actions,
+  dismissModal
+}, dispatch)
 
 export default connect(s => s, mapDispatchToProps)(SourceSetter)

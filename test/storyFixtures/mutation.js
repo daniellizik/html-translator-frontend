@@ -1,6 +1,5 @@
 import * as constants from '~/src/components/clause/constants'
 import baseState from '~/test/stateFixtures/mutate'
-import cleanState from '~/src/store/state'
 import { queryActions, mutateActions, clauseActions, builderActions } from '~/src/components/clause/actions/index'
 import reducer from '~/src/store/rootReducer'
 import { chainActions } from '~/src/util'

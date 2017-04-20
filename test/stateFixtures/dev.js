@@ -1,34 +1,25 @@
 import rawHtml from '~/test/htmlFixtures/cats.html'
-import { parse as parseHtml } from 'parse5'
-import treeToList from '~/src/treeToList'
-import reducer from '~/src/store/rootReducer'
-import * as constants from '~/src/components/clause/constants'
 import state from '~/src/store/state'
 import { multi } from '~/test/stateFixtures/clauses'
 import { reduceView } from '~/src/components/clause/reducers/util'
 import clauseActions from '~/src/components/clause/actions/clause'
 import viewReducer from '~/src/components/clause/reducers/viewReducer'
 import xmlReducer from '~/src/components/xml/xmlReducer'
-
-const ast = parseHtml(rawHtml)
-
-const list = treeToList()(ast)
-
-const previousState = {
-  ...state,
-  clauses: multi,
-  activeClause: 0,
-  slave: {
-    ...state.slave,
-    ast,
-    list,
-    rawHtml
-  }
-}
+import sourceSetter from '~/src/containers/sourceSetter/reducer'
+import { sourceSubmit } from '~/src/containers/sourceSetter/actions'
 
 let nextState = {
-  ...previousState,
-  clauses: reduceView(0, previousState.slave, previousState.clauses)
+  ...sourceSetter(
+    state,
+    sourceSubmit({rawHtml, lastModified: 'html'})
+  ),
+  activeClause: 0,
+  clauses: multi
+}
+
+nextState = {
+  ...nextState,
+  clauses: reduceView(0, nextState.slave, nextState.clauses)
 }
 
 nextState = {

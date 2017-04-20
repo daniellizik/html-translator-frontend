@@ -97,6 +97,6 @@ export const defaultClause = {
   target: 'TEXT',
   type: 'CLAUSE',
   queries: [defaultQuery],
-  mutations: [],
+  mutations: [defaultMutation],
   view: []
 }

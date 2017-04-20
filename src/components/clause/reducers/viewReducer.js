@@ -45,7 +45,7 @@ export default function viewReducer(state, action) {
           state.slave.mutated,
           state.clauses.reduce((a, c) => {
             return [...a, ...c.view.reduce((b, n) => {
-              return a.includes(n) ? b : [...b, n]
+              return a.indexOf(n) > -1 ? b : [...b, n]
             }, [])]
           }, [])
         )

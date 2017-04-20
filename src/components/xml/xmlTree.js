@@ -10,12 +10,10 @@ const treeStyle = {
 
 const mapStateToProps = (state) => ({
   ...state,
-  list: state.slave.list,
-  view: state.slave.view,
   xml: state.slave.xml
 })
 
-const XmlTree = ({list, view, xml, callbacks}) => (
+const XmlTree = ({xml, callbacks}) => (
   <div class="col-12 m-0 p-0">
     <table style={{width: '100%'}}>
       <tbody>

@@ -34,7 +34,7 @@ export const Clause = connect(mapStateToProps, mapDispatchToProps)((props) => (
     {policyValidator(props)}
     <div class="row py-2 m-0">
       <div class="col-4">
-        <span onClick={() => ({QUERY: props.queryActions, MUTATION: props.mutateActions})[props.type].remove(clauseIndex, props.ruleIndex)}>
+        <span onClick={() => ({QUERY: props.queryActions, MUTATION: props.mutateActions})[props.type].remove(props.clauseIndex, props.ruleIndex)}>
           {({QUERY: 'remove this query', MUTATION: 'remove this mutation'})[props.type]}
         </span>
       </div>
