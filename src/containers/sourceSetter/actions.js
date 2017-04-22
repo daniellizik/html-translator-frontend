@@ -1,10 +1,10 @@
 import * as constants from './constants'
 import { push } from 'react-router-redux'
 import { constants as overlayConstants } from '~/src/containers/overlay'
-import sanitizer from 'sanitizer'
 import { parse as parseHtml } from 'parse5'
 import treeToList from '~/src/treeToList'
 import fetch from 'isomorphic-fetch'
+import { findHtmlRoot } from '~/src/util'
 
 export const htmlRawChange = (rawHtml) => ({
   type: constants.HTML_RAW_CHANGE,
@@ -32,7 +32,7 @@ export const fileSelect = (file) => (dispatch) => {
 export const sourceSubmit = ({rawHtml, url, name, lastModified}) => (dispatch) => {
   dispatch({ type: overlayConstants.DISMISS_MODAL })
   if (lastModified === 'html' || lastModified === 'file') {
-    const ast = parseHtml(rawHtml)
+    const ast = parseHtml(rawHtml).childNodes[0]
     const list = treeToList()(ast)
     return dispatch({ 
       type: constants.HTML_FETCHED,
@@ -47,7 +47,7 @@ export const sourceSubmit = ({rawHtml, url, name, lastModified}) => (dispatch) =
     return fetch(url)
       .then(t => t.text())
       .then(rawHtml => {
-        const ast = parseHtml(rawHtml)
+        const ast = parseHtml(rawHtml).childNodes[0]
         const list = treeToList()(ast)
         return dispatch({
           type: constants.HTML_FETCHED,

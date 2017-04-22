@@ -53,7 +53,7 @@ export const modifyingTextQueries = chainActions(
   queryActions.changeRule('EQUALS', 0, 1),
   queryActions.changeTargetValue('cat-a', 0, 1), 
   queryActions.changeRule('EQUALS', 1, 0),
-  queryActions.changeTargetValue('cat burrito cheese', 1, 0),
+  queryActions.changeTargetValue('cat fajita', 1, 0),
   queryActions.changeRule('NOT_EQUALS', 0, 0),
   queryActions.changeTargetValue('cat-a', 0, 0),
   queryActions.changeRule('NOT_EQUALS', 0, 1),

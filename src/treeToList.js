@@ -35,7 +35,7 @@ export default function treeToList(config = defaultConfig) {
       depth,
       parent: parentId,
       nodeName: node[config.nodeNameProp].toLowerCase(),
-      value: node[config.valueProp] || null,
+      value: node[config.valueProp] ? node[config.valueProp].replace(/[\r\n]/g, '').trim() : null,
       attrs: node[config.attributesProp] || [],
       id: accumulator.open.length
     }

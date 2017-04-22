@@ -6,6 +6,7 @@ import iconStyle from '~/src/styles/icon'
 import policyValidator from '~/src/components/clause/policies/validator'
 import { queryActions, mutateActions, clauseActions } from '~/src/components/clause/actions/index'
 import * as config from '~/src/components/clause/settings/config'
+import { btnStyle } from './clauses'
 
 const hrStyle = {
   borderBottom: `1px solid black`
@@ -55,22 +56,7 @@ export const MaximizedClause = connect(mapStateToProps, mapDispatchToProps)(({
     class="col-12 mx-0 mb-3 py-3" 
     style={clauseStyle}>
     <div class="row px-3">
-      <label class="col-5 mb-2 mx-0 pl-0 pr-2">
-        <p>change target</p>
-        <select 
-          class="form-control custom-select" 
-          value={clauseGroup.target}
-          onFocus={() => clauseActions.activate(clauseIndex)}
-          onClick={() => clauseActions.activate(clauseIndex)}
-          onChange={(e) => clauseActions.changeTarget(e.target.value, clauseIndex)}>
-          {config.targets.map((p, j) => (
-            <option value={p} key={j}>
-              {p}
-            </option>
-          ))}
-        </select>
-      </label>
-      <label class="col-5 mb-2 mx-0 pl-0 pr-2">
+      <label class="col-6 mb-2 mx-0 pl-0 pr-2">
         <p>clause title</p>
         <input 
           type="text"
@@ -80,6 +66,20 @@ export const MaximizedClause = connect(mapStateToProps, mapDispatchToProps)(({
           onChange={(e) => clauseActions.changeName(clauseIndex, e.target.value)} 
           value={clauseGroup.name} 
           placeholder="clause title" />
+      </label>
+      <label class="col-6 mb-2 mx-0 pl-0 pr-2">
+        <p>change target</p>
+        {config.targets.map((p, j) => (
+          <button
+            class="btn"
+            style={btnStyle(clauseGroup.target === p)}
+            onClick={(e) => clauseActions.changeTarget(p, clauseIndex)}
+            onFocus={() => clauseActions.activate(clauseIndex)}
+            value={p} 
+            key={j}>
+            {p}
+          </button>
+        ))}
       </label>
       <div class="col-12 mb-2 mx-0 px-0">
         <button class="btn mr-2 my-1" onClick={() => clauseActions.remove(clauseIndex)}>

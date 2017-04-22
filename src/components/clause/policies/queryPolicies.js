@@ -28,11 +28,11 @@ export default [
     rules: ['EQUALS', 'NOT_EQUALS', 'LIKE', 'NOT_LIKE'],
     structure: (props) => (
       <div class="row pt-2 m-0">
-        <div class="col-6">
-          <ChangeRule {...props} />
-        </div>
         <div class="col-6 mt-2">
           <ChangeTargetValue {...props} />
+        </div>
+        <div class="col-6">
+          <ChangeRule {...props} />
         </div>
       </div>
     )
@@ -42,11 +42,11 @@ export default [
     rules: ['REGEX'],
     structure: (props) => (
       <div class="row pt-2 m-0">
-        <div class="col-12">
-          <ChangeRule {...props} />
-        </div>
         <div class="col-6 mt-2">
           <ChangeRuleValue {...props} />
+        </div>
+        <div class="col-12">
+          <ChangeRule {...props} />
         </div>
         <div class="col-6 mt-2">
           <ChangeRuleValueFlags {...props} />
@@ -76,11 +76,11 @@ export default [
     rules: ['EQUALS', 'NOT_EQUALS', 'LIKE', 'NOT_LIKE'],
     structure: (props) => (
       <div class="row pt-2 m-0">
-        <div class="col-6">
-          <ChangeRule {...props} />
-        </div>
         <div class="col-6 mt-2">
           <ChangeTargetValue {...props} />
+        </div>
+        <div class="col-6">
+          <ChangeRule {...props} />
         </div>
       </div>
     )
@@ -107,11 +107,11 @@ export default [
     rules: ['EQUALS', 'NOT_EQUALS', 'LIKE', 'NOT_LIKE'],
     structure: (props) => (
       <div class="row pt-2 m-0">
-        <div class="col-6">
-          <ChangeRule {...props} />
-        </div>
         <div class="col-6 mt-2">
           <ChangeTargetValue {...props} />
+        </div>
+        <div class="col-6">
+          <ChangeRule {...props} />
         </div>
       </div>
     )

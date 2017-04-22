@@ -31,3 +31,5 @@ export const bindConstantsToReducers = (reducers, initialState) => (state, actio
     ? reducers[action.type](state, action) 
     : (state || initialState)
 }
+
+export const findHtmlRoot = (ast) => ast.childNodes[0]

@@ -1,6 +1,11 @@
 import React from 'react'
-import styles from '~/src/styles'
 import * as config from './settings/config' 
+import { colors } from '~/src/styles/constants'
+
+export const btnStyle = (active) => ({
+  backgroundColor: active ? colors.lightYellow : 'inherit',
+  border: `1px solid transparent`
+})
 
 // what is with the unsightly
 // ({QUERY: props.queryActions, MUTATION: props.mutateActions})[props.type]
@@ -12,17 +17,15 @@ import * as config from './settings/config'
 export const TargetSetter = (props) => (
   <label class="col-12 p-0 m-0">
     <p>change target</p>
-    <select 
-      class="form-control custom-select" 
-      value={props.clause.target}
-      onFocus={() => props.clauseActions.activate(props.clauseIndex)}
-      onChange={(e) => ({QUERY: props.queryActions, MUTATION: props.mutateActions})[props.type].changeTarget(e.target.value, props.clauseIndex, props.ruleIndex)}>
-      {Object.keys(config[props.type].targets).map((p, j) => (
-        <option value={p} key={j}>
-          {p}
-        </option>
-      ))}
-    </select>
+    {Object.keys(config[props.type].targets).map((p, j) => (
+      <button
+        style={btnStyle(props.clause.target === p)}
+        onClick={(e) => ({QUERY: props.queryActions, MUTATION: props.mutateActions})[props.type].changeTarget(p, props.clauseIndex, props.ruleIndex)}
+        value={p} 
+        key={j}>
+        {p}
+      </button>
+    ))}
   </label>
 )
 
@@ -39,6 +42,21 @@ export const ChangeTargetValue = (props) => (
 )
 
 export const ChangeRule = (props) => (
+  <div class="col-12 p-0 m-0">
+    <p>change rule</p> {console.log(props)}
+    {config[props.type].targets[props.clause.target || 'TEXT'].rules.map((r, i) => (
+      <button 
+        class="btn"
+        style={btnStyle(props.clause.rule === r)}
+        onClick={(e) => ({QUERY: props.queryActions, MUTATION: props.mutateActions})[props.type].changeRule(r, props.clauseIndex, props.ruleIndex)}
+        key={i}>
+        {r}
+      </button>
+    ))}
+  </div>
+)
+
+/*export const ChangeRule = (props) => (
   <label class="col-12 p-0 m-0">
     <p>change rule</p>
     <select 
@@ -53,7 +71,7 @@ export const ChangeRule = (props) => (
       ))}
     </select>
   </label>
-)
+)*/
 
 export const ChangeRuleValue = (props) => (
   <label class="col-12 p-0 m-0">
