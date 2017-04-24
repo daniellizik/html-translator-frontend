@@ -81,7 +81,7 @@ export const MaximizedClause = connect(mapStateToProps, mapDispatchToProps)(({
           </button>
         ))}
       </label>
-      <div class="col-12 mb-2 mx-0 px-0">
+      <div class="col-6 mb-2 mx-0 px-0">
         <button class="btn mr-2 my-1" onClick={() => clauseActions.remove(clauseIndex)}>
           remove this clause
         </button>
