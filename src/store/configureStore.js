@@ -3,6 +3,7 @@ import thunk from 'redux-thunk'
 import rootReducer from './rootReducer'
 import prodState from './state'
 import devState from '~/test/stateFixtures/dev'
+import onboarding from '~/test/stateFixtures/onboarding'
 
 const env = process.env.NODE_ENV
 
@@ -22,7 +23,7 @@ export const configureStore = (initialState = prodState) => {
   if (env === 'development')
     store = createStore(
       rootReducer, 
-      devState, 
+      onboarding, 
       applyMiddleware(thunk, logger)
     )
   else if (env === 'test')

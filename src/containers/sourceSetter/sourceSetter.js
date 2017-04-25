@@ -8,7 +8,7 @@ import { colors } from '~/src/styles/constants'
 import Overlay, { dismissModal } from '~/src/containers/overlay'
 
 const style = {
-  container: ({visible}) => ({
+  container: (visible) => ({
     zIndex: 12,
     position: 'fixed',
     display: visible === false ? 'none' : 'initial'
@@ -146,14 +146,14 @@ class SourceSetter extends Component {
   }
 
   render() {
-    const { visibility } = this.props.source.visible
-    if (visibility === false)
+    const {overlay} = this.props
+    if (overlay === false)
       return null
     return (
       <div class="row">
-        <Overlay />
+        <Overlay visible="true" />
         <div
-          style={style.container(this.props.source)}
+          style={style.container(this.props.overlay)}
           class="col-12 mt-5">
           {this.guts()}
         </div>

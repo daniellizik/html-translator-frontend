@@ -6,8 +6,9 @@ export default {
 
   pastInit: false,
 
+  overlay: false,
+
   source: {
-    visible: false,
     rawHtml: null,
     url: null,
     name: null,
@@ -15,6 +16,7 @@ export default {
   },
 
   user: {
+    onboarding: false,
     maxClauses: Infinity
   },
 

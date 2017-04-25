@@ -3,7 +3,13 @@ import * as config from '~/src/components/clause/settings/config'
 
 export default function(state, action) {
 
-  if (action.type === constants.FILE_READ_DONE) {
+  if (action.type === constants.CALL_MODAL)
+    return {
+      ...state,
+      overlay: true
+    }
+
+  if (action.type === constants.FILE_READ_DONE)
     return {
       ...state,
       source: {
@@ -13,7 +19,6 @@ export default function(state, action) {
         lastModified: 'file'
       }
     }
-  }
 
   if (action.type === constants.HTML_RAW_CHANGE)
     return {

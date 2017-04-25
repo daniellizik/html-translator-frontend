@@ -7,6 +7,7 @@ import Navigator from '~/src/components/navigator'
 import Builder from '~/src/components/builder'
 import SourceSetter from '~/src/containers/sourceSetter/sourceSetter'
 import HtmlMount from '~/src/containers/htmlMount'
+import Onboarder from '~/src/containers/onboarder'
 import * as sourceSetterConstants from '~/src/containers/sourceSetter/constants'
 import { constants as navigatorConstants } from '~/src/components/navigator'
 import { colors } from '~/src/styles/constants'
@@ -36,6 +37,7 @@ class Layout extends Component {
     return (
       <div class="container-fluid max p-0 m-0">
         <SourceSetter />
+        <Onboarder />
         <Navigator />
         <div style={rowStyle} class="row p-0 m-0">
           <div class="col-6 m-0 pr-2" style={builderStyle}>
