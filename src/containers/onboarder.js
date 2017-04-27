@@ -1,71 +1,51 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import Overlay from '~/src/containers/overlay'
 import { colors } from '~/src/styles/constants'
+import { bindConstantsToReducers } from '~/src/util'
+import ToolTip from 'rc-tooltip'
+import { overlay as overlayStyle } from '~/src/styles/tooltip'
 
-export default connect(s => s, null)(({overlay, user}) => (
-  <div class="row">
-    <Overlay overlay={user.onboarding ? true : false}/>
-    <div style={{position: 'fixed'}} class="col-12 mt-5">
-      lflfkjasldj
+const containerStyle = (visible) => ({
+  position: 'fixed',
+  zIndex: 12,
+  visibility: visible ? 'visible' : 'hidden',
+  height: '90%',
+  backgroundColor: 'white'
+})
+
+export const constants = {
+  SKIP_ONBOARDING: '@ONBOARDER/SKIP_ONBOARDING'
+}
+
+export const actions = {
+  skip: () => ({ type: constants.SKIP_ONBOARDING })
+}
+
+export const reducer = bindConstantsToReducers({
+  [constants.SKIP_ONBOARDING]: (state, action) => ({
+    ...state,
+    overlay: false,
+    user: { ...state.user, onboarding: false }
+  })
+})
+
+const mapDispatchToProps = (dispatch) => bindActionCreators(actions, dispatch)
+
+export default connect(s => s, mapDispatchToProps)(({overlay, user, skip}) => (
+  <div class="row justify-content-center">
+    <Overlay overlay={overlay ? true : false}/>
+    <div style={containerStyle(user.onboarding)} class="col-6 mt-5">
+      <ToolTip
+        placement="right"
+        destroyTooltipOnHide={true}
+        overlayStyle={overlayStyle}
+        overlay={<span>tt text!!</span>}>
+        <span>onboard</span>
+      </ToolTip>
+      <span onClick={skip}>skip</span>
     </div>
   </div>
 ))
-
-function solution() {
-    const type = document.querySelector('input[type="radio"]:checked').value
-    const config = [
-        {
-            id: '#first_name',
-            form: ['person'],
-            validate: (str) => /[\w\s]{1,}/i.test(str)
-        },
-        {
-            id: '#last_name',
-            form: ['person'],
-            validate: (str) => /[\w\s]{1,}/i.test(str)
-        },
-        {
-            id: '#email',
-            form: ['person'],
-            validate: (str) => {
-                const isNotBlank = str !== '' 
-                const hasAt = str.indexOf('@') > -1
-                const split = str.split('@')
-                const splitIsOk = split.reduce((acc, s) => {
-                    if (acc === false)
-                        return false
-                    if (s.length > 0 && /[a-zA-Z0-9\.]/.test(s))
-                        return true
-                }, true)
-                return isNotBlank
-                    && hasAt
-                    && split.length === 2
-                    && splitIsOk
-            }
-        },
-        {
-            id: '#company_name',
-            form: ['company'],
-            validate: (str) => str !== ''
-        },
-        {
-            id: '#phone',
-            form: ['company'],
-            validate: (str) => {
-                const isNotBlank = str !== ''
-                const isLen = str.length >= 6
-                const isValidChar = /[0-9\s-]/.test(str)
-                return isNotBlank
-                  && isLen
-                  && isValidChar
-            }
-        },
-    ]
-    return config.reduce((acc, {id, form, validate}) => {
-        if (form.indexOf(type) < 0)
-            return acc
-        return !acc ? acc : validate(document.querySelector(id).value)
-    }, true)  
-}

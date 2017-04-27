@@ -12,6 +12,7 @@ import xml from '~/src/components/xml/xmlReducer'
 import { reducer as overlay } from '~/src/containers/overlay'
 import { reducer as layout } from '~/src/containers/layout'
 import { reducer as navigation } from '~/src/components/navigator'
+import { reducer as onboarding } from '~/src/containers/onboarder'
 
 export default (state = initialState, action) => chainReducers(
   state,
@@ -25,5 +26,6 @@ export default (state = initialState, action) => chainReducers(
   xml,
   overlay,
   layout,
-  navigation
+  navigation,
+  onboarding
 )

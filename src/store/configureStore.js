@@ -3,7 +3,7 @@ import thunk from 'redux-thunk'
 import rootReducer from './rootReducer'
 import prodState from './state'
 import devState from '~/test/stateFixtures/dev'
-import onboarding from '~/test/stateFixtures/onboarding'
+import onboardingState from '~/test/stateFixtures/onboarding'
 
 const env = process.env.NODE_ENV
 
@@ -14,7 +14,7 @@ const crx = () => {
 }
 
 const logger = ({getState}) => (next) => (action) => {
-  console.log(action, getState())
+  console.log({...getState(), action})
   return next(action)
 }
 
@@ -22,8 +22,9 @@ export const configureStore = (initialState = prodState) => {
   let store
   if (env === 'development')
     store = createStore(
-      rootReducer, 
-      onboarding, 
+      rootReducer,
+      onboardingState, 
+      // devState, 
       applyMiddleware(thunk, logger)
     )
   else if (env === 'test')

@@ -2,23 +2,27 @@ import React, { Component, PropTypes } from 'react'
 import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { bindConstantsToReducers } from '~/src/util'
 
 export const constants = {
-  DISMISS_MODAL: '@OVERLAY/DISMISS_MODAL',
+  DISMISS_OVERLAY: '@OVERLAY/DISMISS_OVERLAY',
 }
 
 export const actions = {
-  dismissModal: () => ({ type: constants.DISMISS_MODAL })
+  dismiss: () => ({ type: constants.DISMISS_OVERLAY })
 }
 
-export function reducer(state, action) {
-  if (action.type === constants.DISMISS_MODAL)
-    return {
-      ...state,
-      overlay: false
+export const reducer = bindConstantsToReducers({
+  [constants.DISMISS_OVERLAY]: (state, action) => ({
+    ...state,
+    overlay: state.user.onboarding ? true : false,
+    // also dismiss modals
+    source: {
+      ...state.source,
+      active: false
     }
-  return state
-}
+  })
+})
 
 const style = (visible) => ({
   position: 'fixed',
@@ -32,9 +36,9 @@ const style = (visible) => ({
   visibility: visible === false ? 'hidden' : 'visible'
 })
 
-const mapStateToProps = (state) => ({})
+const mapStateToProps = (state) => ({ visible: state.overlay })
 const mapDispatchToProps = (dispatch) => bindActionCreators(actions, dispatch)
 
-export default connect(mapStateToProps, mapDispatchToProps)(({dismissModal, visible}) => (
-  <div onClick={() => dismissModal()} style={style(visible)}></div>
+export default connect(mapStateToProps, mapDispatchToProps)(({dismiss, visible}) => (
+  <div onClick={() => dismiss()} style={style(visible)}></div>
 ))

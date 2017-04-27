@@ -1,9 +1,10 @@
-import dev from './dev'
+import state from '~/src/store/state'
 
 export default {
-  ...dev,
+  ...state,
+  overlay: true,  
   user: {
-    ...dev.user,
+    ...state.user,
     onboarding: true
   }
 }

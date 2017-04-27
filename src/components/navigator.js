@@ -35,8 +35,8 @@ const hStyle = {
 export const CONSTANTS = {
   CALL_MODAL: '@NAVIGATOR/CALL_MODAL',
   CALL_IFRAME: '@NAVIGATOR/CALL_IFRAME',
+  CALL_SOURCESETTER: '@NAVIGATOR/CALL_SOURCESETTER',
   RESET_HTML: '@NAVIGATOR/RESET_HTML',
-  // filesaver is synchronous, cant use these right now
   DOWNLOAD_HTML_INIT: '@NAVIGATOR/DOWNLOAD_HTML_INIT',
   DOWNLOAD_HTML_ERROR: '@NAVIGATOR/DOWNLOAD_HTML_ERROR',
   DOWNLOAD_HTML_DONE: '@NAVIGATOR/DOWNLOAD_HTML_DONE'  
@@ -49,15 +49,30 @@ export const reducer = bindConstantsToReducers({
       ...source,
       visible: true
     }
+  }),
+  [CONSTANTS.CALL_SOURCESETTER]: (state, action) => ({
+    ...state,
+    overlay: true,
+    source: {
+      ...state.source,
+      active: true
+    }
   })
 })
 
-const actions = {
+export const actions = {
   callBuilder: () => ({ type: CONSTANTS.CALL_BUILDER }),
+  callSourceSetter: () => ({ type: CONSTANTS.CALL_SOURCESETTER }),
   downloadHtml: ({xml, mutated}) => (dispatch) => {
-    dispatch({ type: CONSTANTS.DOWNLOAD_HTML_DONE })
-    // const blob = new Blob([html], {type: 'text/html;charset=utf-8'})
-    // filesaver(blob)
+    try {
+      dispatch({ type: CONSTANTS.DOWNLOAD_HTML_INIT })
+      // const blob = new Blob([html], {type: 'text/html;charset=utf-8'})
+      // filesaver(blob)
+      return dispatch({ type: CONSTANTS.DOWNLOAD_HTML_DONE })
+    }
+    catch(e) {
+      return dispatch({ type: CONSTANTS.DOWNLOAD_HTML_ERROR })
+    }
   },
   previewHtml: () => ({ type: CONSTANTS.CALL_IFRAME }),
   resetHtml: () => ({ type: CONSTANTS.RESET_HTML })
@@ -68,15 +83,12 @@ const mapStateToProps = (state) => ({
   xml: state.slave.xml
 })
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({
-  ...actions,
-  callModal
-}, dispatch)
+const mapDispatchToProps = (dispatch) => bindActionCreators(actions, dispatch)
 
-export default connect(mapStateToProps, mapDispatchToProps)(({mutated, xml, callModal, downloadHtml, callBuilder}) => (
+export default connect(mapStateToProps, mapDispatchToProps)(({mutated, xml, callSourceSetter, downloadHtml, callBuilder}) => (
   <div class="row pl-3 pt-0 px-4 mb-0" style={bgStyle}>
     <div class="col-auto p-0 m-0">
-      <span onClick={() => callModal()} style={aStyle} class="mr-3">
+      <span onClick={callSourceSetter} style={aStyle} class="mr-3">
         Change Html
       </span>
     </div>  
@@ -86,12 +98,12 @@ export default connect(mapStateToProps, mapDispatchToProps)(({mutated, xml, call
       </span>
     </div>  
     <div class="col-auto p-0 m-0">
-      <span onClick={() => callBuilder()} style={aStyle} class="mr-3">
+      <span onClick={callBuilder} style={aStyle} class="mr-3">
         Preview
       </span>
     </div>  
     <div class="col-auto p-0 m-0">
-      <span onClick={() => callBuilder()} style={aStyle} class="mr-3">
+      <span onClick={callBuilder} style={aStyle} class="mr-3">
         Reset
       </span>
     </div>  

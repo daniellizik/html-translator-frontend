@@ -9,6 +9,7 @@ export default {
   overlay: false,
 
   source: {
+    active: false,
     rawHtml: null,
     url: null,
     name: null,
@@ -17,6 +18,7 @@ export default {
 
   user: {
     onboarding: false,
+    tooltips: false,
     maxClauses: Infinity
   },
 

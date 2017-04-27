@@ -6,13 +6,13 @@ import { queryActions, mutateActions, clauseActions } from '~/src/components/cla
 import viewReducer from '~/src/components/clause/reducers/viewReducer'
 import xmlReducer from '~/src/components/xml/xmlReducer'
 import sourceSetter from '~/src/containers/sourceSetter/reducer'
-import { sourceSubmit } from '~/src/containers/sourceSetter/actions'
+import { submit } from '~/src/containers/sourceSetter/actions'
 import { chainActions } from '~/src/util'
 
 let nextState = {
   ...sourceSetter(
     state,
-    sourceSubmit({rawHtml, lastModified: 'html'})(a => a)
+    submit({rawHtml, lastModified: 'html'})(a => a)
   ),
   activeClause: 0,
   clauses: multi
