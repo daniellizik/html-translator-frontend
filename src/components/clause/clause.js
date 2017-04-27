@@ -1,12 +1,15 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import ToolTip from 'rc-tooltip'
 import { colors } from '~/src/styles/constants'
 import iconStyle from '~/src/styles/icon'
 import policyValidator from '~/src/components/clause/policies/validator'
 import { queryActions, mutateActions, clauseActions } from '~/src/components/clause/actions/index'
 import * as config from '~/src/components/clause/settings/config'
-import { btnStyle } from './clauses'
+import { btnStyle, ChangeTarget } from './clauses'
+import { overlay as overlayStyle } from '~/src/styles/tooltip'
+import { ChangeTargetExplanation } from '~/src/components/explanation'
 
 const hrStyle = {
   borderBottom: `1px solid black`
@@ -43,6 +46,18 @@ export const Clause = connect(mapStateToProps, mapDispatchToProps)((props) => (
   </div>
 ))
 
+/*<label class="col-6 mb-2 mx-0 pl-0 pr-2">
+  <p>clause title</p>
+  <input 
+    type="text"
+    class="form-control"
+    onFocus={() => clauseActions.activate(clauseIndex)}
+    onClick={() => clauseActions.activate(clauseIndex)}
+    onChange={(e) => clauseActions.changeName(clauseIndex, e.target.value)} 
+    value={clauseGroup.name} 
+    placeholder="clause title" />
+</label>*/
+
 export const MaximizedClause = connect(mapStateToProps, mapDispatchToProps)(({ 
   currentMutation, 
   clauseActions, 
@@ -57,31 +72,27 @@ export const MaximizedClause = connect(mapStateToProps, mapDispatchToProps)(({
     style={clauseStyle}>
     <div class="row px-3">
       <label class="col-6 mb-2 mx-0 pl-0 pr-2">
-        <p>clause title</p>
-        <input 
-          type="text"
-          class="form-control"
-          onFocus={() => clauseActions.activate(clauseIndex)}
-          onClick={() => clauseActions.activate(clauseIndex)}
-          onChange={(e) => clauseActions.changeName(clauseIndex, e.target.value)} 
-          value={clauseGroup.name} 
-          placeholder="clause title" />
-      </label>
-      <label class="col-6 mb-2 mx-0 pl-0 pr-2">
         <p>change target</p>
-        {config.targets.map((p, j) => (
-          <button
-            class="btn"
-            style={btnStyle(clauseGroup.target === p)}
-            onClick={(e) => clauseActions.changeTarget(p, clauseIndex)}
+        <ToolTip
+          placement="right"
+          destroyTooltipOnHide={true}
+          overlayStyle={overlayStyle}
+          trigger={clauseIndex === 0 ? ['hover'] : []}
+          overlay={<ChangeTargetExplanation />}>
+          <select 
+            class="form-control custom-select"
             onFocus={() => clauseActions.activate(clauseIndex)}
-            value={p} 
-            key={j}>
-            {p}
-          </button>
-        ))}
+            onChange={({target}) => clauseActions.changeTarget(target.value, clauseIndex)}>
+            {config.targets.map((p, j) => (
+              <option value={p} key={j}>
+                {p}
+              </option>
+            ))}
+          </select>
+        </ToolTip>
       </label>
-      <div class="col-6 mb-2 mx-0 px-0">
+
+      <div class="col-12 mb-2 mx-0 px-0">
         <button class="btn mr-2 my-1" onClick={() => clauseActions.remove(clauseIndex)}>
           remove this clause
         </button>

@@ -14,18 +14,20 @@ export const btnStyle = (active) => ({
 // passed via props
 // this should be refactored send a .ruleType prop in the action, probably
 
-export const TargetSetter = (props) => (
+export const ChangeTarget = (props) => (
   <label class="col-12 p-0 m-0">
     <p>change target</p>
-    {Object.keys(config[props.type].targets).map((p, j) => (
-      <button
-        style={btnStyle(props.clause.target === p)}
-        onClick={(e) => ({QUERY: props.queryActions, MUTATION: props.mutateActions})[props.type].changeTarget(p, props.clauseIndex, props.ruleIndex)}
-        value={p} 
-        key={j}>
-        {p}
-      </button>
-    ))}
+    <select 
+      class="form-control custom-select"
+      value={props.clause.rule} 
+      onFocus={() => props.clauseActions.activate(props.clauseIndex)}
+      onChange={(e) => ({QUERY: props.queryActions, MUTATION: props.mutateActions})[props.type].changeRule(e.target.value, props.clauseIndex, props.ruleIndex)}>
+      {Object.keys(config[props.type].targets).map((p, j) => (
+        <option value={p} key={j}>
+          {p}
+        </option>
+      ))}
+    </select>
   </label>
 )
 
@@ -41,9 +43,9 @@ export const ChangeTargetValue = (props) => (
   </label>
 )
 
-export const ChangeRule = (props) => (
+/*export const ChangeRule = (props) => (
   <div class="col-12 p-0 m-0">
-    <p>change rule</p> {console.log(props)}
+    <p>change rule</p>
     {config[props.type].targets[props.clause.target || 'TEXT'].rules.map((r, i) => (
       <button 
         class="btn"
@@ -54,9 +56,9 @@ export const ChangeRule = (props) => (
       </button>
     ))}
   </div>
-)
+)*/
 
-/*export const ChangeRule = (props) => (
+export const ChangeRule = (props) => (
   <label class="col-12 p-0 m-0">
     <p>change rule</p>
     <select 
@@ -71,7 +73,7 @@ export const ChangeRule = (props) => (
       ))}
     </select>
   </label>
-)*/
+)
 
 export const ChangeRuleValue = (props) => (
   <label class="col-12 p-0 m-0">

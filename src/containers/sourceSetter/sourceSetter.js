@@ -5,10 +5,10 @@ import { bindActionCreators } from 'redux'
 import * as actions from './actions'
 import strings from './strings.json'
 import { colors } from '~/src/styles/constants'
-import Overlay, { dismissModal } from '~/src/containers/overlay'
+import Overlay from '~/src/containers/overlay'
 
 const style = {
-  container: ({visible}) => ({
+  container: (visible) => ({
     zIndex: 12,
     position: 'fixed',
     display: visible === false ? 'none' : 'initial'
@@ -79,7 +79,7 @@ class SourceSetter extends Component {
           onDrop={this.dropHandle.bind(this)}
           onDragEnter={this.dragEnterHandle.bind(this)} 
           style={style.modal} 
-          class="rounded py-3 px-4 col-6 offset-3">
+          class="rounded py-3 px-4 col-12">
 
           <div class="row p-2">
             <span class="label p-0 col-12">
@@ -135,8 +135,8 @@ class SourceSetter extends Component {
 
           <div class="row p-2">
             <div class="col-12 p-0">
-              <button class={style.submit(this.props.source)} onClick={() => this.props.sourceSubmit(this.props.source)}>submit</button>
-              <button class="btn" onClick={() => this.props.dismissModal()}>cancel</button>
+              <button class={style.submit(this.props.source)} onClick={() => this.props.submit(this.props.source)}>submit</button>
+              <button class="btn" onClick={() => this.props.dismiss()}>cancel</button>
             </div>
           </div>
 
@@ -146,15 +146,15 @@ class SourceSetter extends Component {
   }
 
   render() {
-    const { visibility } = this.props.source.visible
-    if (visibility === false)
+    const {overlay} = this.props
+    if (overlay === false)
       return null
     return (
-      <div class="row">
-        <Overlay />
+      <div class="row justify-content-center">
+        <Overlay visible={this.props.source.active} />
         <div
-          style={style.container(this.props.source)}
-          class="col-12 mt-5">
+          style={style.container(this.props.source.active)}
+          class="col-6 mt-5">
           {this.guts()}
         </div>
       </div>
@@ -163,9 +163,6 @@ class SourceSetter extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({
-  ...actions,
-  dismissModal
-}, dispatch)
+const mapDispatchToProps = (dispatch) => bindActionCreators(actions, dispatch)
 
 export default connect(s => s, mapDispatchToProps)(SourceSetter)

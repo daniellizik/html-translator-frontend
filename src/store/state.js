@@ -6,8 +6,10 @@ export default {
 
   pastInit: false,
 
+  overlay: false,
+
   source: {
-    visible: false,
+    active: false,
     rawHtml: null,
     url: null,
     name: null,
@@ -15,6 +17,8 @@ export default {
   },
 
   user: {
+    onboarding: false,
+    tooltips: false,
     maxClauses: Infinity
   },
 

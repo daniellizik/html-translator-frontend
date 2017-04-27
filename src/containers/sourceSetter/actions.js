@@ -6,6 +6,8 @@ import treeToList from '~/src/treeToList'
 import fetch from 'isomorphic-fetch'
 import { findHtmlRoot } from '~/src/util'
 
+export const dismiss = () => ({ type: constants.DISMISS_SOURCESETTER })
+
 export const htmlRawChange = (rawHtml) => ({
   type: constants.HTML_RAW_CHANGE,
   rawHtml
@@ -29,8 +31,8 @@ export const fileSelect = (file) => (dispatch) => {
   reader.readAsText(file)
 }
 
-export const sourceSubmit = ({rawHtml, url, name, lastModified}) => (dispatch) => {
-  dispatch({ type: overlayConstants.DISMISS_MODAL })
+export const submit = ({rawHtml, url, name, lastModified}) => (dispatch) => {
+  dispatch({ type: overlayConstants.DISMISS_OVERLAY })
   if (lastModified === 'html' || lastModified === 'file') {
     const ast = parseHtml(rawHtml).childNodes[0]
     const list = treeToList()(ast)

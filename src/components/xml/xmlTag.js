@@ -12,7 +12,7 @@ const styleRow = ({viewed}) => ({
 
 const lineNumber = () => ({
   fontFamily: '"Source Code Pro", monospace',
-  padding: '0px 10px 0px 15px',
+  padding: '0px 10px 0px 40px',
   color: colors.inactive,
   userSelect: 'none',
   textAlign: 'right',

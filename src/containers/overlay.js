@@ -1,35 +1,30 @@
 import React, { Component, PropTypes } from 'react'
 import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { bindConstantsToReducers } from '~/src/util'
 
 export const constants = {
-  DISMISS_MODAL: '@OVERLAY/DISMISS_MODAL',
-  CALL_MODAL: '@OVERLAY/CALL_MODAL'
-}
-export const dismissModal = () => ({ type: constants.DISMISS_MODAL })
-export const callModal = () => ({ type: constants.CALL_MODAL })
-
-export function reducer(state, action) {
-  if (action.type === constants.DISMISS_MODAL)
-    return {
-      ...state,
-      source: {
-        ...state.source,
-        visible: false
-      }
-    }
-  if (action.type === constants.CALL_MODAL)
-    return {
-      ...state,
-      source: {
-        ...state.source,
-        visible: true
-      }
-    }
-  return state
+  DISMISS_OVERLAY: '@OVERLAY/DISMISS_OVERLAY',
 }
 
-const style = ({visible}) => ({
+export const actions = {
+  dismiss: () => ({ type: constants.DISMISS_OVERLAY })
+}
+
+export const reducer = bindConstantsToReducers({
+  [constants.DISMISS_OVERLAY]: (state, action) => ({
+    ...state,
+    overlay: state.user.onboarding ? true : false,
+    // also dismiss modals
+    source: {
+      ...state.source,
+      active: false
+    }
+  })
+})
+
+const style = (visible) => ({
   position: 'fixed',
   left: 0,
   top: 0,
@@ -41,16 +36,9 @@ const style = ({visible}) => ({
   visibility: visible === false ? 'hidden' : 'visible'
 })
 
-class Overlay extends Component {
-  render() {
-    return (
-      <div onClick={() => this.props.dismissModal()} style={style(this.props.source)}></div>
-    )
-  }
-}
+const mapStateToProps = (state) => ({ visible: state.overlay })
+const mapDispatchToProps = (dispatch) => bindActionCreators(actions, dispatch)
 
-const mapDispatchToProps = (dispatch) => ({
-  dismissModal: () => dispatch(dismissModal())
-})
-
-export default connect(s => s, mapDispatchToProps)(Overlay)
+export default connect(mapStateToProps, mapDispatchToProps)(({dismiss, visible}) => (
+  <div onClick={() => dismiss()} style={style(visible)}></div>
+))
