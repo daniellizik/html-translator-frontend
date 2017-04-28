@@ -16,8 +16,12 @@ export default {
     lastModified: null
   },
 
+  onboarding: {
+    state: false,
+    step: 0
+  },
+
   user: {
-    onboarding: false,
     tooltips: false,
     maxClauses: Infinity
   },

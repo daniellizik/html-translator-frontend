@@ -38,25 +38,13 @@ export const Clause = connect(mapStateToProps, mapDispatchToProps)((props) => (
     {policyValidator(props)}
     <div class="row py-2 m-0">
       <div class="col-4">
-        <span onClick={() => ({QUERY: props.queryActions, MUTATION: props.mutateActions})[props.type].remove(props.clauseIndex, props.ruleIndex)}>
+        <span onClick={() => props.actionSet[props.type].remove(props.clauseIndex, props.ruleIndex)}>
           {({QUERY: 'remove this query', MUTATION: 'remove this mutation'})[props.type]}
         </span>
       </div>
     </div>
   </div>
 ))
-
-/*<label class="col-6 mb-2 mx-0 pl-0 pr-2">
-  <p>clause title</p>
-  <input 
-    type="text"
-    class="form-control"
-    onFocus={() => clauseActions.activate(clauseIndex)}
-    onClick={() => clauseActions.activate(clauseIndex)}
-    onChange={(e) => clauseActions.changeName(clauseIndex, e.target.value)} 
-    value={clauseGroup.name} 
-    placeholder="clause title" />
-</label>*/
 
 export const MaximizedClause = connect(mapStateToProps, mapDispatchToProps)(({ 
   currentMutation, 
@@ -113,6 +101,7 @@ export const MaximizedClause = connect(mapStateToProps, mapDispatchToProps)(({
         {clauseGroup.queries.map((clause, ruleIndex, {length}) => (
           <Clause 
             type="QUERY"
+            actionSet={queryActions}
             clause={clause} 
             isLast={ruleIndex === length - 1} 
             clauseIndex={clauseIndex} 
@@ -125,6 +114,7 @@ export const MaximizedClause = connect(mapStateToProps, mapDispatchToProps)(({
         {clauseGroup.mutations.map((clause, ruleIndex, {length}) => (
           <Clause 
             type="MUTATION"
+            actionSet={mutateActions}
             clause={clause} 
             isLast={ruleIndex === length - 1} 
             clauseIndex={clauseIndex} 

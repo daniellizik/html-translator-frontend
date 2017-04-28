@@ -5,7 +5,6 @@ import { bindActionCreators } from 'redux'
 import * as actions from './actions'
 import strings from './strings.json'
 import { colors } from '~/src/styles/constants'
-import Overlay from '~/src/containers/overlay'
 
 const style = {
   container: (visible) => ({
@@ -146,12 +145,8 @@ class SourceSetter extends Component {
   }
 
   render() {
-    const {overlay} = this.props
-    if (overlay === false)
-      return null
     return (
       <div class="row justify-content-center">
-        <Overlay visible={this.props.source.active} />
         <div
           style={style.container(this.props.source.active)}
           class="col-6 mt-5">

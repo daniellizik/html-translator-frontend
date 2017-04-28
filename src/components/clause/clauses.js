@@ -43,21 +43,6 @@ export const ChangeTargetValue = (props) => (
   </label>
 )
 
-/*export const ChangeRule = (props) => (
-  <div class="col-12 p-0 m-0">
-    <p>change rule</p>
-    {config[props.type].targets[props.clause.target || 'TEXT'].rules.map((r, i) => (
-      <button 
-        class="btn"
-        style={btnStyle(props.clause.rule === r)}
-        onClick={(e) => ({QUERY: props.queryActions, MUTATION: props.mutateActions})[props.type].changeRule(r, props.clauseIndex, props.ruleIndex)}
-        key={i}>
-        {r}
-      </button>
-    ))}
-  </div>
-)*/
-
 export const ChangeRule = (props) => (
   <label class="col-12 p-0 m-0">
     <p>change rule</p>

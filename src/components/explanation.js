@@ -6,6 +6,17 @@ export default ({text = '', style = {}}) => (
   </div>
 )
 
+export const AddClauseExplanation = () => (
+  <div>
+    <p>
+      A "clause" is a group of queries and mutations. These are the blocks you use with which to find and replace certain parts of your html document. 
+    </p>      
+    <p class="mt-1">
+      Try to add a clause by clicking on the button!
+    </p>
+  </div>
+)
+
 export const ChangeTargetExplanation = () => (
   <div>
     <p>

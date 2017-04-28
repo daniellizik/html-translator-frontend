@@ -15,7 +15,7 @@ export const actions = {
 export const reducer = bindConstantsToReducers({
   [constants.DISMISS_OVERLAY]: (state, action) => ({
     ...state,
-    overlay: state.user.onboarding ? true : false,
+    overlay: state.onboarding.state ? true : false,
     // also dismiss modals
     source: {
       ...state.source,

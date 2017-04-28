@@ -9,9 +9,9 @@ import rootReducer from '~/src/store/rootReducer'
 const state = {
   ...initialState,
   overlay: true,  
-  user: {
-    ...initialState.user,
-    onboarding: true
+  onboarding: {
+    ...initialState.onboarding,
+    state: true
   }
 }
 

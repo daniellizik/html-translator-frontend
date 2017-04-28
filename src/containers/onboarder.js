@@ -2,7 +2,6 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import Overlay from '~/src/containers/overlay'
 import { colors } from '~/src/styles/constants'
 import { bindConstantsToReducers } from '~/src/util'
 import ToolTip from 'rc-tooltip'
@@ -12,40 +11,45 @@ const containerStyle = (visible) => ({
   position: 'fixed',
   zIndex: 12,
   visibility: visible ? 'visible' : 'hidden',
-  height: '90%',
-  backgroundColor: 'white'
+  height: '55%',
+  backgroundColor: 'white',
+  borderRadius: '4pt'
 })
 
 export const constants = {
-  SKIP_ONBOARDING: '@ONBOARDER/SKIP_ONBOARDING'
+  SKIP_ONBOARDING: '@ONBOARDER/SKIP_ONBOARDING',
+  ONBOARD_1: '@ONBOARDER/ONBOARD_1'
 }
 
 export const actions = {
-  skip: () => ({ type: constants.SKIP_ONBOARDING })
+  skip: () => ({ type: constants.SKIP_ONBOARDING }),
+  onboard_1: () => ({ type: constants.ONBOARD_1 })
 }
 
 export const reducer = bindConstantsToReducers({
-  [constants.SKIP_ONBOARDING]: (state, action) => ({
+  [constants.SKIP_ONBOARDING]: (state) => ({
     ...state,
     overlay: false,
-    user: { ...state.user, onboarding: false }
+    onboarding: { ...state.onboarding, state: false }
+  }),
+  [constants.ONBOARD_1]: (state) => ({
+    ...state,
+    overlay: false,
+    onboarding: { ...state.onboarding, state: false, step: 1 }
   })
 })
 
 const mapDispatchToProps = (dispatch) => bindActionCreators(actions, dispatch)
 
-export default connect(s => s, mapDispatchToProps)(({overlay, user, skip}) => (
+export default connect(s => s, mapDispatchToProps)(({onboarding, onboard_1, skip}) => (
   <div class="row justify-content-center">
-    <Overlay overlay={overlay ? true : false}/>
-    <div style={containerStyle(user.onboarding)} class="col-6 mt-5">
-      <ToolTip
-        placement="right"
-        destroyTooltipOnHide={true}
-        overlayStyle={overlayStyle}
-        overlay={<span>tt text!!</span>}>
-        <span>onboard</span>
-      </ToolTip>
-      <span onClick={skip}>skip</span>
+    <div style={containerStyle(onboarding.state)} class="col-4 mt-5">
+      <div class="row p-2 h-60">
+        <div class="col-12 m-0 p-0 h-90">
+          <h1 onClick={onboard_1}>start tutorial</h1>
+          <h1 onClick={skip}>skip</h1>
+        </div>
+      </div>
     </div>
   </div>
 ))

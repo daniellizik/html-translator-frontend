@@ -11,9 +11,9 @@ describe('overlay behavior', () => {
   describe('onboarding with overlay', () => {
     it('should stop onboarding and dismiss overlay when skip is clicked', () => {
       expect(onboarding[0].overlay).toBeTruthy()
-      expect(onboarding[0].user.onboarding).toBeTruthy()
+      expect(onboarding[0].onboarding.state).toBeTruthy()
       expect(onboarding[2].overlay).toBeFalsy()
-      expect(onboarding[2].user.onboarding).toBeFalsy()
+      expect(onboarding[2].onboarding.state).toBeFalsy()
     })
   })
 
