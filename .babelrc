@@ -1,14 +1,50 @@
 {
-  "presets": [
-    "es2015",
-    "stage-0",
-    "react"
-  ],
-  "plugins": [
-    "babel-plugin-root-import",
-    "babel-plugin-react-html-attrs",
-    "syntax-object-rest-spread",
-    "transform-object-rest-spread",
-    "transform-es2015-destructuring"
-  ]
+  "env": {
+    "development": {
+      "presets": [
+        "stage-0",
+        "es2015",
+        "es2017",
+        "react"
+      ],
+      "plugins": [
+        "babel-plugin-root-import",
+        "babel-plugin-react-html-attrs",
+        "syntax-object-rest-spread",
+        "transform-object-rest-spread",
+        "transform-es2015-destructuring",
+        "react-hot-loader/babel"
+      ]
+    },
+    "production": {
+      "presets": [
+        "stage-0",
+        "es2015",
+        "es2017",
+        "react"
+      ],
+      "plugins": [
+        "babel-plugin-root-import",
+        "babel-plugin-react-html-attrs",
+        "syntax-object-rest-spread",
+        "transform-object-rest-spread",
+        "transform-es2015-destructuring"
+      ]
+    },
+    "test": {
+      "presets": [
+        "stage-0",
+        "es2015",
+        "es2017",
+        "react"
+      ],
+      "plugins": [
+        "babel-plugin-root-import",
+        "babel-plugin-react-html-attrs",
+        "syntax-object-rest-spread",
+        "transform-object-rest-spread",
+        "transform-es2015-destructuring"
+      ]
+    }
+  }
 }

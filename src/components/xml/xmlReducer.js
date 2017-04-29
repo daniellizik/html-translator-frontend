@@ -9,6 +9,7 @@ export const findTagType = ({node, list}) => {
     .find(k => tokenizer[k].ignore({...node, list}))
 }
 
+// todo: put in web worker
 export default function(state, {type}) {
   const isClauseAction = type.indexOf('@CLAUSE') > -1
   if (!isClauseAction)

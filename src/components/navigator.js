@@ -1,13 +1,10 @@
 import { saveAs as filesaver } from 'file-saver'
-import React, { Component, PropTypes } from 'react'
-import ReactDOM from 'react-dom'
+import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { bindConstantsToReducers } from '~/src/util'
-import styles from '~/src/styles'
-import { callModal } from '~/src/containers/overlay'
-import deepInsert from '~/src/deepInsert'
 import { colors } from '~/src/styles/constants'
+import { ToolTip, ChangeHtmlExplanation } from '~/src/components/explanation'
 
 const bgStyle = {
   backgroundColor: colors.lightBlack,
@@ -33,7 +30,6 @@ const hStyle = {
 }
 
 export const CONSTANTS = {
-  CALL_MODAL: '@NAVIGATOR/CALL_MODAL',
   CALL_IFRAME: '@NAVIGATOR/CALL_IFRAME',
   CALL_SOURCESETTER: '@NAVIGATOR/CALL_SOURCESETTER',
   RESET_HTML: '@NAVIGATOR/RESET_HTML',
@@ -43,14 +39,7 @@ export const CONSTANTS = {
 }
 
 export const reducer = bindConstantsToReducers({
-  [CONSTANTS.CALL_MODAL]: (state, {source}) => ({
-    ...state,
-    source: {
-      ...source,
-      visible: true
-    }
-  }),
-  [CONSTANTS.CALL_SOURCESETTER]: (state, action) => ({
+  [CONSTANTS.CALL_SOURCESETTER]: (state) => ({
     ...state,
     overlay: true,
     source: {
@@ -66,8 +55,7 @@ export const actions = {
   downloadHtml: ({xml, mutated}) => (dispatch) => {
     try {
       dispatch({ type: CONSTANTS.DOWNLOAD_HTML_INIT })
-      // const blob = new Blob([html], {type: 'text/html;charset=utf-8'})
-      // filesaver(blob)
+      process.env.NODE_ENV === 'production' && filesaver(new Blob([html], {type: 'text/html;charset=utf-8'}))
       return dispatch({ type: CONSTANTS.DOWNLOAD_HTML_DONE })
     }
     catch(e) {
@@ -80,17 +68,24 @@ export const actions = {
 
 const mapStateToProps = (state) => ({
   mutated: state.slave.mutated,
-  xml: state.slave.xml
+  xml: state.slave.xml,
+  onboardingStep: state.onboarding.step
 })
 
 const mapDispatchToProps = (dispatch) => bindActionCreators(actions, dispatch)
 
-export default connect(mapStateToProps, mapDispatchToProps)(({mutated, xml, callSourceSetter, downloadHtml, callBuilder}) => (
+export default connect(mapStateToProps, mapDispatchToProps)(({onboardingStep, mutated, xml, callSourceSetter, downloadHtml, callBuilder}) => (
   <div class="row pl-3 pt-0 px-4 mb-0" style={bgStyle}>
     <div class="col-auto p-0 m-0">
-      <span onClick={callSourceSetter} style={aStyle} class="mr-3">
-        Change Html
-      </span>
+      <ToolTip
+        placement="topRight"
+        destroyTooltipOnHide={true}
+        visible={onboardingStep === 1}
+        overlay={<ChangeHtmlExplanation />}>
+        <span onClick={callSourceSetter} style={aStyle} class="mr-3">
+          Change Html
+        </span>
+      </ToolTip>
     </div>  
     <div class="col-auto p-0 m-0">
       <span onClick={() => downloadHtml({xml, mutated})} style={aStyle} class="mr-3">

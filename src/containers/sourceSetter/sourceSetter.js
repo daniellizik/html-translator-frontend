@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux'
 import * as actions from './actions'
 import strings from './strings.json'
 import { colors } from '~/src/styles/constants'
-import Overlay from '~/src/containers/overlay'
+import { ToolTip, AddSourceExplanation } from '~/src/components/explanation'
 
 const style = {
   container: (visible) => ({
@@ -135,7 +135,13 @@ class SourceSetter extends Component {
 
           <div class="row p-2">
             <div class="col-12 p-0">
+            <ToolTip
+              placement="bottomLeft"
+              destroyTooltipOnHide={true}
+              visible={this.props.onboarding.step === 2}
+              overlay={<AddSourceExplanation />}>
               <button class={style.submit(this.props.source)} onClick={() => this.props.submit(this.props.source)}>submit</button>
+            </ToolTip>
               <button class="btn" onClick={() => this.props.dismiss()}>cancel</button>
             </div>
           </div>
@@ -146,12 +152,8 @@ class SourceSetter extends Component {
   }
 
   render() {
-    const {overlay} = this.props
-    if (overlay === false)
-      return null
     return (
       <div class="row justify-content-center">
-        <Overlay visible={this.props.source.active} />
         <div
           style={style.container(this.props.source.active)}
           class="col-6 mt-5">

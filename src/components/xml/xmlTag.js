@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { generate as id } from 'shortid'
 import XmlToken from './xmlToken'
 import XmlSpacer from './xmlSpacer'
 import { colors } from '~/src/styles/constants'
@@ -45,7 +44,7 @@ const XmlTag = (props) => (
       <XmlSpacer depth={props.node.depth} />
       <XmlToken 
         tokens={props.tokens}
-        key={id()} 
+        key={new Date().getTime()} 
         node={props.node} />
     </td>
   </tr>

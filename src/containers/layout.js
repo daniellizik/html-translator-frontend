@@ -3,11 +3,13 @@ import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
 import styles from '~/src/styles/'
+import Overlay from '~/src/containers/overlay'
 import Navigator from '~/src/components/navigator'
 import Builder from '~/src/components/builder'
 import SourceSetter from '~/src/containers/sourceSetter/sourceSetter'
 import HtmlMount from '~/src/containers/htmlMount'
 import Onboarder from '~/src/containers/onboarder'
+import Progress from '~/src/components/progress'
 import * as sourceSetterConstants from '~/src/containers/sourceSetter/constants'
 import { constants as navigatorConstants } from '~/src/components/navigator'
 import { colors } from '~/src/styles/constants'
@@ -33,11 +35,12 @@ const htmlMountStyle = {
 class Layout extends Component {
 
   render() {
-    const { deployer, sidebar } = styles.layout
     return (
       <div class="container-fluid max p-0 m-0">
-        <SourceSetter />
+        <Progress />
+        <Overlay />
         <Onboarder />
+        <SourceSetter />
         <Navigator />
         <div style={rowStyle} class="row p-0 m-0">
           <div class="col-6 m-0 pr-2" style={builderStyle}>

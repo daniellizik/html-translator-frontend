@@ -10,10 +10,7 @@ import { submit } from '~/src/containers/sourceSetter/actions'
 import { chainActions } from '~/src/util'
 
 let nextState = {
-  ...sourceSetter(
-    state,
-    submit({rawHtml, lastModified: 'html'})(a => a)
-  ),
+  ...sourceSetter(state, submit({rawHtml, lastModified: 'html'})(a => a)),
   activeClause: 0,
   clauses: multi
 }
@@ -33,5 +30,3 @@ nextState = viewReducer(nextState, clauseActions.activate(0))
 nextState = xmlReducer(nextState, {type: '@CLAUSE'})
 
 export default nextState
-
-// export default modifyingTextQueries.slice.pop()

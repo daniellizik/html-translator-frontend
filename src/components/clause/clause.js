@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import ToolTip from 'rc-tooltip'
 import { colors } from '~/src/styles/constants'
 import iconStyle from '~/src/styles/icon'
 import policyValidator from '~/src/components/clause/policies/validator'
@@ -9,7 +8,7 @@ import { queryActions, mutateActions, clauseActions } from '~/src/components/cla
 import * as config from '~/src/components/clause/settings/config'
 import { btnStyle, ChangeTarget } from './clauses'
 import { overlay as overlayStyle } from '~/src/styles/tooltip'
-import { ChangeTargetExplanation } from '~/src/components/explanation'
+import { ToolTip, ChangeTargetExplanation } from '~/src/components/explanation'
 
 const hrStyle = {
   borderBottom: `1px solid black`
@@ -30,7 +29,8 @@ const mapDispatchToProps = (dispatch) => ({
 
 const mapStateToProps = (state) => ({
   ...state,
-  currentMutation: state.slave.currentMutation
+  currentMutation: state.slave.currentMutation,
+  onboardingStep: state.onboarding.step
 })
 
 export const Clause = connect(mapStateToProps, mapDispatchToProps)((props) => (
@@ -38,7 +38,7 @@ export const Clause = connect(mapStateToProps, mapDispatchToProps)((props) => (
     {policyValidator(props)}
     <div class="row py-2 m-0">
       <div class="col-4">
-        <span onClick={() => ({QUERY: props.queryActions, MUTATION: props.mutateActions})[props.type].remove(props.clauseIndex, props.ruleIndex)}>
+        <span onClick={() => props.actionSet[props.type].remove(props.clauseIndex, props.ruleIndex)}>
           {({QUERY: 'remove this query', MUTATION: 'remove this mutation'})[props.type]}
         </span>
       </div>
@@ -46,25 +46,14 @@ export const Clause = connect(mapStateToProps, mapDispatchToProps)((props) => (
   </div>
 ))
 
-/*<label class="col-6 mb-2 mx-0 pl-0 pr-2">
-  <p>clause title</p>
-  <input 
-    type="text"
-    class="form-control"
-    onFocus={() => clauseActions.activate(clauseIndex)}
-    onClick={() => clauseActions.activate(clauseIndex)}
-    onChange={(e) => clauseActions.changeName(clauseIndex, e.target.value)} 
-    value={clauseGroup.name} 
-    placeholder="clause title" />
-</label>*/
-
 export const MaximizedClause = connect(mapStateToProps, mapDispatchToProps)(({ 
   currentMutation, 
   clauseActions, 
   queryActions, 
   mutateActions, 
   clauseIndex, 
-  clauseGroup 
+  clauseGroup,
+  onboardingStep
 }) => (
   <div
     key={clauseIndex} 
@@ -76,7 +65,7 @@ export const MaximizedClause = connect(mapStateToProps, mapDispatchToProps)(({
         <ToolTip
           placement="right"
           destroyTooltipOnHide={true}
-          overlayStyle={overlayStyle}
+          visible={onboardingStep === 4}
           trigger={clauseIndex === 0 ? ['hover'] : []}
           overlay={<ChangeTargetExplanation />}>
           <select 
@@ -113,6 +102,7 @@ export const MaximizedClause = connect(mapStateToProps, mapDispatchToProps)(({
         {clauseGroup.queries.map((clause, ruleIndex, {length}) => (
           <Clause 
             type="QUERY"
+            actionSet={queryActions}
             clause={clause} 
             isLast={ruleIndex === length - 1} 
             clauseIndex={clauseIndex} 
@@ -125,6 +115,7 @@ export const MaximizedClause = connect(mapStateToProps, mapDispatchToProps)(({
         {clauseGroup.mutations.map((clause, ruleIndex, {length}) => (
           <Clause 
             type="MUTATION"
+            actionSet={mutateActions}
             clause={clause} 
             isLast={ruleIndex === length - 1} 
             clauseIndex={clauseIndex} 
