@@ -1,8 +1,27 @@
 import React, { PropTypes } from 'react'
+import RCToolTip from 'rc-tooltip'
+import { overlay as overlayStyle } from '~/src/styles/tooltip'
 
-export default ({text = '', style = {}}) => (
-  <div style={style}>
-    {text}
+export const ToolTip = ({placement, destroyTooltipOnHide, visible, overlay, children}) => (
+  <RCToolTip 
+    placement={placement}
+    destroyTooltipOnHide={destroyTooltipOnHide}
+    visible={visible}
+    overlay={overlay}
+    overlayStyle={overlayStyle}>
+    {children}
+  </RCToolTip>
+)
+
+export const AddSourceExplanation = () => (
+  <div>
+    Here you can import your html from a variety of sources. For now we'll use a sample email to work with.
+  </div>
+)
+
+export const ChangeHtmlExplanation = () => (
+  <div>
+    Use the "change html" button to import the html you want to translate
   </div>
 )
 

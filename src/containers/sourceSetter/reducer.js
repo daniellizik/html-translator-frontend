@@ -3,6 +3,10 @@ import * as config from '~/src/components/clause/settings/config'
 import { bindConstantsToReducers } from '~/src/util'
 
 export default bindConstantsToReducers({
+  [constants.DISMISS_OVERLAY]: (state) => ({
+    ...state,
+    overlay: false
+  }),
   [constants.DISMISS_SOURCESETTER]: (state) => ({
     ...state,
     overlay: false,
@@ -39,8 +43,10 @@ export default bindConstantsToReducers({
   [constants.HTML_FETCHED]: (state, action) => ({
     ...state,
     pastInit: true,
+    overlay: false,
     source: {
       ...state.source,
+      active: false,
       name: action.name
     },
     activeClause: 0,

@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import ToolTip from 'rc-tooltip'
 import { colors } from '~/src/styles/constants'
 import iconStyle from '~/src/styles/icon'
 import policyValidator from '~/src/components/clause/policies/validator'
@@ -9,7 +8,7 @@ import { queryActions, mutateActions, clauseActions } from '~/src/components/cla
 import * as config from '~/src/components/clause/settings/config'
 import { btnStyle, ChangeTarget } from './clauses'
 import { overlay as overlayStyle } from '~/src/styles/tooltip'
-import { ChangeTargetExplanation } from '~/src/components/explanation'
+import { ToolTip, ChangeTargetExplanation } from '~/src/components/explanation'
 
 const hrStyle = {
   borderBottom: `1px solid black`
@@ -30,7 +29,8 @@ const mapDispatchToProps = (dispatch) => ({
 
 const mapStateToProps = (state) => ({
   ...state,
-  currentMutation: state.slave.currentMutation
+  currentMutation: state.slave.currentMutation,
+  onboardingStep: state.onboarding.step
 })
 
 export const Clause = connect(mapStateToProps, mapDispatchToProps)((props) => (
@@ -52,7 +52,8 @@ export const MaximizedClause = connect(mapStateToProps, mapDispatchToProps)(({
   queryActions, 
   mutateActions, 
   clauseIndex, 
-  clauseGroup 
+  clauseGroup,
+  onboardingStep
 }) => (
   <div
     key={clauseIndex} 
@@ -64,7 +65,7 @@ export const MaximizedClause = connect(mapStateToProps, mapDispatchToProps)(({
         <ToolTip
           placement="right"
           destroyTooltipOnHide={true}
-          overlayStyle={overlayStyle}
+          visible={onboardingStep === 4}
           trigger={clauseIndex === 0 ? ['hover'] : []}
           overlay={<ChangeTargetExplanation />}>
           <select 

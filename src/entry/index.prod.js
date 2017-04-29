@@ -2,13 +2,14 @@ import 'babel-polyfill'
 import React from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
-import Layout from './containers/layout'
-import { configureStore } from './store/configureStore'
-const store = configureStore()
+import Layout from '~/src/containers/layout'
+import thunk from 'redux-thunk'
+import { configureStore } from '~/src/store/configureStore'
+import state from '~/src/store/state'
 
 render(
   <div class="max">
-    <Provider store={store}>
+    <Provider store={configureStore(state, thunk)}>
       <Layout />
     </Provider>
   </div>,

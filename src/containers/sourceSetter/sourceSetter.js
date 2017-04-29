@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux'
 import * as actions from './actions'
 import strings from './strings.json'
 import { colors } from '~/src/styles/constants'
+import { ToolTip, AddSourceExplanation } from '~/src/components/explanation'
 
 const style = {
   container: (visible) => ({
@@ -134,7 +135,13 @@ class SourceSetter extends Component {
 
           <div class="row p-2">
             <div class="col-12 p-0">
+            <ToolTip
+              placement="bottomLeft"
+              destroyTooltipOnHide={true}
+              visible={this.props.onboarding.step === 2}
+              overlay={<AddSourceExplanation />}>
               <button class={style.submit(this.props.source)} onClick={() => this.props.submit(this.props.source)}>submit</button>
+            </ToolTip>
               <button class="btn" onClick={() => this.props.dismiss()}>cancel</button>
             </div>
           </div>

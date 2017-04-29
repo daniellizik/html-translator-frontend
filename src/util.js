@@ -1,7 +1,6 @@
 export const chainReducers = (state, action, ...reducers) => {
   return reducers.reduce((reducedState, reducer) => {
-    const result = reducer(reducedState, action)
-    return result
+    return reducer(reducedState, action)
   }, state)
 }
 
@@ -16,7 +15,13 @@ export const chainActions = (initialState, reducer, ...actions) => {
   }, {state, history: [state]}).history
 }
 
-export const asyncChainActions = (store, ...actions) => {
+export const bindConstantsToReducers = (reducers, initialState) => (state, action) => {
+  return reducers[action.type] 
+    ? reducers[action.type](state, action) 
+    : (state || initialState)
+}
+
+export const chainDispatches = (store, ...actions) => {
   return actions.reduce((acc, action) => {
 
   }, [])
@@ -26,10 +31,12 @@ export const filterText = (node) => {
   return !/^[\s\r\n]{0,}$/.test(node.value)
 }
 
-export const bindConstantsToReducers = (reducers, initialState) => (state, action) => {
-  return reducers[action.type] 
-    ? reducers[action.type](state, action) 
-    : (state || initialState)
+export const stringifyMutated = (xml) => {
+  return xml.reduce((acc, {node, row, tokens}) => {
+    const depth = new Array(node.depth).fill('  ').join('')
+    const line = tokens.map(t => t.value).join('')
+    return [...acc, depth + line]
+  }, []).join('\n')
 }
 
 export const findHtmlRoot = (ast) => ast.childNodes[0]

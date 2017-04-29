@@ -3,7 +3,7 @@ import { push } from 'react-router-redux'
 import { constants as overlayConstants } from '~/src/containers/overlay'
 import { parse as parseHtml } from 'parse5'
 import treeToList from '~/src/treeToList'
-import fetch from 'isomorphic-fetch'
+import axios from 'axios'
 import { findHtmlRoot } from '~/src/util'
 
 export const dismiss = () => ({ type: constants.DISMISS_SOURCESETTER })
@@ -31,34 +31,36 @@ export const fileSelect = (file) => (dispatch) => {
   reader.readAsText(file)
 }
 
-export const submit = ({rawHtml, url, name, lastModified}) => (dispatch) => {
-  dispatch({ type: overlayConstants.DISMISS_OVERLAY })
+export const submit = ({rawHtml, url, name, lastModified}) => async (dispatch, getState) => {
+  dispatch({ type: constants.DISMISS_OVERLAY })
   if (lastModified === 'html' || lastModified === 'file') {
     const ast = parseHtml(rawHtml).childNodes[0]
     const list = treeToList()(ast)
-    return dispatch({ 
+    const action = { 
       type: constants.HTML_FETCHED,
       tree: list,
       rawHtml,
       ast,
       list 
-    })
+    }
+    return await dispatch(action)
   }
   if (lastModified === 'url') {
     dispatch({ type: constants.FETCH_URL_INIT })
-    return fetch(url)
-      .then(t => t.text())
-      .then(rawHtml => {
-        const ast = parseHtml(rawHtml).childNodes[0]
-        const list = treeToList()(ast)
-        return dispatch({
-          type: constants.HTML_FETCHED,
-          tree: list,
-          rawHtml,
-          ast,
-          list
-        })
-      })
-      .catch(e => dispatch({ type: constants.FETCH_URL_ERROR }))
+    try {
+      const {data} = await axios.get(url)
+      const ast = parseHtml(data).childNodes[0]
+      const list = treeToList()(ast)
+      return dispatch({
+        type: constants.HTML_FETCHED,
+        tree: list,
+        rawHtml: data,
+        ast,
+        list  
+      })  
+    }
+    catch(e) {
+      return dispatch({ type: constants.FETCH_URL_ERROR })
+    }
   }
 }

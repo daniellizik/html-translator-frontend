@@ -6,7 +6,7 @@ module.exports = {
   debug: true,
   noInfo: true,
 
-  entry: ['webpack/hot/dev-server', `${__dirname}/../src/index.js`],
+  entry: ['webpack/hot/dev-server', `${__dirname}/../src/entry/index.dev.js`],
 
   output: {
     publicPath: '/',

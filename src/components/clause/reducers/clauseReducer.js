@@ -6,10 +6,6 @@ import { errorHandler, reduceView, mutationDenormalizer } from './util'
 export default bindConstantsToReducers({
   [constants.CLAUSE_ADD]: (state, action) => ({
     ...state,
-    onboarding: {
-      ...state.onboarding,
-      step: state.onboarding.state && state.onboarding.step === 1 ? 2 : 0
-    },
     clauses: reduceView(state.clauses.length, state.slave, [
       ...state.clauses, defaultClause
     ])

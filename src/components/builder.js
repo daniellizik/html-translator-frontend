@@ -1,22 +1,21 @@
 import React, { Component, PropTypes } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import ToolTip from 'rc-tooltip'
 import { colors } from '~/src/styles/constants'
 import styles from '~/src/styles'
 import { MaximizedClause, MinifiedClause } from '~/src/components/clause/clause'
 import { queryActions, mutateActions, clauseActions, builderActions } from '~/src/components/clause/actions/index'
 import * as config from '~/src/components/clause/settings/config'
-import {  AddClauseExplanation } from '~/src/components/explanation'
-import { overlay as overlayStyle } from '~/src/styles/tooltip'
+import { ToolTip, AddClauseExplanation } from '~/src/components/explanation'
 
 const style = (hasView) => ({
   backgroundColor: hasView ? colors.success : colors.inactive
 })
 
-const btnStyle = {
-  backgroundColor: colors.lightYellow
-}
+const btnStyle = (step) => ({
+  backgroundColor: step < 5 ? colors.inactive : colors.lightYellow,
+  cursor: step < 5 ? 'not-allowed' : 'pointer'
+})
 
 const Builder = ({onboardStep, activeClause, clauses, clauseActions, builderActions}) => (
   <div class="row pl-4 px-3 py-3 mb-3">
@@ -24,17 +23,16 @@ const Builder = ({onboardStep, activeClause, clauses, clauseActions, builderActi
       <ToolTip
         placement="topRight"
         destroyTooltipOnHide={true}
-        overlayStyle={overlayStyle}
-        visible={onboardStep === 1}
+        visible={onboardStep === 3}
         overlay={<AddClauseExplanation />}>
-          <button style={btnStyle} class="btn p-2 mr-2" onClick={clauseActions.add}>
+          <button style={btnStyle(5)} class="btn p-2 mr-2" onClick={clauseActions.add}>
             add clause
           </button>
       </ToolTip>
-      <button style={btnStyle} class="btn p-2 mr-2" onClick={builderActions.removeAll}>
+      <button style={btnStyle(onboardStep)} class="btn p-2 mr-2" onClick={builderActions.removeAll}>
         remove all clauses
       </button>
-      <button style={btnStyle} class="btn p-2 mr-2" onClick={() => {
+      <button style={btnStyle(onboardStep)} class="btn p-2 mr-2" onClick={() => {
         activeClause > -1 && builderActions.denormalizeAll()
         activeClause < 0 && builderActions.hideAllMutations()
       }}>

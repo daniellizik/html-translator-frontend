@@ -36,9 +36,8 @@ const style = (visible) => ({
   visibility: visible === false ? 'hidden' : 'visible'
 })
 
-const mapStateToProps = (state) => ({ visible: state.overlay })
 const mapDispatchToProps = (dispatch) => bindActionCreators(actions, dispatch)
 
-export default connect(mapStateToProps, mapDispatchToProps)(({dismiss, visible}) => (
-  <div onClick={() => dismiss()} style={style(visible)}></div>
+export default connect(s => s, mapDispatchToProps)(({dismiss, overlay}) => (
+  <div onClick={() => dismiss()} style={style(overlay)}></div>
 ))
