@@ -32,32 +32,20 @@ const htmlMountStyle = {
   overflowY: 'scroll'
 }
 
-class Layout extends Component {
-
-  render() {
-    return (
-      <div class="container-fluid max p-0 m-0">
-        <Progress />
-        <Overlay />
-        <Onboarder />
-        <SourceSetter />
-        <Navigator />
-        <div style={rowStyle} class="row p-0 m-0">
-          <div class="col-6 m-0 pr-2" style={builderStyle}>
-            <Builder />
-          </div>
-          <div class="col-6 m-0 pl-2" style={htmlMountStyle}>
-            <HtmlMount />
-          </div>
-        </div>
+export default () => (
+  <div class="container-fluid max p-0 m-0">
+    <Progress />
+    <Overlay />
+    <Onboarder />
+    <SourceSetter />
+    <Navigator />
+    <div style={rowStyle} class="row p-0 m-0">
+      <div class="col-6 m-0 pr-2" style={builderStyle}>
+        <Builder />
       </div>
-    )
-  }
-
-}
-
-const mapDispatchToProps = (dispatch) => ({
-  push: (route) => push(route)
-})
-
-export default connect(s => s, mapDispatchToProps)(Layout)
+      <div class="col-6 m-0 pl-2" style={htmlMountStyle}>
+        <HtmlMount />
+      </div>
+    </div>
+  </div>
+)

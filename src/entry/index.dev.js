@@ -1,12 +1,10 @@
-import 'babel-polyfill'
-import 'react-hot-loader/patch'
-import { AppContainer } from 'react-hot-loader'
 import React from 'react'
-import { render } from 'react-dom'
+import ReactDOM from 'react-dom'
+import { AppContainer } from 'react-hot-loader'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 import { configureStore } from '~/src/store/configureStore'
-import Layout from '~/src/containers/layout'
+import Root from '~/src/containers/root'
 import state from '~/test/stateFixtures/dev'
 // import state from '~/test/stateFixtures/onboarding'
 
@@ -15,23 +13,17 @@ const logger = ({getState}) => (next) => (action) => {
   return next(action)
 }
 
-const mount = (Component) => render(
+const render = (App) => ReactDOM.render(
   <AppContainer>
-    <Component />
+    <div class="max">
+      <Provider store={configureStore(state, thunk, logger)}>
+        <App />
+      </Provider>
+    </div>
   </AppContainer>,
   document.getElementById('root')
 )
 
-mount(
-  <div class="max">
-    <Provider store={configureStore(state, thunk, logger)}>
-      <Layout />
-    </Provider>
-  </div>
-)
+render(Root)
 
-if (module.hot) {
-  module.hot.accept('../containers/layout.js', () => {
-    render(require('../containers/layout.js'))
-  })
-}
+module.hot && module.hot.accept(`${__dirname}/../containers/root`, () => render(Root))
