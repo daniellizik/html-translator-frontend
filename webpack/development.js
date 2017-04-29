@@ -2,32 +2,35 @@ const webpack = require('webpack')
 
 module.exports = {
 
-  devtool: 'inline-source-map',
-  debug: true,
-  noInfo: true,
+  devtool: 'source-map',
 
-  entry: ['webpack/hot/dev-server', `${__dirname}/../src/entry/index.dev.js`],
+  entry: {
+    'app': [
+      'babel-polyfill',
+      'react-hot-loader/patch',
+      `${__dirname}/../src/entry/index.dev.js`
+    ]
+  },
 
   output: {
-    publicPath: '/',
+    path: '/',
     filename: 'bundle.js'
   },
 
   module: {
-    loaders: [
-      { test: /\.js$|\.jsx$/, exclude: /node_modules/, loader: 'babel' },
-      { test: /\.json$/, loader: 'json' },
-      { test: /\.html$/, loader: 'raw' }
+    rules: [
+      { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' },
+      { test: /\.json$/, loader: 'json-loader' },
+      { test: /\.html$/, loader: 'raw-loader' }
     ]
   },
 
   plugins: [
-    new webpack.NoErrorsPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
     new webpack.DefinePlugin({
       'process.env': { NODE_ENV: JSON.stringify(process.env.NODE_ENV) }
     })
-  ],
+  ]
 
-  target: 'web'
 
 }

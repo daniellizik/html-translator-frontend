@@ -6,8 +6,6 @@ import treeToList from '~/src/treeToList'
 import axios from 'axios'
 import { findHtmlRoot } from '~/src/util'
 
-export const dismiss = () => ({ type: constants.DISMISS_SOURCESETTER })
-
 export const htmlRawChange = (rawHtml) => ({
   type: constants.HTML_RAW_CHANGE,
   rawHtml
@@ -31,36 +29,39 @@ export const fileSelect = (file) => (dispatch) => {
   reader.readAsText(file)
 }
 
-export const submit = ({rawHtml, url, name, lastModified}) => async (dispatch, getState) => {
-  dispatch({ type: constants.DISMISS_OVERLAY })
-  if (lastModified === 'html' || lastModified === 'file') {
-    const ast = parseHtml(rawHtml).childNodes[0]
-    const list = treeToList()(ast)
-    const action = { 
-      type: constants.HTML_FETCHED,
-      tree: list,
-      rawHtml,
-      ast,
-      list 
-    }
-    return await dispatch(action)
+export const htmlReceived = (rawHtml) => {
+  const ast = parseHtml(rawHtml).childNodes[0]
+  const list = treeToList()(ast)
+  return {
+    type: constants.HTML_FETCHED,
+    ast,
+    list,
+    rawHtml,
+    tree: list
   }
-  if (lastModified === 'url') {
-    dispatch({ type: constants.FETCH_URL_INIT })
+}
+
+export const dismiss = () => ({ type: constants.DISMISS_SOURCESETTER })
+
+export const dismissOverlay = () => ({ type: constants.DISMISS_OVERLAY })
+
+export const fetchInit = () => ({ type: constants.FETCH_URL_INIT })
+
+export const fetchErr = () => ({ type: constants.FETCH_URL_ERROR })
+
+export const submit = ({rawHtml, url, name, lastModified}) => async (dispatch) => {
+  dispatch(dismissOverlay())
+  if (lastModified === 'html' || lastModified === 'file')
+    dispatch(htmlReceived(rawHtml))
+  else if (lastModified === 'url') {
+    dispatch(fetchInit())
     try {
       const {data} = await axios.get(url)
-      const ast = parseHtml(data).childNodes[0]
-      const list = treeToList()(ast)
-      return dispatch({
-        type: constants.HTML_FETCHED,
-        tree: list,
-        rawHtml: data,
-        ast,
-        list  
-      })  
+      const { ast, list } = parseInit(rawHtml)
+      dispatch(htmlReceived(rawHtml))
     }
     catch(e) {
-      return dispatch({ type: constants.FETCH_URL_ERROR })
+      dispatch(fetchErr())
     }
   }
 }

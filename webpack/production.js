@@ -2,7 +2,12 @@ const webpack = require('webpack')
 
 module.exports = {
 
-  entry: `${__dirname}/../src/entry/index.prod.js`,
+  entry: {
+    'app': [
+      'babel-polyfill',
+      `${__dirname}/../src/entry/index.prod.js`
+    ]
+  },
 
   output: {
     path: `${__dirname}/../www`,
@@ -10,10 +15,10 @@ module.exports = {
   },
 
   module: {
-    loaders: [
-      { test: /\.js$|\.jsx$/, exclude: /node_modules/, loader: 'babel' },
-      { test: /\.json$/, loader: 'json' },
-      { test: /\.html$/, loader: 'raw' }
+    rules: [
+      { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' },
+      { test: /\.json$/, loader: 'json-loader' },
+      { test: /\.html$/, loader: 'raw-loader' }
     ]
   },
 

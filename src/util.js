@@ -7,7 +7,11 @@ export const chainReducers = (state, action, ...reducers) => {
 export const chainActions = (initialState, reducer, ...actions) => {
   const state = Array.isArray(initialState) ? initialState.slice(-1).pop() : initialState
   return actions.reduce((acc, action) => {
-    const result = reducer(acc.state, action)
+    let result
+    if (typeof action === 'object')
+      result = reducer(acc.state, action)
+    else if (typeof action === 'function')
+      result = action(acc.state)
     return {
       state: result,
       history: [...acc.history, result]
