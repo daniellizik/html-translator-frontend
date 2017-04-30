@@ -1,10 +1,7 @@
 import state from '~/src/store/state'
+import story from '~/test/storyFixtures/onboarding'
 
 export default {
   ...state,
-  overlay: true,
-  onboarding: {
-    ...state.onboarding,
-    state: true
-  }
+  ...story[4]
 }

@@ -9,10 +9,10 @@ import view from '~/src/components/clause/reducers/viewReducer'
 import xml from '~/src/components/xml/xmlReducer'
 import { reducer as overlay } from '~/src/containers/overlay'
 import { reducer as navigation } from '~/src/components/navigator'
-import { composedReducer as onboarding } from '~/src/containers/onboarder'
+import { composedReducer as onboarding } from '~/src/containers/onboarder/reducer'
 
 export default (state = initialState, action) => {
-  if (state.onboarding.step > 0 || state.onboarding.state === true)
+  if (state.onboarding.step > -1)
     return onboarding(state, action)
   return chainReducers(
     state,

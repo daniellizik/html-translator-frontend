@@ -82,7 +82,7 @@ export const MaximizedClause = connect(mapStateToProps, mapDispatchToProps)(({
       </div>
       <div class="col-12 m-0 p-0">
         <div class="row m-0 p-0">
-          <div class="col m-0 p-0">queries</div>
+          {clauseGroup.queries.length > 0 && <div class="col m-0 p-0">queries</div>}
         </div>
         {clauseGroup.queries.map((clause, ruleIndex, {length}) => (
           <Clause 
@@ -95,7 +95,7 @@ export const MaximizedClause = connect(mapStateToProps, mapDispatchToProps)(({
             key={`q-${clauseIndex}-${ruleIndex}`} />
         ))}
         <div class="row m-0 p-0">
-          <div class="col m-0 p-0">mutations</div>
+          {clauseGroup.mutations.length > 0 && <div class="col m-0 p-0">mutations</div>}
         </div>
         {clauseGroup.mutations.map((clause, ruleIndex, {length}) => (
           <Clause 

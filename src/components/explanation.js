@@ -1,5 +1,8 @@
 import React, { PropTypes } from 'react'
 import RCToolTip from 'rc-tooltip'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import * as onboardActions from '~/src/containers/onboarder/actions'
 
 export const ToolTip = ({placement, destroyTooltipOnHide, visible, overlay, children}) => (
   <RCToolTip 
@@ -41,7 +44,7 @@ export const AddClauseExplanation = () => (
   </div>
 )
 
-export const ChangeTargetExplanation = () => (
+export const ChangeTargetExplanation = connect(s => s, d => bindActionCreators(onboardActions, d))(({onboard_5}) => (
   <div>
     <p>
       The "target" indicates which part of a html tag you want to search for.
@@ -52,5 +55,6 @@ export const ChangeTargetExplanation = () => (
       <li>"Attribute key" is the name of any attribute on a html tag</li>
       <li>"Attribute value" is the value of a html tag</li>
     </ul>
+    <p onClick={onboard_5}>next</p>
   </div>
-)
+))

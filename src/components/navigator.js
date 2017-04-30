@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux'
 import { bindConstantsToReducers } from '~/src/util'
 import { ToolTip, ChangeHtmlExplanation } from '~/src/components/explanation'
 
-export const CONSTANTS = {
+export const constants = {
   CALL_IFRAME: '@NAVIGATOR/CALL_IFRAME',
   CALL_SOURCESETTER: '@NAVIGATOR/CALL_SOURCESETTER',
   RESET_HTML: '@NAVIGATOR/RESET_HTML',
@@ -15,7 +15,7 @@ export const CONSTANTS = {
 }
 
 export const reducer = bindConstantsToReducers({
-  [CONSTANTS.CALL_SOURCESETTER]: (state) => ({
+  [constants.CALL_SOURCESETTER]: (state) => ({
     ...state,
     overlay: true,
     source: {
@@ -26,20 +26,20 @@ export const reducer = bindConstantsToReducers({
 })
 
 export const actions = {
-  callBuilder: () => ({ type: CONSTANTS.CALL_BUILDER }),
-  callSourceSetter: () => ({ type: CONSTANTS.CALL_SOURCESETTER }),
+  callBuilder: () => ({ type: constants.CALL_BUILDER }),
+  callSourceSetter: () => ({ type: constants.CALL_SOURCESETTER }),
   downloadHtml: ({xml, mutated}) => (dispatch) => {
     try {
-      dispatch({ type: CONSTANTS.DOWNLOAD_HTML_INIT })
+      dispatch({ type: constants.DOWNLOAD_HTML_INIT })
       process.env.NODE_ENV === 'production' && filesaver(new Blob([html], {type: 'text/html;charset=utf-8'}))
-      return dispatch({ type: CONSTANTS.DOWNLOAD_HTML_DONE })
+      return dispatch({ type: constants.DOWNLOAD_HTML_DONE })
     }
     catch(e) {
-      return dispatch({ type: CONSTANTS.DOWNLOAD_HTML_ERROR })
+      return dispatch({ type: constants.DOWNLOAD_HTML_ERROR })
     }
   },
-  previewHtml: () => ({ type: CONSTANTS.CALL_IFRAME }),
-  resetHtml: () => ({ type: CONSTANTS.RESET_HTML })
+  previewHtml: () => ({ type: constants.CALL_IFRAME }),
+  resetHtml: () => ({ type: constants.RESET_HTML })
 }
 
 const mapStateToProps = (state) => ({

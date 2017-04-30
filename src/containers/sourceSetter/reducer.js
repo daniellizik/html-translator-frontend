@@ -5,7 +5,11 @@ import { bindConstantsToReducers } from '~/src/util'
 export default bindConstantsToReducers({
   [constants.DISMISS_OVERLAY]: (state) => ({
     ...state,
-    overlay: false
+    overlay: false,
+    source: {
+      ...state.source,
+      active: false
+    }
   }),
   [constants.DISMISS_SOURCESETTER]: (state) => ({
     ...state,
