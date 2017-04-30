@@ -2,49 +2,22 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import XmlToken from './xmlToken'
 import XmlSpacer from './xmlSpacer'
-import { colors } from '~/src/styles/constants'
-
-const styleRow = ({viewed}) => ({
-  border: 'none',
-  padding: '0px 15px 0px 0px'
-})
-
-const lineNumber = () => ({
-  fontFamily: '"Source Code Pro", monospace',
-  padding: '0px 10px 0px 40px',
-  color: colors.inactive,
-  userSelect: 'none',
-  textAlign: 'right',
-  cursor: 'pointer',
-  width: '1em'
-})
-
-// this viewed prop comes from #util@mutateList
-const lineText = ({viewed}) => ({
-  fontSize: '14px',
-  fontWeight: 500,
-  fontFamily: `"Source Code Pro", monospace`,
-  whiteSpace: 'nowrap',
-  background: !viewed ? 'transparent' : colors.dbg,
-  cursor: 'text'
-})
 
 const XmlTag = (props) => (
   <tr
     data-row={props.row}
-    style={styleRow(props.node)}
+    class="pt-1"
     onClick={() => props.callbacks.click(props)}
     onMouseEnter={(e) => props.callbacks.highlight(props)}>
     <td 
-      class="code-line" 
-      data-line-number={props.row} 
-      style={lineNumber()}>
+      class="code-line f-monospace pr-2 c-inactive no-select ta-r mouse-point" 
+      data-line-number={props.row}>
     </td>
-    <td style={lineText(props.node)}>
+    <td class={`f-monospace fs-p-14 no-wrap ${props.node.viewed ? 'bg-dbg' : ''}`}>
       <XmlSpacer depth={props.node.depth} />
       <XmlToken 
         tokens={props.tokens}
-        key={new Date().getTime()} 
+        key={props.index} 
         node={props.node} />
     </td>
   </tr>

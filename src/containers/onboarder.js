@@ -8,15 +8,6 @@ import { CONSTANTS as navigatorConstants, reducer as navigatorReducer } from '~/
 import * as sourceSetterConstants from '~/src/containers/sourceSetter/constants'
 import sourceSetterReducer from '~/src/containers/sourceSetter/reducer'
 
-const containerStyle = (visible) => ({
-  position: 'fixed',
-  zIndex: 12,
-  visibility: visible ? 'visible' : 'hidden',
-  height: '55%',
-  backgroundColor: 'white',
-  borderRadius: '4pt'
-})
-
 export const constants = {
   SKIP_ONBOARDING: '@ONBOARDER/SKIP_ONBOARDING',
   ONBOARD_INIT: '@ONBOARDER/ONBOARD_INIT'
@@ -64,7 +55,7 @@ export const composedReducer = bindConstantsToReducers({
 
 export default connect(s => s, (dispatch) => bindActionCreators(actions, dispatch))(({onboarding, onboardInit, skip}) => (
   <div class="row justify-content-center">
-    <div style={containerStyle(onboarding.state)} class="col-4 mt-5">
+    <div class={`col-4 mt-5 fixed z-15 bg-white br-4 ${onboarding.state ? 'visible' : 'hidden'}`}>
       <div class="row p-2 h-60">
         <div class="col-12 m-0 p-0 h-90">
           <h1 onClick={onboardInit}>start tutorial</h1>

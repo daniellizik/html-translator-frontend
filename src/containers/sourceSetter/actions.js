@@ -1,5 +1,4 @@
 import * as constants from './constants'
-import { push } from 'react-router-redux'
 import { constants as overlayConstants } from '~/src/containers/overlay'
 import { parse as parseHtml } from 'parse5'
 import treeToList from '~/src/treeToList'

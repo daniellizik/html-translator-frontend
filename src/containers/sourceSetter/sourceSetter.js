@@ -3,39 +3,10 @@ import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as actions from './actions'
-import strings from './strings.json'
-import { colors } from '~/src/styles/constants'
 import { ToolTip, AddSourceExplanation } from '~/src/components/explanation'
 
-const style = {
-  container: (visible) => ({
-    zIndex: 12,
-    position: 'fixed',
-    display: visible === false ? 'none' : 'initial'
-  }),
-  modal: {
-    background: 'white'
-  },
-  input: {
-    fontFamily: `"Source Code Pro", "Space Mono", "Inconsolata", "Liberation Mono", "Menlo", "Courier", monospace`
-  },
-  dnd: (active) => ({
-    padding: '1px',
-    border: active ? `2px dashed ${colors.success}` : `2px dashed ${colors.light}`
-  }),
-  submit: ({html, url, file}) => {
-    if (!html && !url && !file)
-      return 'btn mr-3'
-    else
-      return 'btn btn-success mr-3'
-  },
-  checkmark: (active) => ({
-    color: active ? colors.success : 'transparent'
-  })
-}
-
 const Checkmark = ({active}) => (
-  <i style={style.checkmark(active)} class="fa fa-check"></i>
+  <i class={`fa fa-check ${active ? 'c-success' : 'transparent'}`}></i>
 )
 
 class SourceSetter extends Component {
@@ -70,94 +41,87 @@ class SourceSetter extends Component {
     return false
   }
 
-  guts() {
-    const { lastModified, name } = this.props.source
+  render() {
+    const { lastModified, name, html, url, file } = this.props.source
     return (
-      <div class="row">
-        <div 
-          onDragOver={this.dragOverHandle.bind(this)}
-          onDrop={this.dropHandle.bind(this)}
-          onDragEnter={this.dragEnterHandle.bind(this)} 
-          style={style.modal} 
-          class="rounded py-3 px-4 col-12">
+      <div class="row justify-content-center h-0">
+        <div
+          class={`col-6 mt-5 z-15 ${this.props.source.active ? 'visible' : 'hidden'}`}>
+          <div class="row">
+            <div 
+              onDragOver={this.dragOverHandle.bind(this)}
+              onDrop={this.dropHandle.bind(this)}
+              onDragEnter={this.dragEnterHandle.bind(this)} 
+              class="rounded py-3 px-4 col-12 bg-white z-15">
 
-          <div class="row p-2">
-            <span class="label p-0 col-12">
-              fetch html from url
-              <Checkmark active={lastModified === 'url'}/>
-            </span>
-            <input
-              style={style.input}            
-              class="form-control col-12 p-1"
-              onChange={(e) => this.props.urlChange(e.target.value)}
-              value={this.props.source.url || ''}
-              type="text" />
-          </div>
+              <div class="row p-2">
+                <span class="label p-0 col-12">
+                  fetch html from url
+                  <Checkmark active={lastModified === 'url'}/>
+                </span>
+                <input
+                  class="form-control col-12 p-1 f-monospace"
+                  onChange={(e) => this.props.urlChange(e.target.value)}
+                  value={this.props.source.url || ''}
+                  type="text" />
+              </div>
 
-          <div class="row p-2">
-            <div class="col-12 rounded" style={style.dnd(this.state.dragging)}>
-              <div class="row p-0 m-0">
-                <div class="col-8 p-2">
-                  <span>
-                    drag and drop html file
-                    <Checkmark active={lastModified === 'file'}/>
-                  </span>
-                </div>
-                <div class="col-4 p-0">
-                  <input 
-                    onChange={(e) => this.props.fileSelect(e.target.files[0])}
-                    type="file"
-                    class="custom-file-input col-4 p-0">
-                  </input>
-                  <span class="btn custom-file-control">or select file</span>
+              <div class="row p-2">
+                <div class={`col-12 rounded ${this.state.dragging ? 'b2-d-success' : 'b2-d-light'}`}>
+                  <div class="row p-0 m-0">
+                    <div class="col-8 p-2">
+                      <span>
+                        drag and drop html file
+                        <Checkmark active={lastModified === 'file'}/>
+                      </span>
+                    </div>
+                    <div class="col-4 p-0">
+                      <input 
+                        onChange={(e) => this.props.fileSelect(e.target.files[0])}
+                        type="file"
+                        class="custom-file-input col-4 p-0">
+                      </input>
+                      <span class="btn custom-file-control">or select file</span>
+                    </div>
+                  </div>
                 </div>
               </div>
+
+              <div class="row p-2">
+                <div class="col-12 p-0">
+                  {name}
+                </div>
+              </div>
+
+              <div class="row p-2">
+                <span class="col-12 p-0">
+                  use raw html
+                  <Checkmark active={lastModified === 'html'}/>
+                </span>
+                <textarea
+                  onChange={(e) => this.props.htmlRawChange(e.target.value)}
+                  value={this.props.source.rawHtml || ''}
+                  class="form-control col-12 p-2 f-monospace h-100">
+                </textarea>
+              </div>
+
+              <div class="row p-2">
+                <div class="col-12 p-0">
+                <ToolTip
+                  placement="bottomLeft"
+                  destroyTooltipOnHide={true}
+                  visible={this.props.onboarding.step === 2}
+                  overlay={<AddSourceExplanation />}>
+                  <button 
+                    class={`btn mr-3 ${!html && !url && !file ? '' : 'btn-success'}`} 
+                    onClick={() => this.props.submit(this.props.source)}>submit</button>
+                </ToolTip>
+                  <button class="btn" onClick={() => this.props.dismiss()}>cancel</button>
+                </div>
+              </div>
+
             </div>
           </div>
-
-          <div class="row p-2">
-            <div class="col-12 p-0">
-              {name}
-            </div>
-          </div>
-
-          <div class="row p-2">
-            <span class="col-12 p-0">
-              use raw html
-              <Checkmark active={lastModified === 'html'}/>
-            </span>
-            <textarea
-              style={style.input}
-              onChange={(e) => this.props.htmlRawChange(e.target.value)}
-              value={this.props.source.rawHtml || ''}
-              class="form-control col-12 p-2"></textarea>
-          </div>
-
-          <div class="row p-2">
-            <div class="col-12 p-0">
-            <ToolTip
-              placement="bottomLeft"
-              destroyTooltipOnHide={true}
-              visible={this.props.onboarding.step === 2}
-              overlay={<AddSourceExplanation />}>
-              <button class={style.submit(this.props.source)} onClick={() => this.props.submit(this.props.source)}>submit</button>
-            </ToolTip>
-              <button class="btn" onClick={() => this.props.dismiss()}>cancel</button>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    )
-  }
-
-  render() {
-    return (
-      <div class="row justify-content-center">
-        <div
-          style={style.container(this.props.source.active)}
-          class="col-6 mt-5">
-          {this.guts()}
         </div>
       </div>
     )

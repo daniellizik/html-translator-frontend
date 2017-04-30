@@ -45,7 +45,7 @@ export default [
         <div class="col-6 mt-2">
           <ChangeRuleValue {...props} />
         </div>
-        <div class="col-12">
+        <div class="col-6 mt-2">
           <ChangeRule {...props} />
         </div>
         <div class="col-6 mt-2">

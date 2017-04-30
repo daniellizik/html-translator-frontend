@@ -4,10 +4,6 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { queryActions, mutateActions, clauseActions } from '~/src/components/clause/actions/index'
 
-const treeStyle = {
-  overflow: 'auto'
-}
-
 const mapStateToProps = (state) => ({
   ...state,
   xml: state.slave.xml

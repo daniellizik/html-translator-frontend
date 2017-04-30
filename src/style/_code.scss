@@ -1,0 +1,47 @@
+.code-line::before {
+  content: attr(data-line-number);
+}
+
+.syntax_OPEN_TAG {
+  color: map-get($colors, "yellow");
+}
+
+.syntax_NODENAME {
+  color: map-get($colors, "yellow");
+}
+
+.syntax_SLASH {
+  color: map-get($colors, "yellow");
+}
+
+.syntax_CLOSE_TAG {
+  color: map-get($colors, "yellow");
+}
+
+.syntax_TEXT_NODE {
+  color: map-get($colors, "white");
+}
+
+.syntax_SPACER {
+  color: transparent;
+}
+
+.syntax_ATTR_NAME {
+  color: map-get($colors, "darkGrey");
+}
+
+.syntax_ATTR_VALUE {
+  color: map-get($colors, "darkGrey");
+}
+
+.syntax_ATTR_SETTER {
+  color: map-get($colors, "darkGrey");
+}
+
+.syntax_ATTR_QUOTE_OPEN {
+  color: map-get($colors, "darkGrey");
+}
+
+.syntax_ATTR_QUOTE_CLOSE {
+  color: map-get($colors, "darkGrey");
+}

@@ -1,18 +1,5 @@
 import React from 'react'
 import * as config from './settings/config' 
-import { colors } from '~/src/styles/constants'
-
-export const btnStyle = (active) => ({
-  backgroundColor: active ? colors.lightYellow : 'inherit',
-  border: `1px solid transparent`
-})
-
-// what is with the unsightly
-// ({QUERY: props.queryActions, MUTATION: props.mutateActions})[props.type]
-// all these clauses can either be a query or mutation,
-// they must trigger different actions based on the type
-// passed via props
-// this should be refactored send a .ruleType prop in the action, probably
 
 export const ChangeTarget = (props) => (
   <label class="col-12 p-0 m-0">
