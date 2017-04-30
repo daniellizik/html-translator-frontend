@@ -1,13 +1,7 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
-import { colors } from '~/src/styles/constants'
 import XmlTree from '~/src/components/xml/xmlTree'
-
-const style = {
-  border: `1px solid ${colors.light}`,
-  overflowX: 'scroll'
-}
 
 class Receiver extends Component {
 

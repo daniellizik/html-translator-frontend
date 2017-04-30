@@ -1,0 +1,36 @@
+    .form-control { 
+      height: 30px !important;
+    }
+    body, html, button, input {
+      font-family: 'Karla', sans-serif;
+    }
+    body, html {
+      height: 100%;
+      width: 100%;
+      overflow-x: hidden;
+      font-size: 14px !important;
+    }
+    table tbody td {
+      padding: 0;
+    }
+    input, textarea, select, option {
+      font-size: .9em !important;
+      font-family: "Source Code Pro", "Space Mono", "Inconsolata", "Liberation Mono", "Menlo", "Courier", monospace;
+    }
+    hr {
+      padding: 0;
+      margin: 0;
+      border: 0;
+    }
+    .btn {
+      border-radius: 0;
+      line-height: 1;
+      cursor: pointer;
+    }
+    input {
+      padding: .4rem .65rem;
+    }
+    p {
+      padding: 0;
+      margin: 0;
+    }

@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react'
 import RCToolTip from 'rc-tooltip'
-import { overlay as overlayStyle } from '~/src/styles/tooltip'
 
 export const ToolTip = ({placement, destroyTooltipOnHide, visible, overlay, children}) => (
   <RCToolTip 
@@ -8,7 +7,13 @@ export const ToolTip = ({placement, destroyTooltipOnHide, visible, overlay, chil
     destroyTooltipOnHide={destroyTooltipOnHide}
     visible={visible}
     overlay={overlay}
-    overlayStyle={overlayStyle}>
+    overlayStyle={{
+      backgroundColor: '#b1b1b1',
+      maxWidth: '350px',
+      color: 'black',
+      zIndex: 15,
+      opacity: 1
+    }}>
     {children}
   </RCToolTip>
 )

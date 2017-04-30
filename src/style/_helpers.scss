@@ -1,0 +1,94 @@
+// positions
+.absolute { position: absolute; }
+.relative { position: relative; }
+.fixed { position: fixed; }
+
+
+.max {
+  max-height: 100%;
+  height: 100%;
+  width: 100%;
+  max-width: 100%;
+  position: relative;
+}
+
+// display
+.visible { display: initial; }
+.hidden { display: none; }
+
+// mouse
+.mouse-disable { cursor: not-allowed }
+.mouse-point { cursor: pointer }
+
+// overflow
+.x-scroll-no { overflow-x: hidden; }
+.x-scroll { overflow-x: scroll; }
+.y-scroll-no { overflow-y: hidden; }
+.y-scroll { overflow-y: scroll; }
+
+// select
+.no-select { user-select: none; }
+
+// text align
+.ta-r { text-align: right; }
+.ta-l { text-align: left; }
+
+// line height
+.lh-47 { line-height: 47px; }
+
+// wrap
+.no-wrap { white-space: nowrap; }
+
+// positions
+.corner-lt {
+  left: 0;
+  top: 0;
+}
+
+// cover
+.cover {
+  @extend .corner-lt;
+  width: 100%;
+  height: 100%;
+}
+
+// opacity
+@for $o from 0 through 100 {
+  @if $o % 10 == 0 {
+    .opc-#{$o} { opacity: ($o / 100); }
+  }
+}
+
+// border, background, font color
+@each $key, $val in $colors {
+  .bg-#{$key} { background: $val; }
+  .b-#{$key} { border: 1px solid $val; }
+  .b2-d-#{$key} { border: 2px dashed $val; }
+  .b-b-#{$key} { border-bottom: 1px solid $val; }
+  .c-#{$key} { color: $val; }
+}
+
+// height
+@for $i from 0 through 20 {
+  .h-#{$i * 10} {
+    height: ($i * 10)
+  }
+}
+
+// z-index
+$zs: 0, 1, 5, 10, 15, 20, 50, 100, 200, 500, 1000, 5000;
+@each $n in $zs {
+  .z-#{$n} { z-index: $n; }
+}
+
+// border radius
+.br-2 { border-radius: 2pt; }
+.br-3 { border-radius: 3pt; }
+.br-4 { border-radius: 4pt; }
+
+// font size
+$fs: 11, 12, 13, 14, 15, 16, 17;
+@each $n in $fs {
+  .fs-#{$n} { font-size: "#{$n}pt"; }
+  .fs-p-#{$n} { font-size: "#{$n}px"; }
+}

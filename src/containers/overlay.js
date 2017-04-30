@@ -24,20 +24,11 @@ export const reducer = bindConstantsToReducers({
   })
 })
 
-const style = (visible) => ({
-  position: 'fixed',
-  left: 0,
-  top: 0,
-  width: '100%',
-  height: '100%',
-  backgroundColor: 'black',
-  opacity: .4,
-  zIndex: 2,
-  visibility: visible === false ? 'hidden' : 'visible'
-})
-
 const mapDispatchToProps = (dispatch) => bindActionCreators(actions, dispatch)
 
 export default connect(s => s, mapDispatchToProps)(({dismiss, overlay}) => (
-  <div onClick={() => dismiss()} style={style(overlay)}></div>
+  <div 
+    class={`fixed cover opc-40 bg-darkestBlack z-15 ${overlay ? 'visible' : 'hidden'}`} 
+    onClick={() => dismiss()}>
+  </div>
 ))

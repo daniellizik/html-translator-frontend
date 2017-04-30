@@ -3,31 +3,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { bindConstantsToReducers } from '~/src/util'
-import { colors } from '~/src/styles/constants'
 import { ToolTip, ChangeHtmlExplanation } from '~/src/components/explanation'
-
-const bgStyle = {
-  backgroundColor: colors.lightBlack,
-  lineHeight: '47px',
-  height: '5%',
-  cursor: 'pointer',
-  borderBottom: `1px solid ${colors.darkestBlack}`
-}
-
-const aStyle = {
-  color: '#FFFFFF',
-  fontSize: '1em'
-}
-
-const rightStyle = {
-  ...aStyle,
-  textAlign: 'right'
-}
-
-const hStyle = {
-  color: '#FFFFFF',
-  fontSize: '1.5em'
-}
 
 export const CONSTANTS = {
   CALL_IFRAME: '@NAVIGATOR/CALL_IFRAME',
@@ -75,30 +51,30 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => bindActionCreators(actions, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(({onboardingStep, mutated, xml, callSourceSetter, downloadHtml, callBuilder}) => (
-  <div class="row pl-3 pt-0 px-4 mb-0" style={bgStyle}>
+  <div class="row pl-3 pt-0 px-4 mb-0 bg-lightBlack lh-47 mouse-point b-b-darkestBlack">
     <div class="col-auto p-0 m-0">
       <ToolTip
         placement="topRight"
         destroyTooltipOnHide={true}
         visible={onboardingStep === 1}
         overlay={<ChangeHtmlExplanation />}>
-        <span onClick={callSourceSetter} style={aStyle} class="mr-3">
+        <span onClick={callSourceSetter} class="mr-3 c-white">
           Change Html
         </span>
       </ToolTip>
     </div>  
     <div class="col-auto p-0 m-0">
-      <span onClick={() => downloadHtml({xml, mutated})} style={aStyle} class="mr-3">
+      <span onClick={() => downloadHtml({xml, mutated})} class="mr-3 c-white">
         Download
       </span>
     </div>  
     <div class="col-auto p-0 m-0">
-      <span onClick={callBuilder} style={aStyle} class="mr-3">
+      <span onClick={callBuilder} class="mr-3 c-white">
         Preview
       </span>
     </div>  
     <div class="col-auto p-0 m-0">
-      <span onClick={callBuilder} style={aStyle} class="mr-3">
+      <span onClick={callBuilder} class="mr-3 c-white">
         Reset
       </span>
     </div>  

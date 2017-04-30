@@ -1,25 +1,11 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { colors } from '~/src/styles/constants'
-import iconStyle from '~/src/styles/icon'
 import policyValidator from '~/src/components/clause/policies/validator'
 import { queryActions, mutateActions, clauseActions } from '~/src/components/clause/actions/index'
 import * as config from '~/src/components/clause/settings/config'
-import { btnStyle, ChangeTarget } from './clauses'
-import { overlay as overlayStyle } from '~/src/styles/tooltip'
+import { ChangeTarget } from './clauses'
 import { ToolTip, ChangeTargetExplanation } from '~/src/components/explanation'
-
-const hrStyle = {
-  borderBottom: `1px solid black`
-}
-const ruleStyle = {
-  background: colors.lightGrey
-}
-const clauseStyle = {
-  background: colors.middleGrey,
-  color: colors.white
-}
 
 const mapDispatchToProps = (dispatch) => ({
   queryActions: bindActionCreators(queryActions, dispatch),
@@ -34,7 +20,7 @@ const mapStateToProps = (state) => ({
 })
 
 export const Clause = connect(mapStateToProps, mapDispatchToProps)((props) => (
-  <div class="py-0" style={ruleStyle}>
+  <div class="py-0 bg-lightGrey">
     {policyValidator(props)}
     <div class="row py-2 m-0">
       <div class="col-4">
@@ -57,8 +43,7 @@ export const MaximizedClause = connect(mapStateToProps, mapDispatchToProps)(({
 }) => (
   <div
     key={clauseIndex} 
-    class="col-12 mx-0 mb-3 py-3" 
-    style={clauseStyle}>
+    class="col-12 mx-0 mb-3 py-3 c-white bg-middleGrey">
     <div class="row px-3">
       <label class="col-6 mb-2 mx-0 pl-0 pr-2">
         <p>change target</p>
