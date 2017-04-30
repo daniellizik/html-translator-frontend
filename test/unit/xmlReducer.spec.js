@@ -136,4 +136,7 @@ describe('xml reducer', () => {
       expect(Array.isArray(props.tokens)).toBeTruthy()
     })
   })
+  it('should render flattened ast without view if there are no clauses', () => {
+    
+  })
 })

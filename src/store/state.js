@@ -17,7 +17,6 @@ export default {
   },
 
   onboarding: {
-    state: false,
     step: 0
   },
 
@@ -33,7 +32,7 @@ export default {
       open: [],
       close: []
     },
-    ast: [],
+    ast: {},
     rawHtml: null,
     tree: [],
     currentMutation: -1,

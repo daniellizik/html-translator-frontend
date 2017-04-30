@@ -14,6 +14,6 @@ export default chainActions(
   actions.urlChange('/cats.html'),
   actions.urlChange('/cats2.html'),
   actions.urlChange('/cats3.html'), 
-  { type: constants.FILE_READ_DONE, name: 'cats.html', rawHtml: 'cat' },
-  { type: constants.HTML_FETCHED, ast: {}, list: [1], name: 'blah', rawHtml: '<div>cat</div>' } 
+  actions.fileReadDone('cats.html', 'cat'),
+  actions.htmlReceived('<div>cat</div>')
 )

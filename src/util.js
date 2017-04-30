@@ -1,3 +1,12 @@
+import { parse } from 'parse5'
+import treeToList from '~/src/treeToList'
+
+export const parseHtml = (rawHtml) => {
+  const ast = parse(rawHtml).childNodes[0]
+  const list = treeToList()(ast)
+  return {ast, list}
+}
+
 export const chainReducers = (state, action, ...reducers) => {
   return reducers.reduce((reducedState, reducer) => {
     return reducer(reducedState, action)
@@ -42,5 +51,3 @@ export const stringifyMutated = (xml) => {
     return [...acc, depth + line]
   }, []).join('\n')
 }
-
-export const findHtmlRoot = (ast) => ast.childNodes[0]

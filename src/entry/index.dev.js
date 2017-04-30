@@ -5,12 +5,12 @@ import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 import { configureStore } from '~/src/store/configureStore'
 import Root from '~/src/containers/root'
-import state from '~/test/stateFixtures/dev'
-// import state from '~/test/stateFixtures/onboarding'
+// import state from '~/test/stateFixtures/dev'
+import state from '~/test/stateFixtures/onboarding'
 import '~/src/style/index.scss'
 
 const logger = ({getState}) => (next) => (action) => {
-  console.log({...getState(), action})
+  console.log(action)
   return next(action)
 }
 

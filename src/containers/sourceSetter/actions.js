@@ -1,9 +1,7 @@
 import * as constants from './constants'
+import { parseHtml } from '~/src/util'
 import { constants as overlayConstants } from '~/src/containers/overlay'
-import { parse as parseHtml } from 'parse5'
-import treeToList from '~/src/treeToList'
 import axios from 'axios'
-import { findHtmlRoot } from '~/src/util'
 
 export const htmlRawChange = (rawHtml) => ({
   type: constants.HTML_RAW_CHANGE,
@@ -15,22 +13,27 @@ export const urlChange = (url) => ({
   url
 })
 
+export const fileReadInit = () => ({ type: constants.FILE_READ_INIT })
+
+export const fileReadDone = (name, rawHtml) => ({ type: constants.FILE_READ_DONE, name, rawHtml })
+
+export const fileReadError = (error) => ({ type: constants.FILE_READ_ERROR, error })
+
 export const fileSelect = (file) => (dispatch) => {
   const reader = new FileReader()
   const {name} = file
-  dispatch({ type: constants.FILE_READ_INIT })
+  dispatch(fileReadInit())
   reader.onload = ({target}) => {
-    dispatch({ type: constants.FILE_READ_DONE, name, rawHtml: target.result })
+    dispatch(fileReadDone(name, target.result))
   }
-  reader.onerror = (e) => {
-    dispatch({ type: constants.FILE_READ_ERROR, error: e })
+  reader.onerror = ({message}) => {
+    dispatch(fileReadError(message))
   }
   reader.readAsText(file)
 }
 
 export const htmlReceived = (rawHtml) => {
-  const ast = parseHtml(rawHtml).childNodes[0]
-  const list = treeToList()(ast)
+  const {ast, list} = parseHtml(rawHtml)
   return {
     type: constants.HTML_FETCHED,
     ast,
@@ -46,7 +49,7 @@ export const dismissOverlay = () => ({ type: constants.DISMISS_OVERLAY })
 
 export const fetchInit = () => ({ type: constants.FETCH_URL_INIT })
 
-export const fetchErr = () => ({ type: constants.FETCH_URL_ERROR })
+export const fetchErr = (error) => ({ error, type: constants.FETCH_URL_ERROR })
 
 export const submit = ({rawHtml, url, name, lastModified}) => async (dispatch) => {
   dispatch(dismissOverlay())
@@ -56,11 +59,10 @@ export const submit = ({rawHtml, url, name, lastModified}) => async (dispatch) =
     dispatch(fetchInit())
     try {
       const {data} = await axios.get(url)
-      const { ast, list } = parseInit(rawHtml)
-      dispatch(htmlReceived(rawHtml))
+      dispatch(htmlReceived(data))
     }
-    catch(e) {
-      dispatch(fetchErr())
+    catch({message}) {
+      dispatch(fetchErr(message))
     }
   }
 }
