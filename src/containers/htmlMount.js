@@ -3,47 +3,26 @@ import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
 import XmlTree from '~/src/components/xml/xmlTree'
 
-class Receiver extends Component {
+class HtmlMount extends Component {
 
-  constructor() {
-    super()
-    this.state = {
-      encapsulated: null,
-      row: null
-    }
+  hover({node, row}) {
+
   }
 
-  callbacks() {
-    return {
-      highlight: ({node, row}) => {
-        // this.setState({ row: node.len, encapsulated: node.id })
-      },
-      click: ({node, row}) => {
-        //console.log(node)
-      }
-    }
+  click({node, row}) {
+
   }
 
   render() {
-    const { list } = this.props.slave
-    if (!list || list.length < 1)
-      return (<div></div>)
-    else {
-      return (
+    return this.props.slave.list.length < 1 
+      ? (<div></div>) 
+      : (
         <div class="row">
-          <XmlTree callbacks={this.callbacks()} />
+          <XmlTree callbacks={{hover: this.hover.bind(this), click: this.click.bind(this)}} />
         </div>
       )
-    }
   }
 
 }
 
-
-
-const mapDispatchToProps = (dispatch) => ({
-  
-})
-
-const withConnect = connect(s => s, mapDispatchToProps)(Receiver)
-export default withConnect
+export default connect(s => s)(HtmlMount)

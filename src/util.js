@@ -7,6 +7,10 @@ export const parseHtml = (rawHtml) => {
   return {ast, list}
 }
 
+export const makeStoryTree = (reducer, initialState, tree) => {
+  
+}
+
 export const chainReducers = (state, action, ...reducers) => {
   return reducers.reduce((reducedState, reducer) => {
     return reducer(reducedState, action)
@@ -28,7 +32,13 @@ export const chainActions = (initialState, reducer, ...actions) => {
   }, {state, history: [state]}).history
 }
 
-export const bindConstantsToReducers = (reducers, initialState) => (state, action) => {
+/**
+ * bindConstantsToReducers - each constant becomes its own sub-reducer
+ * @param {object} reducers - dictionary of functions bound to constant names
+ * @param {object} initialState - optional initial state to pass to reducers
+ * @returns {function} reducer - redux reducer
+ */
+export const bindConstantsToReducers = (reducers = {}, initialState = {}) => (state, action) => {
   return reducers[action.type] 
     ? reducers[action.type](state, action) 
     : (state || initialState)
@@ -50,4 +60,8 @@ export const stringifyMutated = (xml) => {
     const line = tokens.map(t => t.value).join('')
     return [...acc, depth + line]
   }, []).join('\n')
+}
+
+export const id = (name, props) => {
+
 }

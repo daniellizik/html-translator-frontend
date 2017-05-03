@@ -69,6 +69,8 @@ export const MUTATION = {
   }
 }
 
+export const CLAUSE = QUERY
+
 // hardcoded for parse5 ast spec
 export const targetMap = {
   TEXT: 'value',

@@ -1,41 +1,25 @@
-import { onboarding } from '~/test/storyFixtures/overlay'
+import { regular, onboarding } from '~/test/storyFixtures/overlay'
 
-describe('overlay behavior', () => {
-
-  describe('clicking overlay while onboarding', () => {
-    it('should not dismiss overlay', () => {
-      expect(onboarding[1].overlay).toBeTruthy()
-    })
+describe('regular overlay behavior', () => {
+  it('should start not displayed', () => {
+    expect(regular[0].overlay).toBeFalsy()    
   })
-
-  describe('onboarding with overlay', () => {
-    it('should stop onboarding and dismiss overlay when skip is clicked', () => {
-      expect(onboarding[0].overlay).toBeTruthy()
-      expect(onboarding[0].onboarding.state).toBeTruthy()
-      expect(onboarding[2].overlay).toBeFalsy()
-      expect(onboarding[2].onboarding.state).toBeFalsy()
-    })
+  it('should display when source setter is called from nav', () => {
+    expect(regular[1].overlay).toBeTruthy()
   })
-
-  describe('quitting onboarding then using source setter', () => {
-    it('should not affect source setter state', () => {
-      expect(onboarding[2].source.active).toBeFalsy()
-    })
-    it('should be able to change html immediately after skipped onboarding', () => {
-      expect(onboarding[3].source.active).toBeTruthy()
-      expect(onboarding[3].overlay).toBeTruthy()
-    })
-    it('should be able to dismiss source setter', () => {
-      expect(onboarding[4].overlay).toBeFalsy()
-      expect(onboarding[4].source.active).toBeFalsy()
-    })
+  it('should dismiss when overlay is clicked', () => {
+    expect(regular[2].overlay).toBeFalsy()
   })
-
-  describe('quitting source setter by clicking on overlay', () => {
-    it('should dismiss overlay', () => {
-      expect(onboarding[6].overlay).toBeFalsy()
-      expect(onboarding[6].source.active).toBeFalsy()
-    })
+  it('should open when source setter is called again', () => {
+    expect(regular[3].overlay).toBeTruthy()
   })
+  it('should dismiss when source setter is canceled', () => {
+    expect(regular[4].overlay).toBeFalsy()
+  })
+})
 
+describe('onboarding overlay behavior', () => {
+  it('should start with overlay visible', () => {
+    expect(onboarding[0].overlay).toBeTruthy()
+  })
 })
