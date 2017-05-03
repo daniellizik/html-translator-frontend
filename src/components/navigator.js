@@ -15,7 +15,7 @@ export const constants = {
 }
 
 export const reducer = bindConstantsToReducers({
-  [constants.CALL_SOURCESETTER]: (state) => ({
+  [constants.CALL_SOURCESETTER]: (state) => state.onboarding.step > 1 ? state : ({
     ...state,
     overlay: true,
     source: {

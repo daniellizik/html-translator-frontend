@@ -12,8 +12,8 @@
 }
 
 // display
-.visible { display: initial; }
-.hidden { display: none; }
+.visible { visibility: visible; }
+.hidden { visibility: hidden; }
 
 // mouse
 .mouse-disable { cursor: not-allowed }
@@ -24,6 +24,7 @@
 .x-scroll { overflow-x: scroll; }
 .y-scroll-no { overflow-y: hidden; }
 .y-scroll { overflow-y: scroll; }
+.scroll-no { overflow-y: hidden; overflow-x: hidden; }
 
 // select
 .no-select { user-select: none; }

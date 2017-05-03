@@ -11,6 +11,7 @@ import '~/src/style/index.scss'
 
 const logger = ({getState}) => (next) => (action) => {
   console.log(action)
+  // console.log(action, getState().slave.xml.filter(n => n.node.viewIndex).slice(0, 5).map(n => n.node.id))
   return next(action)
 }
 

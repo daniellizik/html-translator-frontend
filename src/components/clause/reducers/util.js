@@ -8,13 +8,18 @@ export const errorHandler = ({message}) => {
   return message
 }
 
-export const mutateList = (list = [], view = []) => {
-  return list.reduce((acc, node) => { 
-    const index = view.indexOf(node.id)
-    return index < 0 
-      ? [...acc, {...node, viewed: false}]
-      : [...acc, {...node, viewed: true}]
-  },[])
+export const mutateList = (collection = [], view = []) => {
+  return collection.reduce(({list, count}, node) => {
+    return view.indexOf(node.id) === -1
+      ? {
+          list: [...list, {...node, viewed: false}],
+          count
+        }
+      : {
+          list: [...list, {...node, viewed: true, viewIndex: count}],
+          count: count + 1
+        }
+  }, {list: [], count: 0}).list
 }
 
 // take view, mutations and apply them to FULL LIST, not open
