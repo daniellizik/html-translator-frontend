@@ -105,10 +105,24 @@ export const composedReducer = (state, action) => {
         onboarding: { ...state.onboarding, step: 10 }
       }
     case clauseConstants.MUTATION_CHANGE_RULE:
-    case clauseConstants.MUTATION_CHANGE_RULE_VALUE:
       return state.onboarding.step === 10 
         ? appReducer(state, action)
         : state
+    // on step 10, user must enter 4 characters to proceed
+    case clauseConstants.MUTATION_CHANGE_RULE_VALUE: {
+      if (state.onboarding.step !== 10)
+        return state
+      const prevState = appReducer(state, action)
+      if (prevState.clauses[0].mutations[0].ruleValue.length < 4)
+        return prevState
+      return {
+        ...prevState,
+        onboarding: {
+          ...state.onboarding,
+          step: 11
+        }
+      }
+    }
     default:
       return state
   }

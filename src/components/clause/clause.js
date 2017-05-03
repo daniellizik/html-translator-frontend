@@ -11,7 +11,8 @@ import {
   FadingToolTip, 
   ChangeTargetExplanation, 
   AddQueryExplanation, 
-  AddMutationExplanation
+  AddMutationExplanation,
+  ViewMutationsExplanation
 } from '~/src/components/explanation'
 
 const mapDispatchToProps = (dispatch) => ({

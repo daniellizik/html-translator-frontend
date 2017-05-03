@@ -25,8 +25,9 @@ export const story = chainActions(
   // 12
   mutateActions.changeRuleValue('a', 0, 0),
   mutateActions.changeRuleValue('ab', 0, 0),
-  mutateActions.changeRuleValue('abc', 0, 0)
-  // 15
+  mutateActions.changeRuleValue('abc', 0, 0),
+  mutateActions.changeRuleValue('abcd', 0, 0)
+  // 16
 
 )
 

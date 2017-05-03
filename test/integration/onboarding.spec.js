@@ -122,6 +122,10 @@ describe('step 10', () => {
     expect(story[12].clauses[0].mutations[0].ruleValue).toBe('a')
     expect(story[13].clauses[0].mutations[0].ruleValue).toBe('ab')
     expect(story[14].clauses[0].mutations[0].ruleValue).toBe('abc')
+    expect(story[15].clauses[0].mutations[0].ruleValue).toBe('abcd')
+  })
+  it('should proceed to step 11 when user has entered 4 characters', () => {
+    expect(story[15].onboarding.step).toBe(11)
   })
   it('should prevent user from removing queries or mutations', () => {
     expect(regression[6].clauses[0].queries.length).toBe(1)

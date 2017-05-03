@@ -155,11 +155,15 @@ export const ChangeMutationRuleExplanation = connect(s => s, boundOnboardActions
   </div>
 ))
 
-export const ChangeMutationRuleValueExplanation = () => (
+export const ChangeMutationRuleValueExplanation = connect(s => s, boundOnboardActions)((props) => (
   <div>
     <p>This input controls what your mutation will result in.</p>
+    <p>Try entering some text.</p>
+    {props.clauses[0].mutations[0].ruleValue.length < 4 && (
+      <p>Add some more characters!</p>
+    )}
   </div>
-)
+))
 
 export const ViewMutationsExplanation = () => (
   <div>
