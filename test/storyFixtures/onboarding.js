@@ -26,9 +26,9 @@ export const story = chainActions(
   mutateActions.changeRuleValue('a', 0, 0),
   mutateActions.changeRuleValue('ab', 0, 0),
   mutateActions.changeRuleValue('abc', 0, 0),
-  mutateActions.changeRuleValue('abcd', 0, 0)
+  mutateActions.changeRuleValue('abcd', 0, 0),
   // 16
-
+  clauseActions.denormalize(0)
 )
 
 export const regression = chainActions(
@@ -39,8 +39,8 @@ export const regression = chainActions(
   mutateActions.remove(0, 0),
   queryActions.remove(0, 0),
   mutateActions.add(0),
-  queryActions.add(0)
-  // 7
+  queryActions.add(0),
+  queryActions.changeTargetValue('kfljads', 0, 0)
 )
 
 const a = makeStoryTree(reducer, state, [
