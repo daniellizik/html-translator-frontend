@@ -5,5 +5,5 @@ export default {
   ...state,
   onboarding: { step: 0 },
   overlay: true,
-  ...story[15]
+  ...story[16]
 }

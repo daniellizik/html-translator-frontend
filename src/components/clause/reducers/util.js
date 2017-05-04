@@ -27,7 +27,7 @@ export const mutateList = (collection = [], view = []) => {
 export const mutationDenormalizer = (clause, list = []) => {
   const { target, view, mutations } = clause
   // mutations might have to mutate entire list, so give a copy to keep it immutable
-  return list.slice().reduce((acc, node, i, arr) => {
+  return list.reduce((acc, node, i, arr) => {
     // only mutate items in view
     return view.indexOf(node.id) < 0 ? [...acc, node] : [
       ...acc,

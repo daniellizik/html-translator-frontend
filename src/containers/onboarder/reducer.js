@@ -78,6 +78,8 @@ export const composedReducer = (state, action) => {
     // goes to next step if user enters query that results in viewed nodes
     // next step should disable all these
     case clauseConstants.QUERY_CHANGE_TARGET_VALUE: {
+      if (state.onboarding.step !== 7)
+        return state
       const nextState = appReducer(state, action)
       if (nextState.clauses[0].view.length > 0)
         return { 
@@ -123,6 +125,10 @@ export const composedReducer = (state, action) => {
         }
       }
     }
+    case clauseConstants.CLAUSE_DENORMALIZE_MUTATIONS: 
+      return state.onboarding.step !== 11 
+        ? state 
+        : clauseReducer(state, action) 
     default:
       return state
   }

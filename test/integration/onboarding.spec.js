@@ -100,6 +100,9 @@ describe('step 7a, 7b, 7c', () => {
   it('should have items in view', () => {
     expect(story[9].clauses[0].view.length).toBeGreaterThan(10)
   })
+  it('should have updated query 0 target value', () => {
+    expect(story[9].clauses[0].queries[0].targetValue).toBe('tr')
+  })
 })
 
 describe('step 8', () => {
@@ -134,6 +137,21 @@ describe('step 10', () => {
   it('should prevent user from adding queries or mutations', () => {
     expect(regression[6].clauses[0].queries.length).toBe(1)
     expect(regression[6].clauses[0].mutations.length).toBe(1)
+  })
+  it('should prevent user from modifying query', () => {
+    expect(regression[7].clauses[0].queries[0].targetValue).toBe(regression[6].clauses[0].queries[0].targetValue)
+  })
+})
+
+describe('step 11', () => {
+  it('should be at step 11', () => {
+    expect(story[16].onboarding.step).toBe(11)
+  })
+  it('should have view', () => {
+    expect(story[16].clauses[0].view.length).toBeGreaterThan(0)
+  })
+  it('should have mutated', () => {
+    expect(story[16].slave.mutated.length).toBeGreaterThan(0)
   })
 })
 
