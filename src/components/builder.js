@@ -12,8 +12,8 @@ const Builder = ({onboardStep, activeClause, clauses, clauseActions, builderActi
       <ToolTip
         placement="topRight"
         destroyTooltipOnHide={true}
-        visible={onboardStep === 3}
-        overlay={<AddClauseExplanation />}>
+        visible={onboardStep === 3 || onboardStep === 12}
+        overlay={<AddClauseExplanation step={onboardStep} />}>
           <button class="btn p-2 mr-2 mouse-point" onClick={clauseActions.add}>
             add clause
           </button>

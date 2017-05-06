@@ -60,30 +60,45 @@ export class FadingToolTip extends Component {
 }
 
 export const AddSourceExplanation = () => (
-  <div>
+  <div id="AddSourceExplanation">
     Here you can import your html from a variety of sources. For now we'll use a sample email to work with.
   </div>
 )
 
 export const ChangeHtmlExplanation = () => (
-  <div>
+  <div id="ChangeHtmlExplanation">
     Use the "change html" button to import the html you want to translate
   </div>
 )
 
-export const AddClauseExplanation = () => (
-  <div>
-    <p>
-      A "clause" is a group of queries and mutations. These are the blocks you use with which to find and replace certain parts of your html document. 
-    </p>      
-    <p class="mt-1">
-      Try to add a clause by clicking on the button!
-    </p>
-  </div>
-)
+export const AddClauseExplanation = ({step}) => {
+  if (step === 3)
+    return  (
+      <div id="AddClauseExplanation">
+        <p>
+          A "clause" is a group of queries and mutations. These are the blocks you use with which to find and replace certain parts of your html document. 
+        </p>      
+        <p class="mt-1">
+          Try to add a clause by clicking on the button!
+        </p>
+      </div>
+    )
+  if (step === 12)
+    return (
+      <div id="AddClauseExplanation">
+        <p>
+          In order to change the result of multiple queries it is necessary to add multiple clauses.
+        </p>
+        <p class="mt-1">
+          Try repeating the steps we have already taken in another clause.
+        </p>
+      </div>
+    )
+}
+
 
 export const ChangeTargetExplanation = connect(s => s, boundOnboardActions)(({step_4}) => (
-  <div>
+  <div id="ChangeTargetExplanation">
     <p>
       The "target" indicates which part of a html tag you want to search for.
     </p>
@@ -98,7 +113,7 @@ export const ChangeTargetExplanation = connect(s => s, boundOnboardActions)(({st
 ))
 
 export const AddQueryExplanation = () => (
-  <div>
+  <div id="AddQueryExplanation">
     <p>
       In order to query your html document, we need to add queries that describe what to search for.
     </p>
@@ -109,7 +124,7 @@ export const AddQueryExplanation = () => (
 )
 
 export const ChangeQueryRuleExplanation = connect(s => s, boundOnboardActions)(({step_6}) => (
-  <div>
+  <div id="ChangeQueryRuleExplanation">
     <p>You can change the search rule of each query.</p>
     <ul>
       <li>Equals and not equals will search for an exact match.</li>
@@ -120,14 +135,14 @@ export const ChangeQueryRuleExplanation = connect(s => s, boundOnboardActions)((
 ))
 
 export const ChangeQueryTargetValueExplanation = () => (
-  <div>
+  <div id="ChangeQueryTargetValueExplanation">
     <p>Use this input to change the value of the search quer.y</p>
     <p>Try changing the input to find a result.</p>
   </div>
 )
 
 export const XmlTreeExplanation = ({index}) => (
-  <div>
+  <div id="XmlTreeExplanation">
     {
       index < 1 
         ? 'The html tags that have been found the by the query will be highlighted here'
@@ -137,13 +152,13 @@ export const XmlTreeExplanation = ({index}) => (
 )
 
 export const AddMutationExplanation = () => (
-  <div>
+  <div id="AddMutationExplanation">
     <p>Now let's add a mutation, by clicking this button.</p>
   </div>
 )
 
 export const ChangeMutationRuleExplanation = connect(s => s, boundOnboardActions)(({step_9}) => (
-  <div>
+  <div id="ChangeMutationRuleExplanation">
     <p>Change how the selected html elements are mutated. There are several rules to choose from:</p>
     <ul>
       <li>replace all: replace the entire target</li>
@@ -156,7 +171,7 @@ export const ChangeMutationRuleExplanation = connect(s => s, boundOnboardActions
 ))
 
 export const ChangeMutationRuleValueExplanation = connect(s => s, boundOnboardActions)((props) => (
-  <div>
+  <div id="ChangeMutationRuleValueExplanation">
     <p>This input controls what your mutation will result in.</p>
     <p>Try entering some text.</p>
     {props.clauses[0].mutations[0].ruleValue.length < 4 && (
@@ -166,7 +181,7 @@ export const ChangeMutationRuleValueExplanation = connect(s => s, boundOnboardAc
 ))
 
 export const ViewMutationsExplanation = () => (
-  <div>
+  <div id="ViewMutationsExplanation">
     <p>To view the mutations of the current clause click this button</p>
   </div>
 )

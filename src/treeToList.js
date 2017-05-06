@@ -2,7 +2,15 @@ const defaultConfig = {
   childrenProp: 'childNodes',
   attributesProp: 'attrs',
   nodeNameProp: 'nodeName',
-  valueProp: 'value'
+  valueProp: 'value',
+  commentProp: 'data'
+}
+
+const getData = (node, config) => {
+  if (node.nodeName === '#text')
+    return node[config.valueProp] ? node[config.valueProp].replace(/[\r\n]/g, '').trim() : null
+  else if (node.nodeName === '#comment')
+    return node[config.commentProp] ? node[config.commentProp].replace(/[\r\n]/g, '').trim() : null
 }
 
 /**
@@ -35,7 +43,7 @@ export default function treeToList(config = defaultConfig) {
       depth,
       parent: parentId,
       nodeName: node[config.nodeNameProp].toLowerCase(),
-      value: node[config.valueProp] ? node[config.valueProp].replace(/[\r\n]/g, '').trim() : null,
+      value: getData(node, config),
       attrs: node[config.attributesProp] || [],
       id: accumulator.open.length
     }

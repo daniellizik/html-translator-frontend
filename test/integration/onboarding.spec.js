@@ -1,4 +1,5 @@
 import { story, regression } from '~/test/storyFixtures/onboarding'
+import * as config from '~/src/components/clause/settings/config'
 
 describe('step 0', () => {
   it('should be at step 0', () => {
@@ -145,13 +146,52 @@ describe('step 10', () => {
 
 describe('step 11', () => {
   it('should be at step 11', () => {
-    expect(story[16].onboarding.step).toBe(11)
+    expect(story[15].onboarding.step).toBe(11)
+  })
+  it('should not have mutated first rule value from step 10', () => {
+    expect(story[15].clauses[0].mutations[0].ruleValue).toBe('abcd')
+  })
+})
+
+describe('step 12', () => {
+  const s = story[16]
+  it('should be at step 12', () => {
+    expect(s.onboarding.step).toBe(12)
   })
   it('should have view', () => {
-    expect(story[16].clauses[0].view.length).toBeGreaterThan(0)
+    expect(s.clauses[0].view.length).toBeGreaterThan(0)
   })
   it('should have mutated', () => {
-    expect(story[16].slave.mutated.length).toBeGreaterThan(0)
+    expect(s.slave.mutated.length).toBeGreaterThan(0)
+  })
+  it('should not allow users to modify anything before adding another clause', () => {
+    regression.slice(9, 15).forEach(({clauses, slave, source, onboarding}) => {
+      expect(s.clauses.length).toBe(clauses.length)
+      s.clauses.forEach((c, i) => {
+        expect(c).toMatchObject(clauses[i])
+      })
+      expect(s.onboarding).toMatchObject(onboarding)
+      expect(s.source).toMatchObject(source)
+      expect(s.slave.mutated).toMatchObject(slave.mutated)
+      expect(s.slave.ast.length).toBe(slave.ast.length)
+      expect(s.slave.list.list.length).toBe(slave.list.list.length)
+    })
+  })
+})
+
+describe('step 13', () => {
+  const [s0, s1, s2, s3, s4, s5] = story.slice(16)
+  it('should be at step 13', () => {
+    expect(s1.onboarding.step).toBe(13)
+  })
+  it('should add a second clause', () => {
+    expect(s1.clauses.length).toBe(2)
+  })
+  it('should add default clause this time instead of blank one', () => {
+    expect(s1.clauses[1]).toMatchObject(config.defaultClause)
+  })
+  it('should only move to step 14 once user has added second clause with valid view with mutation', () => {
+    expect(s5.onboarding.step).toBe(14)
   })
 })
 

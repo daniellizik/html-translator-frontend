@@ -10,7 +10,7 @@ class HtmlMount extends Component {
   }
 
   click({node, row}) {
-
+    console.log(node)
   }
 
   render() {

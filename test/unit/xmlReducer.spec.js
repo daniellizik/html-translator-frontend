@@ -6,6 +6,7 @@ import {
   nodename,
   chainedDenormalizations
 } from '~/test/storyFixtures/mutation'
+import { story as comments } from '~/test/storyFixtures/onboarding'
 import T, { tokenizeAttrs } from '~/src/components/xml/tokenizer'
 import { findTagType } from '~/src/components/xml/xmlReducer'
 
@@ -139,4 +140,9 @@ describe('xml reducer', () => {
   it('should render flattened ast without view if there are no clauses', () => {
     
   })
+  it('should render comments as text, not a comments nodename', () => {
+    
+  })
 })
+
+// comments

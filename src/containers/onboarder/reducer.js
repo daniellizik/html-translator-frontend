@@ -10,6 +10,21 @@ import * as config from '~/src/components/clause/settings/config'
 import appReducer from '~/src/store/appReducer'
 
 export const composedReducer = (state, action) => {
+  // hard code...cause im lazy, user needs to do a bunch of stuff
+  // to pass this step
+  if (state.onboarding.step === 13) {
+    const canPass = state.clauses.length > 1
+      && state.clauses[1].queries[0].targetValue !== ''
+      && state.clauses[1].mutations[0].ruleValue !== ''
+      && state.slave.mutated.length > 0
+    return canPass ? {
+      ...appReducer(state, action),
+      onboarding: {
+        ...state.onboarding,
+        step: 14
+      }
+    } : appReducer(state, action)
+  }
   switch (action.type) {
     case constants.SKIP_ONBOARDING:
       return {
@@ -42,15 +57,25 @@ export const composedReducer = (state, action) => {
         onboarding: { ...state.onboarding, step: 3 }
       }
     case clauseConstants.CLAUSE_ADD: {
-      if (state.onboarding.step !== 3)
+      if (state.onboarding.step === 3) {
+        const prevState = clauseReducer(state, action)
+        return {
+          ...prevState,
+          clauses: [
+            {...prevState.clauses[0], queries: [], mutations: []}
+          ],
+          onboarding: { ...state.onboarding, step: 4 }
+        }
+      } else if (state.onboarding.step === 12) {
+        return {
+          ...appReducer(state, action),
+          onboarding: {
+            ...state.onboarding,
+            step: 13
+          }
+        }
+      } else {
         return state
-      const prevState = clauseReducer(state, action)
-      return {
-        ...prevState,
-        clauses: [
-          {...prevState.clauses[0], queries: [], mutations: []}
-        ],
-        onboarding: { ...state.onboarding, step: 4 }
       }
     }
     case constants.STEP_4:
@@ -128,7 +153,13 @@ export const composedReducer = (state, action) => {
     case clauseConstants.CLAUSE_DENORMALIZE_MUTATIONS: 
       return state.onboarding.step !== 11 
         ? state 
-        : clauseReducer(state, action) 
+        : {
+          ...appReducer(state, action),
+          onboarding: {
+            ...state.onboarding,
+            step: 12
+          }
+        }
     default:
       return state
   }
