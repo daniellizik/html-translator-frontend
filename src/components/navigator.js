@@ -51,7 +51,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => bindActionCreators(actions, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(({onboardingStep, mutated, xml, callSourceSetter, downloadHtml, callBuilder}) => (
-  <div class="row m-0 p-0 c-altMain strong bg-top fs-12 lh-47 mouse-point b-b-strong">
+  <div class="row m-0 p-0 c-hero strong bg-main fs-12 lh-47 mouse-point b-b-strong">
     <div class="col-12 px-4 m-0">
       <div class="inline">
         <ToolTip

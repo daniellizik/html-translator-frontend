@@ -11,9 +11,14 @@ $colors: (
   "warning": $red,
   "weak": $grey,
   "neutral": $middleGrey,
+  "hero": $offWhite,
   "btnShadowA": rgba(245,245,245,245.12),
   "btnShadowB": rgba(245,245,245,245.24)
 );
+
+.gradient {
+  background: linear-gradient(45deg, $lightBlack 25%, $darkestBlack);
+}
 
 @include code(
   $yellow,

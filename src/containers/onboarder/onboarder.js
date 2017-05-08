@@ -43,14 +43,15 @@ class Onboarder extends Component {
   render() {
     return (
       <div class="row justify-content-center">
-        <div style={{height: '60%'}} class={`col-4 mt-5 fixed z-15 c-contrast bg-main br-4 ${this.props.onboarding.step === 0 ? 'visible' : 'hidden'}`}>
+        <div class={`gradient col-4 mt-5 fixed z-15 c-contrast br-4 ${this.props.onboarding.step === 0 ? 'visible' : 'hidden'}`}>
           <div class="row p-2 h-100">
             <div class="col-12 m-0 p-0 h-80">
               <Html {...this.state} />
             </div>
             <div class="col-12 m-0 px-2 pt-4 h-20">
-              <span onClick={this.props.onboardInit}>start tutorial</span>
-              <span onClick={this.props.skip}>skip</span>
+              <p>Take an interactive guide of the email translator! We'll go step by step through the app to learn how to translate any html email document.</p>
+              <h2 class="c-hero cursor-pointer ta-c mt-3" onClick={this.props.onboardInit}>Start Tutorial</h2>
+              <p class="c-altMain cursor-pointer ta-c mt-3" onClick={this.props.skip}><em>nah, I'm good</em></p>
             </div>
           </div>
         </div>
