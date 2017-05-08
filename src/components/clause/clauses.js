@@ -12,9 +12,9 @@ import {
 
 export const ChangeTarget = (props) => (
   <label class="col-12 p-0 m-0" data-clause="change-target">
-    <p>change target</p>
+    <p class="mb-1">change target</p>
     <Choice
-      value={props.clause.rule}
+      value={props.type !== 'CLAUSE' ? props.clause.rule : props.clauseGroup.target}
       onFocus={() => props.clauseActions.activate(props.clauseIndex)}
       onChange={(e) => props.actionSet.changeTarget(e.target.value, props.clauseIndex)}
       options={Object.keys(config[props.type].targets)} />

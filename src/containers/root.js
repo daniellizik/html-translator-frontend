@@ -19,10 +19,10 @@ export default () => (
     <SourceSetter />
     <Navigator />
     <div style={{height: '95%'}} class="row p-0 m-0">
-      <div class="col-6 m-0 pr-2 x-scroll-no y-scroll bg-lightBlack">
+      <div class="col-6 m-0 pr-2 x-scroll-no y-scroll bg-main">
         <Builder />
       </div>
-      <div class="col-6 m-0 pl-2 y-scroll bg-darkBlack">
+      <div class="col-6 m-0 pl-2 y-scroll bg-html">
         <HtmlMount />
       </div>
     </div>

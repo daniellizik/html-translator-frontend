@@ -28,7 +28,7 @@ const mapStateToProps = (state) => ({
 })
 
 export const Clause = connect(mapStateToProps, mapDispatchToProps)((props) => (
-  <div class="py-0 bg-lightGrey">
+  <div class="py-0 c-contrast bg-weak">
     {policyValidator(props)}
     <div class="row py-2 m-0">
       <div class="col-4">
@@ -57,7 +57,7 @@ export const MaximizedClause = connect(mapStateToProps, mapDispatchToProps)(({
 }) => (
   <div
     key={clauseIndex} 
-    class="col-12 mx-0 mb-3 py-3 c-white bg-middleGrey">
+    class="col-12 mx-0 mb-3 py-3 c-subcontrast bg-neutral">
     <div class="row px-3">
       <label class="col-6 mb-2 mx-0 pl-0 pr-2">
         <ToolTip
@@ -121,7 +121,7 @@ export const MaximizedClause = connect(mapStateToProps, mapDispatchToProps)(({
         }
       </div>
       <div class="col-12 m-0 p-0">
-        <div class="row m-0 p-0">
+        <div class="row mx-0 mb-1 p-0">
           {clauseGroup.queries.length > 0 && <div class="col m-0 p-0">queries</div>}
         </div>
         {clauseGroup.queries.map((clause, ruleIndex, {length}) => (
@@ -135,7 +135,7 @@ export const MaximizedClause = connect(mapStateToProps, mapDispatchToProps)(({
             ruleIndex={ruleIndex} 
             key={`q-${clauseIndex}-${ruleIndex}`} />
         ))}
-        <div class="row m-0 p-0">
+        <div class="row mx-0 my-1 p-0">
           {clauseGroup.mutations.length > 0 && <div class="col m-0 p-0">mutations</div>}
         </div>
         {clauseGroup.mutations.map((clause, ruleIndex, {length}) => (

@@ -7,7 +7,7 @@ import settings from '~/src/settings.json'
 
 const XmlTd = (props) => (
   <td 
-    class={`f-monospace fs-p-14 no-wrap ${props.node.viewed ? 'bg-dbg' : ''}`}>
+    class={`f-monospace fs-p-14 no-wrap ${props.node.viewed ? 'bg-accentuate' : ''}`}>
     <XmlSpacer depth={props.node.depth} />
     <XmlToken 
       tokens={props.tokens}
@@ -24,7 +24,7 @@ const XmlTag = (props) => (
     onClick={() => props.callbacks.click(props)}
     onMouseEnter={(e) => props.callbacks.hover(props)}>
     <td 
-      class="code-line f-monospace pr-2 c-inactive no-select ta-r mouse-point" 
+      class="code-line f-monospace pr-2 c-weak no-select ta-r mouse-point" 
       data-line-number={props.row}>
     </td>
     {props.onboarding.step === 8 && props.node.viewIndex < settings.onboarding_fade_max ? (

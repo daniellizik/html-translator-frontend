@@ -5,6 +5,7 @@ const ignorable = {
     return (close === true && voidElements.indexOf(nodeName) > -1)
      || (nodeName === '#text' && close === true)
      || (nodeName === '#text' && /^[\s\r\n]{0,}$/.test(value || '') )
+     || (nodeName === '#comment' && close)
   },
   tokens: () => null
 }
@@ -17,7 +18,20 @@ const text = {
   },
   tokens: ({value}) => {
     return [
-      { punctuation: 'TEXT_NODE', value: value.trim() }
+      { type: 'TEXT_NODE', value: value.trim() }
+    ]
+  }
+}
+
+const comment = {
+  ignore: ({nodeName, value, close}) => {
+    return nodeName === '#comment' && !close
+  },
+  tokens: ({value}) => {
+    return [
+      { type: 'COMMENT_OPEN', value: '<!-- ' },
+      { type: 'COMMENT_VALUE', value },
+      { type: 'COMMENT_CLOSE', value: ' -->' }
     ]
   }
 }
@@ -27,12 +41,12 @@ const voided = {
     return voidElements.indexOf(nodeName) > -1 && !close
   },
   tokens: ({nodeName, attrs}) => [
-    { punctuation: 'OPEN_TAG', value: '<' },
-    { punctuation: 'NODENAME', value: nodeName },
-    { punctuation: 'SPACER', value: ' ' },
+    { type: 'OPEN_TAG', value: '<' },
+    { type: 'NODENAME', value: nodeName },
+    { type: 'SPACER', value: ' ' },
     ...attrs,
-    { punctuation: 'SLASH', value: '/' },
-    { punctuation: 'CLOSE_TAG', value: '>' }
+    { type: 'SLASH', value: '/' },
+    { type: 'CLOSE_TAG', value: '>' }
   ]
 }
 
@@ -43,10 +57,10 @@ const open = {
       && voidElements.indexOf(nodeName) < 0
   },    
   tokens: ({nodeName, attrs}) => [
-    { punctuation: 'OPEN_TAG', value: '<' },
-    { punctuation: 'NODENAME', value: nodeName },
+    { type: 'OPEN_TAG', value: '<' },
+    { type: 'NODENAME', value: nodeName },
     ...attrs,
-    { punctuation: 'CLOSE_TAG', value: '>' }
+    { type: 'CLOSE_TAG', value: '>' }
   ]
 }
 
@@ -57,10 +71,10 @@ const close = {
       && nodeName !== '#text'
   },    
   tokens: ({nodeName}) => [
-    { punctuation: 'OPEN_TAG', value: '<' },
-    { punctuation: 'SLASH', value: '/' },
-    { punctuation: 'NODENAME', value: nodeName },
-    { punctuation: 'CLOSE_TAG', value: '>' }
+    { type: 'OPEN_TAG', value: '<' },
+    { type: 'SLASH', value: '/' },
+    { type: 'NODENAME', value: nodeName },
+    { type: 'CLOSE_TAG', value: '>' }
   ]
 }
 
@@ -68,12 +82,12 @@ export const tokenizeAttrs = (attrs = []) => {
   return attrs.length < 1 ? [] : attrs.reduce((acc, attr) => {
     return [
       ...acc,
-      { punctuation: 'SPACER', value: ' ' },
-      { punctuation: 'ATTR_NAME', value: attr.name },
-      { punctuation: 'ATTR_SETTER', value: '=' },
-      { punctuation: 'ATTR_QUOTE_OPEN', value: '"' },
-      { punctuation: 'ATTR_VALUE', value: attr.value },
-      { punctuation: 'ATTR_QUOTE_CLOSE', value: '"' }
+      { type: 'SPACER', value: ' ' },
+      { type: 'ATTR_NAME', value: attr.name },
+      { type: 'ATTR_SETTER', value: '=' },
+      { type: 'ATTR_QUOTE_OPEN', value: '"' },
+      { type: 'ATTR_VALUE', value: attr.value },
+      { type: 'ATTR_QUOTE_CLOSE', value: '"' }
     ]
   }, [])
 }
@@ -81,6 +95,7 @@ export const tokenizeAttrs = (attrs = []) => {
 export default {
   ignorable,
   text,
+  comment,
   voided,
   open,
   close

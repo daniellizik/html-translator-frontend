@@ -1,0 +1,24 @@
+$colors: (
+  "main": $lightBlack,
+  "altMain": $offWhite,
+  "strong": $darkestBlack,
+  "top": $lightBlack,
+  "html": $darkestBlack,
+  "highlight": $yellow,
+  "accentuate": $lightGreyOpaque,
+  "contrast": $offWhite,
+  "subcontrast": $offWhite,
+  "warning": $red,
+  "weak": $grey,
+  "neutral": $middleGrey,
+  "btnShadowA": rgba(245,245,245,245.12),
+  "btnShadowB": rgba(245,245,245,245.24)
+);
+
+@include code(
+  $yellow,
+  $offWhite,
+  $offWhite,
+  $grey,
+  $red  
+)

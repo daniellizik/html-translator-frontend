@@ -11,8 +11,4 @@ describe('treeToList', () => {
     expect(list.list.slice(-1).pop().parent).toBe(-1)
   })
 
-  it('should capture comment.data', () => {
-
-  })
-
 })

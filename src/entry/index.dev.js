@@ -7,7 +7,7 @@ import Root from '~/src/containers/root'
 import { createStore, applyMiddleware } from 'redux'
 import rootReducer from '~/src/store/rootReducer'
 import { logger, rxcrx } from '~/src/store/middleware'
-import '~/src/style/index.scss'
+import '~/src/style/light.scss'
 import state from '~/test/stateFixtures/onboarding'
 // import state from '~/test/stateFixtures/dev'
 

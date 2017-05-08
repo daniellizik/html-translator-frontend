@@ -129,6 +129,11 @@ describe('xml tokenizer', () => {
       expect(T.close.ignore({close: true, nodeName: '#text'})).toBeFalsy()
     })
   })
+  describe('comments', () => {
+    it('should respet opening comment tag', () => {
+      expect(T.comment.ignore({close: false, nodeName: '#comment', value: 3}))
+    })
+  })
 })
 
 describe('xml reducer', () => {
@@ -141,7 +146,7 @@ describe('xml reducer', () => {
     
   })
   it('should render comments as text, not a comments nodename', () => {
-    
+
   })
 })
 

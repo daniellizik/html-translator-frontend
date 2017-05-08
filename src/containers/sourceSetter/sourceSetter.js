@@ -52,7 +52,7 @@ class SourceSetter extends Component {
               onDragOver={this.dragOverHandle.bind(this)}
               onDrop={this.dropHandle.bind(this)}
               onDragEnter={this.dragEnterHandle.bind(this)} 
-              class="rounded py-3 px-4 col-12 bg-white z-15">
+              class="rounded py-3 px-4 col-12 bg-contrast z-15">
 
               <div class="row p-2">
                 <span class="label p-0 col-12">

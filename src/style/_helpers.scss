@@ -2,6 +2,7 @@
 .absolute { position: absolute; }
 .relative { position: relative; }
 .fixed { position: fixed; }
+.inline { display: inline; }
 
 .max {
   max-height: 100%;
@@ -16,8 +17,10 @@
 .hidden { visibility: hidden; }
 
 // mouse
-.mouse-disable { cursor: not-allowed }
-.mouse-point { cursor: pointer }
+.mouse-disable { cursor: not-allowed; }
+.mouse-point { cursor: pointer; }
+.mouse-none { cursor: none; }
+
 
 // overflow
 .x-scroll-no { overflow-x: hidden; }
@@ -71,9 +74,25 @@
 // height
 @for $i from 0 through 20 {
   .h-#{$i * 10} {
-    height: ($i * 10)
+    height: ($i * 10);
   }
 }
+.h-100 {
+  height: 100%;
+}
+.h-90 {
+  height: 90%;
+}
+.h-80 {
+  height: 80%;
+}
+.h-20 {
+  height: 20%;
+}
+.h-50 {
+  height: 20%;
+}
+
 
 // z-index
 $zs: 0, 1, 5, 10, 15, 20, 50, 100, 200, 500, 1000, 5000;
@@ -89,6 +108,9 @@ $zs: 0, 1, 5, 10, 15, 20, 50, 100, 200, 500, 1000, 5000;
 // font size
 $fs: 11, 12, 13, 14, 15, 16, 17;
 @each $n in $fs {
-  .fs-#{$n} { font-size: "#{$n}pt"; }
-  .fs-p-#{$n} { font-size: "#{$n}px"; }
+  .fs-#{$n} { font-size: #{$n}pt; }
+  .fs-p-#{$n} { font-size: #{$n}px; }
 }
+
+// font weight
+.strong { font-weight: 700; }

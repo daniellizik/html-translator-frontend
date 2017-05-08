@@ -19,12 +19,12 @@ const Builder = ({onboardStep, activeClause, clauses, clauseActions, builderActi
           </button>
       </ToolTip>
       <button 
-        class={`btn p-2 mr-2 ${onboardStep < 5 ? 'bg-inactive mouse-disable' : 'bg-lightYellow mouse-point'}`} 
+        class={`btn p-2 mr-2 ${onboardStep < 5 ? 'bg-inactive mouse-disable' : 'bg-highlight mouse-point'}`} 
         onClick={builderActions.removeAll}>
         remove all clauses
       </button>
       <button 
-        class={`btn p-2 mr-2 ${onboardStep < 5 ? 'bg-inactive mouse-disable' : 'bg-lightYellow mouse-point'}`} 
+        class={`btn p-2 mr-2 ${onboardStep < 5 ? 'bg-inactive mouse-disable' : 'bg-highlight mouse-point'}`} 
         onClick={() => {
         activeClause > -1 && builderActions.denormalizeAll()
         activeClause < 0 && builderActions.hideAllMutations()

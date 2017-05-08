@@ -1,47 +1,65 @@
-.code-line::before {
-  content: attr(data-line-number);
+/**
+ * @param {color} punctuation
+ * @param {color} nodename
+ * @param {color} text
+ * @param {color} attr
+ * @param {color} comment
+ */ 
+@mixin code($punctuation, $nodename, $text, $attr, $comment) {
+
+  .code-line::before {
+    content: attr(data-line-number);
+  }
+
+  .syntax_SPACER {
+    color: transparent;
+  }
+
+  .syntax_OPEN_TAG {
+    color: $punctuation;
+  }
+
+  .syntax_NODENAME {
+    color: $punctuation;
+  }
+
+  .syntax_SLASH {
+    color: $punctuation;
+  }
+
+  .syntax_CLOSE_TAG {
+    color: $punctuation;
+  }
+
+  .syntax_TEXT_NODE {
+    color: $text;
+  }
+
+  .syntax_ATTR_NAME {
+    color: $attr;
+  }
+
+  .syntax_ATTR_VALUE {
+    color: $attr;
+  }
+
+  .syntax_ATTR_SETTER {
+    color: $attr;
+  }
+
+  .syntax_ATTR_QUOTE_OPEN {
+    color: $attr;
+  }
+
+  .syntax_ATTR_QUOTE_CLOSE {
+    color: $attr;
+  }
+
+  .syntax_COMMENT_OPEN,
+  .syntax_COMMENT_VALUE,
+  .syntax_COMMENT_CLOSE, {
+    color: $comment
+  }
+
 }
 
-.syntax_OPEN_TAG {
-  color: map-get($colors, "yellow");
-}
-
-.syntax_NODENAME {
-  color: map-get($colors, "yellow");
-}
-
-.syntax_SLASH {
-  color: map-get($colors, "yellow");
-}
-
-.syntax_CLOSE_TAG {
-  color: map-get($colors, "yellow");
-}
-
-.syntax_TEXT_NODE {
-  color: map-get($colors, "white");
-}
-
-.syntax_SPACER {
-  color: transparent;
-}
-
-.syntax_ATTR_NAME {
-  color: map-get($colors, "darkGrey");
-}
-
-.syntax_ATTR_VALUE {
-  color: map-get($colors, "darkGrey");
-}
-
-.syntax_ATTR_SETTER {
-  color: map-get($colors, "darkGrey");
-}
-
-.syntax_ATTR_QUOTE_OPEN {
-  color: map-get($colors, "darkGrey");
-}
-
-.syntax_ATTR_QUOTE_CLOSE {
-  color: map-get($colors, "darkGrey");
-}

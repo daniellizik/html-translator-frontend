@@ -1,0 +1,39 @@
+{
+  "hello": {
+    "typespeed": 50,
+    "queue": [
+      1000, 
+      "Hola mundo",
+      1000,
+      "こんにちは世界",
+      1000,
+      "你好，世界",
+      1000,
+      "안녕하세요 세계",
+      1000,
+      "Привет мир",
+      1000,
+      "Bonjour le monde"
+    ]
+  },
+  "site": {
+    "typespeed": 50,
+    "queue": [
+      500, 
+      "https://anothersite.com",
+      1500,
+      "https://google.com",
+      2000,
+      "https://mysite.net"
+    ]
+  },
+  "email": {
+    "typespeed": 50,
+    "queue": [
+      2000, 
+      "Reviens",
+      3000,
+      "よろしくお願いします"
+    ]
+  }
+}

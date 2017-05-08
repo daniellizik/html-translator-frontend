@@ -1,4 +1,9 @@
 const webpack = require('webpack')
+const path = require('path')
+const themes = require('../src/style/index.json')
+const THEMES = Object.keys(themes).reduce((acc, k) => Object.assign({}, acc, {
+  [k]: path.resolve(__dirname, '..', 'src', 'style', `${k}.scss`)
+}), {})
 
 module.exports = {
 
@@ -29,7 +34,10 @@ module.exports = {
   plugins: [
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.DefinePlugin({
-      'process.env': { NODE_ENV: JSON.stringify(process.env.NODE_ENV) }
+      'process.env': { 
+        THEME: JSON.stringify(THEMES),
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV)
+      }
     })
   ]
 

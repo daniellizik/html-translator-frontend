@@ -51,32 +51,32 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => bindActionCreators(actions, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(({onboardingStep, mutated, xml, callSourceSetter, downloadHtml, callBuilder}) => (
-  <div class="row pl-3 pt-0 px-4 mb-0 bg-lightBlack lh-47 mouse-point b-b-darkestBlack">
-    <div class="col-auto p-0 m-0">
-      <ToolTip
-        placement="topRight"
-        destroyTooltipOnHide={true}
-        visible={onboardingStep === 1}
-        overlay={<ChangeHtmlExplanation />}>
-        <span onClick={callSourceSetter} class="mr-3 c-white">
-          Change Html
+  <div class="row m-0 p-0 c-altMain strong bg-top fs-12 lh-47 mouse-point b-b-strong">
+    <div class="col-12 px-4 m-0">
+      <div class="inline">
+        <ToolTip
+          placement="topRight"
+          destroyTooltipOnHide={true}
+          visible={onboardingStep === 1}
+          overlay={<ChangeHtmlExplanation />}>
+          <span onClick={callSourceSetter} class="mr-4">
+            <i class="fa fa-html5 mr-1"></i>
+            Change Html
+          </span>
+        </ToolTip>
+      </div>  
+      <div class="inline">
+        <span onClick={() => downloadHtml({xml, mutated})} class="mr-4">
+          <i class="fa fa-download mr-1"></i>
+          Download
         </span>
-      </ToolTip>
-    </div>  
-    <div class="col-auto p-0 m-0">
-      <span onClick={() => downloadHtml({xml, mutated})} class="mr-3 c-white">
-        Download
-      </span>
-    </div>  
-    <div class="col-auto p-0 m-0">
-      <span onClick={callBuilder} class="mr-3 c-white">
-        Preview
-      </span>
-    </div>  
-    <div class="col-auto p-0 m-0">
-      <span onClick={callBuilder} class="mr-3 c-white">
-        Reset
-      </span>
-    </div>  
+      </div>  
+      <div class="inline">
+        <span onClick={callBuilder} class="mr-4">
+          <i class="fa fa-picture-o mr-1"></i>
+          Preview
+        </span>
+      </div>  
+    </div>
   </div>
 ))

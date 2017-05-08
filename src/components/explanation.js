@@ -102,13 +102,13 @@ export const ChangeTargetExplanation = connect(s => s, boundOnboardActions)(({st
     <p>
       The "target" indicates which part of a html tag you want to search for.
     </p>
-    <ul>
+    <ul class="mt-1">
       <li>"Node name" is the name of a html tag</li>
       <li>"Text" is the inner text of a html tag</li>
       <li>"Attribute key" is the name of any attribute on a html tag</li>
       <li>"Attribute value" is the value of a html tag</li>
     </ul>
-    <p onClick={step_4}>next</p>
+    <p class="mt-1" onClick={step_4}>next</p>
   </div>
 ))
 
@@ -117,7 +117,7 @@ export const AddQueryExplanation = () => (
     <p>
       In order to query your html document, we need to add queries that describe what to search for.
     </p>
-    <p>
+    <p class="mt-1">
       Click on the "add a query" button to add a query.
     </p>
   </div>
@@ -126,7 +126,7 @@ export const AddQueryExplanation = () => (
 export const ChangeQueryRuleExplanation = connect(s => s, boundOnboardActions)(({step_6}) => (
   <div id="ChangeQueryRuleExplanation">
     <p>You can change the search rule of each query.</p>
-    <ul>
+    <ul class="mt-1">
       <li>Equals and not equals will search for an exact match.</li>
       <li>Like and not like search for smaller matches within strings.</li>
     </ul>
@@ -137,7 +137,7 @@ export const ChangeQueryRuleExplanation = connect(s => s, boundOnboardActions)((
 export const ChangeQueryTargetValueExplanation = () => (
   <div id="ChangeQueryTargetValueExplanation">
     <p>Use this input to change the value of the search quer.y</p>
-    <p>Try changing the input to find a result.</p>
+    <p class="mt-1">Try changing the input to find a result.</p>
   </div>
 )
 
@@ -160,7 +160,7 @@ export const AddMutationExplanation = () => (
 export const ChangeMutationRuleExplanation = connect(s => s, boundOnboardActions)(({step_9}) => (
   <div id="ChangeMutationRuleExplanation">
     <p>Change how the selected html elements are mutated. There are several rules to choose from:</p>
-    <ul>
+    <ul class="mt-1">
       <li>replace all: replace the entire target</li>
       <li>start of: append text to the beginning of the target</li>
       <li>end of: append text to the end of the target</li>
@@ -173,7 +173,7 @@ export const ChangeMutationRuleExplanation = connect(s => s, boundOnboardActions
 export const ChangeMutationRuleValueExplanation = connect(s => s, boundOnboardActions)((props) => (
   <div id="ChangeMutationRuleValueExplanation">
     <p>This input controls what your mutation will result in.</p>
-    <p>Try entering some text.</p>
+    <p class="mt-1">Try entering some text.</p>
     {props.clauses[0].mutations[0].ruleValue.length < 4 && (
       <p>Add some more characters!</p>
     )}

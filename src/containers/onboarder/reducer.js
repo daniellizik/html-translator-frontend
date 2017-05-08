@@ -58,11 +58,14 @@ export const composedReducer = (state, action) => {
       }
     case clauseConstants.CLAUSE_ADD: {
       if (state.onboarding.step === 3) {
-        const prevState = clauseReducer(state, action)
         return {
-          ...prevState,
+          ...state,
           clauses: [
-            {...prevState.clauses[0], queries: [], mutations: []}
+            {
+              ...config.defaultClause, 
+              queries: [], 
+              mutations: []
+            }
           ],
           onboarding: { ...state.onboarding, step: 4 }
         }

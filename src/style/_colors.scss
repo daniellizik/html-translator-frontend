@@ -1,26 +1,19 @@
-$colors: (
-  "primary": #5862EA,
-  "secondary": #C5BFFF,
-  "contrast": #97EBFF,
-  "error": #FF3B7D,
-  "light": #E5E1E8,
-  "lessLight": #BEBEBE,
-  "bg": #F2F2F2,
-  "dbg": #272C2E,
-  "success": #5cb85c,
-  "pastel": #f5f2f0,
-  "highlight": rgb(248, 238, 199),
-  "inactive": #DDDDDD,
-  "inactiveHover": rgba(27,31,35,0.6),
-  "grey": #BDBDBD,
-  "lightGrey": #A4A4A4,
-  "middleGrey": #585858,
-  "darkGrey": #bdc3c7,
-  "red": #c0392b,
-  "white": #ecf0f1,
-  "lightBlack": #272C2E,
-  "darkBlack": #1C1C1C,
-  "darkestBlack": black,
-  "lightYellow": #F5F6CE,
-  "yellow": #F1F2A7
-);
+$grey: #BDBDBD;
+$lightGrey: #A4A4A4;
+$lightGreyOpaque: rgba(164, 164, 164, .6);
+$middleGrey: #585858;
+$darkGrey: #bdc3c7;
+$offWhite: #ecf0f1;
+$white: #ffffff;
+$black: #000000;
+$lightBlack: #272C2E;
+$darkBlack: #1C1C1C;
+$darkestBlack: black;
+$yellow: #F1F2A7;
+$yellowOpaque: rgba(241, 242, 167, .5); 
+$red: #d35400;
+$blue: #3498db;
+$lightBlue: rgba(109, 80, 255, .1);
+$carolinaBlue: #61A0D1;
+$darkRed: #63a35c;
+$darkPurple: #795da3;

@@ -28,7 +28,7 @@ const mapDispatchToProps = (dispatch) => bindActionCreators(actions, dispatch)
 
 export default connect(s => s, mapDispatchToProps)(({dismiss, overlay}) => (
   <div 
-    class={`fixed cover opc-40 bg-darkestBlack z-15 ${overlay ? 'visible' : 'hidden'}`} 
+    class={`fixed cover opc-40 bg-strong z-15 ${overlay ? 'visible' : 'hidden'}`} 
     onClick={() => dismiss()}>
   </div>
 ))
