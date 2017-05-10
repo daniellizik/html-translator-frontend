@@ -24,9 +24,9 @@
 
 // overflow
 .x-scroll-no { overflow-x: hidden; }
-.x-scroll { overflow-x: scroll; }
+.x-scroll { overflow-x: auto; }
 .y-scroll-no { overflow-y: hidden; }
-.y-scroll { overflow-y: scroll; }
+.y-scroll { overflow-y: auto; }
 .scroll-no { overflow-y: hidden; overflow-x: hidden; }
 
 // select
@@ -36,6 +36,9 @@
 .ta-c { text-align: center; }
 .ta-r { text-align: right; }
 .ta-l { text-align: left; }
+
+// typography
+.td-ul--hover:hover { text-decoration: underline; }
 
 // line height
 .lh-47 { line-height: 47px; }
@@ -81,19 +84,24 @@
 .h-100 {
   height: 100%;
 }
+.h-95 {
+  height: 95%;
+}
 .h-90 {
   height: 90%;
 }
 .h-80 {
   height: 80%;
 }
-.h-20 {
-  height: 20%;
-}
 .h-50 {
   height: 20%;
 }
-
+.h-20 {
+  height: 20%;
+}
+.h-15p {
+  height: 15px;
+}
 
 // z-index
 $zs: 0, 1, 5, 10, 15, 20, 50, 100, 200, 500, 1000, 5000;
@@ -115,3 +123,13 @@ $fs: 11, 12, 13, 14, 15, 16, 17;
 
 // font weight
 .strong { font-weight: 700; }
+
+// shape
+.circle {
+  border-radius: 100%;
+}
+
+// shadow
+.shadow {
+  box-shadow: 2px 1px 3px map-get($colors, "btnShadowA"), 2px 1px 2px map-get($colors, "btnShadowB");
+}

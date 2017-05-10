@@ -1,4 +1,4 @@
-import query from './query'
+import * as query from './query'
 import mutate from './mutate'
 import clause from './clause'
 import builder from './builder'

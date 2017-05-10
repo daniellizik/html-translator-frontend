@@ -10,7 +10,8 @@ class HtmlMount extends Component {
   }
 
   click({node, row}) {
-    console.log(node)
+    if (process.env.NODE_ENV === 'development')
+      console.log(node)
   }
 
   render() {

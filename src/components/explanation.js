@@ -108,7 +108,7 @@ export const ChangeTargetExplanation = connect(s => s, boundOnboardActions)(({st
       <li>"Attribute key" is the name of any attribute on a html tag</li>
       <li>"Attribute value" is the value of a html tag</li>
     </ul>
-    <p class="mt-1" onClick={step_4}>next</p>
+    <p class="mt-1 btn bg-main" onClick={step_4}>next</p>
   </div>
 ))
 
@@ -130,13 +130,13 @@ export const ChangeQueryRuleExplanation = connect(s => s, boundOnboardActions)((
       <li>Equals and not equals will search for an exact match.</li>
       <li>Like and not like search for smaller matches within strings.</li>
     </ul>
-    <p onClick={step_6}>next</p>
+    <p class=" mt-1 btn bg-main" onClick={step_6}>next</p>
   </div>
 ))
 
 export const ChangeQueryTargetValueExplanation = () => (
   <div id="ChangeQueryTargetValueExplanation">
-    <p>Use this input to change the value of the search quer.y</p>
+    <p>Use this input to change the value of the search query</p>
     <p class="mt-1">Try changing the input to find a result.</p>
   </div>
 )
@@ -166,7 +166,7 @@ export const ChangeMutationRuleExplanation = connect(s => s, boundOnboardActions
       <li>end of: append text to the end of the target</li>
       <li>regex replace: use javascript regex to replace parts of the target</li>
     </ul>
-    <p onClick={step_9}>next</p>
+    <p class="mt-1 btn bg-main" onClick={step_9}>next</p>
   </div>
 ))
 

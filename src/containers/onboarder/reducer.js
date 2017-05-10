@@ -101,10 +101,9 @@ export const composedReducer = (state, action) => {
         onboarding: { ...state.onboarding, step: 7 }
       }
     case clauseConstants.CLAUSE_CHANGE_TARGET:
-    case clauseConstants.QUERY_CHANGE_RULE:
-      return appReducer(state, action)
     // goes to next step if user enters query that results in viewed nodes
     // next step should disable all these
+    case clauseConstants.QUERY_CHANGE_RULE:
     case clauseConstants.QUERY_CHANGE_TARGET_VALUE: {
       if (state.onboarding.step !== 7)
         return state

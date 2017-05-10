@@ -102,7 +102,7 @@ export const MaximizedClause = connect(mapStateToProps, mapDispatchToProps)(({
           onboardingStep === 8
             ? (
                 <FadingToolTip
-                  placement="topLeft"
+                  placement="bottomLeft"
                   overlay={({visible}) => <AddMutationExplanation />}
                   visible={true}
                   fade={(settings.onboarding_fade_max + 1) * settings.onboarding_fade_delay}>

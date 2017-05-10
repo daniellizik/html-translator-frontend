@@ -36,6 +36,14 @@ export const story = chainActions(
   mutateActions.changeRule('END_OF', 1, 0)
 )
 
+export const step7regression = chainActions(
+  story[7],
+  reducer,
+  queryActions.changeTarget('TEXT', 0, 0),
+  queryActions.changeTargetValue('email template', 0, 0),
+  queryActions.changeRule('LIKE', 0, 0)
+)
+
 export const regression = chainActions(
   story[9],
   reducer,
@@ -56,25 +64,3 @@ export const regression = chainActions(
   queryActions.add(0),
   queryActions.changeTargetValue('kfljads', 0, 0)
 )
-
-const a = makeStoryTree(reducer, state, [
-  onboarderActions.onboardInit(),
-  navActions.callSourceSetter(),
-  (prevState) => ({
-    blah: [
-      onboarderActions.step_6(),
-      clauseActions.changeTarget('NODE_NAME', 0),
-      queryActions.changeTargetValue('tr', 0, 0),
-      mutateActions.add(0),
-      onboarderActions.step_9() 
-    ],
-    setup: [
-      clauseActions.changeTarget('NODE_NAME', 0),
-      queryActions.changeTargetValue('tr', 0, 0),
-      (prevState) => [
-        mutateActions.changeRuleValue('a', 0, 0),
-        mutateActions.changeRuleValue('ab', 0, 0),
-      ]
-    ]
-  })  
-])

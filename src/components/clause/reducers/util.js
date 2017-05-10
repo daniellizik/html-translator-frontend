@@ -64,10 +64,12 @@ export const reduceRuleProp = (ruleType, state, action, prop) => {
   }
 }
 
-export const reduceView = (clauseIndex, {list}, clauses) => {
+// notes 1
+export const reduceView = (clauseIndex, {list, presort}, clauses) => {
   return clauses.reduce((acc, clause, index) => {
     if (index !== clauseIndex)
       return [...acc, clause]
+    // const view = presort[clause.target].reduce((ids, node) => {
     const view = list.open.reduce((ids, node) => {
       const clauseResult = clause.queries.reduce((bool, obj) => {
         const targetResult = targets.query[clause.target](node, {...obj, rule: rules[obj.rule]})

@@ -1,7 +1,7 @@
 import React from 'react'
 
-export default ({hello, site, email}) => (
-  <table class="m-2 p-0">
+export default ({hello, site, email, nodename}) => (
+  <table class="my-2 mx-0 p-0" id="onboard">
     <tbody>
       <tr class="pt-1" data-row="0">
         <td class="f-monospace fs-p-14 no-wrap">
@@ -38,16 +38,11 @@ export default ({hello, site, email}) => (
           <span>&nbsp;&nbsp;</span><span><span class="syntax_OPEN_TAG">&lt;</span><span class="syntax_NODENAME">body</span><span class="syntax_CLOSE_TAG">&gt;</span></span>
         </td>
       </tr>
-      <tr class="pt-1" data-row="7">
-        <td class="f-monospace fs-p-14 no-wrap">
-          <span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span><span class="syntax_OPEN_TAG">&lt;</span><span class="syntax_NODENAME">input</span> <span class="syntax_SPACER"></span><span class="syntax_SLASH">/</span><span class="syntax_CLOSE_TAG">&gt;</span></span>
-        </td>
-      </tr>
       <tr class="pt-1" data-row="8">
         <td class="f-monospace fs-p-14 no-wrap">
           <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
           <span class="syntax_OPEN_TAG">&lt;</span>
-          <span class="syntax_NODENAME">h2</span>
+          <span class="syntax_NODENAME">{nodename}</span>
           <span class="syntax_SPACER"> </span>
           <span class="syntax_ATTR_NAME">data-redirect</span>
           <span class="syntax_ATTR_SETTER">=</span>
@@ -61,7 +56,13 @@ export default ({hello, site, email}) => (
         <td class="f-monospace fs-p-14 no-wrap"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span><span class="syntax_TEXT_NODE">{hello}</span></span></td>
       </tr>
       <tr class="pt-1" data-row="10">
-        <td class="f-monospace fs-p-14 no-wrap"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span><span class="syntax_OPEN_TAG">&lt;</span><span class="syntax_SLASH">/</span><span class="syntax_NODENAME">h2</span><span class="syntax_CLOSE_TAG">&gt;</span></span></td>
+        <td class="f-monospace fs-p-14 no-wrap">
+          <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          <span class="syntax_OPEN_TAG">&lt;</span>
+          <span class="syntax_SLASH">/</span>
+          <span class="syntax_NODENAME">{nodename}</span>
+          <span class="syntax_CLOSE_TAG">&gt;</span>
+        </td>
       </tr>
       <tr class="pt-1" data-row="11">
         <td class="f-monospace fs-p-14 no-wrap"><span>&nbsp;&nbsp;</span><span><span class="syntax_OPEN_TAG">&lt;</span><span class="syntax_SLASH">/</span><span class="syntax_NODENAME">body</span><span class="syntax_CLOSE_TAG">&gt;</span></span></td>

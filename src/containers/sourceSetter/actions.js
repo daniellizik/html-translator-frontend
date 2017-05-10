@@ -1,5 +1,5 @@
 import * as constants from './constants'
-import { parseHtml } from '~/src/util'
+import { parseHtml, presortList } from '~/src/util'
 import { constants as overlayConstants } from '~/src/containers/overlay'
 import axios from 'axios'
 
@@ -34,10 +34,13 @@ export const fileSelect = (file) => (dispatch) => {
 
 export const htmlReceived = (rawHtml) => {
   const {ast, list} = parseHtml(rawHtml)
+  // notes 1
+  const presort = presortList(list.list)
   return {
     type: constants.HTML_FETCHED,
     ast,
     list,
+    presort,
     rawHtml,
     tree: list
   }

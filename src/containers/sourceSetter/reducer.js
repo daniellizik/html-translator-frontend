@@ -57,6 +57,7 @@ export default bindConstantsToReducers({
     slave: {
       ...state.slave,
       status: 'DONE',
+      presort: action.presort,
       ast: action.ast,
       list: action.list,
       rawHtml: action.rawHtml,

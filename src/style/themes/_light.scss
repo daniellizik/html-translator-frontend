@@ -5,24 +5,25 @@ $colors: (
   "top": $white,
   "html": $white,
   "highlight": $yellow,
-  "accentuate": $lightBlue,
+  "accentuate": $lightBlueOpaque,
   "contrast": $black,
   "subcontrast": $offWhite,
   "warning": $red,
-  "weak": $offWhite,
+  "weak": $darkGrey,
   "neutral": $blue,
   "hero": $blue,
+  "opposite": black,
   "btnShadowA": rgba(0,0,0,0.12),
   "btnShadowB": rgba(0,0,0,0.24)
 );
 
 .gradient {
-  background: linear-gradient(45deg, $offWhite 15%, $lightestBlue);
+  background: linear-gradient(45deg, $white 15%, $grey);
 }
 
 @include code(
-  $darkRed,
-  $darkRed,
+  $blue,
+  $blue,
   $black,
   $darkPurple,
   $darkGrey

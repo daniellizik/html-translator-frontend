@@ -1,4 +1,4 @@
-import { story, regression } from '~/test/storyFixtures/onboarding'
+import { story, regression, step7regression } from '~/test/storyFixtures/onboarding'
 import * as config from '~/src/components/clause/settings/config'
 
 describe('step 0', () => {
@@ -88,7 +88,7 @@ describe('step 6', () => {
   })
 })
 
-describe('step 7a, 7b, 7c', () => {
+describe('step 7a, 7b, 7c, 7 regression', () => {
   it('should be at step 7, since step 7 incorporates several actions', () => {
     expect(story[7].onboarding.step).toBe(7)
   })
@@ -103,6 +103,10 @@ describe('step 7a, 7b, 7c', () => {
   })
   it('should have updated query 0 target value', () => {
     expect(story[9].clauses[0].queries[0].targetValue).toBe('tr')
+  })
+  it('should trigger step 8 on multiple query actions if view is found', () => {
+    expect(step7regression[3].clauses[0].view.length).toBe(1)
+    expect(step7regression[3].onboarding.step).toBe(8)
   })
 })
 

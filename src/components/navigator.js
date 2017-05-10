@@ -2,13 +2,13 @@ import { saveAs as filesaver } from 'file-saver'
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { bindConstantsToReducers } from '~/src/util'
+import { bindConstantsToReducers, stringifyMutated } from '~/src/util'
 import { ToolTip, ChangeHtmlExplanation } from '~/src/components/explanation'
 
 export const constants = {
   CALL_IFRAME: '@NAVIGATOR/CALL_IFRAME',
+  DISMISS_IFRAME: '@NAVIGATOR/DISMISS_IFRAME',
   CALL_SOURCESETTER: '@NAVIGATOR/CALL_SOURCESETTER',
-  RESET_HTML: '@NAVIGATOR/RESET_HTML',
   DOWNLOAD_HTML_INIT: '@NAVIGATOR/DOWNLOAD_HTML_INIT',
   DOWNLOAD_HTML_ERROR: '@NAVIGATOR/DOWNLOAD_HTML_ERROR',
   DOWNLOAD_HTML_DONE: '@NAVIGATOR/DOWNLOAD_HTML_DONE'  
@@ -22,61 +22,94 @@ export const reducer = bindConstantsToReducers({
       ...state.source,
       active: true
     }
+  }),
+  [constants.CALL_IFRAME]: (state, {html}) => ({
+    ...state,
+    overlay: true,
+    iframe: {
+      state: true,
+      src: html
+    }
   })
 })
 
 export const actions = {
   callBuilder: () => ({ type: constants.CALL_BUILDER }),
+  callIframe: (xml) => ({ 
+    type: constants.CALL_IFRAME,
+    html: stringifyMutated(xml)
+  }),
   callSourceSetter: () => ({ type: constants.CALL_SOURCESETTER }),
-  downloadHtml: ({xml, mutated}) => (dispatch) => {
+  downloadHtml: ({xml}) => (dispatch) => {
     try {
+      const html = stringifyMutated(xml)
       dispatch({ type: constants.DOWNLOAD_HTML_INIT })
-      process.env.NODE_ENV === 'production' && filesaver(new Blob([html], {type: 'text/html;charset=utf-8'}))
+      if (/development|test/.test(process.env.NODE_ENV))
+        console.log(html)
+      if (/production|staging/.test(process.env.NODE_ENV))
+        filesaver(new Blob([html], {type: 'text/html;charset=utf-8'}))
       return dispatch({ type: constants.DOWNLOAD_HTML_DONE })
     }
     catch(e) {
       return dispatch({ type: constants.DOWNLOAD_HTML_ERROR })
     }
   },
-  previewHtml: () => ({ type: constants.CALL_IFRAME }),
-  resetHtml: () => ({ type: constants.RESET_HTML })
+  previewHtml: () => ({ type: constants.CALL_IFRAME })
 }
 
 const mapStateToProps = (state) => ({
-  mutated: state.slave.mutated,
   xml: state.slave.xml,
+  user: state.user,
   onboardingStep: state.onboarding.step
 })
 
 const mapDispatchToProps = (dispatch) => bindActionCreators(actions, dispatch)
 
-export default connect(mapStateToProps, mapDispatchToProps)(({onboardingStep, mutated, xml, callSourceSetter, downloadHtml, callBuilder}) => (
-  <div class="row m-0 p-0 c-hero strong bg-main fs-12 lh-47 mouse-point b-b-strong">
-    <div class="col-12 px-4 m-0">
+export default connect(mapStateToProps, mapDispatchToProps)(({user, onboardingStep, xml, callSourceSetter, callIframe, downloadHtml}) => (
+  <div class="row m-0 p-0 c-hero td-ul--hover bg-main fs-12 lh-47 mouse-point b-b-strong">
+    <div class="col-12 px-4 m-0 ta-r">
+
+      {!user.auth && <div class="inline">
+        <span class="ml-4">
+          <i class="fa fa-chevron-circle-up mr-2"></i>
+          <a href="signup.html">Signup</a>
+        </span>
+      </div>}
+
+      {!user.auth && <div class="inline">
+        <span class="ml-4">
+          <i class="fa fa-sign-in mr-2"></i>
+          <a href="login.html">Login</a>
+        </span>
+      </div>}
+
       <div class="inline">
         <ToolTip
           placement="topRight"
           destroyTooltipOnHide={true}
           visible={onboardingStep === 1}
           overlay={<ChangeHtmlExplanation />}>
-          <span onClick={callSourceSetter} class="mr-4">
-            <i class="fa fa-html5 mr-1"></i>
+          <span onClick={callSourceSetter} class="ml-4">
+            <i class="fa fa-html5 mr-2"></i>
             Change Html
           </span>
         </ToolTip>
       </div>  
+
       <div class="inline">
-        <span onClick={() => downloadHtml({xml, mutated})} class="mr-4">
-          <i class="fa fa-download mr-1"></i>
+        <span onClick={() => downloadHtml({xml})} class="ml-4">
+          <i class="fa fa-download mr-2"></i>
           Download
         </span>
-      </div>  
-      <div class="inline">
-        <span onClick={callBuilder} class="mr-4">
-          <i class="fa fa-picture-o mr-1"></i>
-          Preview
+      </div>
+
+      {user.auth && <div class="inline">
+        <span onClick={() => openSettings()} class="ml-4">
+          <i class="fa fa-gear mr-2"></i>
+          Account/Settings
         </span>
-      </div>  
+      </div>}
+
     </div>
   </div>
 ))

@@ -35,4 +35,19 @@ describe('source setter', () => {
     expect(story[9].slave.xml.length).toBeGreaterThan(5)
   })
 
+  // notes 1
+  it('should presort list on html received', () => {
+    Object.keys(config.QUERY.targets).forEach(target => {
+      expect(story[9].slave.presort).toHaveProperty(target)
+      expect(story[9].slave.presort[target].length).toBeGreaterThan(0)
+    })
+    story[9].slave.presort.TEXT.forEach(({nodeName}) => {
+      expect(nodeName).toBe('#text')
+    })
+    story[9].slave.presort.NODE_NAME.forEach(({nodeName}) => {
+      expect(nodeName).not.toBe('#text')
+      expect(nodeName).not.toBe('#comment')
+    })
+  })
+
 })

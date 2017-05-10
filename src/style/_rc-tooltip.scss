@@ -1,4 +1,4 @@
-
+// default
 .rc-tooltip {
   position: absolute;
   z-index: 1070;
@@ -235,6 +235,12 @@
     -webkit-transform: scale(0, 0);
             transform: scale(0, 0);
   }
+}
+
+// override
+
+.rc-tooltip-inner  {
+  font-size: 13px;
 }
 
 /*# sourceMappingURL=arrowContent.css.map*/

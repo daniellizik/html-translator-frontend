@@ -18,19 +18,23 @@ const Builder = ({onboardStep, activeClause, clauses, clauseActions, builderActi
             add clause
           </button>
       </ToolTip>
-      <button 
-        class={`btn p-2 mr-2 ${onboardStep < 5 ? 'bg-inactive mouse-disable' : 'bg-highlight mouse-point'}`} 
-        onClick={builderActions.removeAll}>
-        remove all clauses
-      </button>
-      <button 
-        class={`btn p-2 mr-2 ${onboardStep < 5 ? 'bg-inactive mouse-disable' : 'bg-highlight mouse-point'}`} 
-        onClick={() => {
-        activeClause > -1 && builderActions.denormalizeAll()
-        activeClause < 0 && builderActions.hideAllMutations()
-      }}>
-        {activeClause < 0 ? 'hide all mutations' : 'view all mutations'}
-      </button>
+      {(onboardStep < 0 || onboardStep > 5) && (
+        <button 
+          class={`btn p-2 mr-2 mouse-point`} 
+          onClick={builderActions.removeAll}>
+          remove all clauses
+        </button>
+      )}
+      {(onboardStep < 0 || onboardStep > 5) && (
+        <button 
+          class="btn p-2 mr-2 mouse-point" 
+          onClick={() => {
+            activeClause > -1 && builderActions.denormalizeAll()
+            activeClause < 0 && builderActions.hideAllMutations()
+          }}>
+          {activeClause < 0 ? 'hide all mutations' : 'view all mutations'}
+        </button>
+      )}
     </div>
     {clauses.map((clauseGroup, clauseIndex) => (
       clauseGroup.minimized === false 

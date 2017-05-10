@@ -8,6 +8,11 @@ export default {
 
   overlay: false,
 
+  iframe: {
+    state: false,
+    src: null
+  },
+
   source: {
     active: false,
     rawHtml: null,
@@ -21,7 +26,8 @@ export default {
   },
 
   user: {
-    tooltips: false,
+    auth: true,
+    viewingSettings: false,
     maxClauses: Infinity
   },
 

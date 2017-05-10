@@ -11,6 +11,10 @@
     content: attr(data-line-number);
   }
 
+  .code-line {
+    min-width: 50px;
+  }
+
   .syntax_SPACER {
     color: transparent;
   }

@@ -67,7 +67,7 @@ class SourceSetter extends Component {
               </div>
 
               <div class="row p-2">
-                <div class={`col-12 rounded ${this.state.dragging ? 'b2-d-success' : 'b2-d-light'}`}>
+                <div class={`col-12 rounded m-0 p-0 ${this.state.dragging ? 'b2-d-highlight' : 'b2-d-altMain'}`}>
                   <div class="row p-0 m-0">
                     <div class="col-8 p-2">
                       <span>
@@ -81,7 +81,7 @@ class SourceSetter extends Component {
                         type="file"
                         class="custom-file-input col-4 p-0">
                       </input>
-                      <span class="btn custom-file-control">or select file</span>
+                      <span class="ta-c custom-file-control">or select file</span>
                     </div>
                   </div>
                 </div>

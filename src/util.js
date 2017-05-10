@@ -7,10 +7,6 @@ export const parseHtml = (rawHtml) => {
   return {ast, list}
 }
 
-export const makeStoryTree = (reducer, initialState, tree) => {
-  
-}
-
 export const chainReducers = (state, action, ...reducers) => {
   return reducers.reduce((reducedState, reducer) => {
     return reducer(reducedState, action)
@@ -62,6 +58,25 @@ export const stringifyMutated = (xml) => {
   }, []).join('\n')
 }
 
-export const id = (name, props) => {
-
+// notes 1
+export const presortList = (list) => {
+  return list.reduce((acc, node) => {
+    if (node.nodeName === '#text')
+      return {
+        ...acc,
+        TEXT: [...acc.TEXT, node]
+      }
+    else if (node.nodeName === '#comment')
+      return {
+        ...acc,
+        COMMENT: [...acc.COMMENT, node]
+      }
+    else
+      return {
+        ...acc,
+        ATTR_KEY: [...acc.ATTR_KEY, node],
+        ATTR_VAL: [...acc.ATTR_VAL, node],
+        NODE_NAME: [...acc.NODE_NAME, node]
+      }
+  }, {COMMENT: [], TEXT: [], NODE_NAME: [], ATTR_KEY: [], ATTR_VAL: []})
 }
