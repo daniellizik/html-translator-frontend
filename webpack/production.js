@@ -1,4 +1,7 @@
 const webpack = require('webpack')
+const Extract = require('extract-text-webpack-plugin')
+const MinCss = require('optimize-css-assets-webpack-plugin')
+const cssProcessor = require('cssnano')
 
 module.exports = {
 
@@ -16,10 +19,29 @@ module.exports = {
 
   module: {
     rules: [
-      { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' },
-      { test: /\.json$/, loader: 'json-loader' },
-      { test: /\.html$/, loader: 'raw-loader' },
-      { test: /\.scss$/, loaders: [''] }
+      { 
+        test: /\.js$/, 
+        exclude: /node_modules/, 
+        loader: 'babel-loader' 
+      },
+      { 
+        test: /\.json$/, 
+        exclude: /node_modules/, 
+        loader: 'json-loader' 
+      },
+      { 
+        test: /\.html$/, 
+        exclude: /node_modules/, 
+        loader: 'raw-loader' 
+      },
+      { 
+        test: /\.scss$/, 
+        exclude: /node_modules/, 
+        use: Extract.extract({
+          fallbackLoader: 'style-loader',
+          loader: 'css-loader!sass-loader'
+        }) 
+      }
     ]
   },
 
@@ -30,7 +52,9 @@ module.exports = {
     }),
     new webpack.DefinePlugin({
       'process.env': { NODE_ENV: JSON.stringify(process.env.NODE_ENV) }
-    })
+    }),
+    new Extract('style.css'),
+    new MinCss({cssProcessor})
   ]
 
 }
