@@ -1,24 +1,10 @@
-## setup
+should be nginx/docker. 
 
-keep aws secrets in `secrets.txt` just for reference, you need to put them in travis web ui. and for the love of god don't expose the secrets on github
+use nginx to reverse proxy to api services. 
 
-## how to build
+upload static front end assets to s3 from here.
 
-```bash
-$ git clone https://github.com/daniellizik/template-translator
-$ cd template-translator
-$ npm i
-$ npm run dev
-# will be running at localhost:8080/dev
-```
-
-## production
-http://www.template-translator.co
-
-## staging
-http://staging.template-translator.co
-
-todo: typically you would use a vpn with staging...? vpc?
+environment variables in this repo responsible for configuring which deployed services are pinged. front end should just fetch from `/api/blah`, but backend should fetch from configured urls, like `https://flkasjdlf.cloudfront.com/api/v1/<route>`
 
 ## stuff
 

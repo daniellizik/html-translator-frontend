@@ -5,7 +5,7 @@ import * as onboarderActions from '~/src/containers/onboarder/actions'
 import { clauseActions, queryActions, mutateActions, builderActions } from '~/src/components/clause/actions/index'
 import { actions as navActions } from '~/src/components/navigator'
 import * as sourceSetterActions from '~/src/containers/sourceSetter/actions'
-import rawHtml from '~/www/sample-email.html'
+import rawHtml from '~/test/htmlFixtures/sample-email.html'
 
 export const story = chainActions(
   {...state, onboarding:{step:0}, overlay: true},

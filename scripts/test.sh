@@ -1,4 +1,4 @@
 #!bin/bash
 
-set NODE_ENV=test
-jest
+source ./env.sh
+echo $VERSION

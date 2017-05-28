@@ -6,15 +6,17 @@ const cssProcessor = require('cssnano')
 module.exports = {
 
   entry: {
-    'app': [
+    [`bundle.js`]: [
       'babel-polyfill',
       `${__dirname}/../src/entry/index.prod.js`
-    ]
+    ],
+    [`style-light.css`]: `${__dirname}/../src/style/light.scss`,
+    [`style-dark.css`]: `${__dirname}/../src/style/dark.scss`
   },
 
   output: {
-    path: `${__dirname}/../www`,
-    filename: 'bundle.min.js'
+    path: `${__dirname}/../build`,
+    filename: '[name]'
   },
 
   module: {
@@ -38,8 +40,8 @@ module.exports = {
         test: /\.scss$/, 
         exclude: /node_modules/, 
         use: Extract.extract({
-          fallbackLoader: 'style-loader',
-          loader: 'css-loader!sass-loader'
+          fallback: 'style-loader',
+          use: 'css-loader!sass-loader'
         }) 
       }
     ]
@@ -53,7 +55,7 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env': { NODE_ENV: JSON.stringify(process.env.NODE_ENV) }
     }),
-    new Extract('style.css'),
+    new Extract({filename: '[name]'}),
     new MinCss({cssProcessor})
   ]
 

@@ -16,12 +16,8 @@ export default class Root extends Component {
   }
   componentDidMount() {
     // collect err, log it in prod
-    window.onerror = () => {
-
-    }
-    if (process.env.NODE_ENV === 'production') {
-      console.log('created by Daniel Lizik https://github.com/daniellizik')
-    }
+    if (process.env.NODE_ENV === 'production')
+      window.onerror = () => {}
   }
   render() {
     return (
