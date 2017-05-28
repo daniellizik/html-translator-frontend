@@ -4,7 +4,7 @@ use nginx to reverse proxy to api services.
 
 upload static front end assets to s3 from here.
 
-environment variables in this repo responsible for configuring which deployed services are pinged. front end should just fetch from `/api/blah`, but backend should fetch from configured urls, like `https://flkasjdlf.cloudfront.com/api/v1/<route>`
+environment variables in this repo responsible for configuring which deployed services are pinged. front end should just fetch from configured url `<service-url>/api/<route>`
 
 ## stuff
 
