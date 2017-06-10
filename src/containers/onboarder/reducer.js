@@ -45,7 +45,7 @@ export const composedReducer = (state, action) => {
         source: {
           ...prevState.source,
           lastModified: 'url',
-          url: '/www/sample-email.html'
+          url: 'sample-email.html'
         },
         onboarding: { ...state.onboarding, step: 2 }
       }

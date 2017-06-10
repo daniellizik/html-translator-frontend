@@ -27,7 +27,7 @@ export const ToolTip = ({overlayClassName, placement, destroyTooltipOnHide, visi
 )
 
 export class FadingToolTip extends Component {
-  static PropTypes: {
+  static PropTypes = {
     placement: PropTypes.string.isRequired,
     visible: PropTypes.bool,
     fade: PropTypes.number.isRequired,

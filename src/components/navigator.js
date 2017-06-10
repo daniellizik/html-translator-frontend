@@ -66,18 +66,18 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => bindActionCreators(actions, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(({user, onboardingStep, xml, callSourceSetter, callIframe, downloadHtml}) => (
-  <div class="row m-0 p-0 c-hero td-ul--hover bg-main fs-12 lh-47 mouse-point b-b-strong">
+  <div class="row m-0 p-0 c-hero bg-main fs-12 lh-47 mouse-point b-b-strong">
     <div class="col-12 px-4 m-0 ta-r">
 
       {!user.auth && <div class="inline">
-        <span class="ml-4">
+        <span class="ml-4 td-ul--hover">
           <i class="fa fa-chevron-circle-up mr-2"></i>
           <a href="signup.html">Signup</a>
         </span>
       </div>}
 
       {!user.auth && <div class="inline">
-        <span class="ml-4">
+        <span class="ml-4 td-ul--hover">
           <i class="fa fa-sign-in mr-2"></i>
           <a href="login.html">Login</a>
         </span>
@@ -89,7 +89,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(({user, onboardingSt
           destroyTooltipOnHide={true}
           visible={onboardingStep === 1}
           overlay={<ChangeHtmlExplanation />}>
-          <span onClick={callSourceSetter} class="ml-4">
+          <span onClick={callSourceSetter} class="td-ul--hover ml-4">
             <i class="fa fa-html5 mr-2"></i>
             Change Html
           </span>
@@ -97,14 +97,14 @@ export default connect(mapStateToProps, mapDispatchToProps)(({user, onboardingSt
       </div>  
 
       <div class="inline">
-        <span onClick={() => downloadHtml({xml})} class="ml-4">
+        <span onClick={() => downloadHtml({xml})} class="td-ul--hover ml-4">
           <i class="fa fa-download mr-2"></i>
           Download
         </span>
       </div>
 
       {user.auth && <div class="inline">
-        <span onClick={() => openSettings()} class="ml-4">
+        <span onClick={() => openSettings()} class="td-ul--hover ml-4">
           <i class="fa fa-gear mr-2"></i>
           Account/Settings
         </span>
