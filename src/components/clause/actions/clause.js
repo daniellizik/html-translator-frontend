@@ -29,5 +29,9 @@ export default {
   viewMutations: (currentMutation) => ({
     type: constants.CLAUSE_VIEW_MUTATIONS,
     currentMutation
+  }),
+  submit: (clauseIndex) => ({
+    type: constants.CLAUSE_SUBMIT,
+    clauseIndex
   })
 }
