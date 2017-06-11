@@ -21,11 +21,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://bitbucket.org/dlizik/dlizik.bitbucket.org.git"
+    "url": "git+https://github.com/daniellizik/html-translator-frontend"
   },
   "author": "daniel lizik",
   "license": "MIT",
-  "homepage": "https://bitbucket.org/dlizik/dlizik.bitbucket.org#readme",
+  "homepage": "https://github.com/daniellizik/html-translator-frontend",
   "devDependencies": {
     "babel-core": "^6.23.1",
     "babel-jest": "^19.0.0",
@@ -41,11 +41,8 @@
     "babel-preset-react": "^6.23.0",
     "css-loader": "^0.28.0",
     "cssnano": "^3.10.0",
-    "cucumber": "^2.0.0-rc.9",
-    "enzyme": "^2.8.0",
     "extract-text-webpack-plugin": "^2.1.0",
     "jest": "^18.1.0",
-    "jsdom": "^9.12.0",
     "json-loader": "^0.5.4",
     "optimize-css-assets-webpack-plugin": "^1.3.1",
     "raw-loader": "^0.5.1",
