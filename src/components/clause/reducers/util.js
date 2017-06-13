@@ -8,6 +8,20 @@ export const errorHandler = ({message}) => {
   return message
 }
 
+export const setQueryProp = (state, action, key) => ({
+  ...state,
+  clauses: state.clauses.map((clause, clauseIndex) => {
+    return clauseIndex !== action.clauseIndex ? clause : {
+      ...clause,
+      queries: clause.queries.map((query, ruleIndex) => {
+        return ruleIndex !== action.ruleIndex 
+        ? query 
+        : key ? { ...query, [key]: action[key] } : query
+      })
+    }
+  })
+})
+
 export const mutateList = (collection = [], view = []) => {
   return collection.reduce(({list, count}, node) => {
     return view.indexOf(node.id) === -1
@@ -93,7 +107,9 @@ export const reduceClauses = (state, action, key) => {
     return clauseIndex !== action.clauseIndex ? clause : {
       ...clause,
       queries: clause.queries.map((query, ruleIndex) => {
-        return ruleIndex !== action.ruleIndex ? query : { ...query, [key]: action[key] }
+        return ruleIndex !== action.ruleIndex 
+        ? query 
+        : key ? { ...query, [key]: action[key] } : query
       })
     }
   })
