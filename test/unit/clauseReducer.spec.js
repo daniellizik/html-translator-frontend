@@ -2,31 +2,30 @@ import { defaultMutation } from '~/src/components/clause/settings/config'
 import * as constants from '~/src/components/clause/constants'
 import { removingAClause, renamingAClause, viewSingleMutation } from '~/test/storyFixtures/clause'
 
-describe('removing a clause', () => {
-  it('should set active clause to 0 if first clause is removed', () => {
-    expect(removingAClause[5].activeClause).toBe(0)
-  })
-  it('should set active clause to last if last clause is removed', () => {
-    expect(removingAClause[6].activeClause).toBe(1)
-    expect(removingAClause[6].clauses.length).toBe(2)
-  })
-  it('should set active clause to previous if clause removed is not first or last', () => {
-    expect(removingAClause[9].activeClause).toBe(1)
-  })
-  it('should set active clause to -1 if no more clauses left', () => {
-    expect(removingAClause[12].activeClause).toBe(-1)
-  })
-})
+describe('clause reducer', () => {
 
-describe('renaming a clause', () => {
-  it('should rename a clause when the action is called', () => {
-    expect(renamingAClause[2].clauses[0].name).toBe('foobar')
+  describe('removing a clause', () => {
+    removingAClause.forEach(s => {
+      it('should remove a clause', () => {
+        expect(s.clauses).toMatchSnapshot()
+      })
+    })
   })
-})
 
-describe('reducing slave.view', () => {
-  it('should generate slave.view for a single clause', () => {
-    expect(viewSingleMutation[1].slave.view.filter(n => !n.close && n.value === 'blah-foo').length).toBe(3)
-    expect(viewSingleMutation[2].slave.view.filter(n => !n.close && n.value === 'blah-foo').length).toBe(3)
+  describe('renaming a clause', () => {
+    renamingAClause.forEach(s => {
+      it('should rename a clause when the action is called', () => {
+        expect(s.clauses).toMatchSnapshot()
+      })
+    })
   })
+
+  describe('reducing slave.view', () => {
+    viewSingleMutation.forEach(s => {
+      it('should generate slave.view for a single clause', () => {
+        expect(s.clauses).toMatchSnapshot()
+      })
+    })
+  })
+
 })

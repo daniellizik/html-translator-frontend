@@ -11,7 +11,8 @@ export const allReplaceText = chainActions(
   mutateActions.changeRule('ALL_REPLACE', 0, 0),
   clauseActions.changeTarget('TEXT', 0),
   mutateActions.changeRuleValue('blah', 0, 0),
-  mutateActions.toggle(true, 0, 0)
+  mutateActions.toggle(true, 0, 0),
+  clauseActions.submit(0)
 ) 
 
 export const reducedMutations = chainActions(
@@ -21,7 +22,8 @@ export const reducedMutations = chainActions(
   clauseActions.changeTarget('TEXT', 0, 1),
   mutateActions.changeRule('ALL_REPLACE', 0),
   mutateActions.changeRuleValue('cat ', 0, 1),
-  clauseActions.denormalize(0)
+  clauseActions.denormalize(0),
+  clauseActions.submit(0)
 )
 
 export const regexMutation = chainActions(
@@ -41,7 +43,8 @@ export const regexMutation = chainActions(
   mutateActions.toggle(true, 0, 1),
   clauseActions.denormalize(0),
   mutateActions.changeRuleValueFlags('[mutate!!]', 0, 0),
-  clauseActions.denormalize(0)
+  clauseActions.denormalize(0),
+  clauseActions.submit(0)
 )
 
 export const toggling = chainActions(
@@ -49,7 +52,8 @@ export const toggling = chainActions(
   reducer,
   clauseActions.viewMutations(0),
   clauseActions.viewMutations(-1),
-  clauseActions.viewMutations(1)
+  clauseActions.viewMutations(1),
+  clauseActions.submit(0)
 )
 
 export const nodename = chainActions(
@@ -65,7 +69,8 @@ export const nodename = chainActions(
   mutateActions.changeRule('ALL_REPLACE', 0, 0),
   mutateActions.changeRuleValue('h13', 0, 0),
   mutateActions.toggle(true, 0, 0),
-  clauseActions.denormalize(0)
+  clauseActions.denormalize(0),
+  clauseActions.submit(0)  
 )
 
 export const chainedDenormalizations = chainActions(
@@ -83,5 +88,6 @@ export const chainedDenormalizations = chainActions(
   mutateActions.add(1),
   mutateActions.changeRuleValue('span-good', 1, 0),
   mutateActions.changeRule('ALL_REPLACE', 1, 0),
-  builderActions.denormalizeAll()
+  builderActions.denormalizeAll(),
+  clauseActions.submit(0)
 ) 

@@ -14,6 +14,8 @@ export const composedReducer = (state, action) => {
   // to pass this step
   if (state.onboarding.step === 13) {
     const canPass = state.clauses.length > 1
+      && state.clauses[1].queries[0]
+      && state.clauses[1].mutations[0]
       && state.clauses[1].queries[0].targetValue !== ''
       && state.clauses[1].mutations[0].ruleValue !== ''
       && state.slave.mutated.length > 0
@@ -142,7 +144,7 @@ export const composedReducer = (state, action) => {
       if (state.onboarding.step !== 10)
         return state
       const prevState = appReducer(state, action)
-      if (prevState.clauses[0].mutations[0].ruleValue.length < 4)
+      if (!prevState.clauses[0].mutations[0] || prevState.clauses[0].mutations[0].ruleValue.length < 4)
         return prevState
       return {
         ...prevState,

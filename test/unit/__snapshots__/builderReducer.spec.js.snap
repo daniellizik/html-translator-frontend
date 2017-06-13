@@ -1,0 +1,6 @@
+exports[`reducing slave.view should generate slave.view for reduced clauses 1`] = `
+Object {
+  "blah-foo": Array [],
+  "span-good": Array [],
+}
+`;
