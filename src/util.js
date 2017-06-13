@@ -1,6 +1,10 @@
 import { parse } from 'parse5'
 import treeToList from '~/src/treeToList'
 
+export const omit = (obj, ...keys) => Object.keys(obj).reduce((acc, k) => {
+  return keys.indexOf(k) > -1 ? acc : {...acc, [k]: obj[k]} 
+}, {})
+
 export const parseHtml = (rawHtml) => {
   const ast = parse(rawHtml).childNodes[0]
   const list = treeToList()(ast)
