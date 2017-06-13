@@ -24,7 +24,7 @@ describe('step 2', () => {
     expect(story[2].onboarding.step).toBe(2)
   })
   it('should insert sample email url', () => {
-    expect(story[2].source.url).toBe('/www/sample-email.html')
+    expect(story[2].source.url).toBe('sample-email.html')
     expect(story[2].source.lastModified).toBe('url')
   })
 })

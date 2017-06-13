@@ -1,9 +1,16 @@
 import * as constants from '../constants'
 import { defaultClause } from '../settings/config'
 import { bindConstantsToReducers } from '~/src/util'
-import { errorHandler, reduceView, mutationDenormalizer } from './util'
+import { errorHandler, reduceView, reduceClauses, mutationDenormalizer } from './util'
 
 export default bindConstantsToReducers({
+  // does all the...stuff
+  [constants.CLAUSE_SUBMIT]: (state, action) => {
+    return {
+      ...state,
+      clauses: reduceView(action.clauseIndex, state.slave, state.clauses)
+    }
+  },
   [constants.CLAUSE_ADD]: (state, action) => ({
     ...state,
     clauses: reduceView(state.clauses.length, state.slave, [

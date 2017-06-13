@@ -8,8 +8,8 @@ import { createStore, applyMiddleware } from 'redux'
 import rootReducer from '~/src/store/rootReducer'
 import { logger, rxcrx } from '~/src/store/middleware'
 import '~/src/style/light.scss'
-import state from '~/test/stateFixtures/onboarding'
-// import state from '~/test/stateFixtures/dev'
+// import state from '~/test/stateFixtures/onboarding'
+import state from '~/test/stateFixtures/dev'
 
 const render = (App) => {
   const root = document.getElementById('root')

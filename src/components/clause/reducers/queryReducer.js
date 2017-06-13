@@ -1,6 +1,6 @@
 import * as constants from '../constants'
 import { defaultQuery } from '../settings/config'
-import { reduceView, reduceClauses } from './util'
+import { reduceView, reduceClauses, setQueryProp } from './util'
 import { bindConstantsToReducers } from '~/src/util'
 
 export default bindConstantsToReducers({
@@ -23,8 +23,8 @@ export default bindConstantsToReducers({
       }], [])
     )
   }),
-  [constants.QUERY_CHANGE_RULE]: (state, action) => reduceClauses(state, action, 'rule'),
-  [constants.QUERY_CHANGE_RULE_VALUE]: (state, action) => reduceClauses(state, action, 'ruleValue'),
-  [constants.QUERY_CHANGE_TARGET_VALUE]: (state, action) => reduceClauses(state, action, 'targetValue'),
-  [constants.QUERY_CHANGE_RULE_VALUE_FLAGS]: (state, action) => reduceClauses(state, action, 'ruleValueFlags')
+  [constants.QUERY_CHANGE_RULE]: (state, action) => setQueryProp(state, action, 'rule'),
+  [constants.QUERY_CHANGE_RULE_VALUE]: (state, action) => setQueryProp(state, action, 'ruleValue'),
+  [constants.QUERY_CHANGE_TARGET_VALUE]: (state, action) => setQueryProp(state, action, 'targetValue'),
+  [constants.QUERY_CHANGE_RULE_VALUE_FLAGS]: (state, action) => setQueryProp(state, action, 'ruleValueFlags')
 })
