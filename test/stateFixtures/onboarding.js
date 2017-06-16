@@ -3,5 +3,5 @@ import {story} from '~/test/storyFixtures/onboarding'
 
 export default {
   ...state,
-  ...story[9],
+  ...story[0],
 }

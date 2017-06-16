@@ -11,6 +11,10 @@ export const parseHtml = (rawHtml) => {
   return {ast, list}
 }
 
+export const explodeReducers = (state, action, ...reducers) => {
+  
+}
+
 export const chainReducers = (state, action, ...reducers) => {
   return reducers.reduce((reducedState, reducer) => {
     return reducer(reducedState, action)

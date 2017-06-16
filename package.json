@@ -66,6 +66,7 @@
     "react-dom": "^15.4.2",
     "react-redux": "^4.4.6",
     "redux": "^3.5.2",
+    "redux-debounced": "^0.4.0",
     "redux-thunk": "^2.1.0"
   }
 }
