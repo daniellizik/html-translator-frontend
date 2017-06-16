@@ -1,4 +1,4 @@
-import rawHtml from '~/test/htmlFixtures/cats.html'
+import rawHtml from '~/test/htmlFixtures/sample-email.html'
 import rootReducer from '~/src/store/rootReducer'
 import state from '~/src/store/state'
 import { multi as clauses } from '~/test/stateFixtures/clauses'
