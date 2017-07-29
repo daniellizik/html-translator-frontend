@@ -1,0 +1,851 @@
+exports[`onboarding should be at the correct step with overlay display 1`] = `
+Object {
+  "onboarding": Object {
+    "step": 0,
+  },
+  "overlay": true,
+}
+`;
+
+exports[`onboarding should be at the correct step with overlay display 2`] = `
+Object {
+  "onboarding": Object {
+    "step": 1,
+  },
+  "overlay": false,
+}
+`;
+
+exports[`onboarding should be at the correct step with overlay display 3`] = `
+Object {
+  "onboarding": Object {
+    "step": 2,
+  },
+  "overlay": true,
+}
+`;
+
+exports[`onboarding should be at the correct step with overlay display 4`] = `
+Object {
+  "onboarding": Object {
+    "step": 3,
+  },
+  "overlay": false,
+}
+`;
+
+exports[`onboarding should be at the correct step with overlay display 5`] = `
+Object {
+  "onboarding": Object {
+    "step": 4,
+  },
+  "overlay": false,
+}
+`;
+
+exports[`onboarding should be at the correct step with overlay display 6`] = `
+Object {
+  "onboarding": Object {
+    "step": 5,
+  },
+  "overlay": false,
+}
+`;
+
+exports[`onboarding should be at the correct step with overlay display 7`] = `
+Object {
+  "onboarding": Object {
+    "step": 6,
+  },
+  "overlay": false,
+}
+`;
+
+exports[`onboarding should be at the correct step with overlay display 8`] = `
+Object {
+  "onboarding": Object {
+    "step": 7,
+  },
+  "overlay": false,
+}
+`;
+
+exports[`onboarding should be at the correct step with overlay display 9`] = `
+Object {
+  "onboarding": Object {
+    "step": 7,
+  },
+  "overlay": false,
+}
+`;
+
+exports[`onboarding should be at the correct step with overlay display 10`] = `
+Object {
+  "onboarding": Object {
+    "step": 7,
+  },
+  "overlay": false,
+}
+`;
+
+exports[`onboarding should be at the correct step with overlay display 11`] = `
+Object {
+  "onboarding": Object {
+    "step": 7,
+  },
+  "overlay": false,
+}
+`;
+
+exports[`onboarding should be at the correct step with overlay display 12`] = `
+Object {
+  "onboarding": Object {
+    "step": 10,
+  },
+  "overlay": false,
+}
+`;
+
+exports[`onboarding should be at the correct step with overlay display 13`] = `
+Object {
+  "onboarding": Object {
+    "step": 10,
+  },
+  "overlay": false,
+}
+`;
+
+exports[`onboarding should be at the correct step with overlay display 14`] = `
+Object {
+  "onboarding": Object {
+    "step": 10,
+  },
+  "overlay": false,
+}
+`;
+
+exports[`onboarding should be at the correct step with overlay display 15`] = `
+Object {
+  "onboarding": Object {
+    "step": 10,
+  },
+  "overlay": false,
+}
+`;
+
+exports[`onboarding should be at the correct step with overlay display 16`] = `
+Object {
+  "onboarding": Object {
+    "step": 10,
+  },
+  "overlay": false,
+}
+`;
+
+exports[`onboarding should be at the correct step with overlay display 17`] = `
+Object {
+  "onboarding": Object {
+    "step": 10,
+  },
+  "overlay": false,
+}
+`;
+
+exports[`onboarding should be at the correct step with overlay display 18`] = `
+Object {
+  "onboarding": Object {
+    "step": 10,
+  },
+  "overlay": false,
+}
+`;
+
+exports[`onboarding should be at the correct step with overlay display 19`] = `
+Object {
+  "onboarding": Object {
+    "step": 10,
+  },
+  "overlay": false,
+}
+`;
+
+exports[`onboarding should be at the correct step with overlay display 20`] = `
+Object {
+  "onboarding": Object {
+    "step": 10,
+  },
+  "overlay": false,
+}
+`;
+
+exports[`onboarding should be at the correct step with overlay display 21`] = `
+Object {
+  "onboarding": Object {
+    "step": 10,
+  },
+  "overlay": false,
+}
+`;
+
+exports[`onboarding should be at the correct step with overlay display 22`] = `
+Object {
+  "onboarding": Object {
+    "step": 10,
+  },
+  "overlay": false,
+}
+`;
+
+exports[`onboarding should have correct clauses 1`] = `Array []`;
+
+exports[`onboarding should have correct clauses 2`] = `Array []`;
+
+exports[`onboarding should have correct clauses 3`] = `Array []`;
+
+exports[`onboarding should have correct clauses 4`] = `Array []`;
+
+exports[`onboarding should have correct clauses 5`] = `
+Array [
+  Object {
+    "active": false,
+    "minimized": false,
+    "mutations": Array [],
+    "name": "",
+    "queries": Array [],
+    "target": "TEXT",
+    "type": "CLAUSE",
+    "view": Array [],
+  },
+]
+`;
+
+exports[`onboarding should have correct clauses 6`] = `
+Array [
+  Object {
+    "active": false,
+    "minimized": false,
+    "mutations": Array [],
+    "name": "",
+    "queries": Array [],
+    "target": "TEXT",
+    "type": "CLAUSE",
+    "view": Array [],
+  },
+]
+`;
+
+exports[`onboarding should have correct clauses 7`] = `
+Array [
+  Object {
+    "active": false,
+    "minimized": false,
+    "mutations": Array [],
+    "name": "",
+    "queries": Array [
+      Object {
+        "rule": "EQUALS",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "target": "TEXT",
+    "type": "CLAUSE",
+    "view": Array [],
+  },
+]
+`;
+
+exports[`onboarding should have correct clauses 8`] = `
+Array [
+  Object {
+    "active": false,
+    "minimized": false,
+    "mutations": Array [],
+    "name": "",
+    "queries": Array [
+      Object {
+        "rule": "EQUALS",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "target": "TEXT",
+    "type": "CLAUSE",
+    "view": Array [],
+  },
+]
+`;
+
+exports[`onboarding should have correct clauses 9`] = `
+Array [
+  Object {
+    "active": false,
+    "minimized": false,
+    "mutations": Array [],
+    "name": "",
+    "queries": Array [
+      Object {
+        "rule": "EQUALS",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "target": "NODE_NAME",
+    "type": "CLAUSE",
+    "view": Array [],
+  },
+]
+`;
+
+exports[`onboarding should have correct clauses 10`] = `
+Array [
+  Object {
+    "active": false,
+    "minimized": false,
+    "mutations": Array [],
+    "name": "",
+    "queries": Array [
+      Object {
+        "rule": "EQUALS",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "tr",
+      },
+    ],
+    "target": "NODE_NAME",
+    "type": "CLAUSE",
+    "view": Array [],
+  },
+]
+`;
+
+exports[`onboarding should have correct clauses 11`] = `
+Array [
+  Object {
+    "active": false,
+    "minimized": false,
+    "mutations": Array [],
+    "name": "",
+    "queries": Array [
+      Object {
+        "rule": "EQUALS",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "tr",
+      },
+    ],
+    "target": "NODE_NAME",
+    "type": "CLAUSE",
+    "view": Array [],
+  },
+]
+`;
+
+exports[`onboarding should have correct clauses 12`] = `
+Array [
+  Object {
+    "active": false,
+    "minimized": false,
+    "mutations": Array [],
+    "name": "",
+    "queries": Array [
+      Object {
+        "rule": "EQUALS",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "tr",
+      },
+    ],
+    "target": "NODE_NAME",
+    "type": "CLAUSE",
+    "view": Array [],
+  },
+]
+`;
+
+exports[`onboarding should have correct clauses 13`] = `
+Array [
+  Object {
+    "active": false,
+    "minimized": false,
+    "mutations": Array [],
+    "name": "",
+    "queries": Array [
+      Object {
+        "rule": "EQUALS",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "tr",
+      },
+    ],
+    "target": "NODE_NAME",
+    "type": "CLAUSE",
+    "view": Array [],
+  },
+]
+`;
+
+exports[`onboarding should have correct clauses 14`] = `
+Array [
+  Object {
+    "active": false,
+    "minimized": false,
+    "mutations": Array [],
+    "name": "",
+    "queries": Array [
+      Object {
+        "rule": "EQUALS",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "tr",
+      },
+    ],
+    "target": "NODE_NAME",
+    "type": "CLAUSE",
+    "view": Array [],
+  },
+]
+`;
+
+exports[`onboarding should have correct clauses 15`] = `
+Array [
+  Object {
+    "active": false,
+    "minimized": false,
+    "mutations": Array [],
+    "name": "",
+    "queries": Array [
+      Object {
+        "rule": "EQUALS",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "tr",
+      },
+    ],
+    "target": "NODE_NAME",
+    "type": "CLAUSE",
+    "view": Array [],
+  },
+]
+`;
+
+exports[`onboarding should have correct clauses 16`] = `
+Array [
+  Object {
+    "active": false,
+    "minimized": false,
+    "mutations": Array [],
+    "name": "",
+    "queries": Array [
+      Object {
+        "rule": "EQUALS",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "tr",
+      },
+    ],
+    "target": "NODE_NAME",
+    "type": "CLAUSE",
+    "view": Array [],
+  },
+]
+`;
+
+exports[`onboarding should have correct clauses 17`] = `
+Array [
+  Object {
+    "active": false,
+    "minimized": false,
+    "mutations": Array [],
+    "name": "",
+    "queries": Array [
+      Object {
+        "rule": "EQUALS",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "tr",
+      },
+    ],
+    "target": "NODE_NAME",
+    "type": "CLAUSE",
+    "view": Array [],
+  },
+]
+`;
+
+exports[`onboarding should have correct clauses 18`] = `
+Array [
+  Object {
+    "active": false,
+    "minimized": false,
+    "mutations": Array [],
+    "name": "",
+    "queries": Array [
+      Object {
+        "rule": "EQUALS",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "tr",
+      },
+    ],
+    "target": "NODE_NAME",
+    "type": "CLAUSE",
+    "view": Array [],
+  },
+]
+`;
+
+exports[`onboarding should have correct clauses 19`] = `
+Array [
+  Object {
+    "active": false,
+    "minimized": false,
+    "mutations": Array [],
+    "name": "",
+    "queries": Array [
+      Object {
+        "rule": "EQUALS",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "tr",
+      },
+    ],
+    "target": "NODE_NAME",
+    "type": "CLAUSE",
+    "view": Array [],
+  },
+]
+`;
+
+exports[`onboarding should have correct clauses 20`] = `
+Array [
+  Object {
+    "active": false,
+    "minimized": false,
+    "mutations": Array [],
+    "name": "",
+    "queries": Array [
+      Object {
+        "rule": "EQUALS",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "tr",
+      },
+    ],
+    "target": "NODE_NAME",
+    "type": "CLAUSE",
+    "view": Array [],
+  },
+]
+`;
+
+exports[`onboarding should have correct clauses 21`] = `
+Array [
+  Object {
+    "active": false,
+    "minimized": false,
+    "mutations": Array [],
+    "name": "",
+    "queries": Array [
+      Object {
+        "rule": "EQUALS",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "tr",
+      },
+    ],
+    "target": "NODE_NAME",
+    "type": "CLAUSE",
+    "view": Array [],
+  },
+]
+`;
+
+exports[`onboarding should have correct clauses 22`] = `
+Array [
+  Object {
+    "active": false,
+    "minimized": false,
+    "mutations": Array [],
+    "name": "",
+    "queries": Array [
+      Object {
+        "rule": "EQUALS",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "tr",
+      },
+    ],
+    "target": "NODE_NAME",
+    "type": "CLAUSE",
+    "view": Array [],
+  },
+]
+`;
+
+exports[`onboarding should have correct source 1`] = `
+Object {
+  "active": false,
+  "lastModified": null,
+  "name": null,
+  "rawHtml": null,
+  "url": null,
+}
+`;
+
+exports[`onboarding should have correct source 2`] = `
+Object {
+  "active": false,
+  "lastModified": null,
+  "name": null,
+  "rawHtml": null,
+  "url": null,
+}
+`;
+
+exports[`onboarding should have correct source 3`] = `
+Object {
+  "active": true,
+  "lastModified": "url",
+  "name": null,
+  "rawHtml": null,
+  "url": "sample-email.html",
+}
+`;
+
+exports[`onboarding should have correct source 4`] = `
+Object {
+  "active": false,
+  "lastModified": "url",
+  "name": undefined,
+  "rawHtml": null,
+  "url": "sample-email.html",
+}
+`;
+
+exports[`onboarding should have correct source 5`] = `
+Object {
+  "active": false,
+  "lastModified": "url",
+  "name": undefined,
+  "rawHtml": null,
+  "url": "sample-email.html",
+}
+`;
+
+exports[`onboarding should have correct source 6`] = `
+Object {
+  "active": false,
+  "lastModified": "url",
+  "name": undefined,
+  "rawHtml": null,
+  "url": "sample-email.html",
+}
+`;
+
+exports[`onboarding should have correct source 7`] = `
+Object {
+  "active": false,
+  "lastModified": "url",
+  "name": undefined,
+  "rawHtml": null,
+  "url": "sample-email.html",
+}
+`;
+
+exports[`onboarding should have correct source 8`] = `
+Object {
+  "active": false,
+  "lastModified": "url",
+  "name": undefined,
+  "rawHtml": null,
+  "url": "sample-email.html",
+}
+`;
+
+exports[`onboarding should have correct source 9`] = `
+Object {
+  "active": false,
+  "lastModified": "url",
+  "name": undefined,
+  "rawHtml": null,
+  "url": "sample-email.html",
+}
+`;
+
+exports[`onboarding should have correct source 10`] = `
+Object {
+  "active": false,
+  "lastModified": "url",
+  "name": undefined,
+  "rawHtml": null,
+  "url": "sample-email.html",
+}
+`;
+
+exports[`onboarding should have correct source 11`] = `
+Object {
+  "active": false,
+  "lastModified": "url",
+  "name": undefined,
+  "rawHtml": null,
+  "url": "sample-email.html",
+}
+`;
+
+exports[`onboarding should have correct source 12`] = `
+Object {
+  "active": false,
+  "lastModified": "url",
+  "name": undefined,
+  "rawHtml": null,
+  "url": "sample-email.html",
+}
+`;
+
+exports[`onboarding should have correct source 13`] = `
+Object {
+  "active": false,
+  "lastModified": "url",
+  "name": undefined,
+  "rawHtml": null,
+  "url": "sample-email.html",
+}
+`;
+
+exports[`onboarding should have correct source 14`] = `
+Object {
+  "active": false,
+  "lastModified": "url",
+  "name": undefined,
+  "rawHtml": null,
+  "url": "sample-email.html",
+}
+`;
+
+exports[`onboarding should have correct source 15`] = `
+Object {
+  "active": false,
+  "lastModified": "url",
+  "name": undefined,
+  "rawHtml": null,
+  "url": "sample-email.html",
+}
+`;
+
+exports[`onboarding should have correct source 16`] = `
+Object {
+  "active": false,
+  "lastModified": "url",
+  "name": undefined,
+  "rawHtml": null,
+  "url": "sample-email.html",
+}
+`;
+
+exports[`onboarding should have correct source 17`] = `
+Object {
+  "active": false,
+  "lastModified": "url",
+  "name": undefined,
+  "rawHtml": null,
+  "url": "sample-email.html",
+}
+`;
+
+exports[`onboarding should have correct source 18`] = `
+Object {
+  "active": false,
+  "lastModified": "url",
+  "name": undefined,
+  "rawHtml": null,
+  "url": "sample-email.html",
+}
+`;
+
+exports[`onboarding should have correct source 19`] = `
+Object {
+  "active": false,
+  "lastModified": "url",
+  "name": undefined,
+  "rawHtml": null,
+  "url": "sample-email.html",
+}
+`;
+
+exports[`onboarding should have correct source 20`] = `
+Object {
+  "active": false,
+  "lastModified": "url",
+  "name": undefined,
+  "rawHtml": null,
+  "url": "sample-email.html",
+}
+`;
+
+exports[`onboarding should have correct source 21`] = `
+Object {
+  "active": false,
+  "lastModified": "url",
+  "name": undefined,
+  "rawHtml": null,
+  "url": "sample-email.html",
+}
+`;
+
+exports[`onboarding should have correct source 22`] = `
+Object {
+  "active": false,
+  "lastModified": "url",
+  "name": undefined,
+  "rawHtml": null,
+  "url": "sample-email.html",
+}
+`;
+
+exports[`onboarding should have correct xml 1`] = `undefined`;
+
+exports[`onboarding should have correct xml 2`] = `undefined`;
+
+exports[`onboarding should have correct xml 3`] = `undefined`;
+
+exports[`onboarding should have correct xml 4`] = `undefined`;
+
+exports[`onboarding should have correct xml 5`] = `undefined`;
+
+exports[`onboarding should have correct xml 6`] = `undefined`;
+
+exports[`onboarding should have correct xml 7`] = `undefined`;
+
+exports[`onboarding should have correct xml 8`] = `undefined`;
+
+exports[`onboarding should have correct xml 9`] = `undefined`;
+
+exports[`onboarding should have correct xml 10`] = `undefined`;
+
+exports[`onboarding should have correct xml 11`] = `undefined`;
+
+exports[`onboarding should have correct xml 12`] = `undefined`;
+
+exports[`onboarding should have correct xml 13`] = `undefined`;
+
+exports[`onboarding should have correct xml 14`] = `undefined`;
+
+exports[`onboarding should have correct xml 15`] = `undefined`;
+
+exports[`onboarding should have correct xml 16`] = `undefined`;
+
+exports[`onboarding should have correct xml 17`] = `undefined`;
+
+exports[`onboarding should have correct xml 18`] = `undefined`;
+
+exports[`onboarding should have correct xml 19`] = `undefined`;
+
+exports[`onboarding should have correct xml 20`] = `undefined`;
+
+exports[`onboarding should have correct xml 21`] = `undefined`;
+
+exports[`onboarding should have correct xml 22`] = `undefined`;

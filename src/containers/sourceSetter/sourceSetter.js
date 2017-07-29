@@ -41,10 +41,15 @@ class SourceSetter extends Component {
     return false
   }
 
+  submit(e) {
+    e.preventDefault()
+    return false
+  }
+
   render() {
     const { lastModified, name, html, url, file } = this.props.source
     return (
-      <div class="row justify-content-center h-0">
+      <form onSubmit={this.submit} class="row justify-content-center h-0">
         <div
           class={`col-6 mt-5 z-15 ${this.props.source.active ? 'visible' : 'hidden'}`}>
           <div class="row">
@@ -123,7 +128,7 @@ class SourceSetter extends Component {
             </div>
           </div>
         </div>
-      </div>
+      </form>
     )
 
   }

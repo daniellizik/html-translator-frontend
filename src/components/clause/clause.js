@@ -55,10 +55,15 @@ export const MaximizedClause = connect(mapStateToProps, mapDispatchToProps)(({
   clauseGroup,
   onboardingStep
 }) => (
-  <div
-    key={clauseIndex} 
+  <form
+    key={clauseIndex}
+    onSubmit={e => { e.preventDefault(); clauseActions.submit(clauseIndex); return false; }}
     class="col-12 mx-0 mb-3 py-3 c-subcontrast bg-neutral">
     <div class="row px-3">
+    <input 
+      type="submit"
+      title="submit this clause" 
+      class="btn col-12 mb-2 mx-0 p-2" />
       <label class="col-6 mb-2 mx-0 pl-0 pr-2">
         <ToolTip
           placement="right"
@@ -151,7 +156,7 @@ export const MaximizedClause = connect(mapStateToProps, mapDispatchToProps)(({
         ))}
       </div>
     </div>
-  </div>
+  </form>
 ))
 
 export const MinifiedClause = connect(mapStateToProps, mapDispatchToProps)((props) => (

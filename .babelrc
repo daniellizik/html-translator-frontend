@@ -14,6 +14,7 @@
       "plugins": [
         "babel-plugin-root-import",
         "babel-plugin-react-html-attrs",
+        "transform-class-properties",
         "react-hot-loader/babel",
         "syntax-object-rest-spread",
         "transform-object-rest-spread"
@@ -33,6 +34,7 @@
       "plugins": [
         "babel-plugin-root-import",
         "babel-plugin-react-html-attrs",
+        "transform-class-properties",
         "syntax-object-rest-spread",
         "transform-object-rest-spread"
       ]
@@ -52,6 +54,7 @@
         "babel-plugin-transform-es2015-modules-commonjs",
         "babel-plugin-root-import",
         "babel-plugin-react-html-attrs",
+        "transform-class-properties",
         "syntax-object-rest-spread",
         "transform-object-rest-spread",
       ]

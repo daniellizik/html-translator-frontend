@@ -1,0 +1,509 @@
+exports[`mutation reducer chain denormalizations should chain 1`] = `
+Object {
+  "activeClause": -1,
+  "clauses": Array [
+    Object {
+      "active": true,
+      "minimized": false,
+      "mutations": Array [
+        Object {
+          "active": true,
+          "behavior": "",
+          "rule": "ALL_REPLACE",
+          "ruleValue": "blah",
+          "ruleValueFlags": "",
+          "targetValue": "",
+        },
+        Object {
+          "behavior": "",
+          "rule": "END_OF",
+          "ruleValue": "-foo",
+          "ruleValueFlags": "",
+          "targetValue": "",
+        },
+      ],
+      "name": "blah",
+      "queries": Array [
+        Object {
+          "rule": "LIKE",
+          "ruleValue": "",
+          "ruleValueFlags": "",
+          "targetValue": "cat-",
+          "type": "QUERY",
+        },
+      ],
+      "target": "TEXT",
+      "view": Array [
+        12,
+        15,
+        18,
+      ],
+    },
+    Object {
+      "active": false,
+      "minimized": false,
+      "mutations": Array [
+        Object {
+          "behavior": "",
+          "rule": "ALL_REPLACE",
+          "ruleValue": "span-good",
+          "ruleValueFlags": "",
+          "targetValue": "",
+        },
+        Object {
+          "behavior": "",
+          "rule": "START_OF",
+          "ruleValue": "",
+          "ruleValueFlags": "",
+          "targetValue": "",
+        },
+      ],
+      "name": "",
+      "queries": Array [
+        Object {
+          "rule": "EQUALS",
+          "ruleValue": "",
+          "ruleValueFlags": "",
+          "targetValue": "span",
+        },
+      ],
+      "target": "NODE_NAME",
+      "type": "CLAUSE",
+      "view": Array [],
+    },
+  ],
+  "error": "@CLAUSE/CLAUSE_ERROR_INVALID_REGEX",
+  "iframe": Object {
+    "src": null,
+    "state": false,
+  },
+  "locale": "en-US",
+  "onboarding": Object {
+    "step": -1,
+  },
+  "overlay": false,
+  "pastInit": true,
+  "slave": Object {
+    "active": false,
+    "lastModified": null,
+    "name": undefined,
+    "url": null,
+  },
+  "source": Object {
+    "active": false,
+    "lastModified": null,
+    "name": undefined,
+    "rawHtml": null,
+    "url": null,
+  },
+  "user": Object {
+    "auth": true,
+    "maxClauses": Infinity,
+    "viewingSettings": false,
+  },
+}
+`;
+
+exports[`mutation reducer mutating nodename should mutate nodename 1`] = `
+Object {
+  "activeClause": 0,
+  "clauses": Array [
+    Object {
+      "active": true,
+      "minimized": false,
+      "mutations": Array [
+        Object {
+          "active": true,
+          "behavior": "",
+          "rule": "ALL_REPLACE",
+          "ruleValue": "h13",
+          "ruleValueFlags": "",
+          "targetValue": "",
+        },
+      ],
+      "name": "blah",
+      "queries": Array [
+        Object {
+          "rule": "LIKE",
+          "ruleValue": "",
+          "ruleValueFlags": "",
+          "targetValue": "span",
+          "type": "QUERY",
+        },
+      ],
+      "target": "NODE_NAME",
+      "view": Array [
+        22,
+        25,
+        28,
+        31,
+        34,
+      ],
+    },
+  ],
+  "error": "@CLAUSE/CLAUSE_ERROR_INVALID_REGEX",
+  "iframe": Object {
+    "src": null,
+    "state": false,
+  },
+  "locale": "en-US",
+  "onboarding": Object {
+    "step": -1,
+  },
+  "overlay": false,
+  "pastInit": true,
+  "slave": Object {
+    "active": false,
+    "lastModified": null,
+    "name": undefined,
+    "url": null,
+  },
+  "source": Object {
+    "active": false,
+    "lastModified": null,
+    "name": undefined,
+    "rawHtml": null,
+    "url": null,
+  },
+  "user": Object {
+    "auth": true,
+    "maxClauses": Infinity,
+    "viewingSettings": false,
+  },
+}
+`;
+
+exports[`mutation reducer reduce mutations should reduce mutations 1`] = `
+Object {
+  "activeClause": 0,
+  "clauses": Array [
+    Object {
+      "active": true,
+      "minimized": false,
+      "mutations": Array [
+        Object {
+          "active": true,
+          "behavior": "",
+          "rule": "ALL_REPLACE",
+          "ruleValue": "blah",
+          "ruleValueFlags": "",
+          "targetValue": "",
+        },
+        Object {
+          "behavior": "",
+          "rule": "START_OF",
+          "ruleValue": "cat ",
+          "ruleValueFlags": "",
+          "targetValue": "",
+        },
+      ],
+      "name": "blah",
+      "queries": Array [
+        Object {
+          "rule": "LIKE",
+          "ruleValue": "",
+          "ruleValueFlags": "",
+          "targetValue": "cat",
+          "type": "QUERY",
+        },
+      ],
+      "target": "TEXT",
+      "view": Array [
+        12,
+        15,
+        18,
+        23,
+        26,
+        29,
+        32,
+        35,
+        40,
+        43,
+        46,
+        49,
+        52,
+        55,
+      ],
+    },
+  ],
+  "error": null,
+  "iframe": Object {
+    "src": null,
+    "state": false,
+  },
+  "locale": "en-US",
+  "onboarding": Object {
+    "step": -1,
+  },
+  "overlay": false,
+  "pastInit": true,
+  "slave": Object {
+    "active": false,
+    "lastModified": null,
+    "name": undefined,
+    "url": null,
+  },
+  "source": Object {
+    "active": false,
+    "lastModified": null,
+    "name": undefined,
+    "rawHtml": null,
+    "url": null,
+  },
+  "user": Object {
+    "auth": true,
+    "maxClauses": Infinity,
+    "viewingSettings": false,
+  },
+}
+`;
+
+exports[`mutation reducer regex mutation should mutate with regex 1`] = `
+Object {
+  "activeClause": 0,
+  "clauses": Array [
+    Object {
+      "active": true,
+      "minimized": false,
+      "mutations": Array [
+        Object {
+          "active": true,
+          "behavior": "",
+          "rule": "REGEX_REPLACE",
+          "ruleValue": "cat",
+          "ruleValueFlags": "[mutate!!]",
+          "targetValue": "peanuts",
+        },
+        Object {
+          "active": true,
+          "behavior": "",
+          "rule": "REGEX_REPLACE",
+          "ruleValue": "eanu",
+          "ruleValueFlags": "",
+          "targetValue": " foobar ",
+        },
+      ],
+      "name": "blah",
+      "queries": Array [
+        Object {
+          "rule": "LIKE",
+          "ruleValue": "",
+          "ruleValueFlags": "",
+          "targetValue": "cat",
+          "type": "QUERY",
+        },
+      ],
+      "target": "TEXT",
+      "view": Array [
+        12,
+        15,
+        18,
+        23,
+        26,
+        29,
+        32,
+        35,
+        40,
+        43,
+        46,
+        49,
+        52,
+        55,
+      ],
+    },
+  ],
+  "error": "@CLAUSE/CLAUSE_ERROR_INVALID_REGEX",
+  "iframe": Object {
+    "src": null,
+    "state": false,
+  },
+  "locale": "en-US",
+  "onboarding": Object {
+    "step": -1,
+  },
+  "overlay": false,
+  "pastInit": true,
+  "slave": Object {
+    "active": false,
+    "lastModified": null,
+    "name": undefined,
+    "url": null,
+  },
+  "source": Object {
+    "active": false,
+    "lastModified": null,
+    "name": undefined,
+    "rawHtml": null,
+    "url": null,
+  },
+  "user": Object {
+    "auth": true,
+    "maxClauses": Infinity,
+    "viewingSettings": false,
+  },
+}
+`;
+
+exports[`mutation reducer replace all text should replace all text 1`] = `
+Object {
+  "activeClause": 0,
+  "clauses": Array [
+    Object {
+      "active": true,
+      "minimized": false,
+      "mutations": Array [
+        Object {
+          "active": true,
+          "behavior": "",
+          "rule": "ALL_REPLACE",
+          "ruleValue": "blah",
+          "ruleValueFlags": "",
+          "targetValue": "",
+        },
+      ],
+      "name": "blah",
+      "queries": Array [
+        Object {
+          "rule": "LIKE",
+          "ruleValue": "",
+          "ruleValueFlags": "",
+          "targetValue": "cat",
+          "type": "QUERY",
+        },
+      ],
+      "target": "TEXT",
+      "view": Array [
+        12,
+        15,
+        18,
+        23,
+        26,
+        29,
+        32,
+        35,
+        40,
+        43,
+        46,
+        49,
+        52,
+        55,
+      ],
+    },
+  ],
+  "error": null,
+  "iframe": Object {
+    "src": null,
+    "state": false,
+  },
+  "locale": "en-US",
+  "onboarding": Object {
+    "step": -1,
+  },
+  "overlay": false,
+  "pastInit": true,
+  "slave": Object {
+    "active": false,
+    "lastModified": null,
+    "name": undefined,
+    "url": null,
+  },
+  "source": Object {
+    "active": false,
+    "lastModified": null,
+    "name": undefined,
+    "rawHtml": null,
+    "url": null,
+  },
+  "user": Object {
+    "auth": true,
+    "maxClauses": Infinity,
+    "viewingSettings": false,
+  },
+}
+`;
+
+exports[`mutation reducer toggling should toggle view 1`] = `
+Object {
+  "activeClause": 0,
+  "clauses": Array [
+    Object {
+      "active": true,
+      "minimized": false,
+      "mutations": Array [
+        Object {
+          "active": true,
+          "behavior": "",
+          "rule": "REGEX_REPLACE",
+          "ruleValue": "cat",
+          "ruleValueFlags": "[mutate!!]",
+          "targetValue": "peanuts",
+        },
+        Object {
+          "active": true,
+          "behavior": "",
+          "rule": "REGEX_REPLACE",
+          "ruleValue": "eanu",
+          "ruleValueFlags": "",
+          "targetValue": " foobar ",
+        },
+      ],
+      "name": "blah",
+      "queries": Array [
+        Object {
+          "rule": "LIKE",
+          "ruleValue": "",
+          "ruleValueFlags": "",
+          "targetValue": "cat",
+          "type": "QUERY",
+        },
+      ],
+      "target": "TEXT",
+      "view": Array [
+        12,
+        15,
+        18,
+        23,
+        26,
+        29,
+        32,
+        35,
+        40,
+        43,
+        46,
+        49,
+        52,
+        55,
+      ],
+    },
+  ],
+  "error": "@CLAUSE/CLAUSE_ERROR_INVALID_REGEX",
+  "iframe": Object {
+    "src": null,
+    "state": false,
+  },
+  "locale": "en-US",
+  "onboarding": Object {
+    "step": -1,
+  },
+  "overlay": false,
+  "pastInit": true,
+  "slave": Object {
+    "active": false,
+    "lastModified": null,
+    "name": undefined,
+    "url": null,
+  },
+  "source": Object {
+    "active": false,
+    "lastModified": null,
+    "name": undefined,
+    "rawHtml": null,
+    "url": null,
+  },
+  "user": Object {
+    "auth": true,
+    "maxClauses": Infinity,
+    "viewingSettings": false,
+  },
+}
+`;

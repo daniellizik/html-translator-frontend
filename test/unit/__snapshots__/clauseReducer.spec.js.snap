@@ -1,0 +1,1042 @@
+exports[`clause reducer reducing slave.view should generate slave.view for a single clause 1`] = `
+Array [
+  Object {
+    "active": true,
+    "minimized": false,
+    "mutations": Array [
+      Object {
+        "active": true,
+        "behavior": "",
+        "rule": "ALL_REPLACE",
+        "ruleValue": "blah",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+      Object {
+        "behavior": "",
+        "rule": "END_OF",
+        "ruleValue": "-foo",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "name": "blah",
+    "queries": Array [
+      Object {
+        "rule": "LIKE",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "cat-",
+        "type": "QUERY",
+      },
+    ],
+    "target": "TEXT",
+    "view": Array [
+      12,
+      15,
+      18,
+    ],
+  },
+  Object {
+    "active": false,
+    "minimized": false,
+    "mutations": Array [
+      Object {
+        "behavior": "",
+        "rule": "ALL_REPLACE",
+        "ruleValue": "span-good",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+      Object {
+        "behavior": "",
+        "rule": "START_OF",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "name": "",
+    "queries": Array [
+      Object {
+        "rule": "EQUALS",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "span",
+      },
+    ],
+    "target": "NODE_NAME",
+    "type": "CLAUSE",
+    "view": Array [],
+  },
+]
+`;
+
+exports[`clause reducer reducing slave.view should generate slave.view for a single clause 2`] = `
+Array [
+  Object {
+    "active": true,
+    "minimized": false,
+    "mutations": Array [
+      Object {
+        "active": true,
+        "behavior": "",
+        "rule": "ALL_REPLACE",
+        "ruleValue": "blah",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+      Object {
+        "behavior": "",
+        "rule": "END_OF",
+        "ruleValue": "-foo",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "name": "blah",
+    "queries": Array [
+      Object {
+        "rule": "LIKE",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "cat-",
+        "type": "QUERY",
+      },
+    ],
+    "target": "TEXT",
+    "view": Array [
+      12,
+      15,
+      18,
+    ],
+  },
+  Object {
+    "active": false,
+    "minimized": false,
+    "mutations": Array [
+      Object {
+        "behavior": "",
+        "rule": "ALL_REPLACE",
+        "ruleValue": "span-good",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+      Object {
+        "behavior": "",
+        "rule": "START_OF",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "name": "",
+    "queries": Array [
+      Object {
+        "rule": "EQUALS",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "span",
+      },
+    ],
+    "target": "NODE_NAME",
+    "type": "CLAUSE",
+    "view": Array [],
+  },
+]
+`;
+
+exports[`clause reducer reducing slave.view should generate slave.view for a single clause 3`] = `
+Array [
+  Object {
+    "active": true,
+    "minimized": false,
+    "mutations": Array [
+      Object {
+        "active": true,
+        "behavior": "",
+        "rule": "ALL_REPLACE",
+        "ruleValue": "blah",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+      Object {
+        "behavior": "",
+        "rule": "END_OF",
+        "ruleValue": "-foo",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "name": "blah",
+    "queries": Array [
+      Object {
+        "rule": "LIKE",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "cat-",
+        "type": "QUERY",
+      },
+    ],
+    "target": "TEXT",
+    "view": Array [
+      12,
+      15,
+      18,
+    ],
+  },
+  Object {
+    "active": false,
+    "minimized": false,
+    "mutations": Array [
+      Object {
+        "behavior": "",
+        "rule": "ALL_REPLACE",
+        "ruleValue": "span-good",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+      Object {
+        "behavior": "",
+        "rule": "START_OF",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "name": "",
+    "queries": Array [
+      Object {
+        "rule": "EQUALS",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "span",
+      },
+    ],
+    "target": "NODE_NAME",
+    "type": "CLAUSE",
+    "view": Array [],
+  },
+]
+`;
+
+exports[`clause reducer removing a clause should remove a clause 1`] = `Array []`;
+
+exports[`clause reducer removing a clause should remove a clause 2`] = `
+Array [
+  Object {
+    "active": false,
+    "minimized": false,
+    "mutations": Array [
+      Object {
+        "behavior": "",
+        "rule": "START_OF",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "name": "",
+    "queries": Array [
+      Object {
+        "rule": "EQUALS",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "target": "TEXT",
+    "type": "CLAUSE",
+    "view": Array [],
+  },
+]
+`;
+
+exports[`clause reducer removing a clause should remove a clause 3`] = `
+Array [
+  Object {
+    "active": false,
+    "minimized": false,
+    "mutations": Array [
+      Object {
+        "behavior": "",
+        "rule": "START_OF",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "name": "",
+    "queries": Array [
+      Object {
+        "rule": "EQUALS",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "target": "TEXT",
+    "type": "CLAUSE",
+    "view": Array [],
+  },
+  Object {
+    "active": false,
+    "minimized": false,
+    "mutations": Array [
+      Object {
+        "behavior": "",
+        "rule": "START_OF",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "name": "",
+    "queries": Array [
+      Object {
+        "rule": "EQUALS",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "target": "TEXT",
+    "type": "CLAUSE",
+    "view": Array [],
+  },
+]
+`;
+
+exports[`clause reducer removing a clause should remove a clause 4`] = `
+Array [
+  Object {
+    "active": false,
+    "minimized": false,
+    "mutations": Array [
+      Object {
+        "behavior": "",
+        "rule": "START_OF",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "name": "",
+    "queries": Array [
+      Object {
+        "rule": "EQUALS",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "target": "TEXT",
+    "type": "CLAUSE",
+    "view": Array [],
+  },
+  Object {
+    "active": false,
+    "minimized": false,
+    "mutations": Array [
+      Object {
+        "behavior": "",
+        "rule": "START_OF",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "name": "",
+    "queries": Array [
+      Object {
+        "rule": "EQUALS",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "target": "TEXT",
+    "type": "CLAUSE",
+    "view": Array [],
+  },
+  Object {
+    "active": false,
+    "minimized": false,
+    "mutations": Array [
+      Object {
+        "behavior": "",
+        "rule": "START_OF",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "name": "",
+    "queries": Array [
+      Object {
+        "rule": "EQUALS",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "target": "TEXT",
+    "type": "CLAUSE",
+    "view": Array [],
+  },
+]
+`;
+
+exports[`clause reducer removing a clause should remove a clause 5`] = `
+Array [
+  Object {
+    "active": false,
+    "minimized": false,
+    "mutations": Array [
+      Object {
+        "behavior": "",
+        "rule": "START_OF",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "name": "",
+    "queries": Array [
+      Object {
+        "rule": "EQUALS",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "target": "TEXT",
+    "type": "CLAUSE",
+    "view": Array [],
+  },
+  Object {
+    "active": false,
+    "minimized": false,
+    "mutations": Array [
+      Object {
+        "behavior": "",
+        "rule": "START_OF",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "name": "",
+    "queries": Array [
+      Object {
+        "rule": "EQUALS",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "target": "TEXT",
+    "type": "CLAUSE",
+    "view": Array [],
+  },
+  Object {
+    "active": false,
+    "minimized": false,
+    "mutations": Array [
+      Object {
+        "behavior": "",
+        "rule": "START_OF",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "name": "",
+    "queries": Array [
+      Object {
+        "rule": "EQUALS",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "target": "TEXT",
+    "type": "CLAUSE",
+    "view": Array [],
+  },
+  Object {
+    "active": false,
+    "minimized": false,
+    "mutations": Array [
+      Object {
+        "behavior": "",
+        "rule": "START_OF",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "name": "",
+    "queries": Array [
+      Object {
+        "rule": "EQUALS",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "target": "TEXT",
+    "type": "CLAUSE",
+    "view": Array [],
+  },
+]
+`;
+
+exports[`clause reducer removing a clause should remove a clause 6`] = `
+Array [
+  Object {
+    "active": false,
+    "minimized": false,
+    "mutations": Array [
+      Object {
+        "behavior": "",
+        "rule": "START_OF",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "name": "",
+    "queries": Array [
+      Object {
+        "rule": "EQUALS",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "target": "TEXT",
+    "type": "CLAUSE",
+    "view": Array [],
+  },
+  Object {
+    "active": false,
+    "minimized": false,
+    "mutations": Array [
+      Object {
+        "behavior": "",
+        "rule": "START_OF",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "name": "",
+    "queries": Array [
+      Object {
+        "rule": "EQUALS",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "target": "TEXT",
+    "type": "CLAUSE",
+    "view": Array [],
+  },
+  Object {
+    "active": false,
+    "minimized": false,
+    "mutations": Array [
+      Object {
+        "behavior": "",
+        "rule": "START_OF",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "name": "",
+    "queries": Array [
+      Object {
+        "rule": "EQUALS",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "target": "TEXT",
+    "type": "CLAUSE",
+    "view": Array [],
+  },
+]
+`;
+
+exports[`clause reducer removing a clause should remove a clause 7`] = `
+Array [
+  Object {
+    "active": false,
+    "minimized": false,
+    "mutations": Array [
+      Object {
+        "behavior": "",
+        "rule": "START_OF",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "name": "",
+    "queries": Array [
+      Object {
+        "rule": "EQUALS",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "target": "TEXT",
+    "type": "CLAUSE",
+    "view": Array [],
+  },
+  Object {
+    "active": false,
+    "minimized": false,
+    "mutations": Array [
+      Object {
+        "behavior": "",
+        "rule": "START_OF",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "name": "",
+    "queries": Array [
+      Object {
+        "rule": "EQUALS",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "target": "TEXT",
+    "type": "CLAUSE",
+    "view": Array [],
+  },
+]
+`;
+
+exports[`clause reducer removing a clause should remove a clause 8`] = `
+Array [
+  Object {
+    "active": false,
+    "minimized": false,
+    "mutations": Array [
+      Object {
+        "behavior": "",
+        "rule": "START_OF",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "name": "",
+    "queries": Array [
+      Object {
+        "rule": "EQUALS",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "target": "TEXT",
+    "type": "CLAUSE",
+    "view": Array [],
+  },
+  Object {
+    "active": false,
+    "minimized": false,
+    "mutations": Array [
+      Object {
+        "behavior": "",
+        "rule": "START_OF",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "name": "",
+    "queries": Array [
+      Object {
+        "rule": "EQUALS",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "target": "TEXT",
+    "type": "CLAUSE",
+    "view": Array [],
+  },
+  Object {
+    "active": false,
+    "minimized": false,
+    "mutations": Array [
+      Object {
+        "behavior": "",
+        "rule": "START_OF",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "name": "",
+    "queries": Array [
+      Object {
+        "rule": "EQUALS",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "target": "TEXT",
+    "type": "CLAUSE",
+    "view": Array [],
+  },
+]
+`;
+
+exports[`clause reducer removing a clause should remove a clause 9`] = `
+Array [
+  Object {
+    "active": false,
+    "minimized": false,
+    "mutations": Array [
+      Object {
+        "behavior": "",
+        "rule": "START_OF",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "name": "",
+    "queries": Array [
+      Object {
+        "rule": "EQUALS",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "target": "TEXT",
+    "type": "CLAUSE",
+    "view": Array [],
+  },
+  Object {
+    "active": false,
+    "minimized": false,
+    "mutations": Array [
+      Object {
+        "behavior": "",
+        "rule": "START_OF",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "name": "",
+    "queries": Array [
+      Object {
+        "rule": "EQUALS",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "target": "TEXT",
+    "type": "CLAUSE",
+    "view": Array [],
+  },
+  Object {
+    "active": false,
+    "minimized": false,
+    "mutations": Array [
+      Object {
+        "behavior": "",
+        "rule": "START_OF",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "name": "",
+    "queries": Array [
+      Object {
+        "rule": "EQUALS",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "target": "TEXT",
+    "type": "CLAUSE",
+    "view": Array [],
+  },
+  Object {
+    "active": false,
+    "minimized": false,
+    "mutations": Array [
+      Object {
+        "behavior": "",
+        "rule": "START_OF",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "name": "",
+    "queries": Array [
+      Object {
+        "rule": "EQUALS",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "target": "TEXT",
+    "type": "CLAUSE",
+    "view": Array [],
+  },
+]
+`;
+
+exports[`clause reducer removing a clause should remove a clause 10`] = `
+Array [
+  Object {
+    "active": false,
+    "minimized": false,
+    "mutations": Array [
+      Object {
+        "behavior": "",
+        "rule": "START_OF",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "name": "",
+    "queries": Array [
+      Object {
+        "rule": "EQUALS",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "target": "TEXT",
+    "type": "CLAUSE",
+    "view": Array [],
+  },
+  Object {
+    "active": false,
+    "minimized": false,
+    "mutations": Array [
+      Object {
+        "behavior": "",
+        "rule": "START_OF",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "name": "",
+    "queries": Array [
+      Object {
+        "rule": "EQUALS",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "target": "TEXT",
+    "type": "CLAUSE",
+    "view": Array [],
+  },
+  Object {
+    "active": false,
+    "minimized": false,
+    "mutations": Array [
+      Object {
+        "behavior": "",
+        "rule": "START_OF",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "name": "",
+    "queries": Array [
+      Object {
+        "rule": "EQUALS",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "target": "TEXT",
+    "type": "CLAUSE",
+    "view": Array [],
+  },
+]
+`;
+
+exports[`clause reducer removing a clause should remove a clause 11`] = `
+Array [
+  Object {
+    "active": false,
+    "minimized": false,
+    "mutations": Array [
+      Object {
+        "behavior": "",
+        "rule": "START_OF",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "name": "",
+    "queries": Array [
+      Object {
+        "rule": "EQUALS",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "target": "TEXT",
+    "type": "CLAUSE",
+    "view": Array [],
+  },
+  Object {
+    "active": false,
+    "minimized": false,
+    "mutations": Array [
+      Object {
+        "behavior": "",
+        "rule": "START_OF",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "name": "",
+    "queries": Array [
+      Object {
+        "rule": "EQUALS",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "target": "TEXT",
+    "type": "CLAUSE",
+    "view": Array [],
+  },
+]
+`;
+
+exports[`clause reducer removing a clause should remove a clause 12`] = `
+Array [
+  Object {
+    "active": false,
+    "minimized": false,
+    "mutations": Array [
+      Object {
+        "behavior": "",
+        "rule": "START_OF",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "name": "",
+    "queries": Array [
+      Object {
+        "rule": "EQUALS",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "target": "TEXT",
+    "type": "CLAUSE",
+    "view": Array [],
+  },
+]
+`;
+
+exports[`clause reducer removing a clause should remove a clause 13`] = `Array []`;
+
+exports[`clause reducer renaming a clause should rename a clause when the action is called 1`] = `Array []`;
+
+exports[`clause reducer renaming a clause should rename a clause when the action is called 2`] = `
+Array [
+  Object {
+    "active": false,
+    "minimized": false,
+    "mutations": Array [
+      Object {
+        "behavior": "",
+        "rule": "START_OF",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "name": "",
+    "queries": Array [
+      Object {
+        "rule": "EQUALS",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "target": "TEXT",
+    "type": "CLAUSE",
+    "view": Array [],
+  },
+]
+`;
+
+exports[`clause reducer renaming a clause should rename a clause when the action is called 3`] = `
+Array [
+  Object {
+    "active": false,
+    "minimized": false,
+    "mutations": Array [
+      Object {
+        "behavior": "",
+        "rule": "START_OF",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "name": "foobar",
+    "queries": Array [
+      Object {
+        "rule": "EQUALS",
+        "ruleValue": "",
+        "ruleValueFlags": "",
+        "targetValue": "",
+      },
+    ],
+    "target": "TEXT",
+    "type": "CLAUSE",
+    "view": Array [],
+  },
+]
+`;
