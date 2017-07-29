@@ -7,7 +7,9 @@
     "serve": "set NODE_ENV=development&&webpack-dev-server --hot  --content-base ./ --config ./webpack/development.js",
     "test": "set NODE_ENV=test&&jest",
     "test:watch": "set NODE_ENV=test&&jest --watch",
-    "build": "sh ./scripts/build.sh"
+    "build": "sh ./scripts/build.sh",
+    "build:docker": "docker build -t html-translator-frontend .",
+    "start": "docker run -p 80:8080 -d html-translator-frontend"
   },
   "jest": {
     "testRegex": "(/__tests__/.*|(\\.|/)(spec))\\.jsx?$",
